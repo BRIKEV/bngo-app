@@ -5,7 +5,7 @@ const Prepper = require('prepper');
 module.exports = ({ prepper } = {}) => {
   const { handlers } = prepper || Prepper;
 
-  const start = async ({ app }) => {
+  const start = async ({ server: { app } }) => {
     app.use((req, res, next) => {
       const logger = req.app.locals.logger.child({
         handlers: [

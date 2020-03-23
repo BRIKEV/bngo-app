@@ -16,4 +16,4 @@ module.exports = new System({ name: 'logging' })
   .add('logger', prepper())
   .dependsOn('config', 'pkg', 'transports')
   .add('middleware.prepper', prepperMiddleware())
-  .dependsOn('app');
+  .dependsOn('server');

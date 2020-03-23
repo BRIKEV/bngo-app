@@ -2,7 +2,7 @@ const express = require('express');
 const expressSwaggerGenerator = require('express-swagger-generator');
 
 module.exports = () => {
-  const start = async ({ manifest = {}, app, config }) => {
+  const start = async ({ manifest = {}, server: { app }, config }) => {
     const { swaggerOptions } = config;
     const expressSwagger = expressSwaggerGenerator(app);
     const options = {
