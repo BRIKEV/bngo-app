@@ -7,7 +7,7 @@ describe('Service Tests', () => {
   const sys = system();
 
   before(async () => {
-    const { app } = await sys.start();
+    const { server: { app } } = await sys.start();
     request = supertest(app);
   });
 
