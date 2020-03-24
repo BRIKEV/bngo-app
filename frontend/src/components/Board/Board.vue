@@ -7,6 +7,7 @@
       v-for="(item, index) in images"
       :key="index"
       :style="itemStyles(item)"
+      :class="{ disabled: item.disabled }"
       class="item" />
   </div>
 </template>
@@ -22,6 +23,7 @@ export default {
     images: VueTypes.arrayOf(VueTypes.shape({
       id: VueTypes.number,
       url: VueTypes.string.isRequired,
+      disabled: VueTypes.bool.optional,
     })).loose,
   },
   methods: {
@@ -32,7 +34,7 @@ export default {
     },
     boardStyles(rows, columns) {
       return {
-        'grid-template-rows': `repeat(${rows}, 25%)`,
+        'grid-template-rows': `repeat(${rows}, auto)`,
         'grid-template-columns': `repeat(${columns}, 1fr)`,
       };
     },
@@ -40,6 +42,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 .board {
   width: 100%;
   height: 100%;
@@ -51,6 +54,14 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 20px;
+    box-shadow: $boxShadow;
   }
+}
+.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  position: none;
+  cursor: not-allowed;
+  transition: opacity .5s;
 }
 </style>
