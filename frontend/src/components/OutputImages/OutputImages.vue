@@ -1,5 +1,5 @@
 <template>
-  
+  <div class="outputImages"></div>
 </template>
 
 <script>
