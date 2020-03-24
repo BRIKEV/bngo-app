@@ -13,16 +13,16 @@
 
 <script>
 import VueTypes from 'vue-types';
-import mock from './mock';
 
 export default {
   name: 'Board',
   props: {
     numOfColumns: VueTypes.number.isRequired,
     numOfRows: VueTypes.number.isRequired,
-  },
-  beforeCreate() {
-    this.images = mock;
+    images: VueTypes.arrayOf(VueTypes.shape({
+      id: VueTypes.number,
+      url: VueTypes.string.isRequired,
+    })).loose,
   },
   methods: {
     itemStyles(item) {
@@ -50,7 +50,7 @@ export default {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-     border-radius: 3px;
+    border-radius: 20px;
   }
 }
 </style>
