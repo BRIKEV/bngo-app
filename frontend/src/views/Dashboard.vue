@@ -1,7 +1,10 @@
 <template>
   <div class="dashboard">
     <h1>Dashboard</h1>
-    <Board />
+    <Board
+      :numOfColumns="4"
+      :numOfRows="4"
+      />
   </div>
 </template>
 
@@ -15,3 +18,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.dashboard {
+  height: 100vh;
+}
+</style>

@@ -1,29 +1,56 @@
 <template>
-  <div class="board">
+  <div
+    class="board"
+    :style="boardStyles(numOfRows, numOfColumns)"
+    >
     <div
-      v-for="item in totalItems"
-      :key="item"
+      v-for="(item, index) in images"
+      :key="index"
+      :style="itemStyles(item)"
       class="item" />
   </div>
 </template>
 
 <script>
-const TOTAL = 16;
+import VueTypes from 'vue-types';
+import mock from './mock';
+
 export default {
   name: 'Board',
+  props: {
+    numOfColumns: VueTypes.number.isRequired,
+    numOfRows: VueTypes.number.isRequired,
+  },
   beforeCreate() {
-    this.totalItems = TOTAL;
+    this.images = mock;
+  },
+  methods: {
+    itemStyles(item) {
+      return {
+        'background-image': `url(${item.imageUrl})`,
+      };
+    },
+    boardStyles(rows, columns) {
+      return {
+        'grid-template-rows': `repeat(${rows}, 25%)`,
+        'grid-template-columns': `repeat(${columns}, 1fr)`,
+      };
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 .board {
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-rows: repeat(4, 110px);
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
   .item {
-      background: lightgray;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+     border-radius: 3px;
   }
 }
 </style>
