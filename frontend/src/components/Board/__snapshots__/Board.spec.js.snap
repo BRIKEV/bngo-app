@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board component Should be render correctly 1`] = `
+<div
+  class="board"
+  style="grid-template-rows: repeat(4, auto); grid-template-columns: repeat(4, 1fr);"
+/>
+`;

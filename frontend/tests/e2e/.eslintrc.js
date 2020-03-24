@@ -8,5 +8,6 @@ module.exports = {
   },
   rules: {
     strict: 'off',
+    'no-undef': 0,
   },
 };

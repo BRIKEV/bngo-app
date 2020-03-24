@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageCard component Should be render correctly 1`] = `
+<div
+  class="imageCard"
+>
+  <img
+    alt=""
+    class="image"
+    src="urlOfimgae"
+  />
+</div>
+`;
