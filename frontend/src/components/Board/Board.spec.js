@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Board from './Board.vue';
+import { Board } from '@/components';
 
 describe('Board component', () => {
   const propsData = {

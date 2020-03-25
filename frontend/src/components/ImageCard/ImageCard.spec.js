@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import ImageCard from './ImageCard.vue';
+import { ImageCard } from '@/components';
 
 describe('ImageCard component', () => {
   const propsData = {
