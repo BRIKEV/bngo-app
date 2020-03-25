@@ -2,93 +2,60 @@
   <div class="roulette">
     <div class="wheel wheel1">
       <div class="wheel-inner">
-        <div
-          v-for="(color, index) in colors"
+        <ImageCard
+          class="ImageCard"
+          v-for="(image, index) in images"
           :key="index"
-          :style="{ 'background-color': color.value }"
-        >
-          {{color.color}}
-        </div>
+          :imageUrl="image.imageUrl"
+        />
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import { ImageCard } from '@/components';
+import mock from '../Board/mock';
+
 export default {
   name: 'Wheel',
+  components: {
+    ImageCard,
+  },
   data() {
     return {
-      colors: [
-        {
-          color: 'red',
-          value: '#f00',
-        },
-        {
-          color: 'green',
-          value: '#0f0',
-        },
-        {
-          color: 'blue',
-          value: '#00f',
-        },
-        {
-          color: 'cyan',
-          value: '#0ff',
-        },
-        {
-          color: 'magenta',
-          value: '#f0f',
-        },
-        {
-          color: 'yellow',
-          value: '#ff0',
-        },
-        {
-          color: 'black',
-          value: '#000',
-        },
-        {
-          color: 'grey',
-          value: '#555',
-        },
-        {
-          color: 'lightgrey',
-          value: '#AAA',
-        },
-      ],
+      images: mock,
     };
   },
 };
 </script>
 <style lang="scss" scoped>
 .wheel {
-  width:80px;
-  height:120px;
-  border:5px solid grey;
+  width: 150px;
+  height: 150px;
+  border: 5px solid grey;
   overflow: hidden;
   .wheel-inner {
     height: 120px;
-    margin-top:10px;
-    margin-left:10px;
-    position:relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
     perspective: 900px;
-    animation: rot 2s infinite linear;
-    transform-style:preserve-3d;
+    animation: rot 3s infinite linear;
+    transform-style: preserve-3d;
     transform-origin: 50% 47% 20px;
 
-    > div {
-      width:60px;
-      height:80px;
-      position:absolute;
-      transform-style:preserve-3d;
-      backface-visibility:hidden;
-      text-align:center;
-      padding:25px 0;
+    .ImageCard {
+      width: 90%;
+      height: 90%;
+      position: absolute;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      text-align: center;
+      padding: 25px 0;
       margin: 10px 0;
-      box-sizing:border-box;
+      box-sizing: border-box;
       $i: 0;
-      @while $i < 9 {
+      @while $i < 49 {
         &:nth-child(#{$i + 1}) {
           transform: rotateX(#{$i * 40}deg) translateZ(120px);
         }
