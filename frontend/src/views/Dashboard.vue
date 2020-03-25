@@ -11,10 +11,7 @@
           />
       </div>
         <div class="Info">
-          <ImageCard
-            class="imageCard"
-            :imageUrl="imageUrl"
-          />
+          <Wheel class="Wheel"/>
           <div class="boardContainer">
             <Board
               class="Board"
@@ -29,14 +26,14 @@
 </template>
 
 <script>
-import { Board, ImageCard } from '@/components';
+import { Board, Wheel } from '@/components';
 import mock from '../components/Board/mock';
 
 export default {
   name: 'Dashboard',
   components: {
     Board,
-    ImageCard,
+    Wheel,
   },
   data() {
     return {
@@ -67,7 +64,9 @@ export default {
     justify-content: space-between;
     margin: 0 auto;
     width: 30%;
-    .imageCard {
+    .Wheel {
+      height: 150px;
+      width: 150px;
       margin: 0 auto;
     }
     .boardContainer {

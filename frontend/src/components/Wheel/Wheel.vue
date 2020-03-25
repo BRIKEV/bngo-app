@@ -29,10 +29,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
 .wheel {
-  width: 150px;
-  height: 150px;
-  border: 5px solid grey;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  box-shadow: $boxShadow;
   overflow: hidden;
   .wheel-inner {
     height: 120px;
@@ -40,7 +43,7 @@ export default {
     margin-left: 10px;
     position: relative;
     perspective: 900px;
-    animation: rot 3s infinite linear;
+    // animation: rot 3s infinite linear;
     transform-style: preserve-3d;
     transform-origin: 50% 47% 20px;
 
