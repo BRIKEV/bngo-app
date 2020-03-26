@@ -14,6 +14,7 @@ module.exports = () => {
     };
     expressSwagger(options);
 
+    app.use('/test', express.static(config.testPath));
     app.use(express.static(config.frontPath));
     /**
 		 * This endpoint serves the manifest
