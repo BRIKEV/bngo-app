@@ -61,10 +61,12 @@ describe('initStore tests', () => {
       'image',
       'selected',
     ]);
+    expect(result.updateGame.users[0].username).to.eql(username);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(1);
     for (let i = 0; i < 48; i += 1) {
       result = await api.playTurn({ key: gameKey }); // eslint-disable-line
     }
+    expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
   });
 });

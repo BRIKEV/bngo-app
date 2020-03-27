@@ -44,18 +44,26 @@ module.exports = () => {
       return Promise.resolve({ username, board });
     };
 
+    const updateBoard = (board, optionSelected) => (
+      board.map(boardItem => {
+        if (boardItem.id === optionSelected.id) {
+          return { boardItem, selected: true };
+        }
+        return { ...boardItem };
+      })
+    );
+
     const playTurn = async ({ key }) => {
       const game = await getGameByKey(key);
       const validBoard = game.board.filter(({ selected }) => !selected);
       const optionSelected = getRandomItem(validBoard);
       const updateGame = {
         ...game,
-        board: game.board.map(boardItem => {
-          if (boardItem.id === optionSelected.id) {
-            return { boardItem, selected: true };
-          }
-          return { ...boardItem };
-        }),
+        users: game.users.map(user => ({
+          ...user,
+          board: updateBoard(user.board, optionSelected),
+        })),
+        board: updateBoard(game.board, optionSelected),
       };
       games = games.map(updateGameByKey(updateGame));
       return Promise.resolve({ optionSelected, updateGame });
