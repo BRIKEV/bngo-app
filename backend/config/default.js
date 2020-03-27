@@ -8,6 +8,7 @@ module.exports = {
   routes: {
     admin: {
       frontPath: join(__dirname, '..', '..', 'frontend', 'dist'),
+      testPath: join(__dirname, '..', 'public'),
       swaggerOptions: {
         swaggerDefinition: {
           info: {
