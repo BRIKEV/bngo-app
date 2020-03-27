@@ -6,6 +6,8 @@ module.exports = () => {
   const start = ({ logger }) => {
     let games = [];
 
+    const getGames = () => games;
+
     const createGame = async ({ gameName, gameKey }) => {
       logger.info('Creating game');
       const game = {
@@ -30,9 +32,6 @@ module.exports = () => {
 
     const joinGame = async ({ key, username }) => {
       const game = await getGameByKey(key);
-      if (!game) {
-        return 'error';
-      }
       const board = shuffleBoard(DEFAULT_BOARD, 16);
       const updateGame = {
         ...game,
@@ -62,7 +61,7 @@ module.exports = () => {
       return Promise.resolve({ optionSelected, updateGame });
     };
 
-    return { createGame, joinGame, playTurn };
+    return { createGame, joinGame, playTurn, getGames };
   };
 
   return { start };
