@@ -108,7 +108,19 @@ module.exports = () => {
       return Promise.resolve({ optionSelected, updateGame });
     };
 
-    return { createGame, joinGame, playTurn, readyToStart };
+    const getUserInfo = async ({ key, gameName, username }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const gameUser = game.users.find(user => user.username === username);
+      if (!gameUser) {
+        throw notFoundError('User not found in this game');
+      }
+      return Promise.resolve(gameUser);
+    };
+
+    return { createGame, joinGame, playTurn, readyToStart, getUserInfo };
   };
 
   return { start };

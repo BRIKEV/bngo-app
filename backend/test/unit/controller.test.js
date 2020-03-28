@@ -106,6 +106,49 @@ describe('initController tests', () => {
     }
   });
 
+  describe('getUserInfo tests', () => {
+    it('should return not found when there is not a game created', async () => {
+      try {
+        await api.getUserInfo({ key: gameKey, gameName, username });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Game key does not exists');
+      }
+    });
+
+    it('should return not found when there is not a user in that game', async () => {
+      try {
+        await api.createGame({ gameName, gameKey });
+        await api.getUserInfo({ key: gameKey, gameName, username });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('User not found in this game');
+      }
+    });
+
+    it('should return not found when gamename does not match', async () => {
+      try {
+        await api.createGame({ gameName, gameKey });
+        await api.getUserInfo({ key: gameKey, gameName: 'Random gamename', username });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Gamename not found');
+      }
+    });
+
+    it('should return not found when gamename does not match', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey });
+      const userInfo = await api.getUserInfo({ key: gameKey, gameName, username });
+      expect(userInfo.board).to.have.length(16);
+      expect(userInfo.ready).to.eql(false);
+      expect(userInfo.username).to.eql(username);
+    });
+  });
+
   it('complete playTurn method', async () => {
     await api.createGame({ gameName, gameKey });
     await api.joinGame({ username, key: gameKey });

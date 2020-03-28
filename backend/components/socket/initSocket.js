@@ -17,7 +17,7 @@ module.exports = () => {
       // socket.emit('userConnected', { userId: socket.id });
       const { username, gameName, gameKey } = socket.handshake.query;
       logger.info(`New socket connection of user: ${username} game ${gameName} with ${gameKey}`);
-      controller.joinGame({ key: gameKey, username })
+      controller.getUserInfo({ key: gameKey, gameName, username })
         .then(userInfo => {
           logger.info(`User: ${username} join to game ${gameName} in the DB`);
           const { board, ready } = userInfo;
@@ -29,7 +29,7 @@ module.exports = () => {
         })
         .catch(error => {
           logger.error(`Error in socket ${error}`);
-          socket.to(socket.id).emit('joinError');
+          socket.to(socket.id).emit('errorAccess');
         });
 
       // readyToStart

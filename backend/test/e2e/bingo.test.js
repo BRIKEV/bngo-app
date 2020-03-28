@@ -6,7 +6,7 @@ const system = require('../../system');
 const gameName = 'entourage';
 const gameKey = 'pizza';
 
-describe('API endpoint', () => {
+describe.skip('API endpoint', () => {
   let request;
   let socket;
   const sys = system();
@@ -61,7 +61,7 @@ describe('API endpoint', () => {
       });
   });
 
-  it(`create a game and join one user and receive for the user channel yourBoard event
+  it.skip(`create a game and join one user and receive for the user channel yourBoard event
     whit information of the user's board and username
   `, cb => {
     const username = 'kj';
