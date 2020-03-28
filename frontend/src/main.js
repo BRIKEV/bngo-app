@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import i18n from '@/lang/i18n';
 import App from './App.vue';
+import '@/components/registerAsGlobal';
 import router from './router';
 import store from './store';
 import '@/theme/normalize.scss';
