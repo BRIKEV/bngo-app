@@ -41,15 +41,17 @@ export default {
   data() {
     return {
       images: BOARD,
-      imageUrl: 'https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png',
     };
   },
 };
 </script>
 <style lang="scss" scoped>
 .dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   height: 100vh;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
 }
 .content {
