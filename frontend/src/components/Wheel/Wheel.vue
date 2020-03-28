@@ -13,6 +13,7 @@
         />
       </div>
     </div>
+    <p>{{ name }}</p>
   </div>
 </template>
 <script>
@@ -26,6 +27,7 @@ export default {
       image: VueTypes.string.isRequired,
     })).loose,
     animate: VueTypes.bool.def(false),
+    name: VueTypes.string,
   },
   components: {
     ImageCard,

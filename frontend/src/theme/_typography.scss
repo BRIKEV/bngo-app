@@ -1,0 +1,31 @@
+@import './utils/functions.scss';
+
+// Font weights
+$light: 100;
+$regular: 400;
+$bold: 700;
+
+// Font sizes
+$fs-base: calculateRem(16px);
+
+$fs-small : calculateRem(15px);
+$fs-medium : calculateRem(17px);
+$fs-large  : calculateRem(19px);
+
+/* heading font sizes */
+$fs-h1: calculateRem(36px);
+$fs-h2: calculateRem(32px);
+$fs-h3: calculateRem(28px);
+$fs-h4: calculateRem(24px);
+$fs-h5: calculateRem(20px);
+$fs-h6: calculateRem(18px);
+
+// Base Font
+$base-font-family: 'Open Sans', sans-serif;
+$base-font-title: 'Lato', sans-serif;
+$base-font-weight: $regular;
+$base-font-size: calculateRem(13px);
+$base-line-height: 1.4;
+
+// Headings
+$header-font-weight: $bold;

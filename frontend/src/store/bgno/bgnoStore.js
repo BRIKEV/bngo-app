@@ -5,7 +5,7 @@ export const initialState = {
     animate: null,
     selected: {
       image: null,
-      description: null,
+      name: null,
     },
   },
   board: [],

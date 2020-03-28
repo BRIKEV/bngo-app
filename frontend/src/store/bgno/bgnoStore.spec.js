@@ -22,7 +22,7 @@ describe('Tickets store', () => {
         animate: false,
         selected: {
           image: 'image.png',
-          description: 'Name of image',
+          name: 'Name of image',
         },
     }
     expect(state.currentResult).toEqual(initialState.currentResult);
