@@ -1,6 +1,15 @@
+const {
+  errorFactory,
+  CustomErrorTypes,
+} = require('error-handler-module');
+
 const DEFAULT_BOARD = require('../../mock/index.json');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
+
+const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
+const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
+const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 
 module.exports = () => {
   const start = async ({ logger, store }) => {
@@ -18,8 +27,8 @@ module.exports = () => {
     };
 
     const getGameByKey = async key => {
-      const notFoundKeyError = () => new Error('Key is required');
-      const notFoundGame = () => new Error('Game key does not exists');
+      const notFoundKeyError = () => wrongInput('Key is required');
+      const notFoundGame = () => notFoundError('Game key does not exists');
       if (!key) {
         throw notFoundKeyError();
       }
@@ -34,8 +43,7 @@ module.exports = () => {
       const game = await getGameByKey(key);
       const isAlreadyAdded = game.users.some(user => user.username === username);
       if (isAlreadyAdded) {
-        const error = new Error('User already joined');
-        throw error;
+        throw badRequestError('User already joined');
       }
       const board = shuffleBoard(DEFAULT_BOARD, 16);
       const newUser = { username, board, ready: false };
