@@ -17,8 +17,8 @@ module.exports = () => {
     */
     app.post('/api/v1/game', async (req, res, next) => {
       try {
-        validator.validateAPIOutput(req.body, req);
-        await controller.savePDFInfo(req.body);
+        validator.validateAPIInput(req.body, req);
+        await controller.createGame(req.body);
         const response = { success: true };
         validator.validateAPIOutput(response, req);
         return res.json(response);

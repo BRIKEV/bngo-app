@@ -1,9 +1,14 @@
 
 module.exports = () => {
-  const start = () => {
+  const start = async () => {
     let games = [];
 
     const getGames = () => games;
+
+    const removeGames = async () => {
+      games = [];
+      return Promise.resolve(true);
+    };
 
     const addGame = async game => {
       games.push(game);
@@ -25,7 +30,7 @@ module.exports = () => {
       return Promise.resolve(updateGame);
     };
 
-    return { addGame, getGameByKey, updateGameByKey, getGames };
+    return { addGame, getGameByKey, updateGameByKey, getGames, removeGames };
   };
 
   return { start };

@@ -3,7 +3,7 @@ const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
 module.exports = () => {
-  const start = ({ logger, store }) => {
+  const start = async ({ logger, store }) => {
     const createGame = async ({ gameName, gameKey }) => {
       logger.info('Creating game');
       const game = {
