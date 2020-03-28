@@ -1,7 +1,10 @@
 <template>
   <div class="roulette">
     <div class="wheel wheel1">
-      <div class="wheel-inner">
+      <div
+        class="wheel-inner"
+        :class="{ animate }"
+      >
         <ImageCard
           class="ImageCard"
           v-for="(data, index) in images"
@@ -22,6 +25,7 @@ export default {
     images: VueTypes.arrayOf(VueTypes.shape({
       image: VueTypes.string.isRequired,
     })).loose,
+    animate: VueTypes.bool.def(false),
   },
   components: {
     ImageCard,
@@ -36,10 +40,12 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   height: 100%;
   box-shadow: $boxShadow;
   overflow: hidden;
+  .animate {
+    animation: rot 3s infinite linear;
+  }
   .wheel-inner {
     height: 100%;
     position: relative;
-    // animation: rot 3s infinite linear;
     transform-style: preserve-3d;
     transform-origin: 50% 47% 20px;
 
