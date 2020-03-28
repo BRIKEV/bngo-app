@@ -53,6 +53,7 @@
     "prepper": "^1.2.0",
     "ramda": "^0.26.1",
     "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
     "swagger-endpoint-validator": "^1.1.5",
     "systemic": "^3.3.0",
     "systemic-domain-runner": "^1.1.0"

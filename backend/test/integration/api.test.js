@@ -44,5 +44,7 @@ describe('API endpoint', () => {
     .expect(200)
     .then(({ body }) => {
       expect(body).to.eql({ success: true });
+      const games = storeSystem.getGames();
+      expect(games).to.have.length(1);
     }));
 });
