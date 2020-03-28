@@ -1,24 +1,28 @@
 const expect = require('expect.js');
+const initController = require('../../components/controller/initController');
 const initStore = require('../../components/store/initStore');
 
 const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
-describe('initStore tests', () => {
-  const { start } = initStore();
+describe('initController tests', () => {
+  const { start } = initController();
   let api;
+  let storeSystem;
   beforeEach(async () => {
+    storeSystem = await initStore().start();
     api = await start({
       logger: {
         info: () => 0,
       },
+      store: storeSystem,
     });
   });
 
   it('createGame method', async () => {
     const result = await api.createGame({ gameName, gameKey });
-    const games = api.getGames();
+    const games = storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].board).to.have.length(49);
     expect(result).to.eql('Game created');
@@ -30,7 +34,7 @@ describe('initStore tests', () => {
     expect(result.username).to.eql(username);
     expect(result.board).to.have.length(16);
     expect(result.ready).to.eql(false);
-    const games = api.getGames();
+    const games = storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].users).to.have.length(1);
   });
@@ -46,7 +50,7 @@ describe('initStore tests', () => {
     result = await api.readyToStart({ username: secondUsername, key: gameKey });
     expect(result.username).to.eql(secondUsername);
     expect(result.gameReady).to.eql(true);
-    const games = api.getGames();
+    const games = storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].ready).to.eql(true);
   });
