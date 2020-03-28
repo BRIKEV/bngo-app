@@ -12,14 +12,14 @@ module.exports = {
       swaggerOptions: {
         swaggerDefinition: {
           info: {
-            description: 'Documentation for bngo-app',
-            title: 'bngo-app',
+            description: 'Documentation for taxi-tpv-tickets-api',
+            title: 'taxi-tpv-tickets-api',
             version: '1.0.0',
           },
-          host: process.env.SERVICE_ENV || 'localhost:4000',
-          basePath: '/v1',
+          host: process.env.DOCS_HOST || 'localhost:4000',
+          basePath: '/',
           produces: ['application/json'],
-          schemes: ['http'],
+          schemes: ['https', 'http'],
           securityDefinitions: {
             JWT: {
               type: 'apiKey',
@@ -28,6 +28,12 @@ module.exports = {
               description: '',
             },
           },
+        },
+        basedir: process.cwd(), // app absolute path
+        files: ['./**/**-routes.js'], // path to the API handle folder, related to basedir
+        route: {
+          url: '/api-docs',
+          docs: '/api-docs.json',
         },
       },
     },

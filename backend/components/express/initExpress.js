@@ -7,9 +7,20 @@ module.exports = () => {
       logger.info(`listening on *:${config.port}`);
     });
     app.locals.logger = logger;
-
     return { app, http };
   };
 
-  return { start };
+  const stop = async () => (
+    new Promise(resolve => {
+      http.close(error => {
+        if (error) {
+          console.error(error); // eslint-disable-line
+          return resolve({});
+        }
+        return resolve({});
+      });
+    })
+  );
+
+  return { start, stop };
 };

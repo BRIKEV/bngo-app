@@ -2,7 +2,7 @@ const expect = require('expect.js');
 const supertest = require('supertest');
 const system = require('../system');
 
-describe.skip('Service Tests', () => {
+describe('Service Tests', () => {
   let request;
   const sys = system();
 
@@ -11,7 +11,9 @@ describe.skip('Service Tests', () => {
     request = supertest(app);
   });
 
-  after(() => sys.stop());
+  after(async () => {
+    await sys.stop();
+  });
 
   it('returns manifest', () => request
     .get('/__/manifest')
