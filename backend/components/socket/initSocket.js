@@ -23,13 +23,25 @@ module.exports = () => {
           const { board, ready } = userInfo;
           socket.join(gameName, () => {
             logger.info(`User: ${username} join to game ${gameName} to the room`);
-            io.to(gameName).emit('newUser', { username, board, ready });
+            io.to(gameName).emit('newUser', { username, ready });
+            io.to(socket.id).emit('yourBoard', { username, board });
           });
         })
         .catch(error => {
           logger.error(`Error in socket ${error}`);
           socket.to(socket.id).emit('joinError');
         });
+
+      // readyToStart
+      socket.on('readyToStart', () => {
+        controller.readyToStart({ key: gameKey, username })
+          .then(({ gameReady, board }) => {
+            io.to(gameName).emit('newUser', { username, ready: true });
+            if (gameReady) {
+              io.to(gameName).emit('gameReady', { board });
+            }
+          });
+      });
     });
 
     return io;
