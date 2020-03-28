@@ -65,8 +65,8 @@ export default {
     margin: 0 auto;
     width: 30%;
     .Wheel {
-      height: 150px;
-      width: 150px;
+      height: 300px;
+      width: 360px;
       margin: 0 auto;
     }
     .boardContainer {

@@ -34,33 +34,28 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 .wheel {
   width: 100%;
   height: 100%;
-  padding: 30px;
   box-shadow: $boxShadow;
   overflow: hidden;
   .wheel-inner {
-    height: 120px;
-    margin-top: 10px;
-    margin-left: 10px;
+    height: 100%;
     position: relative;
-    perspective: 900px;
     // animation: rot 3s infinite linear;
     transform-style: preserve-3d;
     transform-origin: 50% 47% 20px;
 
     .ImageCard {
-      width: 90%;
-      height: 90%;
+      width: 100%;
+      height: 100%;
       position: absolute;
+      padding: 45px;
       transform-style: preserve-3d;
       backface-visibility: hidden;
       text-align: center;
-      padding: 25px 0;
-      margin: 10px 0;
       box-sizing: border-box;
       $i: 0;
       @while $i < 49 {
         &:nth-child(#{$i + 1}) {
-          transform: rotateX(#{$i * 40}deg) translateZ(120px);
+          transform: rotateX(#{$i * 45}deg) translateZ(300px);
         }
         $i: $i + 1;
       }
