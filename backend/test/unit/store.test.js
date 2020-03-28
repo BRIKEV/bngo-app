@@ -51,6 +51,16 @@ describe('initStore tests', () => {
     expect(games[0].ready).to.eql(true);
   });
 
+  it('should return error as game is not ready', async () => {
+    await api.createGame({ gameName, gameKey });
+    await api.joinGame({ username, key: gameKey });
+    try {
+      await api.playTurn({ key: gameKey });
+    } catch (error) {
+      expect(error.message).to.eql('Error: game is not ready yet');
+    }
+  });
+
   it('complete playTurn method', async () => {
     await api.createGame({ gameName, gameKey });
     await api.joinGame({ username, key: gameKey });

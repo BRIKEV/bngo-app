@@ -78,7 +78,8 @@ module.exports = () => {
     const playTurn = async ({ key }) => {
       const game = await getGameByKey(key);
       if (!game.ready) {
-        return 'Error playing game';
+        const error = new Error('Error: game is not ready yet');
+        throw error;
       }
       const validBoard = game.board.filter(({ selected }) => !selected);
       const optionSelected = getRandomItem(validBoard);
