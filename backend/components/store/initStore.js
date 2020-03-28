@@ -13,6 +13,7 @@ module.exports = () => {
       const game = {
         key: gameKey,
         name: gameName,
+        ready: false,
         users: [],
         board: DEFAULT_BOARD,
       };
@@ -33,15 +34,16 @@ module.exports = () => {
     const joinGame = async ({ key, username }) => {
       const game = await getGameByKey(key);
       const board = shuffleBoard(DEFAULT_BOARD, 16);
+      const newUser = { username, board, ready: false };
       const updateGame = {
         ...game,
         users: [
           ...game.users,
-          { username, board },
+          newUser,
         ],
       };
       games = games.map(updateGameByKey(updateGame));
-      return Promise.resolve({ username, board });
+      return Promise.resolve(newUser);
     };
 
     const updateBoard = (board, optionSelected) => (
@@ -53,8 +55,31 @@ module.exports = () => {
       })
     );
 
+    const readyToStart = async ({ key, username }) => {
+      const game = await getGameByKey(key);
+      const newUsers = game.users.map(user => {
+        if (user.username === username) {
+          return { ...user, ready: true };
+        }
+        return { ...user };
+      });
+      const gameReady = (
+        newUsers.filter(({ ready }) => ready).length === game.users.length
+      );
+      const updateGame = {
+        ...game,
+        ready: gameReady,
+        users: newUsers,
+      };
+      games = games.map(updateGameByKey(updateGame));
+      return Promise.resolve({ username, gameReady });
+    };
+
     const playTurn = async ({ key }) => {
       const game = await getGameByKey(key);
+      if (!game.ready) {
+        return 'Error playing game';
+      }
       const validBoard = game.board.filter(({ selected }) => !selected);
       const optionSelected = getRandomItem(validBoard);
       const updateGame = {
@@ -69,7 +94,7 @@ module.exports = () => {
       return Promise.resolve({ optionSelected, updateGame });
     };
 
-    return { createGame, joinGame, playTurn, getGames };
+    return { createGame, joinGame, playTurn, getGames, readyToStart };
   };
 
   return { start };

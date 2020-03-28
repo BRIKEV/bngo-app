@@ -1,6 +1,10 @@
 const expect = require('expect.js');
 const initStore = require('../../components/store/initStore');
 
+const gameName = 'entourage';
+const gameKey = 'pizza';
+const username = 'kj';
+
 describe('initStore tests', () => {
   const { start } = initStore();
   let api;
@@ -13,8 +17,6 @@ describe('initStore tests', () => {
   });
 
   it('createGame method', async () => {
-    const gameName = 'entourage';
-    const gameKey = 'pizza';
     const result = await api.createGame({ gameName, gameKey });
     const games = api.getGames();
     expect(games).to.have.length(1);
@@ -23,37 +25,36 @@ describe('initStore tests', () => {
   });
 
   it('joinGame method', async () => {
-    const gameName = 'entourage';
-    const gameKey = 'pizza';
-    const username = 'kj';
     await api.createGame({ gameName, gameKey });
     const result = await api.joinGame({ username, key: gameKey });
     expect(result.username).to.eql(username);
     expect(result.board).to.have.length(16);
+    expect(result.ready).to.eql(false);
     const games = api.getGames();
     expect(games).to.have.length(1);
     expect(games[0].users).to.have.length(1);
   });
 
-  it('joinGame method', async () => {
-    const gameName = 'entourage';
-    const gameKey = 'pizza';
-    const username = 'kj';
-    await api.createGame({ gameName, gameKey });
-    const result = await api.joinGame({ username, key: gameKey });
-    expect(result.username).to.eql(username);
-    expect(result.board).to.have.length(16);
-    const games = api.getGames();
-    expect(games).to.have.length(1);
-    expect(games[0].users).to.have.length(1);
-  });
-
-  it('playTurn method', async () => {
-    const gameName = 'entourage';
-    const gameKey = 'pizza';
-    const username = 'kj';
+  it('readyToStart method', async () => {
+    const secondUsername = 'secondUsername';
     await api.createGame({ gameName, gameKey });
     await api.joinGame({ username, key: gameKey });
+    await api.joinGame({ username: secondUsername, key: gameKey });
+    let result = await api.readyToStart({ username, key: gameKey });
+    expect(result.gameReady).to.eql(false);
+    expect(result.username).to.eql(username);
+    result = await api.readyToStart({ username: secondUsername, key: gameKey });
+    expect(result.username).to.eql(secondUsername);
+    expect(result.gameReady).to.eql(true);
+    const games = api.getGames();
+    expect(games).to.have.length(1);
+    expect(games[0].ready).to.eql(true);
+  });
+
+  it('complete playTurn method', async () => {
+    await api.createGame({ gameName, gameKey });
+    await api.joinGame({ username, key: gameKey });
+    await api.readyToStart({ username, key: gameKey });
     let result = await api.playTurn({ key: gameKey });
     expect(result.optionSelected).to.only.have.keys([
       'id',
