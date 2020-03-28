@@ -11,7 +11,10 @@
           />
       </div>
         <div class="Info">
-          <Wheel class="Wheel"/>
+          <Wheel
+            class="Wheel"
+            :images="images"
+          />
           <div class="boardContainer">
             <Board
               class="Board"
@@ -27,7 +30,7 @@
 
 <script>
 import { Board, Wheel } from '@/components';
-import mock from '../components/Board/mock';
+import { BOARD } from '@/api/mock';
 
 export default {
   name: 'Dashboard',
@@ -37,7 +40,7 @@ export default {
   },
   data() {
     return {
-      images: mock,
+      images: BOARD,
       imageUrl: 'https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png',
     };
   },

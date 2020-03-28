@@ -7,7 +7,7 @@
       v-for="(item, index) in images"
       :key="index"
       :style="itemStyles(item)"
-      :class="{ disabled: item.disabled }"
+      :class="{ disabled: item.selected }"
       class="item" />
   </div>
 </template>
@@ -22,14 +22,14 @@ export default {
     numOfRows: VueTypes.number.isRequired,
     images: VueTypes.arrayOf(VueTypes.shape({
       id: VueTypes.number,
-      url: VueTypes.string.isRequired,
-      disabled: VueTypes.bool.optional,
+      image: VueTypes.string.isRequired,
+      selected: VueTypes.bool.def(false),
     })).loose,
   },
   methods: {
     itemStyles(item) {
       return {
-        'background-image': `url(${item.imageUrl})`,
+        'background-image': `url(${item.image})`,
       };
     },
     boardStyles(rows, columns) {

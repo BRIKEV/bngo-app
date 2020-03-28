@@ -4,9 +4,9 @@
       <div class="wheel-inner">
         <ImageCard
           class="ImageCard"
-          v-for="(image, index) in images"
+          v-for="(data, index) in images"
           :key="index"
-          :imageUrl="image.imageUrl"
+          :imageUrl="data.image"
         />
       </div>
     </div>
@@ -14,17 +14,17 @@
 </template>
 <script>
 import { ImageCard } from '@/components';
-import mock from '../Board/mock';
+import VueTypes from 'vue-types';
 
 export default {
   name: 'Wheel',
+  props: {
+    images: VueTypes.arrayOf(VueTypes.shape({
+      image: VueTypes.string.isRequired,
+    })).loose,
+  },
   components: {
     ImageCard,
-  },
-  data() {
-    return {
-      images: mock,
-    };
   },
 };
 </script>
