@@ -1,14 +1,18 @@
 <template>
   <div class="about">
-    <BkForm title="ENTOURAGE BINGO">
+    <BkForm
+      title="ENTOURAGE BINGO"
+      :hasHeader="icon"
+      @onIconClicked="handleReturnClick"
+    >
       <transition name="fade" mode="out-in">
-        <template v-if="!log && !create">
+        <template v-if="!access && !create">
           <JoinGameSection
-            @onAccess="log = true"
-            @onCreateRoom="create = true"
+            @onAccess="handleAccessRoom"
+            @onCreateRoom="handleCreateRoom"
           />
         </template>
-        <template v-if="log">
+        <template v-if="access">
           <AccessGameForm class="createGameSection">
             <BkButton
               class="btn"
@@ -47,13 +51,27 @@ export default {
   },
   data() {
     return {
-      log: false,
+      access: false,
       create: false,
+      icon: false,
     };
   },
   methods: {
+    handleAccessRoom() {
+      this.access = true;
+      this.icon = true;
+    },
+    handleCreateRoom() {
+      this.create = true;
+      this.icon = true;
+    },
     handleCreateClick() {
       console.log('Create');
+    },
+    handleReturnClick() {
+      this.icon = false;
+      this.create = false;
+      this.access = false;
     },
     handleAccessClick() {
       this.$router.push({ name: 'Dashboard' });

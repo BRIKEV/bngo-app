@@ -1,6 +1,10 @@
 <template>
   <div class="BkForm">
-    <div class="header">
+    <div
+      class="header"
+      v-if="hasHeader"
+      @click="handleIconClick"
+    >
       <span class="icon material-icons">
         {{ headerIcon }}
       </span>
@@ -22,6 +26,12 @@ export default {
     title: VueTypes.string.isRequired,
     headerIcon: VueTypes.string.def('keyboard_arrow_left'),
     iconText: VueTypes.string.def('BACK'),
+    hasHeader: VueTypes.bool.def(false),
+  },
+  methods: {
+    handleIconClick() {
+      this.$emit('onIconClicked');
+    },
   },
 };
 </script>
@@ -56,7 +66,11 @@ export default {
   }
 }
 .title {
-  margin-bottom: calculateRem(70px);
+  position: absolute;
+  top: calculateRem(70px);
+  left: 0;
+  right: 0;
+  margin: auto;
   font-size: $fs-h1;
   font-family: $base-font-title;
 }

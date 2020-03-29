@@ -44,6 +44,7 @@ export default {
   background: $brand;
   border-radius: calculateRem(8px);
   color: $white;
+  min-height: calculateRem(45px);
   text-align: center;
   text-decoration: none;
   font-weight: bold;
