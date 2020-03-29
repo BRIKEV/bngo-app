@@ -1,8 +1,7 @@
 
 module.exports = () => {
+  let games = [];
   const start = async () => {
-    let games = [];
-
     const getGames = () => games;
 
     const removeGames = async () => {

@@ -7,7 +7,7 @@ const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
-describe('API endpoint', () => {
+describe('Bingo e2e tests', () => {
   let request;
   let socket;
   const sys = system();
@@ -56,6 +56,7 @@ describe('API endpoint', () => {
           expect(message).to.eql('User not found in this game');
           expect(type).to.eql('not_found');
           cb();
+          socket.close();
         });
       });
   });
