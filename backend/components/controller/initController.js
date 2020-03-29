@@ -1,6 +1,15 @@
+const {
+  errorFactory,
+  CustomErrorTypes,
+} = require('error-handler-module');
+
 const DEFAULT_BOARD = require('../../mock/index.json');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
+
+const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
+const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
+const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 
 module.exports = () => {
   const start = async ({ logger, store }) => {
@@ -17,8 +26,25 @@ module.exports = () => {
       return Promise.resolve('Game created');
     };
 
-    const joinGame = async ({ key, username }) => {
+    const getGameByKey = async key => {
+      const notFoundKeyError = () => wrongInput('Key is required');
+      const notFoundGame = () => notFoundError('Game key does not exists');
+      if (!key) {
+        throw notFoundKeyError();
+      }
       const game = await store.getGameByKey(key);
+      if (!game) {
+        throw notFoundGame();
+      }
+      return game;
+    };
+
+    const joinGame = async ({ key, username }) => {
+      const game = await getGameByKey(key);
+      const isAlreadyAdded = game.users.some(user => user.username === username);
+      if (isAlreadyAdded) {
+        throw badRequestError('User already joined');
+      }
       const board = shuffleBoard(DEFAULT_BOARD, 16);
       const newUser = { username, board, ready: false };
       const updateGame = {
@@ -42,7 +68,7 @@ module.exports = () => {
     );
 
     const readyToStart = async ({ key, username }) => {
-      const game = await store.getGameByKey(key);
+      const game = await getGameByKey(key);
       const newUsers = game.users.map(user => {
         if (user.username === username) {
           return { ...user, ready: true };
@@ -57,12 +83,13 @@ module.exports = () => {
         ready: gameReady,
         users: newUsers,
       };
+      const { board: userBoard } = game.users.find(user => user.username === username);
       await store.updateGameByKey(updateGame);
-      return Promise.resolve({ username, gameReady });
+      return Promise.resolve({ username, gameReady, board: userBoard });
     };
 
     const playTurn = async ({ key }) => {
-      const game = await store.getGameByKey(key);
+      const game = await getGameByKey(key);
       if (!game.ready) {
         const error = new Error('Error: game is not ready yet');
         throw error;
@@ -81,7 +108,25 @@ module.exports = () => {
       return Promise.resolve({ optionSelected, updateGame });
     };
 
-    return { createGame, joinGame, playTurn, readyToStart };
+    const getUserInfo = async ({ key, gameName, username }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const gameUser = game.users.find(user => user.username === username);
+      if (!gameUser) {
+        throw notFoundError('User not found in this game');
+      }
+      return Promise.resolve(gameUser);
+    };
+
+    const hasBingo = async ({ key, gameName, username }) => {
+      const user = await getUserInfo({ key, gameName, username });
+      const userBoard = user.board.filter(({ selected }) => selected);
+      return userBoard.length === 16;
+    };
+
+    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
   };
 
   return { start };

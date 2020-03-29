@@ -6,6 +6,12 @@
  */
 
 /**
+ * @typedef JoinGameRequest
+ * @property {string} gameKey.required
+ * @property {string} username.required
+ */
+
+/**
  * @typedef SuccessGameRegistered
  * @property {boolean} success
  */
