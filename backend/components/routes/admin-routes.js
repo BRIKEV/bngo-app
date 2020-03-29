@@ -1,10 +1,15 @@
 const validator = require('swagger-endpoint-validator');
 const bodyParser = require('body-parser');
 const express = require('express');
+const helmet = require('helmet');
+const compression = require('compression');
 
 module.exports = () => {
   const start = async ({ manifest = {}, server: { app }, config }) => {
     const { swaggerOptions } = config;
+
+    app.use(helmet());
+    app.use(compression());
     app.use(express.static(config.frontPath));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());

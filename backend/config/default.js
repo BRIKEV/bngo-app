@@ -3,12 +3,14 @@ const { join } = require('path');
 module.exports = {
   server: {
     host: '0.0.0.0',
-    port: 4000,
+    port: process.env.PORT || 4000,
   },
   routes: {
+    api: {
+      frontMainFile: join(__dirname, '..', '..', 'frontend', 'dist', 'index.html'),
+    },
     admin: {
       frontPath: join(__dirname, '..', '..', 'frontend', 'dist'),
-      testPath: join(__dirname, '..', 'public'),
       swaggerOptions: {
         swaggerDefinition: {
           info: {
