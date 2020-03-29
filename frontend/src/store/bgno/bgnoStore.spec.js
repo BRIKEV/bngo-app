@@ -19,12 +19,12 @@ describe('Tickets store', () => {
 
   it('set current result correctly', () => {
     const mockCurrentResult = {
-        animate: false,
-        selected: {
-          image: 'image.png',
-          name: 'Name of image',
-        },
-    }
+      animate: false,
+      selected: {
+        image: 'image.png',
+        name: 'Name of image',
+      },
+    };
     expect(state.currentResult).toEqual(initialState.currentResult);
     mutations.SET_CURRENT_RESULT(state, mockCurrentResult);
     expect(state.currentResult).toEqual(mockCurrentResult);
