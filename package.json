@@ -13,6 +13,7 @@
     "qa": "npm run lint && npm run test",
     "precommit": "npm run lint",
     "build": "cd frontend && npm run build",
+    "postinstall": "cd frontend && npm i",
     "heroku-postbuild": "npm run build",
     "prepush": "npm run test"
   },
