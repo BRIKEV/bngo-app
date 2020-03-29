@@ -64,7 +64,7 @@ module.exports = () => {
     const updateBoard = (board, optionSelected) => (
       board.map(boardItem => {
         if (boardItem.id === optionSelected.id) {
-          return { boardItem, selected: true };
+          return { ...boardItem, selected: true };
         }
         return { ...boardItem };
       })
@@ -120,7 +120,7 @@ module.exports = () => {
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
-      return Promise.resolve(gameUser);
+      return Promise.resolve({ ...gameUser, mainBoard: game.board });
     };
 
     const hasBingo = async ({ key, gameName, username }) => {

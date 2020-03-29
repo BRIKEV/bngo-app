@@ -19,10 +19,19 @@ const logout = () => {
   cookieStorage.removeItem(COOKIE_GAME_USERNAME);
 };
 
-const hasAccess = () => {
+const getInfo = () => {
   const gameKey = cookieStorage.getItem(COOKIE_GAME_KEY);
   const gameName = cookieStorage.getItem(COOKIE_GAME_NAME);
   const username = cookieStorage.getItem(COOKIE_GAME_USERNAME);
+  return {
+    gameKey,
+    gameName,
+    username,
+  };
+};
+
+const hasAccess = () => {
+  const { gameKey, gameName, username } = getInfo();
   return gameKey && gameName && username;
 };
 
@@ -30,4 +39,5 @@ export {
   setAccess,
   logout,
   hasAccess,
+  getInfo,
 };

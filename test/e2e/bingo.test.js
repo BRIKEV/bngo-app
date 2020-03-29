@@ -102,6 +102,25 @@ describe('Bingo e2e tests', () => {
       });
     });
 
+    it(`create a game and join one user and receive for all the room board event
+      whit information of the room's board
+    `, cb => {
+      // connect client
+      socket = io('http://localhost:4000', {
+        query: {
+          username,
+          gameName,
+          gameKey,
+        },
+      });
+
+      socket.on('board', msg => {
+        const { board } = msg;
+        expect(board).to.have.length(49);
+        cb();
+      });
+    });
+
     it(`create a game and join one user and receive for the user channel yourBoard event
       whit information of the user's board and username
     `, cb => {

@@ -1,4 +1,4 @@
-// import actions from './bgnoActions';
+import actions from './bgnoActions';
 
 export const initialState = {
   currentResult: {
@@ -10,6 +10,7 @@ export const initialState = {
   },
   board: [],
   userBoard: [],
+  user: {},
 };
 
 export const mutations = {
@@ -19,8 +20,23 @@ export const mutations = {
   SET_USER_BOARD(state, payload = []) {
     state.userBoard = [...payload];
   },
-  SET_CURRENT_RESULT(state, currentResult = {}) {
-    state.currentResult = { ...state.currentResult, ...currentResult };
+  SET_SELECTED_RESULT(state, currentSelected = {}) {
+    state.currentResult = {
+      ...state.currentResult,
+      selected: {
+        ...state.currentResult.selected,
+        ...currentSelected,
+      },
+    };
+  },
+  SET_USER_INFO(state, payload) {
+    state.user = { ...state.user, ...payload };
+  },
+  SET_ANIMATE(state, payload = []) {
+    state.currentResult = {
+      ...state.currentResult,
+      animate: payload,
+    };
   },
 };
 
@@ -28,6 +44,6 @@ export default {
   state: {
     ...initialState,
   },
-  //   actions,
+  actions,
   mutations,
 };

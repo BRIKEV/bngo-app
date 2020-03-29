@@ -1,38 +1,49 @@
 <template>
-  <div class="dashboard">
-    <h1 class="gameTitle">
-      {{ $t('dashboard.title') }}
-    </h1>
-    <div class="content">
-      <div class="outputImagesContainer">
-        <Board
-          class="outputImages"
-          :numOfColumns="7"
-          :numOfRows="7"
-          :images="images"
-          />
-      </div>
-        <div class="Info">
-          <Wheel
-            class="Wheel"
-            :images="images"
-          />
-          <div class="boardContainer">
-            <Board
-              class="Board"
-              :numOfColumns="4"
-              :numOfRows="4"
-              :images="images.slice(0, 16)"
+  <div>
+    <BkHeader :title="$t('dashboard.title')" />
+    <div class="dashboard" v-if="hasData">
+      <div class="content">
+        <div class="outputImagesContainer">
+          <Board
+            class="outputImages"
+            :numOfColumns="7"
+            :numOfRows="7"
+            :images="board"
             />
-          </div>
         </div>
+          <div class="Info">
+            <Wheel
+              :selected="selected"
+              :animate="animate"
+              class="Wheel"
+              :images="board"
+            />
+            <BkButton
+              v-if="!user.ready"
+              class="createBtn"
+              @btn-clicked="handleStart"
+            >
+              START
+            </BkButton>
+            <div class="boardContainer">
+              <Board
+                class="Board"
+                :numOfColumns="4"
+                :numOfRows="4"
+                :images="userImages"
+              />
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { Board, Wheel } from '@/components';
-import { BOARD } from '@/api/mock';
+import { getInfo } from '@/persistence/access';
+import io, { emit } from '@/io';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Dashboard',
@@ -40,10 +51,38 @@ export default {
     Board,
     Wheel,
   },
-  data() {
-    return {
-      images: BOARD,
-    };
+  mounted() {
+    io({
+      newUser: this.userInfo,
+      yourBoard: this.userBoard,
+      userReady: this.userInfo,
+      gameReady: console.log,
+      board: this.totalBoard,
+      optionSelected: this.optionSelected,
+      callbackAfterSelected: this.activateAnimate,
+    },
+    {
+      ...getInfo(),
+      delay: 2500,
+    });
+  },
+  computed: {
+    ...mapState({
+      board: (state) => state.board,
+      userImages: (state) => state.userBoard,
+      selected: (state) => state.currentResult.selected,
+      animate: (state) => state.currentResult.animate,
+      user: (state) => state.user,
+    }),
+    hasData() {
+      return this.board.length !== 0 && this.userImages.length !== 0;
+    },
+  },
+  methods: {
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate']),
+    handleStart() {
+      emit('readyToStart');
+    },
   },
 };
 </script>
@@ -66,9 +105,11 @@ export default {
 .content {
   display: flex;
   justify-content: space-around;
+  height: 100%;
+  margin-top: calculateRem(75px);
+  margin-bottom: calculateRem(25px);
   .outputImagesContainer {
     width: 60%;
-    height: 75vh;
     .outputImages {
       width: 100%;
     }
@@ -79,8 +120,8 @@ export default {
     justify-content: space-between;
     width: 30%;
     .Wheel {
-      height: calculateRem(300px);
-      width: calculateRem(360px);
+      height: calculateRem(250px);
+      width: calculateRem(310px);
       margin: 0 auto;
     }
     .boardContainer {
