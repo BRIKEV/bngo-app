@@ -87,7 +87,7 @@ export default {
       this.icon = true;
     },
     handleCreateClick() {
-      return createGame({ gameKey: this.roomPass, gameName: this.gameName })
+      return createGame({ gameKey: this.gameKey, gameName: this.gameName })
         .then(() => {
           this.create = false;
           this.icon = false;

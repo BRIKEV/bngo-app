@@ -51,7 +51,6 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   .item {
     cursor: pointer;
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
     border-radius: 20px;
     box-shadow: $boxShadow;
