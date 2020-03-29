@@ -9,7 +9,7 @@
         type="text"
         required
         color="secundary"
-        label="Username"
+        :label="$t('joinGame.createGameSection.usernamelabel')"
       />
     </AccessGameForm>
     <slot name="optional" />

@@ -7,8 +7,9 @@
       type="text"
       required
       color="secundary"
-      label="Room name"
+      :label="$t('joinGame.accessGameSection.nameLabel')"
     />
+    <slot name="optional" />
     <BkInput
       v-model="password"
       id="password"
@@ -16,9 +17,8 @@
       type="password"
       required
       color="secundary"
-      label="Password"
+      :label="$t('joinGame.accessGameSection.passwordLabel')"
     />
-    <slot name="optional" />
   </div>
 </template>
 

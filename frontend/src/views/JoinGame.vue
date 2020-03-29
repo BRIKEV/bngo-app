@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <BkForm
-      title="ENTOURAGE BINGO"
+      :title="$t('joinGame.title')"
       :hasHeader="icon"
       @onIconClicked="handleReturnClick"
     >
@@ -19,7 +19,7 @@
               slot="optional"
               @btn-clicked="handleAccessClick"
             >
-              Crea
+              {{ $t('joinGame.accessGameSection.btnAccess') }}
             </BkButton>
           </AccessGameForm>
         </template>
@@ -30,7 +30,7 @@
               slot="optional"
               @btn-clicked="handleCreateClick"
             >
-              Crea
+              {{ $t('joinGame.createGameSection.btnCreate') }}
             </BkButton>
           </CreateGameForm>
         </template>

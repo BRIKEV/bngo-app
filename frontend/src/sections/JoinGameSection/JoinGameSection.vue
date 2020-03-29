@@ -4,13 +4,13 @@
       class="accessBtn"
       @btn-clicked="handleAccessClick"
     >
-        Accede
+      {{ $t('joinGame.btnAccess') }}
     </BkButton>
     <BkButton
       class="createBtn"
       @btn-clicked="handleCreateClick"
     >
-      Crea
+      {{ $t('joinGame.btnCreate') }}
     </BkButton>
   </div>
 </template>
