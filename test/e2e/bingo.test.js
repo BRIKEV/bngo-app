@@ -7,7 +7,7 @@ const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
-describe('Bingo e2e tests', () => {
+describe.skip('Bingo e2e tests', () => {
   let request;
   let socket;
   const sys = system();
