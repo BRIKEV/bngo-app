@@ -9,7 +9,7 @@ export default {
     accessGameSection: {
       btnAccess: 'PLAY',
       nameLabel: 'Room name',
-      passwordLabel: 'Password',
+      passwordLabel: 'Room password',
     },
     createGameSection: {
       btnCreate: 'Create game',

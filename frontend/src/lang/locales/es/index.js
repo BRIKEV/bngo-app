@@ -9,7 +9,7 @@ export default {
     accessGameSection: {
       btnAccess: 'JUGAR',
       nameLabel: 'Nombre de la sala',
-      passwordLabel: 'Contraseña',
+      passwordLabel: 'Contraseña de la sala',
     },
     createGameSection: {
       btnCreate: 'Crear partida',
