@@ -66,7 +66,6 @@ export default {
       this.icon = true;
     },
     handleCreateClick() {
-      console.log('Create');
     },
     handleReturnClick() {
       this.icon = false;
