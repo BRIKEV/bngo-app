@@ -4,7 +4,7 @@
   "description": "A bingo app with images",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd backend && npm install && cd .. && cd frontend && npm install && npm run build",
+    "postinstall": "npm install -g @vue/cli && cd backend && npm install && cd .. && cd frontend && npm install && npm run build",
     "start": "NODE_ENV=production cd backend && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
