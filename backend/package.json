@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "local": "SERVICE_ENV=local node index.js",
-    "start": "node index.js",
+    "start": "NODE_ENV=production SERVICE_ENV=production node index.js",
     "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
     "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "lint": "eslint .",
