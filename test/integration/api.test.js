@@ -7,7 +7,7 @@ const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
-describe.skip('API endpoint', () => {
+describe('API endpoint', () => {
   let request;
   let sys = system();
   sys = sys.set('io', socketMock()).dependsOn();
@@ -57,18 +57,19 @@ describe.skip('API endpoint', () => {
       .send({})
       .expect(400));
 
-    it('Should return OK when we send the right params', () => request
+    it('Should return 400 when we do not send the right params', () => request
       .post('/api/v1/game/join')
       .send({
         username,
       })
       .expect(400));
 
-    it('Should return OK when we send the right params', () => request
+    it('Should return 404 when we do not send the right key', () => request
       .post('/api/v1/game/join')
       .send({
         username,
         gameKey: 'not found Key',
+        gameName,
       })
       .expect(404));
 
@@ -86,6 +87,7 @@ describe.skip('API endpoint', () => {
             .send({
               username,
               gameKey,
+              gameName,
             })
             .expect(200)
         ))
@@ -110,6 +112,7 @@ describe.skip('API endpoint', () => {
             .post('/api/v1/game/join')
             .send({
               username,
+              gameName,
               gameKey,
             })
             .expect(200)
@@ -120,6 +123,7 @@ describe.skip('API endpoint', () => {
             .send({
               username,
               gameKey,
+              gameName,
             })
             .expect(400)
         ))

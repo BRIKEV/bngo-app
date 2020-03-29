@@ -39,8 +39,11 @@ module.exports = () => {
       return game;
     };
 
-    const joinGame = async ({ key, username }) => {
+    const joinGame = async ({ key, username, gameName }) => {
       const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
       const isAlreadyAdded = game.users.some(user => user.username === username);
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
