@@ -54,6 +54,7 @@ export default {
       yourBoard: this.userBoard,
       userReady: console.log,
       gameReady: console.log,
+      board: console.log,
     },
     getInfo());
   },
