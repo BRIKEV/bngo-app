@@ -28,4 +28,12 @@ describe('BkForm component', () => {
     expect(wrapper.find('.icon').text()).toBe('keyboard_arrow_down');
     expect(wrapper.find('.iconText').text()).toBe('RETURN');
   });
+  it('Should render a element passed as slot', () => {
+    const wrapper = shallowMount(BkForm, {
+      slots: {
+        default: '<div class="fake-msg"></div>',
+      },
+    });
+    expect(wrapper.findAll('.fake-msg').length).toBe(1);
+  });
 });
