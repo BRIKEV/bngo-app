@@ -7,7 +7,7 @@
       v-for="(item, index) in images"
       :key="index"
       :style="itemStyles(item)"
-      :class="{ disabled: item.selected }"
+      :class="{ disabled: !item.selected }"
       class="item" />
   </div>
 </template>

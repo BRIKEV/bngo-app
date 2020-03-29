@@ -16,9 +16,10 @@
               :selected="selected"
               :animate="animate"
               class="Wheel"
-              :images="images"
+              :images="board"
             />
             <BkButton
+              v-if="!user.ready"
               class="createBtn"
               @btn-clicked="handleStart"
             >
@@ -40,7 +41,6 @@
 
 <script>
 import { Board, Wheel } from '@/components';
-import { BOARD } from '@/api/mock';
 import { getInfo } from '@/persistence/access';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
@@ -51,21 +51,20 @@ export default {
     Board,
     Wheel,
   },
-  data() {
-    return {
-      images: BOARD,
-    };
-  },
   mounted() {
     io({
-      newUser: console.log,
+      newUser: this.userInfo,
       yourBoard: this.userBoard,
-      userReady: console.log,
+      userReady: this.userInfo,
       gameReady: console.log,
       board: this.totalBoard,
       optionSelected: this.optionSelected,
+      callbackAfterSelected: this.activateAnimate,
     },
-    getInfo());
+    {
+      ...getInfo(),
+      delay: 2500,
+    });
   },
   computed: {
     ...mapState({
@@ -73,13 +72,14 @@ export default {
       userImages: (state) => state.userBoard,
       selected: (state) => state.currentResult.selected,
       animate: (state) => state.currentResult.animate,
+      user: (state) => state.user,
     }),
     hasData() {
       return this.board.length !== 0 && this.userImages.length !== 0;
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate']),
     handleStart() {
       emit('readyToStart');
     },

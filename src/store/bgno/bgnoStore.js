@@ -10,6 +10,7 @@ export const initialState = {
   },
   board: [],
   userBoard: [],
+  user: {},
 };
 
 export const mutations = {
@@ -26,6 +27,15 @@ export const mutations = {
         ...state.currentResult.selected,
         ...currentSelected,
       },
+    };
+  },
+  SET_USER_INFO(state, payload) {
+    state.user = { ...state.user, ...payload };
+  },
+  SET_ANIMATE(state, payload = []) {
+    state.currentResult = {
+      ...state.currentResult,
+      animate: payload,
     };
   },
 };

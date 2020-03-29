@@ -35,6 +35,9 @@ const IOeventEmitter = (methods, options) => {
 
   socket.on('optionSelected', ({ optionSelected, board }) => {
     methods.optionSelected({ optionSelected, board });
+    setTimeout(() => {
+      methods.callbackAfterSelected();
+    }, options.delay);
   });
 
   socket.on('incorrectBingo', ({ username }) => {
