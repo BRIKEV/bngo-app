@@ -1,13 +1,17 @@
 <template>
   <div class="dashboard">
     <BkHeader :title="$t('dashboard.title')" />
+  <div
+    class="dashboard"
+    v-if="hasData"
+  >
     <div class="content">
       <div class="outputImagesContainer">
         <Board
           class="outputImages"
           :numOfColumns="7"
           :numOfRows="7"
-          :images="images"
+          :images="board"
           />
       </div>
         <div class="Info">
@@ -20,7 +24,7 @@
               class="Board"
               :numOfColumns="4"
               :numOfRows="4"
-              :images="images.slice(0, 16)"
+              :images="userImages"
             />
           </div>
         </div>
@@ -33,7 +37,7 @@ import { Board, Wheel } from '@/components';
 import { BOARD } from '@/api/mock';
 import { getInfo } from '@/persistence/access';
 import io from '@/io';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Dashboard',
@@ -52,11 +56,21 @@ export default {
       yourBoard: this.userBoard,
       userReady: console.log,
       gameReady: console.log,
+      board: this.totalBoard,
     },
     getInfo());
   },
+  computed: {
+    ...mapState({
+      board: (state) => state.board,
+      userImages: (state) => state.userBoard,
+    }),
+    hasData() {
+      return this.board.length !== 0 && this.userImages.length !== 0;
+    },
+  },
   methods: {
-    ...mapActions(['userBoard']),
+    ...mapActions(['userBoard', 'totalBoard']),
   },
 };
 </script>
