@@ -120,7 +120,13 @@ module.exports = () => {
       return Promise.resolve(gameUser);
     };
 
-    return { createGame, joinGame, playTurn, readyToStart, getUserInfo };
+    const hasBingo = async ({ key, gameName, username }) => {
+      const user = await getUserInfo({ key, gameName, username });
+      const userBoard = user.board.filter(({ selected }) => selected);
+      return userBoard.length === 16;
+    };
+
+    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
   };
 
   return { start };

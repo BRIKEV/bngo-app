@@ -28,7 +28,7 @@ module.exports = () => {
           });
         })
         .catch(error => {
-          logger.error(`Error in socket ${error}`);
+          logger.error(`Error in getUserInfo ${error}`);
           io.to(socket.id).emit('errorAccess', {
             message: error.message,
             type: error.type,
@@ -47,7 +47,7 @@ module.exports = () => {
             }
           })
           .catch(error => {
-            logger.error(`Error in socket ${error}`);
+            logger.error(`Error in readyToStart event ${error}`);
             io.to(socket.id).emit('errorStart', {
               message: error.message,
               type: error.type,
@@ -62,7 +62,21 @@ module.exports = () => {
       });
 
       socket.on('bingo', () => {
-        clearInterval(intervals[intervalIdentifier]);
+        controller.hasBingo({ key: gameKey, username, gameName })
+          .then(hasBingo => {
+            if (hasBingo) {
+              io.to(gameName).emit('usernameHasBingo', { username });
+              clearInterval(intervals[intervalIdentifier]);
+            }
+            io.to(socket.id).emit('incorrectBingo', { username });
+          })
+          .catch(error => {
+            logger.error(`Error in bingo event ${error}`);
+            io.to(socket.id).emit('errorBingo', {
+              message: error.message,
+              type: error.type,
+            });
+          });
       });
     });
 

@@ -166,4 +166,12 @@ describe('initController tests', () => {
     expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
   });
+
+  it('hasBingo method should return false', async () => {
+    await api.createGame({ gameName, gameKey });
+    await api.joinGame({ username, key: gameKey });
+    await api.readyToStart({ username, key: gameKey });
+    const result = await api.hasBingo({ key: gameKey, username, gameName });
+    expect(result).to.eql(false);
+  });
 });

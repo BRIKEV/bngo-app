@@ -193,5 +193,33 @@ describe('API endpoint', () => {
         cb();
       });
     });
+
+    it(`create a game and join one user and emit one event bingo to receive 
+      in the client incorrectBingo with username in the payload
+    `, cb => {
+      // connect client
+      socket = io('http://localhost:4000', {
+        query: {
+          username,
+          gameName,
+          gameKey,
+        },
+      });
+
+      socket.emit('readyToStart');
+
+      socket.on('gameReady', () => {
+        socket.emit('startGame');
+      });
+
+      socket.on('optionSelected', () => {
+        socket.emit('bingo');
+      });
+
+      socket.on('incorrectBingo', msg => {
+        expect(msg.username).to.eql(username);
+        cb();
+      });
+    });
   });
 });
