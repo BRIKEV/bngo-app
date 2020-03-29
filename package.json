@@ -20,6 +20,8 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@saeris/vue-spinners": "^1.0.8",
+    "axios": "^0.19.1",
     "body-parser": "^1.19.0",
     "boom": "^7.3.0",
     "bunyan": "^1.8.12",
@@ -33,6 +35,7 @@
     "express-swagger-generator": "^1.1.15",
     "helmet": "^3.22.0",
     "hogan.js": "^3.0.2",
+    "js-cookie": "^2.2.1",
     "make-manifest": "^1.0.1",
     "on-headers": "^1.0.2",
     "optimist": "^0.6.1",
@@ -45,12 +48,10 @@
     "systemic": "^3.3.0",
     "systemic-domain-runner": "^1.1.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.1.5",
-    "vuex": "^3.1.2",
-    "vue-types": "^1.7.0",
     "vue-i18n": "^8.16.0",
-    "@saeris/vue-spinners": "^1.0.8",
-    "axios": "^0.19.1"
+    "vue-router": "^3.1.5",
+    "vue-types": "^1.7.0",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",

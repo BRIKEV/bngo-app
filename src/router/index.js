@@ -8,10 +8,6 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/join-game',
-  },
-  {
-    path: '/join-game',
     name: 'JoinGame',
     component: JoinGame,
   },
