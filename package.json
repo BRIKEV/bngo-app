@@ -14,7 +14,7 @@
     "precommit": "npm run lint",
     "build": "cd frontend && npm run build",
     "postinstall": "cd frontend && npm i",
-    "heroku-postbuild": "cd ./frontend && npm i && ./node_modules/.bin/vue-cli-service build",
+    "heroku-postbuild": "cd ./frontend && npm install -g @vue/cli && npm i && ./node_modules/.bin/vue-cli-service build",
     "prepush": "npm run test"
   },
   "husky": {
