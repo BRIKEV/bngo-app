@@ -51,7 +51,7 @@ export default {
   height: calculateRem(45px);
   font-size: $fs-base;
   transition: all .15s linear;
-  border: calculateRem(1px) solid $white;
+  cursor: pointer;
   &:hover {
     background: lighten($brand, 20%);
     transition: background .3s ease-in;
