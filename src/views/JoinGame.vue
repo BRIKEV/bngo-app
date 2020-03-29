@@ -51,6 +51,8 @@
 <script>
 import { JoinGameSection, AccessGameForm, CreateGameForm } from '@/sections';
 import { createGame, joinAgame } from '@/api';
+import { setAccess } from '@/persistence/access';
+
 
 export default {
   name: 'JoinGame',
@@ -97,9 +99,12 @@ export default {
       this.access = false;
     },
     handleAccessClick() {
-      return joinAgame({ gameKey: this.gameKey, username: this.username, gameName: this.gameName })
+      const accessInfo = {
+        gameKey: this.gameKey, username: this.username, gameName: this.gameName,
+      };
+      return joinAgame(accessInfo)
         .then(() => {
-          // setear localstorage
+          setAccess(accessInfo);
           this.$router.push({ name: 'Dashboard' });
         });
     },
