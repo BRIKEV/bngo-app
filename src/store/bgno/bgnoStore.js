@@ -19,8 +19,14 @@ export const mutations = {
   SET_USER_BOARD(state, payload = []) {
     state.userBoard = [...payload];
   },
-  SET_CURRENT_RESULT(state, currentResult = {}) {
-    state.currentResult = { ...state.currentResult, ...currentResult };
+  SET_SELECTED_RESULT(state, currentSelected = {}) {
+    state.currentResult = {
+      ...state.currentResult,
+      selected: {
+        ...state.currentResult.selected,
+        ...currentSelected,
+      },
+    };
   },
 };
 

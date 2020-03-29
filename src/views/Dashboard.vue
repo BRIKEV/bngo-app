@@ -63,7 +63,7 @@ export default {
       userReady: console.log,
       gameReady: console.log,
       board: this.totalBoard,
-      optionSelected: this.totalBoard,
+      optionSelected: this.optionSelected,
     },
     getInfo());
   },
@@ -79,7 +79,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected']),
     handleStart() {
       emit('readyToStart');
     },

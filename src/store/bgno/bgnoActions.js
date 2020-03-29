@@ -6,7 +6,8 @@ export default {
     commit('SET_BOARD', totalBoard);
   },
   optionSelected({ commit }, { optionSelected, board: updatedBoard }) {
-    commit('SET_CURRENT_RESULT', optionSelected);
+    const { image, name } = optionSelected;
+    commit('SET_SELECTED_RESULT', { image, name });
     commit('SET_BOARD', updatedBoard);
   },
 };
