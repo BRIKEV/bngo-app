@@ -1,8 +1,13 @@
 <template>
   <div class="roulette">
     <div class="wheel wheel1">
+      <div v-if="selected.name && !animate" class="selectedImage">
+        <img class="image" :src="selected.image" />
+        <h3 class="name">{{ selected.name }}</h3>
+      </div>
       <div
         class="wheel-inner"
+        v-if="animate"
         :class="{ animate }"
       >
         <ImageCard
@@ -28,6 +33,10 @@ export default {
     })).loose,
     animate: VueTypes.bool.def(false),
     name: VueTypes.string,
+    selected: VueTypes.arrayOf(VueTypes.shape({
+      image: VueTypes.string.isRequired,
+      name: VueTypes.string.isRequired,
+    })).loose,
   },
   components: {
     ImageCard,
@@ -47,6 +56,23 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   border-radius: calculateRem(20px);
   .animate {
     animation: rot 3s infinite linear;
+  }
+  .selectedImage {
+    position: relative;
+    height: 100%;
+    .image {
+      width: 100%;
+    }
+    .name {
+      position: absolute;
+      bottom: 0;
+      color: white;
+      font-size: calculateRem(35px);
+      left: 0;
+      right: 0;
+      text-align: center;
+      background: #000000d9;
+    }
   }
   .wheel-inner {
     height: 100%;

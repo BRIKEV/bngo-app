@@ -1,33 +1,33 @@
 <template>
-  <div class="dashboard">
+  <div>
     <BkHeader :title="$t('dashboard.title')" />
-  <div
-    class="dashboard"
-    v-if="hasData"
-  >
-    <div class="content">
-      <div class="outputImagesContainer">
-        <Board
-          class="outputImages"
-          :numOfColumns="7"
-          :numOfRows="7"
-          :images="board"
-          />
-      </div>
-        <div class="Info">
-          <Wheel
-            class="Wheel"
-            :images="images"
-          />
-          <div class="boardContainer">
-            <Board
-              class="Board"
-              :numOfColumns="4"
-              :numOfRows="4"
-              :images="userImages"
+    <div class="dashboard" v-if="hasData">
+      <div class="content">
+        <div class="outputImagesContainer">
+          <Board
+            class="outputImages"
+            :numOfColumns="7"
+            :numOfRows="7"
+            :images="board"
             />
-          </div>
         </div>
+          <div class="Info">
+            <Wheel
+              :selected="selected"
+              :animate="animate"
+              class="Wheel"
+              :images="images"
+            />
+            <div class="boardContainer">
+              <Board
+                class="Board"
+                :numOfColumns="4"
+                :numOfRows="4"
+                :images="userImages"
+              />
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +64,8 @@ export default {
     ...mapState({
       board: (state) => state.board,
       userImages: (state) => state.userBoard,
+      selected: (state) => state.currentResult.selected,
+      animate: (state) => state.currentResult.animate,
     }),
     hasData() {
       return this.board.length !== 0 && this.userImages.length !== 0;
