@@ -5,7 +5,7 @@ const {
 const validator = require('swagger-endpoint-validator');
 
 module.exports = () => {
-  const start = async ({ server: { app }, controller, logger }) => {
+  const start = async ({ server: { app }, controller, logger, config }) => {
     /**
      * This endpoint allows you to create one game
      * @route POST /api/v1/game
@@ -49,6 +49,10 @@ module.exports = () => {
       } catch (error) {
         return next(tagError(error));
       }
+    });
+
+    app.get('/*', (req, res) => {
+      res.sendFile(config.frontMainFile);
     });
 
     app.use(handleHttpError(logger));
