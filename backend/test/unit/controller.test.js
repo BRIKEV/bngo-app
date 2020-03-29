@@ -75,25 +75,23 @@ describe('initController tests', () => {
     });
   });
 
-  describe('readyToStart method', () => {
-    it('readyToStart with two users method', async () => {
-      // TODO: at least two users to start games
-      const secondUsername = 'secondUsername';
-      await api.createGame({ gameName, gameKey });
-      await api.joinGame({ username, key: gameKey });
-      await api.joinGame({ username: secondUsername, key: gameKey });
-      const firstUserresult = await api.readyToStart({ username, key: gameKey });
-      expect(firstUserresult.gameReady).to.eql(false);
-      expect(firstUserresult.username).to.eql(username);
-      expect(firstUserresult.board).to.have.length(16);
-      const secondResult = await api.readyToStart({ username: secondUsername, key: gameKey });
-      expect(secondResult.username).to.eql(secondUsername);
-      expect(secondResult.gameReady).to.eql(true);
-      expect(secondResult.board).to.have.length(16);
-      const games = storeSystem.getGames();
-      expect(games).to.have.length(1);
-      expect(games[0].ready).to.eql(true);
-    });
+  it('readyToStart with two users method', async () => {
+    // TODO: at least two users to start games
+    const secondUsername = 'secondUsername';
+    await api.createGame({ gameName, gameKey });
+    await api.joinGame({ username, key: gameKey });
+    await api.joinGame({ username: secondUsername, key: gameKey });
+    const firstUserresult = await api.readyToStart({ username, key: gameKey });
+    expect(firstUserresult.gameReady).to.eql(false);
+    expect(firstUserresult.username).to.eql(username);
+    expect(firstUserresult.board).to.have.length(16);
+    const secondResult = await api.readyToStart({ username: secondUsername, key: gameKey });
+    expect(secondResult.username).to.eql(secondUsername);
+    expect(secondResult.gameReady).to.eql(true);
+    expect(secondResult.board).to.have.length(16);
+    const games = storeSystem.getGames();
+    expect(games).to.have.length(1);
+    expect(games[0].ready).to.eql(true);
   });
 
   it('should return error as game is not ready', async () => {

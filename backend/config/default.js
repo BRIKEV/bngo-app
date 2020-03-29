@@ -38,6 +38,9 @@ module.exports = {
       },
     },
   },
+  io: {
+    interval: 3000,
+  },
   logger: {
     transport: 'console',
     include: [
