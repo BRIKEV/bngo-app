@@ -34,7 +34,7 @@ const IOeventEmitter = (methods, options) => {
   });
 
   socket.on('optionSelected', ({ optionSelected, board }) => {
-    methods.gameReady({ optionSelected, board });
+    methods.optionSelected({ optionSelected, board });
   });
 
   socket.on('incorrectBingo', ({ username }) => {
@@ -44,10 +44,8 @@ const IOeventEmitter = (methods, options) => {
   socket.on('usernameHasBingo', ({ username }) => {
     methods.usernameHasBingo({ username });
   });
-
-  return {
-    emit: socket.emit,
-  };
 };
+
+export const emit = (...args) => socket.emit(...args);
 
 export default IOeventEmitter;
