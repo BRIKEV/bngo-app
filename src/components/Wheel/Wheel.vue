@@ -58,7 +58,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
       width: 100%;
       height: 100%;
       position: absolute;
-      padding: calculateRem(45px);
+      padding: calculateRem(30px);
       transform-style: preserve-3d;
       backface-visibility: hidden;
       text-align: center;

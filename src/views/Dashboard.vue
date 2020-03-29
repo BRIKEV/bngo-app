@@ -1,8 +1,6 @@
 <template>
   <div class="dashboard">
-    <h1 class="gameTitle">
-      {{ $t('dashboard.title') }}
-    </h1>
+    <BkHeader :title="$t('dashboard.title')" />
     <div class="content">
       <div class="outputImagesContainer">
         <Board
@@ -81,9 +79,11 @@ export default {
 .content {
   display: flex;
   justify-content: space-around;
+  height: 100%;
+  margin-top: calculateRem(75px);
+  margin-bottom: calculateRem(25px);
   .outputImagesContainer {
     width: 60%;
-    height: 75vh;
     .outputImages {
       width: 100%;
     }
@@ -94,8 +94,8 @@ export default {
     justify-content: space-between;
     width: 30%;
     .Wheel {
-      height: calculateRem(300px);
-      width: calculateRem(360px);
+      height: calculateRem(250px);
+      width: calculateRem(310px);
       margin: 0 auto;
     }
     .boardContainer {
