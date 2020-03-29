@@ -8,10 +8,12 @@
     "start": "NODE_ENV=production SERVICE_ENV=production node index.js",
     "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter",
     "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
-    "lint": "eslint .",
+    "lint": "eslint ./components ./lib ./test ./config",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "qa": "npm run lint && npm run test",
     "precommit": "npm run lint",
+    "build": "cd frontend && npm run build",
+    "heroku-postbuild": "npm run build",
     "prepush": "npm run test"
   },
   "husky": {
