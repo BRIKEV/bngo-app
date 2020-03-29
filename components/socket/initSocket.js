@@ -20,10 +20,11 @@ module.exports = () => {
       controller.getUserInfo({ key: gameKey, gameName, username })
         .then(userInfo => {
           logger.info(`User: ${username} join to game ${gameName} in the DB`);
-          const { board, ready } = userInfo;
+          const { board, ready, mainBoard } = userInfo;
           socket.join(gameName, () => {
             logger.info(`User: ${username} join to game ${gameName} to the room`);
             io.to(gameName).emit('newUser', { username, ready });
+            io.to(gameName).emit('board', { board: mainBoard });
             io.to(socket.id).emit('yourBoard', { username, board });
           });
         })
