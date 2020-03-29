@@ -21,6 +21,10 @@ const IOeventEmitter = (methods, options) => {
     methods.yourBoard({ username, board });
   });
 
+  socket.on('board', ({ board }) => {
+    methods.board({ board });
+  });
+
   socket.on('userReady', ({ username, ready }) => {
     methods.userReady({ username, ready });
   });

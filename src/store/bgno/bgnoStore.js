@@ -1,4 +1,4 @@
-// import actions from './bgnoActions';
+import actions from './bgnoActions';
 
 export const initialState = {
   currentResult: {
@@ -28,6 +28,6 @@ export default {
   state: {
     ...initialState,
   },
-  //   actions,
+  actions,
   mutations,
 };
