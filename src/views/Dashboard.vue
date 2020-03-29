@@ -1,40 +1,39 @@
 <template>
-  <div
-    class="dashboard"
-    v-if="hasData"
-  >
-    <h1 class="gameTitle">
-      {{ $t('dashboard.title') }}
-    </h1>
-    <div class="content">
-      <div class="outputImagesContainer">
-        <Board
-          class="outputImages"
-          :numOfColumns="7"
-          :numOfRows="7"
-          :images="board"
-          />
-      </div>
-        <div class="Info">
-          <Wheel
-            class="Wheel"
-            :images="images"
-          />
-          <BkButton
-            class="createBtn"
-            @btn-clicked="handleStart"
-          >
-            START
-          </BkButton>
-          <div class="boardContainer">
-            <Board
-              class="Board"
-              :numOfColumns="4"
-              :numOfRows="4"
-              :images="userImages"
+  <div>
+    <BkHeader :title="$t('dashboard.title')" />
+    <div class="dashboard" v-if="hasData">
+      <div class="content">
+        <div class="outputImagesContainer">
+          <Board
+            class="outputImages"
+            :numOfColumns="7"
+            :numOfRows="7"
+            :images="board"
             />
-          </div>
         </div>
+          <div class="Info">
+            <Wheel
+              :selected="selected"
+              :animate="animate"
+              class="Wheel"
+              :images="images"
+            />
+            <BkButton
+              class="createBtn"
+              @btn-clicked="handleStart"
+            >
+              START
+            </BkButton>
+            <div class="boardContainer">
+              <Board
+                class="Board"
+                :numOfColumns="4"
+                :numOfRows="4"
+                :images="userImages"
+              />
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -72,6 +71,8 @@ export default {
     ...mapState({
       board: (state) => state.board,
       userImages: (state) => state.userBoard,
+      selected: (state) => state.currentResult.selected,
+      animate: (state) => state.currentResult.animate,
     }),
     hasData() {
       return this.board.length !== 0 && this.userImages.length !== 0;
@@ -104,9 +105,11 @@ export default {
 .content {
   display: flex;
   justify-content: space-around;
+  height: 100%;
+  margin-top: calculateRem(75px);
+  margin-bottom: calculateRem(25px);
   .outputImagesContainer {
     width: 60%;
-    height: 75vh;
     .outputImages {
       width: 100%;
     }
@@ -117,8 +120,8 @@ export default {
     justify-content: space-between;
     width: 30%;
     .Wheel {
-      height: calculateRem(300px);
-      width: calculateRem(360px);
+      height: calculateRem(250px);
+      width: calculateRem(310px);
       margin: 0 auto;
     }
     .boardContainer {
