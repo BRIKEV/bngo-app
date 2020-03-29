@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard">
-    <h1>{{ $t('dashboard.title') }}</h1>
+    <h1 class="gameTitle">
+      {{ $t('dashboard.title') }}
+    </h1>
     <div class="content">
       <div class="outputImagesContainer">
         <Board
@@ -46,16 +48,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/theme/index.scss";
+
 .dashboard {
+  background: lighten($lightGray, 15%);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 100vh;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
+  .gameTitle {
+    font-family: $base-font-title;
+    font-size: $fs-h1;
+  }
 }
 .content {
   display: flex;
+  justify-content: space-around;
   .outputImagesContainer {
     width: 60%;
     height: 75vh;
@@ -67,11 +77,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 auto;
     width: 30%;
     .Wheel {
-      height: 300px;
-      width: 360px;
+      height: calculateRem(300px);
+      width: calculateRem(360px);
       margin: 0 auto;
     }
     .boardContainer {

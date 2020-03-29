@@ -35,6 +35,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/theme/index.scss";
 $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
 .wheel {
@@ -42,6 +43,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   height: 100%;
   box-shadow: $boxShadow;
   overflow: hidden;
+  background: $white;
   .animate {
     animation: rot 3s infinite linear;
   }
@@ -49,13 +51,13 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transform-origin: 50% 47% 20px;
+    transform-origin: 50% 47% calculateRem(20px);
 
     .ImageCard {
       width: 100%;
       height: 100%;
       position: absolute;
-      padding: 45px;
+      padding: calculateRem(45px);
       transform-style: preserve-3d;
       backface-visibility: hidden;
       text-align: center;
