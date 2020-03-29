@@ -4,7 +4,8 @@
   "description": "A bingo app with images",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm run build",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "postinstall": "cd backend && npm install",
     "start": "NODE_ENV=production cd backend && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
