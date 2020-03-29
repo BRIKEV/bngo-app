@@ -33,6 +33,9 @@
 <script>
 import { Board, Wheel } from '@/components';
 import { BOARD } from '@/api/mock';
+import { getInfo } from '@/persistence/access';
+import io from '@/io';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Dashboard',
@@ -44,6 +47,18 @@ export default {
     return {
       images: BOARD,
     };
+  },
+  mounted() {
+    io({
+      newUser: console.log,
+      yourBoard: this.userBoard,
+      userReady: console.log,
+      gameReady: console.log,
+    },
+    getInfo());
+  },
+  methods: {
+    ...mapActions(['userBoard']),
   },
 };
 </script>
