@@ -1,3 +1,0 @@
-# bngo-app
-
-bngo-app
