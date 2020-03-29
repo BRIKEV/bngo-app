@@ -5,7 +5,6 @@ const express = require('express');
 module.exports = () => {
   const start = async ({ manifest = {}, server: { app }, config }) => {
     const { swaggerOptions } = config;
-    app.use('/test', express.static(config.testPath));
     app.use(express.static(config.frontPath));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
