@@ -66,13 +66,6 @@ export default {
 $gradientColor: linear-gradient(90deg, rgb(108, 173, 125) 0%,
   rgb(52, 134, 89) 35%, rgb(108, 173, 125) 100%);
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
 .about {
   width: 100%;
   height: 100%;
