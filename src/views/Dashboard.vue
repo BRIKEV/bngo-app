@@ -20,6 +20,12 @@
             class="Wheel"
             :images="images"
           />
+          <BkButton
+            class="createBtn"
+            @btn-clicked="handleStart"
+          >
+            START
+          </BkButton>
           <div class="boardContainer">
             <Board
               class="Board"
@@ -37,7 +43,7 @@
 import { Board, Wheel } from '@/components';
 import { BOARD } from '@/api/mock';
 import { getInfo } from '@/persistence/access';
-import io from '@/io';
+import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
 
 export default {
@@ -58,6 +64,7 @@ export default {
       userReady: console.log,
       gameReady: console.log,
       board: this.totalBoard,
+      optionSelected: this.totalBoard,
     },
     getInfo());
   },
@@ -72,6 +79,9 @@ export default {
   },
   methods: {
     ...mapActions(['userBoard', 'totalBoard']),
+    handleStart() {
+      emit('readyToStart');
+    },
   },
 };
 </script>
