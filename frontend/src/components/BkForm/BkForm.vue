@@ -48,7 +48,7 @@ export default {
   margin: 0 auto;
   width: 30%;
   height: 40vh;
-  background: rgb(203, 207, 204);
+  background: $lightGray;
   border-radius: calculateRem(30px);
   .header {
     position: absolute;

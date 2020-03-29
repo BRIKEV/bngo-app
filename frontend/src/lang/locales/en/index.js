@@ -1,6 +1,6 @@
 export default {
   dashboard: {
-    title: 'Dashboard',
+    title: 'ENTOURAGE BINGO APP',
   },
   joinGame: {
     title: 'ENTOURAGE BINGO',
