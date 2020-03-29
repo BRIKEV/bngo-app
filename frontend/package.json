@@ -16,7 +16,8 @@
     "vue-router": "^3.1.5",
     "vue-types": "^1.7.0",
     "vuex": "^3.1.2",
-    "@saeris/vue-spinners": "^1.0.8"
+    "@saeris/vue-spinners": "^1.0.8",
+    "axios": "^0.19.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
