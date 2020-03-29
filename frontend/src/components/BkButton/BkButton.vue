@@ -44,13 +44,12 @@ export default {
   background: $brand;
   border-radius: calculateRem(8px);
   color: $white;
-  height: calculateRem(45px);
   text-align: center;
   text-decoration: none;
   font-weight: bold;
-  height: calculateRem(45px);
   font-size: $fs-base;
   transition: all .15s linear;
+  padding: 5px 15px;
   cursor: pointer;
   &:hover {
     background: lighten($brand, 20%);
