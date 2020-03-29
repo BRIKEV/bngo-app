@@ -7,10 +7,10 @@ module.exports = {
   },
   routes: {
     api: {
-      frontMainFile: join(__dirname, '..', '..', 'frontend', 'dist', 'index.html'),
+      frontMainFile: join(__dirname, '..', 'frontend', 'dist', 'index.html'),
     },
     admin: {
-      frontPath: join(__dirname, '..', '..', 'frontend', 'dist'),
+      frontPath: join(__dirname, '..', 'frontend', 'dist'),
       swaggerOptions: {
         swaggerDefinition: {
           info: {
