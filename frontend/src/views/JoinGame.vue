@@ -13,7 +13,12 @@
           />
         </template>
         <template v-if="access">
-          <AccessGameForm class="createGameSection">
+          <AccessGameForm
+            class="createGameSection"
+            @onAccessUsernameChanged="handleUsernameChange"
+            @onAccessRoomNameChanged="handleRoomNameChange"
+            @onAccessPasswordChanged="handlePasswordChange"
+          >
             <BkButton
               class="btn"
               slot="optional"
@@ -24,7 +29,11 @@
           </AccessGameForm>
         </template>
         <template v-if="create">
-          <CreateGameForm class="createGameSection">
+          <CreateGameForm
+            class="createGameSection"
+            @onCreateRoomNameChanged="handleRoomNameChange"
+            @onCreatePasswordChanged="handlePasswordChange"
+          >
             <BkButton
               class="btn"
               slot="optional"
@@ -41,6 +50,7 @@
 
 <script>
 import { JoinGameSection, AccessGameForm, CreateGameForm } from '@/sections';
+import { createGame, joinAgame } from '@/api';
 
 export default {
   name: 'JoinGame',
@@ -57,6 +67,15 @@ export default {
     };
   },
   methods: {
+    handleRoomNameChange(roomName) {
+      this.gameName = roomName;
+    },
+    handlePasswordChange(pass) {
+      this.gameKey = pass;
+    },
+    handleUsernameChange(username) {
+      this.username = username;
+    },
     handleAccessRoom() {
       this.access = true;
       this.icon = true;
@@ -66,7 +85,11 @@ export default {
       this.icon = true;
     },
     handleCreateClick() {
-      console.log('Create');
+      return createGame({ gameKey: this.roomPass, gameName: this.gameName })
+        .then(() => {
+          this.create = false;
+          this.icon = false;
+        });
     },
     handleReturnClick() {
       this.icon = false;
@@ -74,7 +97,11 @@ export default {
       this.access = false;
     },
     handleAccessClick() {
-      this.$router.push({ name: 'Dashboard' });
+      return joinAgame({ gameKey: this.gameKey, username: this.username, gameName: this.gameName })
+        .then(() => {
+          // setear localstorage
+          this.$router.push({ name: 'Dashboard' });
+        });
     },
   },
 };

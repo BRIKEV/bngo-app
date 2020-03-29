@@ -1,33 +1,48 @@
 <template>
   <div class="createGameForm">
-    <AccessGameForm class="createGameSection">
-      <BkInput
-        v-model="username"
-        slot="optional"
-        id="username"
-        name="username"
-        type="text"
-        required
-        color="secundary"
-        :label="$t('joinGame.createGameSection.usernamelabel')"
-      />
-    </AccessGameForm>
+    <BkInput
+      :value="roomName"
+      id="roomName"
+      name="roomName"
+      type="text"
+      required
+      color="secundary"
+      :label="$t('joinGame.accessGameSection.nameLabel')"
+      @input="handleRoomNameChanged"
+    />
+    <BkInput
+      :value="password"
+      id="password"
+      name="password"
+      type="password"
+      required
+      color="secundary"
+      :label="$t('joinGame.accessGameSection.passwordLabel')"
+      @input="handlePasswordChanged"
+    />
     <slot name="optional" />
   </div>
 </template>
 
 <script>
-import { AccessGameForm } from '../index';
 
 export default {
   name: 'CreateGameForm',
-  components: {
-    AccessGameForm,
-  },
   data() {
     return {
-      username: undefined,
+      roomName: undefined,
+      password: undefined,
     };
+  },
+  methods: {
+    handleRoomNameChanged(roomName) {
+      this.roomName = roomName;
+      this.$emit('onCreateRoomNameChanged', roomName);
+    },
+    handlePasswordChanged(password) {
+      this.password = password;
+      this.$emit('onCreatePasswordChanged', password);
+    },
   },
 };
 </script>

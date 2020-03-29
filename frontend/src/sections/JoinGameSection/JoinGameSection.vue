@@ -23,7 +23,6 @@ export default {
       this.$emit('onAccess');
     },
     handleCreateClick() {
-      console.log('create');
       this.$emit('onCreateRoom');
     },
   },
