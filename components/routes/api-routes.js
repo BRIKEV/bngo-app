@@ -42,6 +42,7 @@ module.exports = () => {
         await controller.joinGame({
           key: req.body.gameKey,
           username: req.body.username,
+          gameName: req.body.gameName,
         });
         const response = { success: true };
         validator.validateAPIOutput(response, req);

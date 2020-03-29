@@ -7,7 +7,7 @@ const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
-describe.skip('Bingo e2e tests', () => {
+describe('Bingo e2e tests', () => {
   let request;
   let socket;
   const sys = system();
@@ -74,6 +74,7 @@ describe.skip('Bingo e2e tests', () => {
         .send({
           username,
           gameKey,
+          gameName,
         });
     });
 
