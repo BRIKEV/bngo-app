@@ -9,6 +9,7 @@
  * @typedef JoinGameRequest
  * @property {string} gameKey.required
  * @property {string} username.required
+ * @property {string} gameName.required
  */
 
 /**
