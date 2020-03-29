@@ -1,0 +1,28 @@
+{
+  "name": "bngo-app",
+  "version": "1.0.0",
+  "description": "A bingo app with images",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "cd frontend && npm run build",
+    "start": "NODE_ENV=production cd backend && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BRIKEV/bngo-app.git"
+  },
+  "keywords": [
+    "brikev",
+    "node",
+    "vue",
+    "systemic",
+    "socket.io"
+  ],
+  "author": "Briam Martínez, Kevin Martínez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BRIKEV/bngo-app/issues"
+  },
+  "homepage": "https://github.com/BRIKEV/bngo-app#readme"
+}
