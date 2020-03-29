@@ -1,5 +1,8 @@
 <template>
-  <div class="dashboard">
+  <div
+    class="dashboard"
+    v-if="hasData"
+  >
     <h1 class="gameTitle">
       {{ $t('dashboard.title') }}
     </h1>
@@ -63,6 +66,9 @@ export default {
       board: (state) => state.board,
       userImages: (state) => state.userBoard,
     }),
+    hasData() {
+      return this.board.length !== 0 && this.userImages.length !== 0;
+    },
   },
   methods: {
     ...mapActions(['userBoard', 'totalBoard']),
