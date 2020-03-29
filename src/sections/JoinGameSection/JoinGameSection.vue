@@ -31,14 +31,18 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
+.joinGameForm {
+  margin: calculateRem(40px) 0;
 
-.accessBtn {
-  margin-right: calculateRem(15px);
-  font-size: $fs-h3;
-  font-weight: $regular;
+  .accessBtn {
+    margin-right: calculateRem(15px);
+    font-size: $fs-h3;
+    font-weight: $regular;
+  }
+  .createBtn {
+    font-size: $fs-h3;
+    font-weight: $regular;
+  }
 }
-.createBtn {
-  font-size: $fs-h3;
-  font-weight: $regular;
-}
+
 </style>

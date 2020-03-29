@@ -46,7 +46,11 @@
     "systemic-domain-runner": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vue-types": "^1.7.0",
+    "vue-i18n": "^8.16.0",
+    "@saeris/vue-spinners": "^1.0.8",
+    "axios": "^0.19.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -78,7 +82,7 @@
   "_id": "bngo-app@0.0.1",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "pre-commit": "npm run lint && npm run test:unit",
       "pre-push": "npm run test"
     }
   },

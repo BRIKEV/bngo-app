@@ -10,9 +10,11 @@
       </span>
       <p class="iconText">{{ iconText }}</p>
     </div>
-    <h1 class="title">{{ title }}</h1>
-    <div class="btns">
-       <slot />
+    <div class="content">
+      <h1 class="title">{{ title }}</h1>
+      <div class="btns">
+         <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -47,13 +49,13 @@ export default {
   text-align: center;
   margin: 0 auto;
   width: 30%;
-  height: 40vh;
+  padding: 20px;
   background: $lightGray;
   border-radius: calculateRem(30px);
   .header {
     position: absolute;
-    top: calculateRem(20px);
-    left: calculateRem(20px);
+    top: calculateRem(10px);
+    left: calculateRem(10px);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -65,13 +67,12 @@ export default {
     }
   }
 }
-.title {
-  position: absolute;
-  top: calculateRem(70px);
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-size: $fs-h1;
-  font-family: $base-font-title;
+.content {
+  margin-top: 30px;
+  .title {
+    top: calculateRem(70px);
+    font-size: $fs-h1;
+    font-family: $base-font-title;
+  }
 }
 </style>
