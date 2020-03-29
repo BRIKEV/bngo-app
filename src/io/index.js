@@ -4,7 +4,7 @@ let socket = null;
 
 const IOeventEmitter = (methods, options) => {
   if (!socket) {
-    socket = io('http://localhost:4000', {
+    socket = io('/', {
       query: {
         username: options.username,
         gameName: options.gameName,
