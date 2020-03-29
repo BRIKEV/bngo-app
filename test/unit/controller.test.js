@@ -175,6 +175,12 @@ describe('initController tests', () => {
     for (let i = 0; i < 48; i += 1) {
       result = await api.playTurn({ key: gameKey }); // eslint-disable-line
     }
+    expect(result.updateGame.board[0]).to.only.have.keys([
+      'id',
+      'name',
+      'image',
+      'selected',
+    ]);
     expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
   });

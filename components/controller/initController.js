@@ -64,7 +64,7 @@ module.exports = () => {
     const updateBoard = (board, optionSelected) => (
       board.map(boardItem => {
         if (boardItem.id === optionSelected.id) {
-          return { boardItem, selected: true };
+          return { ...boardItem, selected: true };
         }
         return { ...boardItem };
       })
