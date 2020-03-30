@@ -1,6 +1,7 @@
 const expect = require('expect.js');
 const initController = require('../../components/controller/initController');
 const initStore = require('../../components/store/initStore');
+const config = require('../../config/default');
 
 const gameName = 'entourage';
 const gameKey = 'pizza';
@@ -17,6 +18,7 @@ describe('initController tests', () => {
         info: () => 0,
       },
       store: storeSystem,
+      config: config.controller,
     });
   });
 

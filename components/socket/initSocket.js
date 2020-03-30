@@ -50,7 +50,7 @@ module.exports = () => {
             io.to(gameName).emit('userReady', { username, ready: true });
             if (gameReady) {
               logger.info('Game is ready to start');
-              io.to(socket.id).emit('gameReady');
+              io.to(socket.id).emit('gameReady', { board });
             }
           })
           .catch(error => {
