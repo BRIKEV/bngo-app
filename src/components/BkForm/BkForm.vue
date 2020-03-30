@@ -1,5 +1,8 @@
 <template>
-  <div class="BkForm">
+  <form
+    class="BkForm"
+    v-on:submit.prevent
+  >
     <div
       class="header"
       v-if="hasHeader"
@@ -16,7 +19,7 @@
          <slot />
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
