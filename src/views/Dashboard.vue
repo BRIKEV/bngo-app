@@ -80,11 +80,11 @@ export default {
   },
   computed: {
     ...mapState({
-      board: (state) => state.board,
-      userImages: (state) => state.userBoard,
-      selected: (state) => state.currentResult.selected,
-      animate: (state) => state.currentResult.animate,
-      user: (state) => state.user,
+      board: (state) => state.bgno.board,
+      userImages: (state) => state.bgno.userBoard,
+      selected: (state) => state.bgno.currentResult.selected,
+      animate: (state) => state.bgno.currentResult.animate,
+      user: (state) => state.bgno.user,
     }),
     hasData() {
       return this.board.length !== 0 && this.userImages.length !== 0;
