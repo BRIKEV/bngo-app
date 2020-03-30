@@ -1,6 +1,13 @@
 <template>
   <div>
-    <BkHeader :title="$t('dashboard.title')" />
+    <BkHeader :title="$t('dashboard.title')">
+      <div class="navbarOptions">
+        {{ user.username }}
+        <span class="icon material-icons" @click="logout">
+          exit_to_app
+        </span>
+      </div>
+    </BkHeader>
     <div class="dashboard" v-if="hasData">
       <div class="content">
         <div class="outputImagesContainer">
@@ -41,7 +48,7 @@
 
 <script>
 import { Board, Wheel } from '@/components';
-import { getInfo } from '@/persistence/access';
+import { getInfo, logout } from '@/persistence/access';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
 
@@ -72,7 +79,7 @@ export default {
       userImages: (state) => state.userBoard,
       selected: (state) => state.currentResult.selected,
       animate: (state) => state.currentResult.animate,
-      user: (state) => state.user,
+      user: (state) => state.user, // eslint-disable-line
     }),
     hasData() {
       return this.board.length !== 0 && this.userImages.length !== 0;
@@ -83,12 +90,15 @@ export default {
     handleStart() {
       emit('readyToStart');
     },
+    logout() {
+      logout();
+      this.$router.push({ name: 'JoinGame' });
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
-
 .dashboard {
   background: lighten($lightGray, 15%);
   display: flex;
@@ -100,6 +110,17 @@ export default {
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
+  }
+}
+.navbarOptions {
+  display: flex;
+  align-items: center;
+  color: $white;
+  font-size: $fs-large;
+  font-family: $base-font-title;
+  span {
+    margin-left: 10px;
+    cursor: pointer;
   }
 }
 .content {
