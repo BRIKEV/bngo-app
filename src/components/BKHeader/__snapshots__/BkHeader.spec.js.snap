@@ -9,5 +9,6 @@ exports[`BkHeader component Should be render correctly 1`] = `
   >
     
   </h1>
+   
 </nav>
 `;

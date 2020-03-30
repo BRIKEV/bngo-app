@@ -1,6 +1,7 @@
 <template>
   <nav class="navbar">
     <h1 class="title">{{ title }}</h1>
+    <slot></slot>
   </nav>
 </template>
 
@@ -24,14 +25,15 @@ export default {
     top: 0;
     left: 0;
     right: 0;
+    min-height: calculateRem(48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $brand;
+    padding: 0 20px;
     .title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: calculateRem(48px);
-      background: $brand;
       color: $white;
-      font-size: $fs-large;
+      font-size: $fs-h3;
       font-family: $base-font-title;
     }
   }
