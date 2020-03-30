@@ -5,9 +5,14 @@ module.exports = () => {
     const io = socketIO(http);
     logger.info('create io instance');
 
-    const draw = (socket, room, gameKey) => async () => {
-      const { optionSelected, updateGame } = await controller.playTurn({ key: gameKey });
+    const draw = (socket, room, gameKey, endGame) => async () => {
+      const { optionSelected, updateGame, gameFinished } = await controller.playTurn({
+        key: gameKey,
+      });
       socket.to(room).emit('optionSelected', { optionSelected, board: updateGame.board });
+      if (gameFinished) {
+        endGame();
+      }
     };
 
     const intervals = {};
@@ -45,7 +50,7 @@ module.exports = () => {
             io.to(gameName).emit('userReady', { username, ready: true });
             if (gameReady) {
               logger.info('Game is ready to start');
-              io.to(socket.id).emit('gameReady', { board });
+              io.to(socket.id).emit('gameReady');
             }
           })
           .catch(error => {
@@ -59,7 +64,13 @@ module.exports = () => {
 
       socket.on('startGame', () => {
         if (!intervals[intervalIdentifier]) {
-          intervals[intervalIdentifier] = setInterval(draw(io, gameName, gameKey), config.interval);
+          intervals[intervalIdentifier] = setInterval(
+            draw(io, gameName, gameKey, () => {
+              logger.info('Game over all images were displayed');
+              clearInterval(intervals[intervalIdentifier]);
+              io.to(gameName).emit('gameEnd', { board: mainBoard });
+            }), config.interval,
+          );
         }
       });
 
