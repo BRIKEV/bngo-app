@@ -50,7 +50,7 @@ describe('API endpoint', () => {
         expect(games).to.have.length(1);
       }));
 
-    it.only('Should return CONFLICT when a game was created', () => request
+    it('Should return CONFLICT when a game was created', () => request
       .post('/api/v1/game')
       .send({
         gameName,
