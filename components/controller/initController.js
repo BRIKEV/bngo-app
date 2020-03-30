@@ -7,6 +7,7 @@ const DEFAULT_BOARD = require('../../mock/index.json');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
+const alreadyCreated = errorFactory('game-created');
 const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
 const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
@@ -14,6 +15,10 @@ const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 module.exports = () => {
   const start = async ({ logger, store, config }) => {
     const createGame = async ({ gameName, gameKey }) => {
+      const gameExists = await store.getGameByKey(gameKey);
+      if (gameExists) {
+        throw alreadyCreated('This game was already created');
+      }
       logger.info('Creating game');
       const game = {
         key: gameKey,
