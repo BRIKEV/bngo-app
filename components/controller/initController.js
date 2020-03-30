@@ -129,7 +129,13 @@ module.exports = () => {
       return userBoard.length === 16;
     };
 
-    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
+    const gameIsOver = async ({ key }) => {
+      const game = await getGameByKey(key);
+      const gameBoard = game.board.filter(({ selected }) => selected);
+      return gameBoard.length === 49;
+    };
+
+    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo, gameIsOver };
   };
 
   return { start };

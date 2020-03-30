@@ -87,7 +87,6 @@ describe('initController tests', () => {
   });
 
   it('readyToStart with two users method', async () => {
-    // TODO: at least two users to start games
     const secondUsername = 'secondUsername';
     await api.createGame({ gameName, gameKey });
     await api.joinGame({ username, key: gameKey, gameName });
@@ -185,11 +184,46 @@ describe('initController tests', () => {
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
   });
 
-  it('hasBingo method should return false', async () => {
-    await api.createGame({ gameName, gameKey });
-    await api.joinGame({ username, key: gameKey, gameName });
-    await api.readyToStart({ username, key: gameKey });
-    const result = await api.hasBingo({ key: gameKey, username, gameName });
-    expect(result).to.eql(false);
+  describe('gameIsOver method', () => {
+    it('should show completed when we play all the turns', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      for (let i = 0; i < 49; i += 1) {
+        await api.playTurn({ key: gameKey }); // eslint-disable-line
+      }
+      const result = await api.gameIsOver({ key: gameKey });
+      expect(result).to.eql(true);
+    });
+
+    it('should not show completed when we play one move', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.playTurn({ key: gameKey });
+      const result = await api.gameIsOver({ key: gameKey });
+      expect(result).to.eql(true);
+    });
+  });
+
+  describe('hasBingo method', () => {
+    it('hasBingo method should return false', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      const result = await api.hasBingo({ key: gameKey, username, gameName });
+      expect(result).to.eql(false);
+    });
+
+    it('hasBingo method should return false', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      for (let i = 0; i < 49; i += 1) {
+        await api.playTurn({ key: gameKey }); // eslint-disable-line
+      }
+      const result = await api.hasBingo({ key: gameKey, username, gameName });
+      expect(result).to.eql(true);
+    });
   });
 });
