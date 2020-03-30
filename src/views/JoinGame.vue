@@ -53,7 +53,6 @@ import { JoinGameSection, AccessGameForm, CreateGameForm } from '@/sections';
 import { createGame, joinAgame } from '@/api';
 import { setAccess } from '@/persistence/access';
 
-
 export default {
   name: 'JoinGame',
   components: {
