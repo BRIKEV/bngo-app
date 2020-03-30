@@ -5,6 +5,10 @@ module.exports = {
     host: '0.0.0.0',
     port: process.env.PORT || 4000,
   },
+  controller: {
+    boardLength: 49,
+    userOptionsLength: 16,
+  },
   routes: {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
