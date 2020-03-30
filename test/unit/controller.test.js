@@ -163,6 +163,8 @@ describe('initController tests', () => {
     await api.joinGame({ username, key: gameKey, gameName });
     await api.readyToStart({ username, key: gameKey });
     let result = await api.playTurn({ key: gameKey });
+    expect(result.updateGame).to.have.property('users');
+    expect(result.gameFinished).to.eql(false);
     expect(result.optionSelected).to.only.have.keys([
       'id',
       'name',
@@ -174,6 +176,7 @@ describe('initController tests', () => {
     for (let i = 0; i < 48; i += 1) {
       result = await api.playTurn({ key: gameKey }); // eslint-disable-line
     }
+    expect(result.gameFinished).to.eql(true);
     expect(result.updateGame.board[0]).to.only.have.keys([
       'id',
       'name',
@@ -182,28 +185,6 @@ describe('initController tests', () => {
     ]);
     expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
-  });
-
-  describe('gameIsOver method', () => {
-    it('should show completed when we play all the turns', async () => {
-      await api.createGame({ gameName, gameKey });
-      await api.joinGame({ username, key: gameKey, gameName });
-      await api.readyToStart({ username, key: gameKey });
-      for (let i = 0; i < 49; i += 1) {
-        await api.playTurn({ key: gameKey }); // eslint-disable-line
-      }
-      const result = await api.gameIsOver({ key: gameKey });
-      expect(result).to.eql(true);
-    });
-
-    it('should not show completed when we play one move', async () => {
-      await api.createGame({ gameName, gameKey });
-      await api.joinGame({ username, key: gameKey, gameName });
-      await api.readyToStart({ username, key: gameKey });
-      await api.playTurn({ key: gameKey });
-      const result = await api.gameIsOver({ key: gameKey });
-      expect(result).to.eql(true);
-    });
   });
 
   describe('hasBingo method', () => {

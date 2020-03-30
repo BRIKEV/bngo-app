@@ -91,6 +91,10 @@ module.exports = () => {
       return Promise.resolve({ username, gameReady, board: userBoard });
     };
 
+    const isGameOver = board => (
+      board.filter(({ selected }) => selected).length === 49
+    );
+
     const playTurn = async ({ key }) => {
       const game = await getGameByKey(key);
       if (!game.ready) {
@@ -99,16 +103,25 @@ module.exports = () => {
       }
       const validBoard = game.board.filter(({ selected }) => !selected);
       const optionSelected = getRandomItem(validBoard);
+      const newBoard = updateBoard(game.board, optionSelected);
       const updateGame = {
         ...game,
         users: game.users.map(user => ({
           ...user,
           board: updateBoard(user.board, optionSelected),
         })),
-        board: updateBoard(game.board, optionSelected),
+        board: newBoard,
       };
+      const gameFinished = isGameOver(newBoard);
       await store.updateGameByKey(updateGame);
-      return Promise.resolve({ optionSelected, updateGame });
+      return Promise.resolve({
+        optionSelected,
+        updateGame: {
+          ...game,
+          board: newBoard,
+        },
+        gameFinished,
+      });
     };
 
     const getUserInfo = async ({ key, gameName, username }) => {
@@ -129,13 +142,7 @@ module.exports = () => {
       return userBoard.length === 16;
     };
 
-    const gameIsOver = async ({ key }) => {
-      const game = await getGameByKey(key);
-      const gameBoard = game.board.filter(({ selected }) => selected);
-      return gameBoard.length === 49;
-    };
-
-    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo, gameIsOver };
+    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
   };
 
   return { start };
