@@ -23,8 +23,9 @@ module.exports = () => {
           const { board, ready, mainBoard } = userInfo;
           socket.join(gameName, () => {
             logger.info(`User: ${username} join to game ${gameName} to the room`);
-            io.to(gameName).emit('newUser', { username, ready });
             io.to(gameName).emit('board', { board: mainBoard });
+            // user events
+            io.to(socket.id).emit('newUser', { username, ready });
             io.to(socket.id).emit('yourBoard', { username, board });
           });
         })
