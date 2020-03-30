@@ -12,7 +12,7 @@ const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 
 module.exports = () => {
-  const start = async ({ logger, store }) => {
+  const start = async ({ logger, store, config }) => {
     const createGame = async ({ gameName, gameKey }) => {
       logger.info('Creating game');
       const game = {
@@ -48,7 +48,7 @@ module.exports = () => {
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
       }
-      const board = shuffleBoard(DEFAULT_BOARD, 16);
+      const board = shuffleBoard(DEFAULT_BOARD, config.userOptionsLength);
       const newUser = { username, board, ready: false };
       const updateGame = {
         ...game,
@@ -91,6 +91,10 @@ module.exports = () => {
       return Promise.resolve({ username, gameReady, board: userBoard });
     };
 
+    const isGameOver = board => (
+      board.filter(({ selected }) => selected).length === config.boardLength
+    );
+
     const playTurn = async ({ key }) => {
       const game = await getGameByKey(key);
       if (!game.ready) {
@@ -99,16 +103,25 @@ module.exports = () => {
       }
       const validBoard = game.board.filter(({ selected }) => !selected);
       const optionSelected = getRandomItem(validBoard);
+      const newBoard = updateBoard(game.board, optionSelected);
       const updateGame = {
         ...game,
         users: game.users.map(user => ({
           ...user,
           board: updateBoard(user.board, optionSelected),
         })),
-        board: updateBoard(game.board, optionSelected),
+        board: newBoard,
       };
+      const gameFinished = isGameOver(newBoard);
       await store.updateGameByKey(updateGame);
-      return Promise.resolve({ optionSelected, updateGame });
+      return Promise.resolve({
+        optionSelected,
+        updateGame: {
+          ...game,
+          board: newBoard,
+        },
+        gameFinished,
+      });
     };
 
     const getUserInfo = async ({ key, gameName, username }) => {
@@ -126,7 +139,7 @@ module.exports = () => {
     const hasBingo = async ({ key, gameName, username }) => {
       const user = await getUserInfo({ key, gameName, username });
       const userBoard = user.board.filter(({ selected }) => selected);
-      return userBoard.length === 16;
+      return userBoard.length === config.userOptionsLength;
     };
 
     return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
