@@ -18,16 +18,28 @@
               class="Wheel"
               :images="board"
             />
-            <BkButton
-              v-if="!user.ready"
-              class="createBtn"
-              @btn-clicked="handleStart"
-            >
-              START
-            </BkButton>
+              <BkButton
+                v-if="!user.ready"
+                key=1
+                class="createBtn"
+                @btn-clicked="handleStart"
+              >
+                START
+              </BkButton>
+            <transition name="slide">
+              <BkButton
+                v-if="user.ready"
+                key=2
+                class="createBtn"
+                @btn-clicked="handleBingo"
+              >
+                BINGO
+              </BkButton>
+            </transition>
             <div class="boardContainer">
               <Board
                 class="Board"
+                allSelected
                 :numOfColumns="4"
                 :numOfRows="4"
                 :images="userImages"
@@ -82,6 +94,9 @@ export default {
     ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate']),
     handleStart() {
       emit('readyToStart');
+    },
+    handleBingo() {
+      emit('bingo');
     },
   },
 };

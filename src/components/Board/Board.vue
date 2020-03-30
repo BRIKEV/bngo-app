@@ -7,7 +7,7 @@
       v-for="(item, index) in images"
       :key="index"
       :style="itemStyles(item)"
-      :class="{ disabled: !item.selected }"
+      :class="{ disabled: !item.selected && !allSelected }"
       class="item" />
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   props: {
     numOfColumns: VueTypes.number.isRequired,
     numOfRows: VueTypes.number.isRequired,
+    allSelected: VueTypes.bool.def(false),
     images: VueTypes.arrayOf(VueTypes.shape({
       id: VueTypes.number,
       image: VueTypes.string.isRequired,
