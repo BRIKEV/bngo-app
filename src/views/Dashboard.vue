@@ -79,6 +79,7 @@ export default {
       board: this.totalBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
+      errorAccess: this.logout,
     },
     {
       ...getInfo(),
