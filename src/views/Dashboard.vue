@@ -28,6 +28,7 @@
             <div class="boardContainer">
               <Board
                 class="Board"
+                allSelected
                 :numOfColumns="4"
                 :numOfRows="4"
                 :images="userImages"
