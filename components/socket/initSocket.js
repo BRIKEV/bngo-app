@@ -76,8 +76,9 @@ module.exports = () => {
 
       socket.on('bingo', () => {
         controller.hasBingo({ key: gameKey, username, gameName })
-          .then(hasBingo => {
+          .then(async hasBingo => {
             if (hasBingo) {
+              await api.finishGame({ key: gameKey, gameName });
               io.to(gameName).emit('usernameHasBingo', { username });
               clearInterval(intervals[intervalIdentifier]);
             }
