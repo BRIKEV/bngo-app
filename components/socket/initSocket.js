@@ -1,7 +1,10 @@
 const socketIO = require('socket.io');
 
+const jwt = require('../../lib/token');
+
 module.exports = () => {
   const start = async ({ server: { http }, logger, controller, config }) => {
+    const { verifyToken } = jwt(config.tokenSecret);
     const io = socketIO(http);
     logger.info('create io instance');
 
@@ -19,11 +22,20 @@ module.exports = () => {
 
     io.on('connection', socket => {
       // socket.emit('userConnected', { userId: socket.id });
-      const { username, gameName, gameKey } = socket.handshake.query;
-      logger.info(`New socket connection of user: ${username} game ${gameName} with ${gameKey}`);
-      const intervalIdentifier = `${gameName}-${gameKey}`;
-      controller.getUserInfo({ key: gameKey, gameName, username })
+      let intervalIdentifier;
+      let username;
+      let gameName;
+      let gameKey;
+      const { accessKey } = socket.handshake.query;
+      verifyToken(accessKey)
         .then(userInfo => {
+          username = userInfo.username;
+          gameName = userInfo.gameName;
+          gameKey = userInfo.gameKey;
+          logger.info(`New socket connection of user: ${username} game ${gameName} with ${gameKey}`);
+          intervalIdentifier = `${gameName}-${gameKey}`;
+          return controller.getUserInfo({ key: gameKey, gameName, username });
+        }).then(userInfo => {
           logger.info(`User: ${username} join to game ${gameName} in the DB`);
           const { board, ready, mainBoard } = userInfo;
           socket.join(gameName, () => {
