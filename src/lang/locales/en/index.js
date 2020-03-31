@@ -16,4 +16,10 @@ export default {
       usernamelabel: 'Username',
     },
   },
+  notification: {
+    titleSuccess: 'SUCCESS',
+    titleError: 'ERROR',
+    createGameError: 'There\'s already a game with that name',
+    accessGameError: 'there is no room with that name',
+  },
 };
