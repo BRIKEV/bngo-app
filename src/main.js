@@ -2,6 +2,7 @@ import Vue from 'vue';
 import i18n from '@/lang/i18n';
 import { VueSpinners } from '@saeris/vue-spinners';
 import VueNotification from 'vue-notification';
+import Vuelidate from 'vuelidate';
 import App from './App.vue';
 import '@/components/registerAsGlobal';
 import router from './router';
@@ -12,7 +13,7 @@ import '@/theme/index.scss';
 Vue.config.productionTip = false;
 
 Vue.use(VueSpinners);
-
+Vue.use(Vuelidate);
 Vue.use(VueNotification, {
   componentName: 'VueNotification',
 });
