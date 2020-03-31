@@ -43,7 +43,15 @@
                 BINGO
               </BkButton>
             </transition>
-            <div class="boardContainer">
+            <div
+              ref="boardContainer"
+              class="boardContainer"
+            >
+              <Canvas
+                className="canvas"
+                :height="heightCanvas"
+                :width="widthCanvas"
+              />
               <Board
                 class="Board"
                 allSelected
@@ -59,7 +67,7 @@
 </template>
 
 <script>
-import { Board, Wheel } from '@/components';
+import { Board, Wheel, Canvas } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
@@ -69,8 +77,17 @@ export default {
   components: {
     Board,
     Wheel,
+    Canvas,
+  },
+  data() {
+    return {
+      widthCanvas: undefined,
+      heightCanvas: undefined,
+    };
   },
   mounted() {
+    this.widthCanvas = this.$refs.boardContainer.offsetWidth;
+    this.heightCanvas = this.$refs.boardContainer.offsetHeight;
     io({
       newUser: this.userInfo,
       yourBoard: this.userBoard,
@@ -162,7 +179,11 @@ export default {
       margin: 0 auto;
     }
     .boardContainer {
+      position: relative;
       height: 50%;
+      .canvas {
+        position: absolute;
+      }
     }
   }
 }
