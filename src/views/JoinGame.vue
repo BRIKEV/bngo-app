@@ -22,6 +22,7 @@
             <BkButton
               class="btn"
               slot="optional"
+              :disabled="!gameName || !gameKey || !username"
               @btn-clicked="handleAccessClick"
             >
               {{ $t('joinGame.accessGameSection.btnAccess') }}
@@ -37,6 +38,7 @@
             <BkButton
               class="btn"
               slot="optional"
+              :disabled="!gameName || !gameKey"
               @btn-clicked="handleCreateClick"
             >
               {{ $t('joinGame.createGameSection.btnCreate') }}
@@ -67,6 +69,9 @@ export default {
       access: false,
       create: false,
       icon: false,
+      username: undefined,
+      gameKey: undefined,
+      gameName: undefined,
     };
   },
   methods: {
