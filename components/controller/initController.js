@@ -138,16 +138,36 @@ module.exports = () => {
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
-      return Promise.resolve({ ...gameUser, mainBoard: game.board });
+      return Promise.resolve({ ...gameUser, mainBoard: game.board, gameReady: game.ready });
     };
 
     const hasBingo = async ({ key, gameName, username }) => {
       const user = await getUserInfo({ key, gameName, username });
       const userBoard = user.board.filter(({ selected }) => selected);
-      return userBoard.length === config.userOptionsLength;
+      return (user.gameReady && userBoard.length === config.userOptionsLength);
     };
 
-    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
+    const finishGame = async ({ key, gameName }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const updateGame = {
+        ...game,
+        ready: false,
+      };
+      return store.updateGameByKey(updateGame);
+    };
+
+    return {
+      createGame,
+      joinGame,
+      playTurn,
+      readyToStart,
+      getUserInfo,
+      hasBingo,
+      finishGame,
+    };
   };
 
   return { start };
