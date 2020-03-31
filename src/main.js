@@ -12,7 +12,6 @@ import '@/theme/index.scss';
 Vue.config.productionTip = false;
 
 Vue.use(VueSpinners);
-
 Vue.use(VueNotification, {
   componentName: 'VueNotification',
 });

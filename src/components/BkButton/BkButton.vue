@@ -62,6 +62,7 @@ export default {
   }
 
   &:disabled {
+    cursor: not-allowed;
     background: lightgrey;
   }
 
