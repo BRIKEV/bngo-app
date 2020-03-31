@@ -31,7 +31,7 @@ describe('Bingo e2e tests', () => {
     await sys.stop();
   });
 
-  it(`return error when try to acces a wrong room
+  it(`return error when try to acces a room with malformed token
     and return event errorAccess with type and message values
   `, cb => {
     request
@@ -44,17 +44,13 @@ describe('Bingo e2e tests', () => {
       .then(() => {
         // connect client
         socket = io('http://localhost:4000', {
-          query: {
-            username,
-            gameName,
-            gameKey,
-          },
+          query: { accessKey: 'not_valid' },
         });
 
         socket.on('errorAccess', msg => {
           const { message, type } = msg;
-          expect(message).to.eql('User not found in this game');
-          expect(type).to.eql('not_found');
+          expect(message).to.eql('jwt malformed');
+          expect(type).to.eql('forbidden');
           cb();
           socket.close();
         });
@@ -62,6 +58,7 @@ describe('Bingo e2e tests', () => {
   });
 
   describe('test after user connected', () => {
+    let accessKey;
     beforeEach(async () => {
       await request
         .post('/api/v1/game')
@@ -75,6 +72,9 @@ describe('Bingo e2e tests', () => {
           username,
           gameKey,
           gameName,
+        })
+        .then(({ body }) => {
+          accessKey = body.accessKey;
         });
     });
 
@@ -88,9 +88,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -108,9 +106,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -127,9 +123,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -147,9 +141,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -168,9 +160,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -188,9 +178,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 
@@ -221,9 +209,7 @@ describe('Bingo e2e tests', () => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
-          username,
-          gameName,
-          gameKey,
+          accessKey,
         },
       });
 

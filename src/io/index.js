@@ -6,9 +6,7 @@ const IOeventEmitter = (methods, options) => {
   if (!socket) {
     socket = io('/', {
       query: {
-        username: options.username,
-        gameName: options.gameName,
-        gameKey: options.gameKey,
+        accessKey: options.accessKey,
       },
     });
   }

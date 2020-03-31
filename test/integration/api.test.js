@@ -2,6 +2,7 @@ const expect = require('expect.js');
 const supertest = require('supertest');
 const system = require('../../system');
 const socketMock = require('../mocks/socketMock');
+const jwt = require('../../lib/token');
 
 const gameName = 'entourage';
 const gameKey = 'pizza';
@@ -13,8 +14,10 @@ describe('API endpoint', () => {
   sys = sys.set('io', socketMock()).dependsOn();
 
   let storeSystem;
+  let tokenMethods;
   before(async () => {
-    const { server: { app }, store } = await sys.start();
+    const { server: { app }, store, config } = await sys.start();
+    tokenMethods = jwt(config.routes.api.tokenSecret);
     request = supertest(app);
     storeSystem = store;
   });
@@ -108,8 +111,12 @@ describe('API endpoint', () => {
             })
             .expect(200)
         ))
-        .then(({ body }) => {
-          expect(body).to.eql({ success: true });
+        .then(async ({ body }) => {
+          expect(body).to.have.property('accessKey');
+          const info = await tokenMethods.verifyToken(body.accessKey);
+          expect(info.username).to.eql(username);
+          expect(info.gameName).to.eql(gameName);
+          expect(info.gameKey).to.eql(gameKey);
           const games = storeSystem.getGames();
           expect(games).to.have.length(1);
           expect(games[0].users).to.have.length(1);

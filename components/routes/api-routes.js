@@ -4,8 +4,11 @@ const {
 } = require('error-handler-module');
 const validator = require('swagger-endpoint-validator');
 
+const jwt = require('../../lib/token');
+
 module.exports = () => {
   const start = async ({ server: { app }, controller, logger, config }) => {
+    const { signToken } = jwt(config.tokenSecret);
     /**
      * This endpoint allows you to create one game
      * @route POST /api/v1/game
@@ -35,7 +38,7 @@ module.exports = () => {
      * @route POST /api/v1/game/join
      * @group Game - Everything about games
      * @param {JoinGameRequest.model} body.body.required
-     * @returns {SuccessGameRegistered.model} 200 - Successful operation
+     * @returns {SuccessJoinGame.model} 200 - Successful operation
      * @returns {Error.model} <any> - Error message
      * @security JWT
     */
@@ -47,7 +50,13 @@ module.exports = () => {
           username: req.body.username,
           gameName: req.body.gameName,
         });
-        const response = { success: true };
+        const response = {
+          accessKey: signToken({
+            username: req.body.username,
+            gameName: req.body.gameName,
+            gameKey: req.body.gameKey,
+          }),
+        };
         validator.validateAPIOutput(response, req);
         return res.json(response);
       } catch (error) {

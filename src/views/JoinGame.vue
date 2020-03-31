@@ -109,8 +109,8 @@ export default {
         gameKey: this.gameKey, username: this.username, gameName: this.gameName,
       };
       return joinAgame(accessInfo)
-        .then(() => {
-          setAccess(accessInfo);
+        .then(({ data }) => {
+          setAccess(data.accessKey);
           this.$router.push({ name: 'Dashboard' });
         })
         .catch(() => this.sendError({

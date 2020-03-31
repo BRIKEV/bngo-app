@@ -1,5 +1,9 @@
 const { join } = require('path');
 
+const tokenOptions = {
+  tokenSecret: process.env.JWT_SECRET || 'secreto',
+};
+
 module.exports = {
   server: {
     host: '0.0.0.0',
@@ -12,6 +16,7 @@ module.exports = {
   routes: {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
+      ...tokenOptions,
     },
     admin: {
       frontPath: join(__dirname, '..', 'dist'),
@@ -46,6 +51,7 @@ module.exports = {
   },
   io: {
     interval: 10000,
+    ...tokenOptions,
   },
   logger: {
     transport: 'console',
