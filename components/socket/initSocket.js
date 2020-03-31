@@ -80,7 +80,7 @@ module.exports = () => {
             draw(io, gameName, gameKey, () => {
               logger.info('Game over all images were displayed');
               clearInterval(intervals[intervalIdentifier]);
-              io.to(gameName).emit('gameEnd', { board: mainBoard });
+              io.to(gameName).emit('gameEnd');
             }), config.interval,
           );
         }
