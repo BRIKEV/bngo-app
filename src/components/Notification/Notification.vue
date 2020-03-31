@@ -22,5 +22,7 @@ export default {
 .notify {
   line-height: 1.5;
   margin-top: 5px;
+  padding: 10px;
+  margin: 0 5px 5px;
 }
 </style>

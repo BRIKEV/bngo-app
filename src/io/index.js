@@ -13,6 +13,10 @@ const IOeventEmitter = (methods, options) => {
     });
   }
 
+  socket.on('errorAccess', ({ message, type }) => {
+    methods.errorAccess({ message, type });
+  });
+
   socket.on('newUser', ({ username, ready }) => {
     methods.userReady({ username, ready });
   });

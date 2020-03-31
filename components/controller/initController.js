@@ -7,6 +7,7 @@ const DEFAULT_BOARD = require('../../mock/index.json');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
+const alreadyCreated = errorFactory('game-created');
 const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
 const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
@@ -14,6 +15,10 @@ const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 module.exports = () => {
   const start = async ({ logger, store, config }) => {
     const createGame = async ({ gameName, gameKey }) => {
+      const gameExists = await store.getGameByKey(gameKey);
+      if (gameExists) {
+        throw alreadyCreated('This game was already created');
+      }
       logger.info('Creating game');
       const game = {
         key: gameKey,
@@ -133,16 +138,36 @@ module.exports = () => {
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
-      return Promise.resolve({ ...gameUser, mainBoard: game.board });
+      return Promise.resolve({ ...gameUser, mainBoard: game.board, gameReady: game.ready });
     };
 
     const hasBingo = async ({ key, gameName, username }) => {
       const user = await getUserInfo({ key, gameName, username });
       const userBoard = user.board.filter(({ selected }) => selected);
-      return userBoard.length === config.userOptionsLength;
+      return (user.gameReady && userBoard.length === config.userOptionsLength);
     };
 
-    return { createGame, joinGame, playTurn, readyToStart, getUserInfo, hasBingo };
+    const finishGame = async ({ key, gameName }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const updateGame = {
+        ...game,
+        ready: false,
+      };
+      return store.updateGameByKey(updateGame);
+    };
+
+    return {
+      createGame,
+      joinGame,
+      playTurn,
+      readyToStart,
+      getUserInfo,
+      hasBingo,
+      finishGame,
+    };
   };
 
   return { start };

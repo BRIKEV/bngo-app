@@ -27,6 +27,8 @@ describe('initController tests', () => {
     const games = storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].board).to.have.length(49);
+    expect(games[0].users).to.have.length(0);
+    expect(games[0].ready).to.eql(false);
     expect(result).to.eql('Game created');
   });
 
@@ -208,5 +210,17 @@ describe('initController tests', () => {
       const result = await api.hasBingo({ key: gameKey, username, gameName });
       expect(result).to.eql(true);
     });
+  });
+
+  it('finishGame method', async () => {
+    try {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.finishGame({ key: gameKey, gameName });
+      await api.playTurn({ key: gameKey });
+    } catch (error) {
+      expect(error.message).to.eql('Error: game is not ready yet');
+    }
   });
 });

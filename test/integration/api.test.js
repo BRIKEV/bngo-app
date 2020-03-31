@@ -49,6 +49,23 @@ describe('API endpoint', () => {
         const games = storeSystem.getGames();
         expect(games).to.have.length(1);
       }));
+
+    it('Should return CONFLICT when a game was created', () => request
+      .post('/api/v1/game')
+      .send({
+        gameName,
+        gameKey,
+      })
+      .then(() => request
+        .post('/api/v1/game')
+        .send({
+          gameName,
+          gameKey,
+        })
+        .expect(409))
+      .then(({ body }) => {
+        expect(body.message).to.eql('This game was already created');
+      }));
   });
 
   describe('Join game endpoint', () => {
