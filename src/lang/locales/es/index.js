@@ -16,4 +16,10 @@ export default {
       usernamelabel: 'Usuario',
     },
   },
+  notification: {
+    titleSuccess: 'SUCCESS',
+    titleError: 'ERROR',
+    createGameError: 'Ya existe una partida con ese nombre',
+    accessGameError: 'No existe una sala con ese nombre',
+  },
 };
