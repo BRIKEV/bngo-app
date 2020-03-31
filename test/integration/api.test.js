@@ -111,9 +111,9 @@ describe('API endpoint', () => {
             })
             .expect(200)
         ))
-        .then(({ body }) => {
+        .then(async ({ body }) => {
           expect(body).to.have.property('accessKey');
-          const info = tokenMethods.verifyToken(body.accessKey);
+          const info = await tokenMethods.verifyToken(body.accessKey);
           expect(info.username).to.eql(username);
           expect(info.gameName).to.eql(gameName);
           expect(info.gameKey).to.eql(gameKey);
