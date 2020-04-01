@@ -2,6 +2,7 @@ const { join } = require('path');
 
 const tokenOptions = {
   tokenSecret: process.env.JWT_SECRET || 'secreto',
+  tokenOptions: { expiresIn: '2h' },
 };
 
 module.exports = {

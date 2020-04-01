@@ -4,7 +4,7 @@ const jwt = require('../../lib/token');
 
 module.exports = () => {
   const start = async ({ server: { http }, logger, controller, config }) => {
-    const { verifyToken } = jwt(config.tokenSecret);
+    const { verifyToken } = jwt(config.tokenSecret, config.tokenOptions);
     const io = socketIO(http);
     logger.info('create io instance');
 
