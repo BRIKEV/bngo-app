@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Notification group="notify" position="bottom left" />
+    <Notification group="notify" position="bottom left" width="400px" />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
