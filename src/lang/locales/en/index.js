@@ -21,5 +21,9 @@ export default {
     titleError: 'ERROR',
     createGameError: 'There\'s already a game with that name',
     accessGameError: 'there is no room with that name',
+    errorBingo: 'You don\'t have bingo, keep playing :)',
+  },
+  modal: {
+    message: 'The winner is {winner}',
   },
 };
