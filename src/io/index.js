@@ -33,6 +33,7 @@ const IOeventEmitter = (methods, options) => {
 
   socket.on('gameReady', () => {
     socket.emit('startGame');
+    methods.gameReady();
   });
 
   socket.on('optionSelected', ({ optionSelected, board }) => {

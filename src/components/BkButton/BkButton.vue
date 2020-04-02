@@ -63,7 +63,7 @@ export default {
 
   &:disabled {
     cursor: not-allowed;
-    background: lightgrey;
+    background: $disabled;
   }
 
   &.outline {
