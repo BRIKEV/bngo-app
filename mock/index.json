@@ -1,296 +1,296 @@
 [
   {
     "id": 1,
-    "name": "player-1",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "Daft-Punk",
+    "image": "/images/Daft-Punk.jpg",
     "selected": false
   },
   {
     "id": 2,
-    "name": "player-2",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "Michael_Jordan_crying",
+    "image": "/images/Michael_Jordan_crying.jpg",
     "selected": false
   },
   {
     "id": 3,
-    "name": "player-3",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "badboy",
+    "image": "/images/badboy.jpeg",
     "selected": false
   },
   {
     "id": 4,
-    "name": "player-4",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "batmanyrobin",
+    "image": "/images/batmanyrobin.jpeg",
     "selected": false
   },
   {
     "id": 5,
-    "name": "player-5",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "beer",
+    "image": "/images/beer.jpeg",
     "selected": false
   },
   {
     "id": 6,
-    "name": "player-6",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "blacksalami",
+    "image": "/images/blacksalami.jpeg",
     "selected": false
   },
   {
     "id": 7,
-    "name": "player-7",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "bonjovi",
+    "image": "/images/bonjovi.jpg",
     "selected": false
   },
   {
     "id": 8,
-    "name": "player-8",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "canis2",
+    "image": "/images/canis2.jpg",
     "selected": false
   },
   {
     "id": 9,
-    "name": "player-9",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "cowboy",
+    "image": "/images/cowboy.jpeg",
     "selected": false
   },
   {
     "id": 10,
-    "name": "player-10",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "flanders",
+    "image": "/images/flanders.jpeg",
     "selected": false
   },
   {
     "id": 11,
-    "name": "player-11",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "foguetgangsta",
+    "image": "/images/foguetgangsta.jpg",
     "selected": false
   },
   {
     "id": 12,
-    "name": "player-12",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "fuckmaiguel",
+    "image": "/images/fuckmaiguel.jpg",
     "selected": false
   },
   {
     "id": 13,
-    "name": "player-13",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "halloween",
+    "image": "/images/halloween.jpeg",
     "selected": false
   },
   {
     "id": 14,
-    "name": "player-14",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "halloween2",
+    "image": "/images/halloween2.jpeg",
     "selected": false
   },
   {
     "id": 15,
-    "name": "player-15",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "halloween3",
+    "image": "/images/halloween3.jpeg",
     "selected": false
   },
   {
     "id": 16,
-    "name": "player-16",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "heroes",
+    "image": "/images/heroes.jpg",
     "selected": false
   },
   {
     "id": 17,
-    "name": "player-17",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "hobbit",
+    "image": "/images/hobbit.jpeg",
     "selected": false
   },
   {
     "id": 18,
-    "name": "player-18",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "huevon",
+    "image": "/images/huevon.jpeg",
     "selected": false
   },
   {
     "id": 19,
-    "name": "player-19",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "increible",
+    "image": "/images/increible.jpg",
     "selected": false
   },
   {
     "id": 20,
-    "name": "player-20",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "loco",
+    "image": "/images/loco.png",
     "selected": false
   },
   {
     "id": 21,
-    "name": "player-21",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "marianini",
+    "image": "/images/marianini.jpg",
     "selected": false
   },
   {
     "id": 22,
-    "name": "player-22",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "marran",
+    "image": "/images/marran.jpeg",
     "selected": false
   },
   {
     "id": 23,
-    "name": "player-23",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "marran",
+    "image": "/images/marran.jpg",
     "selected": false
   },
   {
     "id": 24,
-    "name": "player-24",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "mazaX",
+    "image": "/images/mazaX.jpg",
     "selected": false
   },
   {
     "id": 25,
-    "name": "player-25",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "mazascani",
+    "image": "/images/mazascani.jpg",
     "selected": false
   },
   {
     "id": 26,
-    "name": "player-26",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "minialdo",
+    "image": "/images/minialdo.jpg",
     "selected": false
   },
   {
     "id": 27,
-    "name": "player-27",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "minifoguet",
+    "image": "/images/minifoguet.jpg",
     "selected": false
   },
   {
     "id": 28,
-    "name": "player-28",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "minikaratekas",
+    "image": "/images/minikaratekas.jpeg",
     "selected": false
   },
   {
     "id": 29,
-    "name": "player-29",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "narco",
+    "image": "/images/narco.jpeg",
     "selected": false
   },
   {
     "id": 30,
-    "name": "player-30",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "nicolas",
+    "image": "/images/nicolas.jpg",
     "selected": false
   },
   {
     "id": 31,
-    "name": "player-31",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "nuclear",
+    "image": "/images/nuclear.jpg",
     "selected": false
   },
   {
     "id": 32,
-    "name": "player-32",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "omg",
+    "image": "/images/omg.jpeg",
     "selected": false
   },
   {
     "id": 33,
-    "name": "player-33",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "orgullo",
+    "image": "/images/orgullo.jpeg",
     "selected": false
   },
   {
     "id": 34,
-    "name": "player-34",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "papa",
+    "image": "/images/papa.jpg",
     "selected": false
   },
   {
     "id": 35,
-    "name": "player-35",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "papalogo",
+    "image": "/images/papalogo.png",
     "selected": false
   },
   {
     "id": 36,
-    "name": "player-36",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "policeman",
+    "image": "/images/policeman.jpeg",
     "selected": false
   },
   {
     "id": 37,
-    "name": "player-37",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "pueblo",
+    "image": "/images/pueblo.jpeg",
     "selected": false
   },
   {
     "id": 38,
-    "name": "player-38",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "pueblodiz",
+    "image": "/images/pueblodiz.jpg",
     "selected": false
   },
   {
     "id": 39,
-    "name": "player-39",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "pullfiction",
+    "image": "/images/pullfiction.jpg",
     "selected": false
   },
   {
     "id": 40,
-    "name": "player-40",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "puto",
+    "image": "/images/puto.jpeg",
     "selected": false
   },
   {
     "id": 41,
-    "name": "player-41",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "putos",
+    "image": "/images/putos.jpg",
     "selected": false
   },
   {
     "id": 42,
-    "name": "player-42",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "random",
+    "image": "/images/random.jpeg",
     "selected": false
   },
   {
     "id": 43,
-    "name": "player-43",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "reycalle",
+    "image": "/images/reycalle.jpg",
     "selected": false
   },
   {
     "id": 44,
-    "name": "player-44",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "rock",
+    "image": "/images/rock.jpg",
     "selected": false
   },
   {
     "id": 45,
-    "name": "player-45",
-    "image": "https://i.pinimg.com/originals/31/85/c7/3185c7434b41167a0df2859eb878a158.png",
+    "name": "stroh",
+    "image": "/images/stroh.jpg",
     "selected": false
   },
   {
     "id": 46,
-    "name": "player-46",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "tetrix",
+    "image": "/images/tetrix.jpg",
     "selected": false
   },
   {
     "id": 47,
-    "name": "player-47",
-    "image": "https://i.pinimg.com/originals/90/9d/d6/909dd61d3ea0213e274610c7e658c769.png",
+    "name": "wakanda",
+    "image": "/images/wakanda.jpg",
     "selected": false
   },
   {
     "id": 48,
-    "name": "player-48",
-    "image": "https://i.pinimg.com/474x/06/8f/ef/068feff9feec5e0796c5367aaf8cdbd5.jpg",
+    "name": "warner",
+    "image": "/images/warner.jpg",
     "selected": false
   },
   {
     "id": 49,
-    "name": "player-49",
-    "image": "https://i.pinimg.com/originals/87/8a/2c/878a2cb6862f04cefa08fb2c6acedaf6.png",
+    "name": "warner",
+    "image": "/images/warner.jpg",
     "selected": false
   }
 ]

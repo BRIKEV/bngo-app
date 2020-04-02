@@ -140,8 +140,12 @@ export default {
   }
 }
 .content {
+  max-width: 1240px;
+  margin-left: auto;
+  min-width: 1240px;
+  margin-right: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100%;
   margin-top: calculateRem(75px);
   margin-bottom: calculateRem(25px);
