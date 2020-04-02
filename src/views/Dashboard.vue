@@ -69,7 +69,7 @@ export default {
       newUser: this.userInfo,
       yourBoard: this.userBoard,
       userReady: this.userInfo,
-      gameReady: console.log, // eslint-disable-line
+      gameReady: this.activateAnimate,
       board: this.totalBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
