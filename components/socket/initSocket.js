@@ -90,7 +90,8 @@ module.exports = () => {
         controller.hasBingo({ key: gameKey, username, gameName })
           .then(async hasBingo => {
             if (hasBingo) {
-              await api.finishGame({ key: gameKey, gameName });
+              logger.info(`User has bingo ${username} in game ${gameName}`);
+              await controller.finishGame({ key: gameKey, gameName });
               io.to(gameName).emit('usernameHasBingo', { username });
               clearInterval(intervals[intervalIdentifier]);
             }
