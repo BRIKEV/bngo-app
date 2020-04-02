@@ -5,8 +5,11 @@
     @close="close"
   >
     <template #body>
-      <div>
-          {{ message }}
+      <div class="mainModalTitle">
+          {{ $t('modal.message') }} <span class="winner">{{ winner.toUpperCase() }}</span>
+      </div>
+      <div class="modalImage">
+        <img src="@/assets/trophy_nobg.png"/>
       </div>
     </template>
     <template #footer>
@@ -14,7 +17,7 @@
         class="deleteBtn"
         @btn-clicked="handlePlayClick"
       >
-        Play Again
+        {{ $t('modal.btn') }}
       </BkButton>
     </template>
   </BkModal>
@@ -27,12 +30,7 @@ export default {
   name: 'BingoModal',
   props: {
     opened: VueTypes.bool.def(false),
-    winner: VueTypes.string.isRequired,
-  },
-  computed: {
-    message() {
-      return this.$t('modal.message', { winner: this.winner });
-    },
+    winner: VueTypes.string.def('kevin'),
   },
   methods: {
     close() {
@@ -49,28 +47,36 @@ export default {
 @import "@/theme/index.scss";
 
 .mainModal {
-  &::v-deep .modal-header {
-      justify-content: flex-start;
-      padding: calculateRem(30px) calculateRem(30px) 0 calculateRem(30px);
+  .mainModalTitle {
+    font-size: $fs-h1;
+    font-family: $base-secondary-font;
+    color: $white;
+    font-weight: 300;
+    padding: calculateRem(20px) calculateRem(10px);
   }
-  &::v-deep .modal-body {
+  &::v-deep .modal-header {
+    justify-content: flex-start;
+    padding: calculateRem(30px) calculateRem(30px) 0 calculateRem(30px);
+  }
+  &::v-deep .modalContainer {
+    height: 700px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #348659;
+    border: 3px solid white;
+    border-radius: 40px;
+  }
+  &::v-deep .modalBody {
     min-height: calculateRem(100px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: calculateRem(25px);
+    justify-content: space-between;
   }
-  &::v-deep .modal-footer {
-    display: flex;
-    justify-content: center;
-    .deleteBtn {
-      margin-right: calculateRem(15px);
-    }
-  }
-  .warning {
-    font-size: $fs-h1;
-    color: $warning;
+  &::v-deep .modalFooter {
+    padding-top: calculateRem(30px);
   }
 }
 </style>

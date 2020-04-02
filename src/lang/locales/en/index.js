@@ -24,6 +24,7 @@ export default {
     errorBingo: 'You don\'t have bingo, keep playing :)',
   },
   modal: {
-    message: 'The winner is {winner}',
+    message: 'The winner is',
+    btn: 'Play again',
   },
 };

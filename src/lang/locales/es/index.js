@@ -24,6 +24,7 @@ export default {
     errorBingo: 'No tienes bingo, sigue jugando :)',
   },
   modal: {
-    message: 'El ganador es {winner}',
+    message: 'El ganador es',
+    btn: 'Jugar otra vez',
   },
 };
