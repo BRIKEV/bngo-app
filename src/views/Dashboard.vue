@@ -43,19 +43,28 @@
                 BINGO
               </BkButton>
             </transition>
-            <UserBoardSection class="UserBoard" :userImages="userImages" />
+            <UserBoardSection
+              class="UserBoard"
+              :userImages="userImages"
+            />
           </div>
       </div>
     </div>
+        <BingoModal
+        :opened="showModal"
+        :winner="winner"
+        @playAgain="handlePlayAgainClick"
+      />
   </div>
 </template>
 
 <script>
 import { Board, Wheel } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection } from '@/sections';
+import { UserBoardSection, BingoModal } from '@/sections';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
+import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 
 export default {
   name: 'Dashboard',
@@ -63,6 +72,13 @@ export default {
     Board,
     Wheel,
     UserBoardSection,
+    BingoModal,
+  },
+  data() {
+    return {
+      showModal: false,
+      winner: undefined,
+    };
   },
   mounted() {
     io({
@@ -74,6 +90,11 @@ export default {
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
       errorAccess: this.logout,
+      incorrectBingo: () => this.sendError({
+        title: NOTIFICATION_BINGO.error.title,
+        text: NOTIFICATION_BINGO.error.text,
+      }),
+      usernameHasBingo: this.handleUserHasBingo,
     },
     {
       ...getInfo(),
@@ -93,7 +114,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError']),
     handleStart() {
       emit('readyToStart');
     },
@@ -103,6 +124,14 @@ export default {
     },
     handleBingo() {
       emit('bingo');
+    },
+    handleUserHasBingo({ username }) {
+      this.showModal = true;
+      this.winner = username;
+    },
+    handlePlayAgainClick() {
+      this.showModal = false;
+      this.logout();
     },
   },
 };
