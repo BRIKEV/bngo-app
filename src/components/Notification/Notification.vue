@@ -24,5 +24,9 @@ export default {
   margin-top: 5px;
   padding: 10px;
   margin: 0 5px 5px;
+  width: 500px;
+  &::v-deep .vue-notification-template.vue-notification.error {
+    font-size: 1rem;
+  }
 }
 </style>
