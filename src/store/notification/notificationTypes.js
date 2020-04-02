@@ -13,3 +13,10 @@ export const NOTIFICATION_ACCESS = {
     text: i18n.t('notification.accessGameError'),
   },
 };
+
+export const NOTIFICATION_BINGO = {
+  error: {
+    title: i18n.t('notification.titleError'),
+    text: i18n.t('notification.errorBingo'),
+  },
+};
