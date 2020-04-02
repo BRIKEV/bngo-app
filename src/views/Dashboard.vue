@@ -43,15 +43,7 @@
                 BINGO
               </BkButton>
             </transition>
-            <div class="boardContainer">
-              <Board
-                class="Board"
-                allSelected
-                :numOfColumns="4"
-                :numOfRows="4"
-                :images="userImages"
-              />
-            </div>
+            <UserBoardSection class="UserBoard" :userImages="userImages" />
           </div>
       </div>
     </div>
@@ -61,6 +53,7 @@
 <script>
 import { Board, Wheel } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
+import { UserBoardSection } from '@/sections';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
 
@@ -69,6 +62,7 @@ export default {
   components: {
     Board,
     Wheel,
+    UserBoardSection,
   },
   mounted() {
     io({
@@ -161,9 +155,9 @@ export default {
       width: calculateRem(310px);
       margin: 0 auto;
     }
-    .boardContainer {
-      height: 50%;
-    }
+  }
+  .UserBoard {
+    height: 50%;
   }
 }
 </style>
