@@ -163,9 +163,13 @@ export default {
   }
 }
 .content {
-  max-width: 1240px;
   margin-left: auto;
-  min-width: 1240px;
+  max-width: 892px;
+  min-width: 892px;
+  @include largeDesktop {
+    max-width: 1240px;
+    min-width: 1240px;
+  }
   margin-right: auto;
   display: flex;
   justify-content: space-between;
@@ -185,8 +189,11 @@ export default {
     width: 30%;
     .Wheel {
       height: calculateRem(250px);
-      width: calculateRem(310px);
+      width: 100%;
       margin: 0 auto;
+      @include largeDesktop {
+        width: calculateRem(310px);
+      }
     }
   }
   .UserBoard {
