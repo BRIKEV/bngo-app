@@ -88,6 +88,19 @@ describe('initController tests', () => {
         expect(err.message).to.eql('User already joined');
       }
     });
+
+    it('should not join to a room if has the same name', async () => {
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      try {
+        await api.joinGame({ username: 'new user', key: gameKey, gameName });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Game has already started');
+      }
+    });
   });
 
   it('readyToStart with two users method', async () => {

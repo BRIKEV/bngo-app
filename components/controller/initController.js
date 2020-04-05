@@ -49,6 +49,9 @@ module.exports = () => {
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
       }
+      if (game.ready) {
+        throw notFoundError('Game has already started');
+      }
       const isAlreadyAdded = game.users.some(user => user.username === username);
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
