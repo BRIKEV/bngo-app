@@ -154,6 +154,31 @@ describe('Bingo e2e tests', () => {
       });
     });
 
+    it(`create a game and join one user and emit one event readyToStart 
+      and try to access gives error
+    `, cb => {
+      // connect client
+      socket = io('http://localhost:4000', {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.emit('readyToStart');
+      socket.on('userReady', () => {
+        request
+          .post('/api/v1/game/join')
+          .send({
+            username: 'different',
+            gameKey,
+            gameName,
+          })
+          .expect(409)
+          .then(() => cb())
+          .catch(() => cb());
+      });
+    });
+
     it(`create a game and join one user and emit one event readyToStart to receive 
       in the client gameReady event as all the users are ready to start
     `, cb => {
