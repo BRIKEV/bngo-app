@@ -122,7 +122,7 @@ module.exports = () => {
       return Promise.resolve({
         optionSelected,
         updateGame: {
-          ...game,
+          ...updateGame,
           board: newBoard,
         },
         gameFinished,
