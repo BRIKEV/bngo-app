@@ -156,7 +156,7 @@ describe('Bingo e2e tests', () => {
 
     it(`create a game and join one user and emit one event readyToStart 
       and try to access gives error
-    `, () => {
+    `, cb => {
       // connect client
       socket = io('http://localhost:4000', {
         query: {
@@ -165,15 +165,18 @@ describe('Bingo e2e tests', () => {
       });
 
       socket.emit('readyToStart');
-
-      return request
-        .post('/api/v1/game/join')
-        .send({
-          username,
-          gameKey,
-          gameName,
-        })
-        .expect(409);
+      socket.on('userReady', () => {
+        request
+          .post('/api/v1/game/join')
+          .send({
+            username: 'different',
+            gameKey,
+            gameName,
+          })
+          .expect(409)
+          .then(() => cb())
+          .catch(() => cb());
+      });
     });
 
     it(`create a game and join one user and emit one event readyToStart to receive 
