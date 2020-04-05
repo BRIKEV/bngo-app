@@ -16,6 +16,10 @@ export default {
       usernamelabel: 'Usuario',
     },
   },
+  disableView: {
+    title: 'Proximamente',
+    description: 'Estamos trabajando para una mejor experiencia con BNGO en tu móvil',
+  },
   notification: {
     titleSuccess: 'SUCCESS',
     titleError: 'ERROR',
