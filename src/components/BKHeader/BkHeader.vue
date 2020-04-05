@@ -31,6 +31,7 @@ export default {
     justify-content: space-between;
     background: $brand;
     padding: 0 20px;
+    z-index: 100;
     .title {
       color: $white;
       font-size: $fs-h3;

@@ -1,9 +1,9 @@
 export default {
   dashboard: {
-    title: 'ENTOURAGE BINGO APP',
+    title: 'ENTOURAGE BNGO APP',
   },
   joinGame: {
-    title: 'ENTOURAGE BINGO',
+    title: 'ENTOURAGE BNGO',
     btnAccess: 'Access',
     btnCreate: 'Create',
     accessGameSection: {
@@ -15,6 +15,10 @@ export default {
       btnCreate: 'Create game',
       usernamelabel: 'Username',
     },
+  },
+  disableView: {
+    title: 'Commin soon',
+    description: 'we are working on improving your BNGO experience on mobile devices',
   },
   notification: {
     titleSuccess: 'SUCCESS',

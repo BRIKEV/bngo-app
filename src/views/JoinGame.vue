@@ -128,8 +128,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
-$gradientColor: linear-gradient(90deg, $secundary 0%,
-  $brand 35%, $secundary 100%);
 
 .about {
   width: 100%;
