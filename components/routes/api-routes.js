@@ -61,7 +61,10 @@ module.exports = () => {
         validator.validateAPIOutput(response, req);
         return res.json(response);
       } catch (error) {
-        return next(tagError(error));
+        const newErrors = {
+          'game-started': 409,
+        };
+        return next(tagError(error, newErrors));
       }
     });
 

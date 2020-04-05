@@ -8,6 +8,7 @@ const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
 const alreadyCreated = errorFactory('game-created');
+const alreadyStarted = errorFactory('game-started');
 const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
 const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
@@ -50,7 +51,7 @@ module.exports = () => {
         throw notFoundError('Gamename not found');
       }
       if (game.ready) {
-        throw notFoundError('Game has already started');
+        throw alreadyStarted('Game has already started');
       }
       const isAlreadyAdded = game.users.some(user => user.username === username);
       if (isAlreadyAdded) {
