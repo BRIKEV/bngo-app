@@ -5,7 +5,7 @@ const isMobile = () => {
   if (!md) {
     md = new MobileDetect(window.navigator.userAgent);
   }
-  return !!md.mobile();
+  return !!md.mobile() && !md.tablet();
 };
 
 export default isMobile;
