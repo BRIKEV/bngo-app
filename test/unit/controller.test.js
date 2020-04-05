@@ -187,8 +187,8 @@ describe('initController tests', () => {
       'image',
       'selected',
     ]);
-    expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
     expect(result.updateGame.board.filter(({ selected }) => selected)).to.have.length(49);
+    expect(result.updateGame.users[0].board.filter(({ selected }) => selected)).to.have.length(16);
   });
 
   describe('hasBingo method', () => {
