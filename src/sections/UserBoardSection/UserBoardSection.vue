@@ -1,4 +1,15 @@
 <template>
+  <div>
+    <div class="infoContainer">
+      <p class="info">Dibuja sobre tu tablero
+        <span class="icon material-icons">
+          brush
+        </span>
+      </p>
+        <span class="clearIcon material-icons">
+          clear
+        </span>
+    </div>
     <div
         ref="boardContainer"
         class="UserBoardSection"
@@ -16,6 +27,7 @@
         :images="userImages"
         />
     </div>
+  </div>
 </template>
 
 <script>
@@ -49,9 +61,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/theme/index.scss";
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .info {
+    display: flex;
+    align-items: center;
+    font-size: $fs-large;
+    font-family: $base-secondary-font;
+    color: darken($secundary, 15%);
+    padding: calculateRem(15px) 0;
+    user-select: none;
+    .icon {
+      margin-left: calculateRem(5px);
+
+    }
+  }
+  .clearIcon {
+    color: darken($secundary, 15%);
+    cursor: pointer;
+  }
+}
 .UserBoardSection {
   position: relative;
-  height: 100%;
+  .Board {
+    grid-template-rows: repeat(4, minmax(70px, 80px)) !important;
+    @include largeDesktop {
+      grid-template-rows: repeat(4, minmax(80px, 120px)) !important;
+    }
+  }
   .canvas {
     position: absolute;
     z-index: 30;

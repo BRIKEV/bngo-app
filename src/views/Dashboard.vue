@@ -19,12 +19,13 @@
             />
         </div>
           <div class="Info">
-            <Wheel
-              :selected="selected"
-              :animate="animate"
-              class="Wheel"
-              :images="board"
-            />
+            <div class="raffle">
+              <Wheel
+                :selected="selected"
+                :animate="animate"
+                class="Wheel"
+                :images="board"
+              />
               <BkButton
                 v-if="!user.ready"
                 key=1
@@ -33,16 +34,17 @@
               >
                 START
               </BkButton>
-            <transition name="slide">
-              <BkButton
-                v-if="user.ready"
-                key=2
-                class="createBtn"
-                @btn-clicked="handleBingo"
-              >
-                BINGO
-              </BkButton>
-            </transition>
+              <transition name="slide">
+                <BkButton
+                  v-if="user.ready"
+                  key=2
+                  class="createBtn"
+                  @btn-clicked="handleBingo"
+                >
+                  BINGO
+                </BkButton>
+              </transition>
+            </div>
             <UserBoardSection
               class="UserBoard"
               :userImages="userImages"
@@ -138,6 +140,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
+
 .dashboard {
   background: lighten($lightGray, 15%);
   display: flex;
@@ -187,17 +190,22 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
-    .Wheel {
-      height: calculateRem(250px);
+    .raffle {
       width: 100%;
-      margin: 0 auto;
-      @include largeDesktop {
-        width: calculateRem(310px);
+      align-self: center;
+        @include largeDesktop {
+          width: calculateRem(310px);
+        }
+      .Wheel {
+        height: calculateRem(250px);
+        margin: 0 auto;
+      }
+      .createBtn {
+        width: 100%;
+        border-radius: calculateRem(10px);
+        margin-top: calculateRem(15px);
       }
     }
-  }
-  .UserBoard {
-    height: 50%;
   }
 }
 </style>
