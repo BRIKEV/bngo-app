@@ -50,10 +50,11 @@ export default {
 
 <style lang="scss" scoped>
 .UserBoardSection {
-    position: relative;
-    height: 100%;
-    .canvas {
+  position: relative;
+  height: 100%;
+  .canvas {
     position: absolute;
-    }
+    z-index: 30;
+  }
 }
 </style>
