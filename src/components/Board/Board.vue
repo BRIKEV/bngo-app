@@ -57,7 +57,7 @@ $cardRadious: 20px;
       position: absolute;
       width: 100%;
       height: 100%;
-      background: #1c1c1cf5;
+      background: rgba(28, 28, 28, 0.96);
       border-radius: $cardRadious;
       text-align: center;
       color: $white;
