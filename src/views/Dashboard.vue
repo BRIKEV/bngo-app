@@ -24,7 +24,7 @@
             />
         </div>
           <div class="Info">
-            <div class="raffle">
+            <div class="wheelContainer">
               <Wheel
                 :selected="selected"
                 :animate="animate"
@@ -195,15 +195,17 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
-    .raffle {
+    .wheelContainer {
       width: 100%;
       align-self: center;
+      .Wheel {
+        margin: 0 auto;
+        height: calculateRem(250px);
+        width: calculateRem(200px);
         @include largeDesktop {
           width: calculateRem(310px);
+          height: calculateRem(310px);
         }
-      .Wheel {
-        height: calculateRem(250px);
-        margin: 0 auto;
       }
       .createBtn {
         width: 100%;
