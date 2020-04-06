@@ -2,6 +2,9 @@ export default {
   dashboard: {
     title: 'ENTOURAGE BINGO APP',
   },
+  userBoardSection: {
+    info: 'Dibuja sobre tu tablero',
+  },
   joinGame: {
     title: 'ENTOURAGE BINGO',
     btnAccess: 'Acceder',

@@ -2,6 +2,9 @@ export default {
   dashboard: {
     title: 'ENTOURAGE BNGO APP',
   },
+  userBoardSection: {
+    info: 'Draw on your board',
+  },
   joinGame: {
     title: 'ENTOURAGE BNGO',
     btnAccess: 'Access',

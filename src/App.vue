@@ -1,7 +1,10 @@
 <template>
   <div>
   <DisableViewSection />
-    <div v-if="!isMobile" id="app">
+    <div
+      v-if="!isMobile"
+      id="app"
+    >
       <Notification group="notify" position="bottom left" width="400px" />
       <transition name="fade" mode="out-in">
         <router-view/>

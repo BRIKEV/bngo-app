@@ -1,10 +1,9 @@
 <template>
   <div>
     <div class="infoContainer">
-      <p class="info">Dibuja sobre tu tablero
-        <span class="icon material-icons">
-          brush
-        </span>
+      <p class="info">
+        {{ $t('userBoardSection.info') }}
+        <span class="icon material-icons">brush</span>
       </p>
         <span class="clearIcon material-icons">
           clear
@@ -88,7 +87,7 @@ export default {
 .UserBoardSection {
   position: relative;
   .Board {
-    grid-template-rows: repeat(4, minmax(70px, 80px)) !important;
+    grid-template-rows: repeat(4, minmax(55px, 60px)) !important;
     @include largeDesktop {
       grid-template-rows: repeat(4, minmax(80px, 120px)) !important;
     }

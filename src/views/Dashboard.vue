@@ -3,12 +3,17 @@
     <BkHeader :title="$t('dashboard.title')">
       <div class="navbarOptions">
         {{ user.username }}
-        <span class="icon material-icons" @click="logout">
-          exit_to_app
+        <span
+          class="icon material-icons"
+          @click="logout">
+            exit_to_app
         </span>
       </div>
     </BkHeader>
-    <div class="dashboard" v-if="hasData">
+    <div
+      v-if="hasData"
+      class="dashboard"
+    >
       <div class="content">
         <div class="outputImagesContainer">
           <Board

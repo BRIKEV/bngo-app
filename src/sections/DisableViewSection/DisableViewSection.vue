@@ -21,6 +21,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
+
 .disableContainer {
   display: none;
   @include mobile {
