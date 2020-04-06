@@ -7,6 +7,8 @@ const gameName = 'entourage';
 const gameKey = 'pizza';
 const username = 'kj';
 
+const CLIENT_CONNECTION = 'http://localhost:5000';
+
 describe('Bingo e2e tests', () => {
   let request;
   let socket;
@@ -43,7 +45,7 @@ describe('Bingo e2e tests', () => {
       .expect(200)
       .then(() => {
         // connect client
-        socket = io('http://localhost:4000', {
+        socket = io(CLIENT_CONNECTION, {
           query: { accessKey: 'not_valid' },
         });
 
@@ -86,7 +88,7 @@ describe('Bingo e2e tests', () => {
       whit information of the user that joins the room and if he is active
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -104,7 +106,7 @@ describe('Bingo e2e tests', () => {
       whit information of the room's board
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -121,7 +123,7 @@ describe('Bingo e2e tests', () => {
       whit information of the user's board and username
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -139,7 +141,7 @@ describe('Bingo e2e tests', () => {
       in the client userReady event
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -158,7 +160,7 @@ describe('Bingo e2e tests', () => {
       and try to access gives error
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -183,7 +185,7 @@ describe('Bingo e2e tests', () => {
       in the client gameReady event as all the users are ready to start
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -201,7 +203,7 @@ describe('Bingo e2e tests', () => {
       in the client optionSelected event after 1 second with 
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },
@@ -232,7 +234,7 @@ describe('Bingo e2e tests', () => {
       in the client incorrectBingo with username in the payload
     `, cb => {
       // connect client
-      socket = io('http://localhost:4000', {
+      socket = io(CLIENT_CONNECTION, {
         query: {
           accessKey,
         },

@@ -5,25 +5,29 @@
         {{ $t('userBoardSection.info') }}
         <span class="icon material-icons">brush</span>
       </p>
-        <span class="clearIcon material-icons">
+        <span
+          class="clearIcon material-icons"
+          @click="clear"
+        >
           clear
         </span>
     </div>
     <div
-        ref="boardContainer"
-        class="UserBoardSection"
+      ref="boardContainer"
+      class="UserBoardSection"
     >
         <Canvas
-        className="canvas"
-        :height="heightCanvas"
-        :width="widthCanvas"
+          ref="canvas"
+          className="canvas"
+          :height="heightCanvas"
+          :width="widthCanvas"
         />
         <Board
-        class="Board"
-        allSelected
-        :numOfColumns="4"
-        :numOfRows="4"
-        :images="userImages"
+          class="Board"
+          allSelected
+          :numOfColumns="4"
+          :numOfRows="4"
+          :images="userImages"
         />
     </div>
   </div>
@@ -56,6 +60,11 @@ export default {
     this.widthCanvas = this.$refs.boardContainer.offsetWidth;
     this.heightCanvas = this.$refs.boardContainer.offsetHeight;
   },
+  methods: {
+    clear() {
+      this.$refs.canvas.clearArea();
+    },
+  },
 };
 </script>
 
@@ -87,7 +96,7 @@ export default {
 .UserBoardSection {
   position: relative;
   .Board {
-    grid-template-rows: repeat(4, minmax(55px, 60px)) !important;
+    grid-template-rows: repeat(4, minmax(55px, 65px)) !important;
     @include largeDesktop {
       grid-template-rows: repeat(4, minmax(80px, 120px)) !important;
     }

@@ -2,7 +2,7 @@
 $tablet-width-portrait: 600px;
 $tablet-width: 769px;
 $desktop-width: 992px;
-$large-desktop-width: 1440px;
+$large-desktop-width: 1441px;
 
 @mixin mobile {
   @media (max-width: #{$tablet-width}) {

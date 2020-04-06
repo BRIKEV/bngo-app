@@ -198,14 +198,16 @@ export default {
     .wheelContainer {
       width: 100%;
       align-self: center;
+      height: calculateRem(200px);
+      width: calculateRem(200px);
+      @include largeDesktop {
+        width: calculateRem(310px);
+        height: calculateRem(310px);
+      }
       .Wheel {
+        width: 100%;
+        height: 100%;
         margin: 0 auto;
-        height: calculateRem(250px);
-        width: calculateRem(200px);
-        @include largeDesktop {
-          width: calculateRem(310px);
-          height: calculateRem(310px);
-        }
       }
       .createBtn {
         width: 100%;
