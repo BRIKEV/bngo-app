@@ -30,7 +30,7 @@ export default {
   name: 'BingoModal',
   props: {
     opened: VueTypes.bool.def(false),
-    winner: VueTypes.string.def('kevin'),
+    winner: VueTypes.string.def(''),
   },
   methods: {
     close() {
@@ -59,8 +59,12 @@ export default {
     padding: calculateRem(30px) calculateRem(30px) 0 calculateRem(30px);
   }
   &::v-deep .modalContainer {
-    height: 700px;
-    width: 500px;
+    height: 90%;
+    width: 50%;
+    @include largeDesktop {
+      height: 70%;
+      width: 25%;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
