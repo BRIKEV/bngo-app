@@ -8,12 +8,14 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   name: 'Notification',
   props: {
-    group: String,
-    position: String,
-    width: String,
+    group: VueTypes.string,
+    position: VueTypes.string,
+    width: VueTypes.string,
   },
 };
 </script>

@@ -27,6 +27,9 @@ import VueTypes from 'vue-types';
 
 export default {
   name: 'Wheel',
+  components: {
+    ImageCard,
+  },
   props: {
     images: VueTypes.arrayOf(VueTypes.shape({
       image: VueTypes.string.isRequired,
@@ -37,9 +40,6 @@ export default {
       image: VueTypes.string.isRequired,
       name: VueTypes.string.isRequired,
     })).loose,
-  },
-  components: {
-    ImageCard,
   },
 };
 </script>
