@@ -34,4 +34,9 @@ describe('Bgno actions', () => {
     bgnoActions.activateAnimate({ commit });
     expect(commit).toHaveBeenCalledWith('SET_ANIMATE', true);
   });
+
+  it('clean action', () => {
+    bgnoActions.clean({ commit });
+    expect(commit).toHaveBeenCalledWith('CLEAN');
+  });
 });

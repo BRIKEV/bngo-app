@@ -121,12 +121,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError', 'clean']),
     handleStart() {
       emit('readyToStart');
     },
     logout() {
       logout();
+      this.clean();
       this.$router.push({ name: 'JoinGame' });
     },
     handleBingo() {
