@@ -77,6 +77,7 @@ $cardRadious: 20px;
       height: 100%;
       width: 100%;
       &:hover {
+        position: relative;
         transform: scale(2.5);
         background-position: center;
         z-index: 3;
