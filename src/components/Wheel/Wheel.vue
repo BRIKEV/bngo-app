@@ -74,7 +74,8 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
       left: 0;
       right: 0;
       text-align: center;
-      background: #000000d9;
+      padding: calculateRem(5px) 0;
+      background: $dark;
     }
   }
   .wheel-inner {
