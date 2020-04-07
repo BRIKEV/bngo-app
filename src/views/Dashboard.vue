@@ -57,7 +57,7 @@
           </div>
       </div>
     </div>
-        <BingoModal
+        <WinnerModal
         :opened="showModal"
         :winner="winner"
         @playAgain="handlePlayAgainClick"
@@ -66,9 +66,9 @@
 </template>
 
 <script>
-import { Board, Wheel } from '@/components';
+import { Board, Wheel, WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection, BingoModal } from '@/sections';
+import { UserBoardSection } from '@/sections';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
@@ -79,7 +79,7 @@ export default {
     Board,
     Wheel,
     UserBoardSection,
-    BingoModal,
+    WinnerModal,
   },
   data() {
     return {
