@@ -35,7 +35,7 @@ export const mutations = {
   SET_USER_INFO(state, payload) {
     state.user = { ...state.user, ...payload };
   },
-  SET_ANIMATE(state, payload = []) {
+  SET_ANIMATE(state, payload) {
     state.currentResult = {
       ...state.currentResult,
       animate: payload,

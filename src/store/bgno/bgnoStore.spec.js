@@ -29,6 +29,7 @@ describe('Tickets store', () => {
 
   it('Clean store correctly', () => {
     mutations.SET_BOARD(state, ['board1', 'board2']);
+    mutations.SET_ANIMATE(state, true);
     expect(state).not.toEqual(initialState);
     mutations.CLEAN(state);
     expect(state).toEqual(initialState);

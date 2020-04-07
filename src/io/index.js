@@ -53,5 +53,6 @@ const IOeventEmitter = (methods, options) => {
 };
 
 export const emit = (...args) => socket.emit(...args);
+export const disconnect = () => socket.close();
 
 export default IOeventEmitter;
