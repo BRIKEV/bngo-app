@@ -13,4 +13,12 @@ describe('BkHeader component', () => {
     const wrapper = mount(BkHeader);
     expect(wrapper.element).toMatchSnapshot();
   });
+  it('renders props.title when passed', () => {
+    const wrapper = shallowMount(BkHeader, {
+      slots: {
+        default: '<div class="fake-msg"></div>',
+      },
+    });
+    expect(wrapper.findAll('.fake-msg').length).toBe(1);
+  });
 });
