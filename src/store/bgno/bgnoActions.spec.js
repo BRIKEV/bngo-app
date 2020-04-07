@@ -23,4 +23,15 @@ describe('Bgno actions', () => {
     expect(commit).toHaveBeenCalledWith('SET_SELECTED_RESULT', optionSelected);
     expect(commit).toHaveBeenCalledWith('SET_BOARD', board);
   });
+
+  it('userInfo action', () => {
+    const mockUserInfo = { username: 'test', ready: true };
+    bgnoActions.userInfo({ commit }, mockUserInfo);
+    expect(commit).toHaveBeenCalledWith('SET_USER_INFO', mockUserInfo);
+  });
+
+  it('activateAnimate action', () => {
+    bgnoActions.activateAnimate({ commit });
+    expect(commit).toHaveBeenCalledWith('SET_ANIMATE', true);
+  });
 });
