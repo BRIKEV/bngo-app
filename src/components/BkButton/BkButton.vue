@@ -13,19 +13,15 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   name: 'BkButton',
 
   props: {
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: Boolean,
-    outline: {
-      type: Boolean,
-      default: false,
-    },
+    isLoading: VueTypes.bool.def(false),
+    disabled: VueTypes.bool.def(false),
+    outline: VueTypes.bool.def(false),
   },
 
   methods: {
@@ -63,7 +59,7 @@ export default {
 
   &:disabled {
     cursor: not-allowed;
-    background: lightgrey;
+    background: $disabled;
   }
 
   &.outline {

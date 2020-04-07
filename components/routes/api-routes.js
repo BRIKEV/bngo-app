@@ -4,11 +4,12 @@ const {
 } = require('error-handler-module');
 const validator = require('swagger-endpoint-validator');
 
+const { createGameLimit, joinGameLimit } = require('../../lib/rate-limits');
 const jwt = require('../../lib/token');
 
 module.exports = () => {
   const start = async ({ server: { app }, controller, logger, config }) => {
-    const { signToken } = jwt(config.tokenSecret);
+    const { signToken } = jwt(config.tokenSecret, config.tokenOptions);
     /**
      * This endpoint allows you to create one game
      * @route POST /api/v1/game
@@ -18,7 +19,7 @@ module.exports = () => {
      * @returns {Error.model} <any> - Error message
      * @security JWT
     */
-    app.post('/api/v1/game', async (req, res, next) => {
+    app.post('/api/v1/game', createGameLimit, async (req, res, next) => {
       try {
         validator.validateAPIInput(req.body, req);
         await controller.createGame(req.body);
@@ -42,7 +43,7 @@ module.exports = () => {
      * @returns {Error.model} <any> - Error message
      * @security JWT
     */
-    app.post('/api/v1/game/join', async (req, res, next) => {
+    app.post('/api/v1/game/join', joinGameLimit, async (req, res, next) => {
       try {
         validator.validateAPIInput(req.body, req);
         await controller.joinGame({
@@ -60,7 +61,10 @@ module.exports = () => {
         validator.validateAPIOutput(response, req);
         return res.json(response);
       } catch (error) {
-        return next(tagError(error));
+        const newErrors = {
+          'game-started': 409,
+        };
+        return next(tagError(error, newErrors));
       }
     });
 

@@ -3,12 +3,17 @@
     <BkHeader :title="$t('dashboard.title')">
       <div class="navbarOptions">
         {{ user.username }}
-        <span class="icon material-icons" @click="logout">
-          exit_to_app
+        <span
+          class="icon material-icons"
+          @click="logout">
+            exit_to_app
         </span>
       </div>
     </BkHeader>
-    <div class="dashboard" v-if="hasData">
+    <div
+      v-if="hasData"
+      class="dashboard"
+    >
       <div class="content">
         <div class="outputImagesContainer">
           <Board
@@ -19,12 +24,13 @@
             />
         </div>
           <div class="Info">
-            <Wheel
-              :selected="selected"
-              :animate="animate"
-              class="Wheel"
-              :images="board"
-            />
+            <div class="wheelContainer">
+              <Wheel
+                :selected="selected"
+                :animate="animate"
+                class="Wheel"
+                :images="board"
+              />
               <BkButton
                 v-if="!user.ready"
                 key=1
@@ -33,53 +39,69 @@
               >
                 START
               </BkButton>
-            <transition name="slide">
-              <BkButton
-                v-if="user.ready"
-                key=2
-                class="createBtn"
-                @btn-clicked="handleBingo"
-              >
-                BINGO
-              </BkButton>
-            </transition>
-            <div class="boardContainer">
-              <Board
-                class="Board"
-                allSelected
-                :numOfColumns="4"
-                :numOfRows="4"
-                :images="userImages"
-              />
+              <transition name="slide">
+                <BkButton
+                  v-if="user.ready"
+                  key=2
+                  class="createBtn"
+                  @btn-clicked="handleBingo"
+                >
+                  BINGO
+                </BkButton>
+              </transition>
             </div>
+            <UserBoardSection
+              class="UserBoard"
+              :userImages="userImages"
+            />
           </div>
       </div>
     </div>
+        <WinnerModal
+        :opened="showModal"
+        :winner="winner"
+        @playAgain="handlePlayAgainClick"
+      />
   </div>
 </template>
 
 <script>
-import { Board, Wheel } from '@/components';
+import { Board, Wheel, WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
+import { UserBoardSection } from '@/sections';
 import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
+import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 
 export default {
   name: 'Dashboard',
   components: {
     Board,
     Wheel,
+    UserBoardSection,
+    WinnerModal,
+  },
+  data() {
+    return {
+      showModal: false,
+      winner: undefined,
+    };
   },
   mounted() {
     io({
       newUser: this.userInfo,
       yourBoard: this.userBoard,
       userReady: this.userInfo,
-      gameReady: console.log, // eslint-disable-line
+      gameReady: this.activateAnimate,
       board: this.totalBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
       errorAccess: this.logout,
+      incorrectBingo: () => this.sendError({
+        title: NOTIFICATION_BINGO.error.title,
+        text: NOTIFICATION_BINGO.error.text,
+      }),
+      usernameHasBingo: this.handleUserHasBingo,
     },
     {
       ...getInfo(),
@@ -99,7 +121,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError']),
     handleStart() {
       emit('readyToStart');
     },
@@ -109,6 +131,14 @@ export default {
     },
     handleBingo() {
       emit('bingo');
+    },
+    handleUserHasBingo({ username }) {
+      this.showModal = true;
+      this.winner = username;
+    },
+    handlePlayAgainClick() {
+      this.showModal = false;
+      this.logout();
     },
   },
 };
@@ -140,9 +170,13 @@ export default {
   }
 }
 .content {
-  max-width: 1240px;
   margin-left: auto;
-  min-width: 1240px;
+  max-width: 892px;
+  min-width: 892px;
+  @include largeDesktop {
+    max-width: 1240px;
+    min-width: 1240px;
+  }
   margin-right: auto;
   display: flex;
   justify-content: space-between;
@@ -160,13 +194,25 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
-    .Wheel {
-      height: calculateRem(250px);
-      width: calculateRem(310px);
-      margin: 0 auto;
-    }
-    .boardContainer {
-      height: 50%;
+    .wheelContainer {
+      width: 100%;
+      align-self: center;
+      height: calculateRem(200px);
+      width: calculateRem(200px);
+      @include largeDesktop {
+        width: calculateRem(310px);
+        height: calculateRem(310px);
+      }
+      .Wheel {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+      }
+      .createBtn {
+        width: 100%;
+        border-radius: calculateRem(10px);
+        margin-top: calculateRem(15px);
+      }
     }
   }
 }

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BkModal component Should be render correctly 1`] = `
+<div
+  class="modalMask"
+>
+  <div
+    class="modalWrapper"
+  >
+    <div
+      class="modalContainer"
+    >
+      <div
+        class="modalBody"
+      />
+       
+      <div
+        class="modalFooter"
+      >
+        <button
+          class="modalDefaultButton"
+        >
+          
+              OK
+            
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

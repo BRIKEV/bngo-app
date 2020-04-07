@@ -4,7 +4,7 @@ const jwt = require('../../lib/token');
 
 module.exports = () => {
   const start = async ({ server: { http }, logger, controller, config }) => {
-    const { verifyToken } = jwt(config.tokenSecret);
+    const { verifyToken } = jwt(config.tokenSecret, config.tokenOptions);
     const io = socketIO(http);
     logger.info('create io instance');
 
@@ -59,10 +59,10 @@ module.exports = () => {
         controller.readyToStart({ key: gameKey, username })
           .then(({ gameReady, board }) => {
             logger.info(`User: ${username} ready to play`);
-            io.to(gameName).emit('userReady', { username, ready: true });
+            io.to(socket.id).emit('userReady', { username, ready: true });
             if (gameReady) {
               logger.info('Game is ready to start');
-              io.to(socket.id).emit('gameReady', { board });
+              io.to(gameName).emit('gameReady', { board });
             }
           })
           .catch(error => {
@@ -90,7 +90,8 @@ module.exports = () => {
         controller.hasBingo({ key: gameKey, username, gameName })
           .then(async hasBingo => {
             if (hasBingo) {
-              await api.finishGame({ key: gameKey, gameName });
+              logger.info(`User has bingo ${username} in game ${gameName}`);
+              await controller.finishGame({ key: gameKey, gameName });
               io.to(gameName).emit('usernameHasBingo', { username });
               clearInterval(intervals[intervalIdentifier]);
             }

@@ -3,12 +3,13 @@
     class="board"
     :style="boardStyles(numOfRows, numOfColumns)"
     >
-    <div
-      v-for="(item, index) in images"
-      :key="index"
-      :style="itemStyles(item)"
-      :class="{ disabled: !item.selected && !allSelected }"
-      class="item" />
+    <div v-for="(item, index) in images" :key="index" class="boardCard">
+      <div v-show="!item.selected && !allSelected" class="hiddenCard">?</div>
+      <div
+        :style="itemStyles(item)"
+        :class="{ disabled: !item.selected && !allSelected }"
+        class="item" />
+    </div>
   </div>
 </template>
 
@@ -43,28 +44,47 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/theme/index.scss";
 $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$cardRadious: 20px;
 .board {
   width: 100%;
   height: 100%;
   display: grid;
   grid-gap: 5px;
-  .item {
-    cursor: pointer;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    box-shadow: $boxShadow;
-    transition: transform .3s;
-    &:hover {
-      transform: scale(2.5);
-      background-position: center;
-      z-index: 3;
+  .boardCard {
+    position: relative;
+    .hiddenCard {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(28, 28, 28, 0.96);
+      border-radius: $cardRadious;
+      text-align: center;
+      color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $fs-h1;
+    }
+    .item {
+      cursor: pointer;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: $cardRadious;
+      box-shadow: $boxShadow;
+      transition: transform .3s;
+      height: 100%;
+      width: 100%;
+      &:hover {
+        transform: scale(2.5);
+        background-position: center;
+        z-index: 3;
+      }
     }
   }
 }
 .disabled {
-  opacity: 0.3;
   pointer-events: none;
   position: none;
   cursor: not-allowed;

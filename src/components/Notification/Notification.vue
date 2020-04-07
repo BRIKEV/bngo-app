@@ -8,12 +8,14 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   name: 'Notification',
   props: {
-    group: String,
-    position: String,
-    width: String,
+    group: VueTypes.string,
+    position: VueTypes.string,
+    width: VueTypes.string,
   },
 };
 </script>
@@ -24,5 +26,9 @@ export default {
   margin-top: 5px;
   padding: 10px;
   margin: 0 5px 5px;
+  width: 500px;
+  &::v-deep .vue-notification-template.vue-notification.error {
+    font-size: 1rem;
+  }
 }
 </style>
