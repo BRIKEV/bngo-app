@@ -7,8 +7,9 @@ const setAccess = (accessKey) => {
   cookieStorage.setItem(COOKIE_GAME_KEY, accessKey);
 };
 
-const logout = () => {
+const logout = (route = '/') => {
   cookieStorage.removeItem(COOKIE_GAME_KEY);
+  window.location.href = route;
 };
 
 const getInfo = () => {
