@@ -5,7 +5,7 @@
         {{ user.username }}
         <span
           class="icon material-icons"
-          @click="logout">
+          @click="exit">
             exit_to_app
         </span>
       </div>
@@ -96,7 +96,7 @@ export default {
       board: this.totalBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
-      errorAccess: this.logout,
+      errorAccess: this.exit,
       incorrectBingo: () => this.sendError({
         title: NOTIFICATION_BINGO.error.title,
         text: NOTIFICATION_BINGO.error.text,
@@ -125,10 +125,8 @@ export default {
     handleStart() {
       emit('readyToStart');
     },
-    logout() {
+    exit() {
       logout();
-      this.clean();
-      this.$router.push({ name: 'JoinGame' });
     },
     handleBingo() {
       emit('bingo');
@@ -139,7 +137,7 @@ export default {
     },
     handlePlayAgainClick() {
       this.showModal = false;
-      this.logout();
+      this.exit();
     },
   },
 };
