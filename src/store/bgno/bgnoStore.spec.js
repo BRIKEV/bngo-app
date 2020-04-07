@@ -26,4 +26,11 @@ describe('Tickets store', () => {
     mutations.SET_SELECTED_RESULT(state, selected);
     expect(state.currentResult.selected).toEqual(selected);
   });
+
+  it('Clean store correctly', () => {
+    mutations.SET_BOARD(state, ['board1', 'board2']);
+    expect(state).not.toEqual(initialState);
+    mutations.CLEAN(state);
+    expect(state).toEqual(initialState);
+  });
 });

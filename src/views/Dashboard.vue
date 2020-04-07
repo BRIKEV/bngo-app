@@ -121,12 +121,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError']),
+    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError', 'clean']),
     handleStart() {
       emit('readyToStart');
     },
     logout() {
       logout();
+      this.clean();
       this.$router.push({ name: 'JoinGame' });
     },
     handleBingo() {
@@ -145,7 +146,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
-
 .dashboard {
   background: lighten($lightGray, 15%);
   display: flex;

@@ -17,4 +17,7 @@ export default {
   activateAnimate({ commit }) {
     commit('SET_ANIMATE', true);
   },
+  clean({ commit }) {
+    commit('CLEAN');
+  },
 };

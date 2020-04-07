@@ -14,6 +14,9 @@ export const initialState = {
 };
 
 export const mutations = {
+  CLEAN(state) {
+    Object.assign(state, initialState);
+  },
   SET_BOARD(state, payload = []) {
     state.board = [...payload];
   },
