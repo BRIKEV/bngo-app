@@ -8,7 +8,10 @@
           </div>
           <div class="modalFooter">
             <slot name="footer">
-              <button class="modalDefaultButton" @click="$emit('close')">
+              <button
+                class="modalDefaultButton"
+                @click="$emit('close')"
+              >
                 OK
               </button>
             </slot>

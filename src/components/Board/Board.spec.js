@@ -17,6 +17,7 @@ describe('Board component', () => {
   it('Should render a disabled class if image is not selected', () => {
     const wrapper = shallowMount(Board, {
       propsData: {
+        ...defaultConfig.propsData,
         images: [{
           image: 'url',
           selected: false,
@@ -29,6 +30,7 @@ describe('Board component', () => {
   it('Should not render a disabled class if allSelected is true', () => {
     const wrapper = shallowMount(Board, {
       propsData: {
+        ...defaultConfig.propsData,
         allSelected: true,
         images: {
           selected: false,

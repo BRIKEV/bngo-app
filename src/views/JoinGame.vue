@@ -8,42 +8,21 @@
       <transition name="fade" mode="out-in">
         <template v-if="!access && !create">
           <JoinGameSection
-            @onAccess="handleAccessRoom"
-            @onCreateRoom="handleCreateRoom"
+            @onAccess="goToAccessForm"
+            @onCreateRoom="goToCreateForm"
           />
         </template>
         <template v-if="access">
           <AccessGameForm
             class="createGameSection"
-            @onAccessUsernameChanged="handleUsernameChange"
-            @onAccessRoomNameChanged="handleRoomNameChange"
-            @onAccessPasswordChanged="handlePasswordChange"
-          >
-            <BkButton
-              class="btn"
-              slot="optional"
-              :disabled="!gameName || !gameKey || !username"
-              @btn-clicked="handleAccessClick"
-            >
-              {{ $t('joinGame.accessGameSection.btnAccess') }}
-            </BkButton>
-          </AccessGameForm>
+            @onAccessClick="handleAccessClick"
+          />
         </template>
         <template v-if="create">
           <CreateGameForm
             class="createGameSection"
-            @onCreateRoomNameChanged="handleRoomNameChange"
-            @onCreatePasswordChanged="handlePasswordChange"
-          >
-            <BkButton
-              class="btn"
-              slot="optional"
-              :disabled="!gameName || !gameKey"
-              @btn-clicked="handleCreateClick"
-            >
-              {{ $t('joinGame.createGameSection.btnCreate') }}
-            </BkButton>
-          </CreateGameForm>
+            @onCreateClick="handleCreateClick"
+          />
         </template>
       </transition>
     </BkForm>
@@ -69,32 +48,25 @@ export default {
       access: false,
       create: false,
       icon: false,
-      username: undefined,
-      gameKey: undefined,
-      gameName: undefined,
     };
   },
   methods: {
     ...mapActions(['sendError']),
-    handleRoomNameChange(roomName) {
-      this.gameName = roomName;
-    },
-    handlePasswordChange(pass) {
-      this.gameKey = pass;
-    },
-    handleUsernameChange(username) {
-      this.username = username;
-    },
-    handleAccessRoom() {
+    goToAccessForm() {
       this.access = true;
       this.icon = true;
     },
-    handleCreateRoom() {
+    goToCreateForm() {
       this.create = true;
       this.icon = true;
     },
-    handleCreateClick() {
-      return createGame({ gameKey: this.gameKey, gameName: this.gameName })
+    handleReturnClick() {
+      this.icon = false;
+      this.create = false;
+      this.access = false;
+    },
+    handleCreateClick({ roomName, gameKey }) {
+      return createGame({ gameKey, gameName: roomName })
         .then(() => {
           this.create = false;
           this.icon = false;
@@ -104,15 +76,8 @@ export default {
           text: NOTIFICATION_CREATE.error.text,
         }));
     },
-    handleReturnClick() {
-      this.icon = false;
-      this.create = false;
-      this.access = false;
-    },
-    handleAccessClick() {
-      const accessInfo = {
-        gameKey: this.gameKey, username: this.username, gameName: this.gameName,
-      };
+    handleAccessClick({ username, roomName, gameKey }) {
+      const accessInfo = { gameKey, username, gameName: roomName };
       return joinAgame(accessInfo)
         .then(({ data }) => {
           setAccess(data.accessKey);

@@ -5,10 +5,19 @@ exports[`BkInput component Should be render correctly 1`] = `
   class="input-container"
 >
   <input
+    class=""
+    data-cy=""
+    id=""
+    name=""
+    placeholder=""
     required="required"
+    type=""
   />
    
-  <label>
+  <label
+    class=""
+    for=""
+  >
     
   </label>
 </div>

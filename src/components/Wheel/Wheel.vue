@@ -1,7 +1,10 @@
 <template>
   <div class="roulette">
     <div class="wheel wheel1">
-      <div v-if="selected.name && !animate" class="selectedImage">
+      <div
+        class="selectedImage"
+        v-if="selected.name && !animate"
+      >
         <img class="image" :src="selected.image" />
         <h3 class="name">{{ selected.name }}</h3>
       </div>
@@ -27,6 +30,9 @@ import VueTypes from 'vue-types';
 
 export default {
   name: 'Wheel',
+  components: {
+    ImageCard,
+  },
   props: {
     images: VueTypes.arrayOf(VueTypes.shape({
       image: VueTypes.string.isRequired,
@@ -37,9 +43,6 @@ export default {
       image: VueTypes.string.isRequired,
       name: VueTypes.string.isRequired,
     })).loose,
-  },
-  components: {
-    ImageCard,
   },
 };
 </script>

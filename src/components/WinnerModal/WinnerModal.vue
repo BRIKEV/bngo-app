@@ -27,7 +27,7 @@
 import VueTypes from 'vue-types';
 
 export default {
-  name: 'BingoModal',
+  name: 'WinnerModal',
   props: {
     opened: VueTypes.bool.def(false),
     winner: VueTypes.string.def(''),

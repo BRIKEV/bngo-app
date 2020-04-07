@@ -6,14 +6,13 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   name: 'BkHeader',
 
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
+    title: VueTypes.string.def(''),
   },
 };
 </script>

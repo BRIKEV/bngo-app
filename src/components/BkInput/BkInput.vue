@@ -16,18 +16,20 @@
 </template>
 
 <script>
+import VueTypes from 'vue-types';
+
 export default {
   name: 'BkInput',
   props: {
-    dataCy: String,
-    value: String,
-    name: String,
-    type: String,
-    label: String,
-    placeholder: String,
-    required: Boolean,
-    color: String,
-    id: String,
+    dataCy: VueTypes.string,
+    value: VueTypes.string,
+    name: VueTypes.string,
+    type: VueTypes.string,
+    label: VueTypes.string,
+    placeholder: VueTypes.string,
+    required: VueTypes.bool,
+    color: VueTypes.string,
+    id: VueTypes.string,
   },
 };
 </script>

@@ -1,26 +1,31 @@
 <template>
   <div class="createGameForm">
     <BkInput
-      :value="roomName"
+      v-model="roomName"
       id="roomName"
       name="roomName"
       type="text"
       required
       color="secundary"
       :label="$t('joinGame.accessGameSection.nameLabel')"
-      @input="handleRoomNameChanged"
     />
     <BkInput
-      :value="password"
+      v-model="gameKey"
       id="password"
-      name="password"
+      name="gameKey"
       type="password"
       required
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
-      @input="handlePasswordChanged"
     />
-    <slot name="optional" />
+    <BkButton
+      class="btn"
+      slot="optional"
+      :disabled="!roomName || !gameKey"
+      @btn-clicked="handleCreateClick"
+    >
+      {{ $t('joinGame.createGameSection.btnCreate') }}
+    </BkButton>
   </div>
 </template>
 
@@ -31,17 +36,15 @@ export default {
   data() {
     return {
       roomName: undefined,
-      password: undefined,
+      gameKey: undefined,
     };
   },
   methods: {
-    handleRoomNameChanged(roomName) {
-      this.roomName = roomName;
-      this.$emit('onCreateRoomNameChanged', roomName);
-    },
-    handlePasswordChanged(password) {
-      this.password = password;
-      this.$emit('onCreatePasswordChanged', password);
+    handleCreateClick() {
+      this.$emit('onCreateClick', {
+        roomName: this.roomName,
+        gameKey: this.gameKey,
+      });
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="createGameForm">
       <BkInput
-        :value="username"
+        v-model="username"
         slot="optional"
         id="username"
         name="username"
@@ -9,54 +9,53 @@
         required
         color="secundary"
         :label="$t('joinGame.createGameSection.usernamelabel')"
-        @input="handleUsernameChanged"
       />
     <BkInput
-      :value="roomName"
+      v-model="roomName"
       id="roomName"
       name="roomName"
       type="text"
       required
       color="secundary"
       :label="$t('joinGame.accessGameSection.nameLabel')"
-      @input="handleRoomNameChanged"
     />
     <BkInput
-      :value="password"
+      v-model="gameKey"
       id="password"
-      name="password"
+      name="gameKey"
       type="password"
       required
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
-      @input="handlePasswordChanged"
     />
-    <slot name="optional" />
+    <BkButton
+      class="btn"
+      :disabled="!gameKey || !roomName || !username"
+      @btn-clicked="handleAccessClick"
+    >
+      {{ $t('joinGame.accessGameSection.btnAccess') }}
+    </BkButton>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'AccessGameForm',
   data() {
     return {
-      password: undefined,
+      gameKey: undefined,
       roomName: undefined,
       username: undefined,
     };
   },
   methods: {
-    handleRoomNameChanged(roomName) {
-      this.roomName = roomName;
-      this.$emit('onAccessRoomNameChanged', roomName);
-    },
-    handlePasswordChanged(password) {
-      this.password = password;
-      this.$emit('onAccessPasswordChanged', password);
-    },
-    handleUsernameChanged(username) {
-      this.username = username;
-      this.$emit('onAccessUsernameChanged', username);
+    handleAccessClick() {
+      this.$emit('onAccessClick', {
+        username: this.username,
+        roomName: this.roomName,
+        gameKey: this.gameKey,
+      });
     },
   },
 };
