@@ -15,8 +15,8 @@
     "heroku-postbuild": "npm run build",
     "qa": "npm run lint && npm run test",
     "start": "cross-env NODE_ENV=production SERVICE_ENV=production node index.js",
-    "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
-    "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter"
+    "test": "cross-env SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
+    "test-ci": "cross-env SERVICE_ENV=test mocha --reporter mocha-junit-reporter"
   },
   "main": "index.js",
   "dependencies": {
