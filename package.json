@@ -14,7 +14,7 @@
     "prepush": "npm run test",
     "heroku-postbuild": "npm run build",
     "qa": "npm run lint && npm run test",
-    "start": "NODE_ENV=production SERVICE_ENV=production node index.js",
+    "start": "cross-env NODE_ENV=production SERVICE_ENV=production node index.js",
     "test": "SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "test-ci": "SERVICE_ENV=test mocha --reporter mocha-junit-reporter"
   },
@@ -67,6 +67,7 @@
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
