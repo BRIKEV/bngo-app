@@ -199,8 +199,8 @@ export default {
       height: calculateRem(200px);
       width: calculateRem(200px);
       @include largeDesktop {
-        width: calculateRem(310px);
-        height: calculateRem(310px);
+        width: calculateRem(250px);
+        height: calculateRem(200px);
       }
       .Wheel {
         width: 100%;
