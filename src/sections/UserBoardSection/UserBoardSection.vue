@@ -98,7 +98,7 @@ export default {
   .Board {
     grid-template-rows: repeat(4, minmax(55px, 65px)) !important;
     @include largeDesktop {
-      grid-template-rows: repeat(4, minmax(70px, 100px)) !important;
+      grid-template-rows: repeat(4, minmax(65px, calc(100vh - 90vh))) !important;
     }
   }
   .canvas {
