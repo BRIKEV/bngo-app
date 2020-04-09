@@ -77,6 +77,7 @@ export default {
         text: NOTIFICATION_BINGO.error.text,
       }),
       usernameHasBingo: this.handleUserHasBingo,
+      usersList: this.setUsers,
     },
     {
       ...getInfo(),
@@ -99,6 +100,7 @@ export default {
       setGameBoard: 'totalBoard',
       optionSelected: 'optionSelected',
       setUserInfo: 'userInfo',
+      setUsers: 'usersList',
       activateAnimate: 'activateAnimate',
       sendError: 'sendError',
       clean: 'clean',

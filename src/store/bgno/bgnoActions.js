@@ -20,4 +20,7 @@ export default {
   clean({ commit }) {
     commit('CLEAN');
   },
+  usersList({ commit }, { users }) {
+    commit('SET_USERS', users);
+  },
 };
