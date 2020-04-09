@@ -22,6 +22,8 @@
         <UsersList
           class="usersList"
           :users="users"
+          :userReadyMsg="$t('gameActionsSection.userList.readyMsg')"
+          :userNotReadyMsg="$t('gameActionsSection.userList.notReadyMsg')"
         />
       </div>
     </div>

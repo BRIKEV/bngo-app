@@ -105,7 +105,7 @@ export default {
     }
   }
   .canvas {
-    cursor: url('../../assets/brush-white-18dp.svg') -90 -90, auto;
+    // cursor: url('../../assets/brush-white-18dp.svg') -90 -90, auto;
     position: absolute;
     z-index: 30;
   }
