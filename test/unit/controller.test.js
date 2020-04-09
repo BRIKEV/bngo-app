@@ -172,6 +172,7 @@ describe('initController tests', () => {
       const userInfo = await api.getUserInfo({ key: gameKey, gameName, username });
       expect(userInfo.mainBoard).to.have.length(49);
       expect(userInfo.board).to.have.length(16);
+      expect(userInfo.users).to.have.length(1);
       expect(userInfo.ready).to.eql(false);
       expect(userInfo.username).to.eql(username);
     });
