@@ -15,7 +15,8 @@ const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 
 module.exports = () => {
-  const start = async ({ logger, store, config }) => {
+  const start = async ({ logger, store: storeSystem, config }) => {
+    const store = storeSystem[config.storeMode];
     const createGame = async ({ gameName, gameKey }) => {
       const gameExists = await store.getGameByKey(gameKey);
       if (gameExists) {

@@ -19,7 +19,7 @@ describe('API endpoint', () => {
     const { server: { app }, store, config } = await sys.start();
     tokenMethods = jwt(config.routes.api.tokenSecret);
     request = supertest(app);
-    storeSystem = store;
+    storeSystem = store[config.controller.storeMode];
   });
 
   beforeEach(async () => {
@@ -47,9 +47,9 @@ describe('API endpoint', () => {
         gameKey,
       })
       .expect(200)
-      .then(({ body }) => {
+      .then(async ({ body }) => {
         expect(body).to.eql({ success: true });
-        const games = storeSystem.getGames();
+        const games = await storeSystem.getGames();
         expect(games).to.have.length(1);
       }));
 
@@ -117,7 +117,7 @@ describe('API endpoint', () => {
           expect(info.username).to.eql(username);
           expect(info.gameName).to.eql(gameName);
           expect(info.gameKey).to.eql(gameKey);
-          const games = storeSystem.getGames();
+          const games = await storeSystem.getGames();
           expect(games).to.have.length(1);
           expect(games[0].users).to.have.length(1);
         })

@@ -16,9 +16,9 @@ describe('Bingo e2e tests', () => {
 
   let storeSystem;
   before(async () => {
-    const { server: { app }, store } = await sys.start();
+    const { server: { app }, store, config } = await sys.start();
     request = supertest(app);
-    storeSystem = store;
+    storeSystem = store[config.controller.storeMode];
   });
 
   beforeEach(async () => {
