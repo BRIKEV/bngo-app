@@ -13,7 +13,7 @@ module.exports = {
   controller: {
     boardLength: 49,
     userOptionsLength: 16,
-    storeMode: 'local',
+    storeMode: process.env.STORE_MODE || 'local',
   },
   routes: {
     api: {
@@ -54,6 +54,12 @@ module.exports = {
   io: {
     interval: 10000,
     ...tokenOptions,
+  },
+  store: {
+    redis: {
+      URL: process.env.REDIS_URL || '127.0.0.1:6379',
+      expire: 86400,
+    },
   },
   logger: {
     transport: 'console',

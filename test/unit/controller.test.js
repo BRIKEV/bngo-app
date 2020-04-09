@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 const initController = require('../../components/controller/initController');
-const initStore = require('../../components/store/initStore');
+const initRedisStore = require('../../components/store/initRedisStore');
 const config = require('../../config/default');
 
 const gameName = 'entourage';
@@ -12,21 +12,28 @@ describe('initController tests', () => {
   let api;
   let storeSystem;
   beforeEach(async () => {
-    storeSystem = await initStore().start();
+    storeSystem = await initRedisStore().start({
+      config: config.store.redis,
+    });
+    await storeSystem.removeGames();
     api = await start({
       logger: {
         info: () => 0,
       },
       store: {
-        local: storeSystem,
+        redis: storeSystem,
       },
       config: config.controller,
     });
   });
 
+  afterEach(async () => {
+    await storeSystem.removeGames();
+  });
+
   it('createGame method', async () => {
     const result = await api.createGame({ gameName, gameKey });
-    const games = storeSystem.getGames();
+    const games = await storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].board).to.have.length(49);
     expect(games[0].users).to.have.length(0);
@@ -74,7 +81,7 @@ describe('initController tests', () => {
       expect(result.username).to.eql(username);
       expect(result.board).to.have.length(16);
       expect(result.ready).to.eql(false);
-      const games = storeSystem.getGames();
+      const games = await storeSystem.getGames();
       expect(games).to.have.length(1);
       expect(games[0].users).to.have.length(1);
     });
@@ -120,7 +127,7 @@ describe('initController tests', () => {
     expect(secondResult.username).to.eql(secondUsername);
     expect(secondResult.gameReady).to.eql(true);
     expect(secondResult.board).to.have.length(16);
-    const games = storeSystem.getGames();
+    const games = await storeSystem.getGames();
     expect(games).to.have.length(1);
     expect(games[0].ready).to.eql(true);
   });
