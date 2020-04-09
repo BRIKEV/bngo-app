@@ -1,15 +1,22 @@
 <template>
   <div class="createGameForm">
-      <BkInput
-        v-model="username"
-        slot="optional"
-        id="username"
-        name="username"
-        type="text"
-        required
-        color="secundary"
-        :label="$t('joinGame.createGameSection.usernamelabel')"
-      />
+    <BkInput
+      v-model="username"
+      slot="optional"
+      id="username"
+      name="username"
+      type="text"
+      required
+      color="secundary"
+      :label="$t('joinGame.createGameSection.usernamelabel')"
+    />
+    <div
+      class="error"
+      v-if="!$v.username.maxLength"
+    >
+      <span class="material-icons">warning</span>
+      <p class="errorText">{{ $t('validations.usernameLength') }}</p>
+    </div>
     <BkInput
       v-model="roomName"
       id="roomName"
@@ -39,6 +46,7 @@
 </template>
 
 <script>
+import { required, maxLength } from 'vuelidate/lib/validators';
 
 export default {
   name: 'AccessGameForm',
@@ -47,6 +55,14 @@ export default {
       gameKey: undefined,
       roomName: undefined,
       username: undefined,
+    };
+  },
+  validations() {
+    return {
+      username: {
+        required,
+        maxLength: maxLength(10),
+      },
     };
   },
   methods: {
@@ -60,3 +76,19 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/theme/index.scss";
+
+.error {
+  display: flex;
+  align-items: center;
+  color: $error;
+  .errorText {
+    font-weight: $regular;
+    text-align: left;
+    font-size: $fs-small;
+    width: 100%;
+    padding-left: calculateRem(5px);
+  }
+}
+</style>
