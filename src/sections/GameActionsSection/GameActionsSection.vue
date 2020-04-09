@@ -38,7 +38,7 @@
     </BkButton>
     <transition name="slide">
     <BkButton
-        v-if="user.ready"
+        v-if="user.ready && areUsersReady"
         key=2
         class="createBtn"
         @btn-clicked="handleBingo"
