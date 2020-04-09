@@ -1,0 +1,16 @@
+export default [
+  { name: 'Test1', ready: false },
+  { name: 'Test2', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+  { name: 'Test3', ready: false },
+  { name: 'Test4', ready: true },
+];
