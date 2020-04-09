@@ -13,7 +13,7 @@ module.exports = {
   controller: {
     boardLength: 49,
     userOptionsLength: 16,
-    storeMode: process.env.STORE_MODE || 'local',
+    storeMode: process.env.STORE_MODE || 'redis',
   },
   routes: {
     api: {

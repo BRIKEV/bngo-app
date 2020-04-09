@@ -7,7 +7,4 @@ module.exports = {
   io: {
     interval: 1000,
   },
-  controller: {
-    storeMode: 'redis',
-  },
 };
