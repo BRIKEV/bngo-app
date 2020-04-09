@@ -112,6 +112,8 @@ describe('initController tests', () => {
     expect(firstUserresult.gameReady).to.eql(false);
     expect(firstUserresult.username).to.eql(username);
     expect(firstUserresult.board).to.have.length(16);
+    expect(firstUserresult.users).to.have.length(2);
+    expect(firstUserresult.users[0].board).to.be(undefined);
     const secondResult = await api.readyToStart({ username: secondUsername, key: gameKey });
     expect(secondResult.username).to.eql(secondUsername);
     expect(secondResult.gameReady).to.eql(true);
