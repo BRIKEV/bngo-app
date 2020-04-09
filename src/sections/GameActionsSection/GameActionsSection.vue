@@ -110,7 +110,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     .usersList {
       padding: calculateRem(15px);
     }
