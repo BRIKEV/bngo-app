@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils';
-import BkHeader from '@/components/BKHeader/BkHeader.vue';
+import BkHeader from '@/components/Core/BkHeader/BkHeader.vue';
 
 describe('BkHeader component', () => {
   it('renders props.title when passed', () => {

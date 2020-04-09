@@ -1,5 +1,5 @@
 import { mount, shallowMount } from '@vue/test-utils';
-import BkButton from '@/components/BkButton/BkButton.vue';
+import BkButton from '@/components/Core/BkButton/BkButton.vue';
 
 describe('BkButton component', () => {
   it('Should be render correctly', () => {
