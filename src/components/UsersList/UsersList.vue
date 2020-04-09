@@ -10,7 +10,7 @@
           class="state"
           :class="{ ready: user.ready }"
         />
-        <p class="userName">{{ user.name }}</p>
+        <p class="userName">{{ user.username }}</p>
       </div>
       <p class="infoMsg">{{ user.ready ? 'READY' : 'NOT READY' }}</p>
     </li>
@@ -24,7 +24,7 @@ export default {
   name: 'UsersList',
   props: {
     users: VueTypes.arrayOf(VueTypes.shape({
-      name: VueTypes.string.isRequired,
+      username: VueTypes.string.isRequired,
       ready: VueTypes.bool.def(false),
     })),
   },

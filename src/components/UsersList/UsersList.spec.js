@@ -6,7 +6,7 @@ describe('UsersList component', () => {
   const USER_READY = 'READY';
   it('renders class ready when user.ready is true', () => {
     const usersMock = [
-      { name: 'Test1', ready: true },
+      { username: 'Test1', ready: true },
     ];
     const wrapper = shallowMount(UsersList, {
       propsData: {
@@ -17,7 +17,7 @@ describe('UsersList component', () => {
   });
   it('Should not render class ready when user.ready is false', () => {
     const usersMock = [
-      { name: 'Test1', ready: false },
+      { username: 'Test1', ready: false },
     ];
     const wrapper = shallowMount(UsersList, {
       propsData: {
@@ -28,18 +28,18 @@ describe('UsersList component', () => {
   });
   it('Should render the username', () => {
     const usersMock = [
-      { name: 'Test1', ready: false },
+      { username: 'Test1', ready: false },
     ];
     const wrapper = shallowMount(UsersList, {
       propsData: {
         users: usersMock,
       },
     });
-    expect(wrapper.find('.userName').text()).toEqual(usersMock[0].name);
+    expect(wrapper.find('.userName').text()).toEqual(usersMock[0].username);
   });
   it('Should show NOT READY message if user.ready is false', () => {
     const usersMock = [
-      { name: 'Test1', ready: false },
+      { username: 'Test1', ready: false },
     ];
     const wrapper = shallowMount(UsersList, {
       propsData: {
@@ -50,7 +50,7 @@ describe('UsersList component', () => {
   });
   it('Should show READY message if user.ready is true', () => {
     const usersMock = [
-      { name: 'Test1', ready: true },
+      { username: 'Test1', ready: true },
     ];
     const wrapper = shallowMount(UsersList, {
       propsData: {
