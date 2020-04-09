@@ -43,4 +43,7 @@ export default {
     message: 'El ganador es',
     btn: 'Jugar otra vez',
   },
+  validations: {
+    usernameLength: 'El usuario no puede tener más de 10 caracteres',
+  },
 };
