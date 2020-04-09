@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import BkForm from '@/components/BkForm/BkForm.vue';
+import BkForm from '@/components/Core/BkForm/BkForm.vue';
 
 describe('BkForm component', () => {
   const title = 'New title';

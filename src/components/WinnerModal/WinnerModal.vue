@@ -9,7 +9,7 @@
           {{ $t('modal.message') }} <span class="winner">{{ winner.toUpperCase() }}</span>
       </div>
       <div class="modalImage">
-        <img src="@/assets/trophy_nobg.png"/>
+        <img class="image" src="@/assets/trophy_nobg.png"/>
       </div>
     </template>
     <template #footer>
@@ -71,6 +71,12 @@ export default {
     background: #348659;
     border: 3px solid white;
     border-radius: 40px;
+  }
+  .modalImage {
+    width: 100%;
+    .image {
+      width: 100%;
+    }
   }
   &::v-deep .modalBody {
     min-height: calculateRem(100px);

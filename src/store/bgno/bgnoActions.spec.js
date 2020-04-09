@@ -39,4 +39,14 @@ describe('Bgno actions', () => {
     bgnoActions.clean({ commit });
     expect(commit).toHaveBeenCalledWith('CLEAN');
   });
+
+  it('usersList action', () => {
+    const users = [
+      { name: 'Test1', ready: false },
+      { name: 'Test2', ready: true },
+    ];
+    const mockUsers = { users };
+    bgnoActions.usersList({ commit }, mockUsers);
+    expect(commit).toHaveBeenCalledWith('SET_USERS', users);
+  });
 });

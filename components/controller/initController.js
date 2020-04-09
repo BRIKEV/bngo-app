@@ -80,6 +80,8 @@ module.exports = () => {
       })
     );
 
+    const filteredUsers = users => users.map(R.omit(['board']));
+
     const readyToStart = async ({ key, username }) => {
       const game = await getGameByKey(key);
       const newUsers = game.users.map(user => {
@@ -96,14 +98,13 @@ module.exports = () => {
         ready: gameReady,
         users: newUsers,
       };
-      const filteredUsers = newUsers.map(R.omit(['board']));
       const { board: userBoard } = game.users.find(user => user.username === username);
       await store.updateGameByKey(updateGame);
       return Promise.resolve({
         username,
         gameReady,
         board: userBoard,
-        users: filteredUsers,
+        users: filteredUsers(newUsers),
       });
     };
 
@@ -149,7 +150,12 @@ module.exports = () => {
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
-      return Promise.resolve({ ...gameUser, mainBoard: game.board, gameReady: game.ready });
+      return Promise.resolve({
+        ...gameUser,
+        mainBoard: game.board,
+        users: filteredUsers(game.users),
+        gameReady: game.ready,
+      });
     };
 
     const hasBingo = async ({ key, gameName, username }) => {

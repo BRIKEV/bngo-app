@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import BkInput from '@/components/BkInput/BkInput.vue';
+import BkInput from '@/components/Core/BkInput/BkInput.vue';
 
 describe('BkInput component', () => {
   it('Should be render correctly', () => {

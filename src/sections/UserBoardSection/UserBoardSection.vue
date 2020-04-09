@@ -100,8 +100,12 @@ export default {
     @include largeDesktop {
       grid-template-rows: repeat(4, minmax(65px, calc(100vh - 90vh))) !important;
     }
+    @include smallHeight {
+      grid-template-rows: repeat(4, minmax(55px, calc(100vh - 90vh))) !important;
+    }
   }
   .canvas {
+    cursor: url('../../assets/brush-white-18dp.svg') -90 -90, auto;
     position: absolute;
     z-index: 30;
   }

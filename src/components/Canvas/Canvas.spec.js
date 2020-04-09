@@ -10,6 +10,7 @@ describe('Canvas component', () => {
     propsData,
   };
   it('Should be render correctly', () => {
+    window.HTMLCanvasElement.prototype.getContext = () => {};
     const wrapper = mount(Canvas, defaultConfig);
     expect(wrapper.element).toMatchSnapshot();
   });

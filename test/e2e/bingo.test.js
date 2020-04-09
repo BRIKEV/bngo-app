@@ -156,6 +156,21 @@ describe('Bingo e2e tests', () => {
       });
     });
 
+    it('create a game and join one user and receive userLists with user not ready', cb => {
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.on('usersList', msg => {
+        expect(msg.users[0].ready).to.eql(false);
+        expect(msg.users).to.have.length(1);
+        cb();
+      });
+    });
+
     it(`create a game and join one user and emit one event readyToStart to receive 
       in the client usersList with all the users in the game and their status
     `, cb => {
@@ -167,11 +182,12 @@ describe('Bingo e2e tests', () => {
       });
 
       socket.emit('readyToStart');
-
       socket.on('usersList', msg => {
-        expect(msg.users[0].ready).to.eql(true);
-        expect(msg.users).to.have.length(1);
-        cb();
+        if (msg.users[0].ready) {
+          expect(msg.users[0].ready).to.eql(true);
+          expect(msg.users).to.have.length(1);
+          cb();
+        }
       });
     });
 

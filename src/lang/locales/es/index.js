@@ -5,6 +5,11 @@ export default {
   userBoardSection: {
     info: 'Dibuja sobre tu tablero',
   },
+  gameActionsSection: {
+    title: 'USUARIOS',
+    start: 'JUGAR',
+    bingo: 'BINGO',
+  },
   joinGame: {
     title: 'ENTOURAGE BINGO',
     btnAccess: 'Acceder',

@@ -8,6 +8,7 @@ export const initialState = {
       name: null,
     },
   },
+  users: [],
   board: [],
   userBoard: [],
   user: {},
@@ -40,6 +41,9 @@ export const mutations = {
       ...state.currentResult,
       animate: payload,
     };
+  },
+  SET_USERS(state, payload = []) {
+    state.users = [...payload];
   },
 };
 
