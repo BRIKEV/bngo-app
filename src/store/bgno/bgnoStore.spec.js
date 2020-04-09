@@ -34,4 +34,14 @@ describe('Tickets store', () => {
     mutations.CLEAN(state);
     expect(state).toEqual(initialState);
   });
+
+  it('set users correctly', () => {
+    const mockUsers = [
+      { name: 'Test1', ready: false },
+      { name: 'Test2', ready: true },
+    ];
+    expect(state.users).toEqual(initialState.users);
+    mutations.SET_USERS(state, mockUsers);
+    expect(state.users).toEqual(mockUsers);
+  });
 });
