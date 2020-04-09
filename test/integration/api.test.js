@@ -19,7 +19,7 @@ describe('API endpoint', () => {
     const { server: { app }, store, config } = await sys.start();
     tokenMethods = jwt(config.routes.api.tokenSecret);
     request = supertest(app);
-    storeSystem = store;
+    storeSystem = store[config.controller.storeMode];
   });
 
   beforeEach(async () => {

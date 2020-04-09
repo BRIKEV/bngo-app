@@ -17,7 +17,9 @@ describe('initController tests', () => {
       logger: {
         info: () => 0,
       },
-      store: storeSystem,
+      store: {
+        local: storeSystem,
+      },
       config: config.controller,
     });
   });

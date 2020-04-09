@@ -13,6 +13,7 @@ module.exports = {
   controller: {
     boardLength: 49,
     userOptionsLength: 16,
+    storeMode: 'local',
   },
   routes: {
     api: {

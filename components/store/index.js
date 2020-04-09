@@ -1,5 +1,10 @@
 const System = require('systemic');
-const initExpress = require('./initStore');
+const initLocalStore = require('./initStore');
 
 module.exports = new System({ name: 'store' })
-  .add('store', initExpress()).dependsOn('config', 'logger');
+  .add('store.local', initLocalStore()).dependsOn('config', 'logger')
+  .add('store')
+  .dependsOn({
+    component: 'store.local',
+    destination: 'local',
+  });
