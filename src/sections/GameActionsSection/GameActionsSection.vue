@@ -24,7 +24,7 @@
       >
         <UsersList
           class="usersList"
-          :users="mock"
+          :users="users"
         />
       </div>
     </div>
@@ -53,8 +53,6 @@
 import { emit } from '@/io';
 import { Wheel, UsersList } from '@/components';
 import { mapState } from 'vuex';
-import mock from './mock';
-
 
 export default {
   name: 'GameActionsSection',
@@ -62,20 +60,16 @@ export default {
     Wheel,
     UsersList,
   },
-  data() {
-    return {
-      mock,
-    };
-  },
   computed: {
     ...mapState({
       board: (state) => state.bgno.board,
       selected: (state) => state.bgno.currentResult.selected,
       animate: (state) => state.bgno.currentResult.animate,
       user: (state) => state.bgno.user,
+      users: (state) => state.bgno.users,
     }),
     areUsersReady() {
-      return this.mock.every(({ ready }) => ready);
+      return this.users.every(({ ready }) => ready);
     },
   },
   methods: {
