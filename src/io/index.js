@@ -50,6 +50,10 @@ const IOeventEmitter = (methods, options) => {
   socket.on('usernameHasBingo', ({ username }) => {
     methods.usernameHasBingo({ username });
   });
+
+  socket.on('usersList', ({ users }) => {
+    methods.usersList({ users });
+  });
 };
 
 export const emit = (...args) => socket.emit(...args);
