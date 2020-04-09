@@ -89,11 +89,11 @@ export default {
   },
   mounted() {
     io({
-      newUser: this.userInfo,
-      yourBoard: this.userBoard,
-      userReady: this.userInfo,
+      newUser: this.setUserInfo,
+      yourBoard: this.setUserBoard,
+      userReady: this.setUserInfo,
       gameReady: this.activateAnimate,
-      board: this.totalBoard,
+      board: this.setGameBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
       errorAccess: this.exit,
@@ -121,7 +121,15 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError', 'clean']),
+    ...mapActions({
+      setUserBoard: 'userBoard',
+      setGameBoard: 'totalBoard',
+      optionSelected: 'optionSelected',
+      setUserInfo: 'userInfo',
+      activateAnimate: 'activateAnimate',
+      sendError: 'sendError',
+      clean: 'clean',
+    }),
     handleStart() {
       emit('readyToStart');
     },
