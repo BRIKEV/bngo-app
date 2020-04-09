@@ -6,7 +6,7 @@ export default {
     info: 'Dibuja sobre tu tablero',
   },
   gameActionsSection: {
-    title: 'USUARIOS:',
+    title: 'USUARIOS',
     start: 'JUGAR',
     bingo: 'BINGO',
   },

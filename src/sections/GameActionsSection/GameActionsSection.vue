@@ -1,11 +1,5 @@
 <template>
   <div class="gameActionsSection">
-    <h2
-      class="usersTitle"
-      v-if="!areUsersReady"
-    >
-      {{ $t('gameActionsSection.title') }}
-    </h2>
     <div class="gameField">
       <div
         class="info"
@@ -22,6 +16,9 @@
         class="users"
         v-else
       >
+        <h2 class="usersTitle">
+          {{ $t('gameActionsSection.title') }}
+        </h2>
         <UsersList
           class="usersList"
           :users="users"
@@ -89,8 +86,8 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 .usersTitle {
   text-align: center;
   font-family: $base-font-family;
-  font-size: $fs-h4;
-  margin-bottom: calculateRem(5px);
+  font-size: $fs-h5;
+  padding-top: calculateRem(10px);
 }
 .gameField {
   width: 100%;
