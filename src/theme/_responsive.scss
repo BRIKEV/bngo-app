@@ -2,7 +2,9 @@
 $tablet-width-portrait: 600px;
 $tablet-width: 769px;
 $desktop-width: 992px;
-$large-desktop-width: 1441px;
+$large-desktop-width: 1281px;
+
+$smallHeight: 700px;
 
 @mixin mobile {
   @media (max-width: #{$tablet-width}) {
@@ -30,6 +32,12 @@ $large-desktop-width: 1441px;
 
 @mixin largeDesktop {
   @media (min-width: #{$large-desktop-width}) {
+    @content;
+  }
+}
+
+@mixin smallHeight {
+  @media (max-height: #{$smallHeight}) {
     @content;
   }
 }

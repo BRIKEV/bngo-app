@@ -173,10 +173,13 @@ export default {
       width: 100%;
       align-self: center;
       height: calculateRem(200px);
-      width: calculateRem(200px);
+      width: calculateRem(220px);
       @include largeDesktop {
-        width: calculateRem(250px);
+        width: calculateRem(280px);
         height: calculateRem(200px);
+      }
+      @include smallHeight {
+        height: calculateRem(150px);
       }
     }
   }
