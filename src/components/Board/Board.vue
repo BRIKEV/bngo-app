@@ -3,12 +3,22 @@
     class="board"
     :style="boardStyles(numOfRows, numOfColumns)"
     >
-    <div v-for="(item, index) in images" :key="index" class="boardCard">
-      <div v-show="!item.selected && !allSelected" class="hiddenCard">?</div>
+    <div
+      class="boardCard"
+      v-for="(item, index) in images"
+      :key="index"
+    >
+      <div
+        class="hiddenCard"
+        v-show="!item.selected && !allSelected"
+      >
+        ?
+      </div>
       <div
         :style="itemStyles(item)"
         :class="{ disabled: !item.selected && !allSelected }"
-        class="item" />
+        class="item"
+      />
     </div>
   </div>
 </template>
