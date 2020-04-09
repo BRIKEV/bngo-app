@@ -36,7 +36,7 @@
     >
       {{ $t('gameActionsSection.start') }}
     </BkButton>
-    <transition name="slide">
+    <transition name="fade" mode="out-in">
     <BkButton
         v-if="user.ready && areUsersReady"
         key=2
