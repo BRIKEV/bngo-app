@@ -12,7 +12,7 @@
         />
         <p class="userName">{{ user.username }}</p>
       </div>
-      <p class="infoMsg">{{ user.ready ? 'READY' : 'NOT READY' }}</p>
+      <p class="infoMsg">{{ user.ready ? userReadyMsg : userNotReadyMsg }}</p>
     </li>
   </ol>
 </template>
@@ -27,6 +27,8 @@ export default {
       username: VueTypes.string.isRequired,
       ready: VueTypes.bool.def(false),
     })),
+    userReadyMsg: VueTypes.string.isRequired,
+    userNotReadyMsg: VueTypes.string.isRequired,
   },
 };
 </script>

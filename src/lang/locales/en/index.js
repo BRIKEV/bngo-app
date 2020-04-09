@@ -9,6 +9,10 @@ export default {
     title: 'USERS',
     start: 'START',
     bingo: 'BINGO',
+    userList: {
+      readyMsg: 'READY',
+      notReadyMsg: 'NOT READY',
+    },
   },
   joinGame: {
     title: 'ENTOURAGE BNGO',
