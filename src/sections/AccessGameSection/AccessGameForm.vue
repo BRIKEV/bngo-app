@@ -37,7 +37,7 @@
     />
     <BkButton
       class="btn"
-      :disabled="!gameKey || !roomName || !username"
+      :disabled="invalid"
       @btn-clicked="handleAccessClick"
     >
       {{ $t('joinGame.accessGameSection.btnAccess') }}
@@ -64,6 +64,11 @@ export default {
         maxLength: maxLength(10),
       },
     };
+  },
+  computed: {
+    invalid() {
+      return !this.gameKey || !this.roomName || !this.username || this.$v.$invalid;
+    },
   },
   methods: {
     handleAccessClick() {
