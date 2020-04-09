@@ -69,7 +69,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     .name {
       position: absolute;
       bottom: 0;
-      color: white;
+      color: $white;
       font-size: calculateRem(35px);
       left: 0;
       right: 0;

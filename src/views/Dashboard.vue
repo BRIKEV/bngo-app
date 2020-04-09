@@ -24,32 +24,7 @@
             />
         </div>
           <div class="Info">
-            <div class="wheelContainer">
-              <Wheel
-                :selected="selected"
-                :animate="animate"
-                class="Wheel"
-                :images="board"
-              />
-              <BkButton
-                v-if="!user.ready"
-                key=1
-                class="createBtn"
-                @btn-clicked="handleStart"
-              >
-                START
-              </BkButton>
-              <transition name="slide">
-                <BkButton
-                  v-if="user.ready"
-                  key=2
-                  class="createBtn"
-                  @btn-clicked="handleBingo"
-                >
-                  BINGO
-                </BkButton>
-              </transition>
-            </div>
+            <GameActionsSection class="wheelContainer" />
             <UserBoardSection
               class="UserBoard"
               :userImages="userImages"
@@ -57,34 +32,36 @@
           </div>
       </div>
     </div>
-        <WinnerModal
-        :opened="showModal"
-        :winner="winner"
-        @playAgain="handlePlayAgainClick"
-      />
+    <WinnerModal
+      :opened="showModal"
+      :winner="winner"
+      @playAgain="handlePlayAgainClick"
+    />
   </div>
 </template>
 
 <script>
-import { Board, Wheel, WinnerModal } from '@/components';
+import { Board, WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection } from '@/sections';
-import io, { emit } from '@/io';
+import { UserBoardSection, GameActionsSection } from '@/sections';
+import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
+import mock from './mock';
 
 export default {
   name: 'Dashboard',
   components: {
     Board,
-    Wheel,
     UserBoardSection,
     WinnerModal,
+    GameActionsSection,
   },
   data() {
     return {
       showModal: false,
       winner: undefined,
+      mock,
     };
   },
   mounted() {
@@ -112,8 +89,6 @@ export default {
     ...mapState({
       board: (state) => state.bgno.board,
       userImages: (state) => state.bgno.userBoard,
-      selected: (state) => state.bgno.currentResult.selected,
-      animate: (state) => state.bgno.currentResult.animate,
       user: (state) => state.bgno.user,
     }),
     hasData() {
@@ -130,14 +105,8 @@ export default {
       sendError: 'sendError',
       clean: 'clean',
     }),
-    handleStart() {
-      emit('readyToStart');
-    },
     exit() {
       logout();
-    },
-    handleBingo() {
-      emit('bingo');
     },
     handleUserHasBingo({ username }) {
       this.showModal = true;
@@ -152,6 +121,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
+
 .dashboard {
   background: lighten($lightGray, 15%);
   display: flex;
@@ -209,16 +179,6 @@ export default {
       @include largeDesktop {
         width: calculateRem(250px);
         height: calculateRem(200px);
-      }
-      .Wheel {
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-      }
-      .createBtn {
-        width: 100%;
-        border-radius: calculateRem(10px);
-        margin-top: calculateRem(15px);
       }
     }
   }
