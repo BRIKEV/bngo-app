@@ -47,7 +47,6 @@ import { UserBoardSection, GameActionsSection } from '@/sections';
 import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
-import mock from './mock';
 
 export default {
   name: 'Dashboard',
@@ -61,7 +60,6 @@ export default {
     return {
       showModal: false,
       winner: undefined,
-      mock,
     };
   },
   mounted() {
@@ -140,7 +138,7 @@ export default {
   align-items: center;
   color: $white;
   font-size: $fs-large;
-  font-family: $base-font-title;
+  font-family: $base-font-family;
   span {
     margin-left: 10px;
     cursor: pointer;

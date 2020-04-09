@@ -53,10 +53,6 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 .wheel {
   width: 100%;
   height: 100%;
-  box-shadow: $boxShadow;
-  overflow: hidden;
-  background: $white;
-  border-radius: calculateRem(20px);
   .animate {
     animation: rot 3s infinite linear;
   }

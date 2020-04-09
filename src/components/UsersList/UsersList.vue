@@ -40,7 +40,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  line-height: $base-line-height;
+  line-height: $base-line-height-secundary;
   .userState {
     display: flex;
     align-items: center;

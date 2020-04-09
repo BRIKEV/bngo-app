@@ -6,6 +6,7 @@ export default {
     info: 'Draw on your board',
   },
   gameActionsSection: {
+    title: 'USERS:',
     start: 'START',
     bingo: 'BINGO',
   },
