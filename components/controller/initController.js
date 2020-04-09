@@ -2,6 +2,7 @@ const {
   errorFactory,
   CustomErrorTypes,
 } = require('error-handler-module');
+const R = require('ramda');
 
 const DEFAULT_BOARD = require('../../mock/index.json');
 const getRandomItem = require('../../lib/getRandomItem');
@@ -95,9 +96,15 @@ module.exports = () => {
         ready: gameReady,
         users: newUsers,
       };
+      const filteredUsers = newUsers.map(R.omit(['board']));
       const { board: userBoard } = game.users.find(user => user.username === username);
       await store.updateGameByKey(updateGame);
-      return Promise.resolve({ username, gameReady, board: userBoard });
+      return Promise.resolve({
+        username,
+        gameReady,
+        board: userBoard,
+        users: filteredUsers,
+      });
     };
 
     const isGameOver = board => (

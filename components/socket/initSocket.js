@@ -57,9 +57,10 @@ module.exports = () => {
       // readyToStart
       socket.on('readyToStart', () => {
         controller.readyToStart({ key: gameKey, username })
-          .then(({ gameReady, board }) => {
+          .then(({ gameReady, board, users }) => {
             logger.info(`User: ${username} ready to play`);
             io.to(socket.id).emit('userReady', { username, ready: true });
+            io.to(gameName).emit('usersList', { users });
             if (gameReady) {
               logger.info('Game is ready to start');
               io.to(gameName).emit('gameReady', { board });
