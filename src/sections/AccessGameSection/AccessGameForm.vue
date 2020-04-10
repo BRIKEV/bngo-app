@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { required, maxLength } from 'vuelidate/lib/validators';
+import { maxLength } from 'vuelidate/lib/validators';
 
 export default {
   name: 'AccessGameForm',
@@ -60,7 +60,6 @@ export default {
   validations() {
     return {
       username: {
-        required,
         maxLength: maxLength(10),
       },
     };
