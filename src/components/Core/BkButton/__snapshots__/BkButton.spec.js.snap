@@ -4,10 +4,7 @@ exports[`BkButton component Should be render correctly 1`] = `
 <button
   class="btn"
 >
-  <beat-loader
-    color="white"
-    size="10"
-  />
+  <!---->
    
   <p
     class="content"
@@ -19,9 +16,11 @@ exports[`BkButton component Should has outline class 1`] = `
 <button
   class="btn outline"
 >
-  <beat-loader
+  <beat-loader-stub
     color="white"
+    margin="2px"
     size="10"
+    sizeunit="px"
   />
    
   <p
