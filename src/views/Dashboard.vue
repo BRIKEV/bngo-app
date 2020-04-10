@@ -114,7 +114,7 @@ export default {
     },
     handleUserHasBingo({ username }) {
       this.$ga.event({
-        eventCategory: 'bingo',
+        eventCategory: 'modal',
         eventAction: 'userHashBingo',
         eventLabel: 'Winner modal',
       });
@@ -124,7 +124,7 @@ export default {
     handlePlayAgainClick() {
       this.$ga.event({
         eventCategory: 'play',
-        eventAction: 'playAgain',
+        eventAction: 'playAgainClick',
         eventLabel: 'Click play again',
       });
       this.showModal = false;
