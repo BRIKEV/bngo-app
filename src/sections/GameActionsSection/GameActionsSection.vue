@@ -73,9 +73,19 @@ export default {
   },
   methods: {
     handleStart() {
+      this.$ga.event({
+        eventCategory: 'bingo',
+        eventAction: 'readyToStart',
+        eventLabel: 'User click start button',
+      });
       emit('readyToStart');
     },
     handleBingo() {
+      this.$ga.event({
+        eventCategory: 'bingo',
+        eventAction: 'bingo',
+        eventLabel: 'User click bingo button',
+      });
       emit('bingo');
     },
   },

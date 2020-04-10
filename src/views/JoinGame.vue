@@ -66,6 +66,11 @@ export default {
       this.access = false;
     },
     handleCreateClick({ roomName, gameKey }) {
+      this.$ga.event({
+        eventCategory: 'create',
+        eventAction: 'createClick',
+        eventLabel: 'Click on create game button',
+      });
       return createGame({ gameKey, gameName: roomName })
         .then(() => {
           this.create = false;
@@ -77,6 +82,11 @@ export default {
         }));
     },
     handleAccessClick({ username, roomName, gameKey }) {
+      this.$ga.event({
+        eventCategory: 'access',
+        eventAction: 'accessClick',
+        eventLabel: 'Click on access game button',
+      });
       const accessInfo = { gameKey, username, gameName: roomName };
       return joinAgame(accessInfo)
         .then(({ data }) => {
