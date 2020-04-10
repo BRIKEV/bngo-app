@@ -4,6 +4,7 @@ import VueI18n from 'vue-i18n';
 import Notifications from 'vue-notification';
 import { VueSpinners } from '@saeris/vue-spinners';
 import Vuelidate from 'vuelidate';
+import registerCoreComponents from './registerCoreComponents';
 
 import '@/theme/index.scss';
 
@@ -15,5 +16,7 @@ localVue.use(Notifications, {
 });
 localVue.use(VueSpinners);
 localVue.use(Vuelidate);
+
+registerCoreComponents(localVue);
 
 export default localVue;
