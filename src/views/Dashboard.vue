@@ -106,13 +106,27 @@ export default {
       clean: 'clean',
     }),
     exit() {
+      this.$ga.event({
+        eventCategory: 'exit',
+        eventAction: 'logout',
+      });
       logout();
     },
     handleUserHasBingo({ username }) {
+      this.$ga.event({
+        eventCategory: 'bingo',
+        eventAction: 'userHashBingo',
+        eventLabel: 'Winner modal',
+      });
       this.showModal = true;
       this.winner = username;
     },
     handlePlayAgainClick() {
+      this.$ga.event({
+        eventCategory: 'play',
+        eventAction: 'playAgain',
+        eventLabel: 'Click play again',
+      });
       this.showModal = false;
       this.exit();
     },
