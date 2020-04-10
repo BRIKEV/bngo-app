@@ -21,7 +21,7 @@
     <BkButton
       class="btn"
       slot="optional"
-      :disabled="!roomName || !gameKey"
+      :disabled="invalid"
       @btn-clicked="handleCreateClick"
     >
       {{ $t('joinGame.createGameSection.btnCreate') }}
@@ -38,6 +38,11 @@ export default {
       roomName: undefined,
       gameKey: undefined,
     };
+  },
+  computed: {
+    invalid() {
+      return !this.gameKey || !this.roomName;
+    },
   },
   methods: {
     handleCreateClick() {
