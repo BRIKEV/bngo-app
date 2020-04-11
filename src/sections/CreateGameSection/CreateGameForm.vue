@@ -1,5 +1,10 @@
 <template>
-  <div class="createGameForm">
+  <BkForm
+    class="createGameForm"
+    hasHeader
+    :title="$t('joinGame.title')"
+    @onIconClicked="$emit('onIconClicked')"
+  >
     <BkInput
       v-model="roomName"
       id="roomName"
@@ -18,6 +23,18 @@
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
     />
+    <Carrousel>
+      <template #items>
+        <TopicCard
+          v-for="(topic, index) in topics"
+          :key="index"
+          :title="topic.title"
+          :description="topic.description"
+          :image="topic.image"
+          :bgColor="topic.bgColor"
+        />
+      </template>
+    </Carrousel>
     <BkButton
       class="btn"
       slot="optional"
@@ -26,17 +43,24 @@
     >
       {{ $t('joinGame.createGameSection.btnCreate') }}
     </BkButton>
-  </div>
+  </BkForm>
 </template>
 
 <script>
+import { Carrousel, TopicCard } from '@/components';
+import mock from './mockTopics';
 
 export default {
   name: 'CreateGameForm',
+  components: {
+    Carrousel,
+    TopicCard,
+  },
   data() {
     return {
       roomName: undefined,
       gameKey: undefined,
+      topics: mock,
     };
   },
   computed: {
@@ -54,3 +78,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.createGameForm {
+  width: 60%;
+  height: 50%;
+  &::v-deep .description {
+    overflow: hidden;
+  }
+}
+</style>
