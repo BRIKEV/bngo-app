@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 
 module.exports = () => {
-  const start = async ({ manifest = {}, server: { app }, imageController, config }) => {
+  const start = async ({ manifest = {}, server: { app }, imageController, config, logger }) => {
     const { swaggerOptions } = config;
 
     app.use(helmet());
@@ -16,6 +16,7 @@ module.exports = () => {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     if (config.cloudImages) {
+      logger.info('cloudImages enabled');
       app.get('/images/:type/:name', async (req, res, next) => {
         try {
           const { type, name } = req.params;
