@@ -1,8 +1,19 @@
 const Redis = require('ioredis');
+const debug = require('debug')('redis:system');
 
 module.exports = () => {
-  const start = async ({ config }) => {
-    const redis = new Redis(config.URL);
+  let redis;
+  const start = async ({ config, logger }) => {
+    redis = new Redis(config.URL);
+
+    redis.on('error', error => {
+      logger.error(`Error: redis instance  with code ${error.code} and message ${error.message}`);
+      process.exit(1);
+    });
+
+    redis.on('connect', () => {
+      logger.info('Redis instance was connected');
+    });
 
     const setValue = json => JSON.stringify(json);
 
@@ -33,5 +44,14 @@ module.exports = () => {
     return { addGame, getGameByKey, updateGameByKey, getGames, removeGames };
   };
 
-  return { start };
+  const stop = async () => {
+    // This should not be necesarry as it disconnects automatically
+    // However it is okay to add in the stop event too
+    if (redis && redis.disconnect) {
+      debug('Redis disconnect instance');
+      redis.disconnect();
+    }
+  };
+
+  return { start, stop };
 };
