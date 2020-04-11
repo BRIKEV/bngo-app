@@ -1,5 +1,4 @@
 import axios from 'axios';
-import mock from './mockTopics';
 
 export const createGame = ({ gameKey, gameName, types }) => (
   axios.post('/api/v1/game', {
@@ -17,4 +16,4 @@ export const joinGame = ({ gameKey, username, gameName }) => (
   })
 );
 
-export const getGameTypes = () => Promise.resolve(mock);
+export const getGameTypes = () => axios.get('/api/v1/game-types');

@@ -26,7 +26,7 @@ export default {
     commit('SET_USERS', users);
   },
   async gameTypes({ commit }) {
-    const data = await getGameTypes();
+    const { data } = await getGameTypes();
     await commit('SET_GAME_TYPES', data);
   },
 };
