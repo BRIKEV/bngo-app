@@ -1,31 +1,24 @@
 <template>
   <div class="about">
-    <BkForm
-      :title="$t('joinGame.title')"
-      :hasHeader="icon"
-      @onIconClicked="handleReturnClick"
-    >
-      <transition name="fade" mode="out-in">
-        <template v-if="!access && !create">
-          <JoinGameSection
-            @onAccess="goToAccessForm"
-            @onCreateRoom="goToCreateForm"
-          />
-        </template>
-        <template v-if="access">
-          <AccessGameForm
-            class="createGameSection"
-            @onAccessClick="handleAccessClick"
-          />
-        </template>
-        <template v-if="create">
-          <CreateGameForm
-            class="createGameSection"
-            @onCreateClick="handleCreateClick"
-          />
-        </template>
-      </transition>
-    </BkForm>
+    <transition name="fade" mode="out-in">
+      <JoinGameSection
+        v-if="!access && !create"
+        @onAccess="access = true"
+        @onCreateRoom="create = true"
+      />
+      <AccessGameForm
+        v-if="access"
+        class="createGameSection"
+        @onAccessClick="handleAccessClick"
+        @onIconClicked="handleIconClick"
+      />
+      <CreateGameForm
+        v-if="create"
+        class="createGameSection"
+        @onCreateClick="handleCreateClick"
+        @onIconClicked="handleIconClick"
+      />
+    </transition>
   </div>
 </template>
 
@@ -47,21 +40,13 @@ export default {
     return {
       access: false,
       create: false,
-      icon: false,
     };
   },
   methods: {
-    ...mapActions(['sendError']),
-    goToAccessForm() {
-      this.access = true;
-      this.icon = true;
-    },
-    goToCreateForm() {
-      this.create = true;
-      this.icon = true;
-    },
-    handleReturnClick() {
-      this.icon = false;
+    ...mapActions({
+      sendError: 'sendError',
+    }),
+    handleIconClick() {
       this.create = false;
       this.access = false;
     },
@@ -112,10 +97,6 @@ export default {
   align-items: center;
   background: rgb(2,0,36);
   background: $gradientColor;
-}
-.createGameSection {
-  width: 90%;
-  margin: 0 auto;
 }
 .btn {
   width: 100%;

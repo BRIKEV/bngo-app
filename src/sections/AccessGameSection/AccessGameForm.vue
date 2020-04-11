@@ -1,5 +1,10 @@
 <template>
-  <div class="createGameForm">
+  <BkForm
+    class="accessGameForm"
+    hasHeader
+    :title="$t('joinGame.title')"
+    @onIconClicked="$emit('onIconClicked')"
+  >
     <BkInput
       v-model="username"
       slot="optional"
@@ -42,7 +47,7 @@
     >
       {{ $t('joinGame.accessGameSection.btnAccess') }}
     </BkButton>
-  </div>
+  </BkForm>
 </template>
 
 <script>
@@ -83,6 +88,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
 
+.accessGameForm {
+  width: 30%;
+}
 .error {
   display: flex;
   align-items: center;

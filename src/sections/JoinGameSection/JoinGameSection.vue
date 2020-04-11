@@ -1,5 +1,8 @@
 <template>
-  <div class="joinGameForm">
+  <BkForm
+    class="joinGameForm"
+    :title="$t('joinGame.title')"
+  >
     <BkButton
       class="accessBtn"
       @btn-clicked="handleAccessClick"
@@ -12,7 +15,7 @@
     >
       {{ $t('joinGame.btnCreate') }}
     </BkButton>
-  </div>
+  </BkForm>
 </template>
 
 <script>
