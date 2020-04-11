@@ -59,6 +59,7 @@ describe('API endpoint', () => {
       .send({
         gameName,
         gameKey,
+        types: ['cars', 'default'],
       })
       .expect(200)
       .then(async ({ body }) => {
