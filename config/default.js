@@ -15,12 +15,18 @@ module.exports = {
     userOptionsLength: 16,
     storeMode: process.env.STORE_MODE || 'redis',
   },
+  imageController: {
+    imgURL: process.env.IMG_URL || '',
+  },
   routes: {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
       ...tokenOptions,
+      validTopics: ['standard', 'default', 'cars'],
     },
     admin: {
+      cloudImages: process.env.NODE_ENV === 'production',
+      ...tokenOptions,
       frontPath: join(__dirname, '..', 'dist'),
       swaggerOptions: {
         swaggerDefinition: {

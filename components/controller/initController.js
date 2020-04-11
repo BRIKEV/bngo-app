@@ -4,7 +4,7 @@ const {
 } = require('error-handler-module');
 const R = require('ramda');
 
-const DEFAULT_BOARD = require('../../mock/index.json');
+const getBoard = require('../../references');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
@@ -17,7 +17,7 @@ const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 module.exports = () => {
   const start = async ({ logger, store: storeSystem, config }) => {
     const store = storeSystem[config.storeMode];
-    const createGame = async ({ gameName, gameKey }) => {
+    const createGame = async ({ gameName, gameKey, types }) => {
       const gameExists = await store.getGameByKey(gameKey);
       if (gameExists) {
         throw alreadyCreated('This game was already created');
@@ -28,7 +28,7 @@ module.exports = () => {
         name: gameName,
         ready: false,
         users: [],
-        board: DEFAULT_BOARD,
+        board: getBoard(types, config.boardLength),
       };
       await store.addGame(game);
       return Promise.resolve('Game created');
@@ -59,7 +59,7 @@ module.exports = () => {
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
       }
-      const board = shuffleBoard(DEFAULT_BOARD, config.userOptionsLength);
+      const board = shuffleBoard(game.board, config.userOptionsLength);
       const newUser = { username, board, ready: false };
       const updateGame = {
         ...game,

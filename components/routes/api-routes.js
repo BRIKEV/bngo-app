@@ -1,11 +1,15 @@
 const {
   handleHttpError,
   tagError,
+  errorFactory,
+  CustomErrorTypes,
 } = require('error-handler-module');
 const validator = require('swagger-endpoint-validator');
 
 const { createGameLimit, joinGameLimit } = require('../../lib/rate-limits');
 const jwt = require('../../lib/token');
+
+const wrongInput = errorFactory(CustomErrorTypes.WRONG_INPUT);
 
 module.exports = () => {
   const start = async ({ server: { app }, controller, logger, config }) => {
@@ -22,6 +26,11 @@ module.exports = () => {
     app.post('/api/v1/game', createGameLimit, async (req, res, next) => {
       try {
         validator.validateAPIInput(req.body, req);
+        const { types } = req.body;
+        if (types) {
+          const validType = config.validTopics.includes(types);
+          if (!validType) throw wrongInput('Your sending invalid type');
+        }
         await controller.createGame(req.body);
         const response = { success: true };
         validator.validateAPIOutput(response, req);

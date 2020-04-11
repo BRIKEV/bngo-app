@@ -3,14 +3,14 @@
     <div class="wheel wheel1">
       <div
         class="selectedImage"
-        v-if="selected.name && !animate"
+        v-show="selected.name && !animate"
       >
         <img class="image" :src="selected.image" />
         <h3 class="name">{{ selected.name }}</h3>
       </div>
       <div
         class="wheel-inner"
-        v-if="animate"
+        v-show="animate"
         :class="{ animate }"
       >
         <ImageCard
