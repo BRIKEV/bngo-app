@@ -51,7 +51,7 @@
 
 <script>
 import { Carrousel, TopicCard } from '@/components';
-import mock from './mockTopics';
+import { mapState } from 'vuex';
 
 export default {
   name: 'CreateGameForm',
@@ -64,10 +64,12 @@ export default {
       roomName: undefined,
       gameKey: undefined,
       checkedNames: [],
-      topics: mock,
     };
   },
   computed: {
+    ...mapState({
+      topics: (state) => state.bgno.gameTypes,
+    }),
     invalid() {
       return !this.gameKey || !this.roomName || this.checkedNames.length === 0;
     },

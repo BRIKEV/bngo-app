@@ -22,7 +22,7 @@
 
 <script>
 import { JoinGameSection, AccessGameForm, CreateGameForm } from '@/sections';
-import { createGame, joinAgame } from '@/api';
+import { createGame, joinGame } from '@/api';
 import { setAccess } from '@/persistence/access';
 import { NOTIFICATION_CREATE, NOTIFICATION_ACCESS } from '@/store/notification/notificationTypes';
 import { mapActions } from 'vuex';
@@ -40,9 +40,13 @@ export default {
       create: false,
     };
   },
+  mounted() {
+    this.getGameTypes();
+  },
   methods: {
     ...mapActions({
       sendError: 'sendError',
+      getGameTypes: 'gameTypes',
     }),
     handleIconClick() {
       this.create = false;
@@ -57,7 +61,6 @@ export default {
       return createGame({ gameKey, gameName: roomName, types })
         .then(() => {
           this.create = false;
-          this.icon = false;
         })
         .catch(() => this.sendError({
           title: NOTIFICATION_CREATE.error.title,
@@ -71,7 +74,7 @@ export default {
         eventLabel: 'Click on access game button',
       });
       const accessInfo = { gameKey, username, gameName: roomName };
-      return joinAgame(accessInfo)
+      return joinGame(accessInfo)
         .then(({ data }) => {
           setAccess(data.accessKey);
           this.$router.push({ name: 'Dashboard' });
