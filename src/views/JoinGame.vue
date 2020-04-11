@@ -48,13 +48,13 @@ export default {
       this.create = false;
       this.access = false;
     },
-    handleCreateClick({ roomName, gameKey }) {
+    handleCreateClick({ roomName, gameKey, types }) {
       this.$ga.event({
         eventCategory: 'create',
         eventAction: 'createClick',
         eventLabel: 'Click on create game button',
       });
-      return createGame({ gameKey, gameName: roomName })
+      return createGame({ gameKey, gameName: roomName, types })
         .then(() => {
           this.create = false;
           this.icon = false;

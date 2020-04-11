@@ -32,6 +32,7 @@
           :description="topic.description"
           :image="topic.image"
           :bgColor="topic.bgColor"
+          @input="onChange"
         />
       </template>
     </Carrousel>
@@ -59,6 +60,7 @@ export default {
     return {
       roomName: undefined,
       gameKey: undefined,
+      checkedNames: [],
       topics: mock,
     };
   },
@@ -68,10 +70,18 @@ export default {
     },
   },
   methods: {
+    onChange(value, checked) {
+      if (checked) {
+        this.checkedNames = [...this.checkedNames, value];
+      } else {
+        this.checkedNames = this.checkedNames.filter((checkedName) => checkedName !== value);
+      }
+    },
     handleCreateClick() {
       this.$emit('onCreateClick', {
         roomName: this.roomName,
         gameKey: this.gameKey,
+        types: this.checkedNames,
       });
     },
   },

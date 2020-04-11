@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export const createGame = ({ gameKey, gameName }) => (
+export const createGame = ({ gameKey, gameName, types }) => (
   axios.post('/api/v1/game', {
     gameKey,
     gameName,
+    types,
   })
 );
 
