@@ -37,7 +37,6 @@
     </Carrousel>
     <BkButton
       class="btn"
-      slot="optional"
       :disabled="invalid"
       @btn-clicked="handleCreateClick"
     >
