@@ -15,11 +15,13 @@ describe('API endpoint', () => {
 
   let storeSystem;
   let tokenMethods;
+  let configInfo;
   before(async () => {
     const { server: { app }, store, config } = await sys.start();
     tokenMethods = jwt(config.routes.api.tokenSecret);
     request = supertest(app);
     storeSystem = store[config.controller.storeMode];
+    configInfo = config;
   });
 
   beforeEach(async () => {
@@ -165,5 +167,13 @@ describe('API endpoint', () => {
             .expect(400)
         ))
     ));
+  });
+  describe('Game types endpoint', () => {
+    it('Should return the game types', () => request
+      .get('/api/v1/game-types')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).to.eql(configInfo.routes.api.validTopics);
+      }));
   });
 });

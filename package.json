@@ -11,8 +11,6 @@
     "lint:backend": "./node_modules/.bin/eslint --ignore-path .eslintignore_backend --config './.eslintrc.json' ./components ./lib ./references ./*.js ./test",
     "local": "SERVICE_ENV=local node index.js",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
-    "precommit": "npm run lint",
-    "prepush": "npm run test",
     "heroku-postbuild": "npm run build",
     "qa": "npm run lint && npm run test",
     "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose.yml up -d --force-recreate'",
