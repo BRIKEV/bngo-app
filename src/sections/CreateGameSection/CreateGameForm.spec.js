@@ -8,12 +8,13 @@ describe('CreateGameForm section', () => {
     localVue,
     i18n,
   };
-  it('Should not be invalid when roomName and gameKey are completed', () => {
-    const wrapper = shallowMount(CreateGameForm, {
+  it('Should not be invalid when roomName and gameKey are completed and user select one type of board', () => {
+    const wrapper = mount(CreateGameForm, {
       ...defaultConfig,
       data: () => ({
         gameKey: 'key 1',
         roomName: 'room 1',
+        checkedNames: ['type 1'],
       }),
     });
     expect(wrapper.vm.invalid).toBeFalsy();
@@ -27,12 +28,24 @@ describe('CreateGameForm section', () => {
     });
     expect(wrapper.vm.invalid).toBeTruthy();
   });
+  it('Should be invalid when user not select at least one type of board', () => {
+    const wrapper = shallowMount(CreateGameForm, {
+      ...defaultConfig,
+      data: () => ({
+        gameKey: 'key 1',
+        roomName: 'room 1',
+        checkedNames: [],
+      }),
+    });
+    expect(wrapper.vm.invalid).toBeTruthy();
+  });
   it('Should fire onCreateClick event when click btn and data is valid', () => {
     const wrapper = mount(CreateGameForm, {
       ...defaultConfig,
       data: () => ({
         gameKey: 'key 1',
         roomName: 'room 1',
+        checkedNames: ['type 1', 'type 2'],
       }),
     });
     wrapper.find('.btn').trigger('click');
