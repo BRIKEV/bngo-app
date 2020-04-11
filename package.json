@@ -8,6 +8,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "lint:backend": "./node_modules/.bin/eslint --ignore-path .eslintignore_backend --config './.eslintrc.json' ./components ./lib ./*.js ./test",
     "local": "SERVICE_ENV=local node index.js",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
     "precommit": "npm run lint",
@@ -92,7 +93,7 @@
   "_id": "bngo-app@0.0.1",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "pre-commit": "npm run lint && npm run lint:backend",
       "pre-push": "npm run test && npm run test:unit"
     }
   },
