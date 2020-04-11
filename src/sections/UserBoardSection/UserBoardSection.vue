@@ -57,12 +57,19 @@ export default {
     };
   },
   mounted() {
-    this.widthCanvas = this.$refs.boardContainer.offsetWidth;
-    this.heightCanvas = this.$refs.boardContainer.offsetHeight;
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     clear() {
       this.$refs.canvas.clearArea();
+    },
+    handleResize() {
+      this.widthCanvas = this.$refs.boardContainer.offsetWidth;
+      this.heightCanvas = this.$refs.boardContainer.offsetHeight;
     },
   },
 };
