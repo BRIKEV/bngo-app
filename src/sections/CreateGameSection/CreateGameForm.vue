@@ -96,7 +96,7 @@ export default {
 @import "@/theme/index.scss";
 
 .createGameForm {
-  width: 60%;
+  width: 40%;
   &::v-deep .description {
     overflow: hidden;
   }
