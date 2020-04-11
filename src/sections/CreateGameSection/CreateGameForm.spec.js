@@ -1,10 +1,12 @@
 import { shallowMount, mount } from '@vue/test-utils';
 import { CreateGameForm } from '@/sections';
 import i18n from '@/config/tests/i18n';
+import store from '@/config/tests/store';
 import localVue from '@/config/tests';
 
 describe('CreateGameForm section', () => {
   const defaultConfig = {
+    store,
     localVue,
     i18n,
   };
