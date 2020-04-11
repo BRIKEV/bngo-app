@@ -31,8 +31,8 @@
         <TopicCard
           v-for="(topic, index) in topics"
           :key="index"
-          :title="topic.title"
-          :description="topic.description"
+          :title="topic"
+          :description="$t(`joinGame.createGameSection.types.${topic}`)"
           :image="topic.image"
           :bgColor="topic.bgColor"
           @input="onChange"

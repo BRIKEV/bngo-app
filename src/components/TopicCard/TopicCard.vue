@@ -25,7 +25,6 @@ import VueTypes from 'vue-types';
 export default {
   name: 'TopicCard',
   props: {
-    value: VueTypes.array,
     title: VueTypes.string.isRequired,
     description: VueTypes.string,
   },
@@ -48,7 +47,7 @@ input {
   background: $brand;
   min-width: calculateRem(200px);
   max-width: calculateRem(200px);
-  min-height: calculateRem(68px);
+  min-height: calculateRem(74px);
   border-radius: calculateRem(24px) calculateRem(4px);
   display: flex;
   align-items: flex-start;
@@ -69,6 +68,7 @@ input {
       font-size: $fs-medium;
       font-family: $base-secondary-font;
       font-weight: 300;
+      line-height: 1.2;
     }
   }
 }

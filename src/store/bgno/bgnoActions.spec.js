@@ -54,12 +54,7 @@ describe('Bgno actions', () => {
   });
 
   it('gameTypes action', async () => {
-    const res = [
-      {
-        title: 'title test',
-        description: 'test description',
-      },
-    ];
+    const res = ['standard'];
     await getGameTypes.mockResolvedValueOnce(res);
     await bgnoActions.gameTypes({ commit });
     expect(commit).toHaveBeenCalledWith('SET_GAME_TYPES', res);

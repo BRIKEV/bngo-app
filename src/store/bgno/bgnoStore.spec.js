@@ -46,12 +46,7 @@ describe('Tickets store', () => {
   });
 
   it('set gameTypes correctly', () => {
-    const mockGameTypes = [
-      {
-        title: 'title test',
-        description: 'test description',
-      },
-    ];
+    const mockGameTypes = ['standard'];
     expect(state.gameTypes).toEqual(initialState.gameTypes);
     mutations.SET_GAME_TYPES(state, mockGameTypes);
     expect(state.gameTypes).toEqual(mockGameTypes);
