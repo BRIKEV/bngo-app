@@ -18,6 +18,7 @@
     "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose.yml up -d --force-recreate'",
     "docker:destroy": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose.yml down'",
     "start": "cross-env NODE_ENV=production SERVICE_ENV=production node index.js",
+    "start:local": "cross-env node index.js",
     "test": "cross-env SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "test-ci": "cross-env SERVICE_ENV=test mocha --reporter mocha-junit-reporter"
   },
