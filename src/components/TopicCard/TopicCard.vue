@@ -1,12 +1,21 @@
 <template>
-  <div
-    class="topicCard"
-    :style="{ background: bgColor }"
-  >
-    <div class="infoTopic">
-      <h1 class="title">{{ title }}</h1>
-      <p class="description">{{ description }}</p>
-    </div>
+  <div>
+    <input
+      :id="title"
+      :name="title"
+      :value="title"
+      type="checkbox"
+      @input="$emit('input', $event.target.value, $event.target.checked)"
+    />
+    <label
+      :for="title"
+      class="topicCard"
+    >
+      <div class="infoTopic">
+        <h1 class="title">{{ title }}</h1>
+        <p class="description">{{ description }}</p>
+      </div>
+    </label>
   </div>
 </template>
 
@@ -16,10 +25,9 @@ import VueTypes from 'vue-types';
 export default {
   name: 'TopicCard',
   props: {
+    value: VueTypes.array,
     title: VueTypes.string.isRequired,
     description: VueTypes.string,
-    image: VueTypes.string,
-    bgColor: VueTypes.string.def('#FFF'),
   },
 };
 </script>
@@ -27,12 +35,20 @@ export default {
 @import "@/theme/index.scss";
 $boxShadowTopic: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
   0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-$backgroundWithHover: #d2c6b2 !important;
 $textColor: #f4f4f4;
 
+input {
+  visibility: hidden;
+  &:checked + .topicCard {
+    transform: translateY(-10px);
+    background: $selected;
+  }
+}
 .topicCard {
+  background: $brand;
   min-width: calculateRem(200px);
   max-width: calculateRem(200px);
+  min-height: calculateRem(68px);
   border-radius: calculateRem(24px) calculateRem(4px);
   display: flex;
   align-items: flex-start;
@@ -42,12 +58,7 @@ $textColor: #f4f4f4;
   color: $textColor;
   margin-bottom: calculateRem(15px);
   text-align: left;
-  &:hover {
-    cursor: pointer;
-    background: $backgroundWithHover;
-    color: $dark;
-    transition: background .5s;
-  }
+  transition: all 0.3s ease-in-out;
   .infoTopic {
     .title {
       padding-bottom: calculateRem(10px);
