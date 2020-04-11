@@ -28,8 +28,10 @@ module.exports = () => {
         validator.validateAPIInput(req.body, req);
         const { types } = req.body;
         if (types) {
-          const validType = config.validTopics.includes(types);
-          if (!validType) throw wrongInput('Your sending invalid type');
+          types.forEach(type => {
+            const validType = config.validTopics.includes(type);
+            if (!validType) throw wrongInput('Your sending invalid type');
+          });
         }
         await controller.createGame(req.body);
         const response = { success: true };

@@ -58,6 +58,7 @@ input {
   margin-bottom: calculateRem(15px);
   text-align: left;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
   .infoTopic {
     .title {
       padding-bottom: calculateRem(10px);
