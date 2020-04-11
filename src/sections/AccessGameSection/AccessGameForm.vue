@@ -7,7 +7,6 @@
   >
     <BkInput
       v-model="username"
-      slot="optional"
       id="username"
       name="username"
       type="text"

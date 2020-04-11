@@ -7,9 +7,6 @@
       <h1 class="title">{{ title }}</h1>
       <p class="description">{{ description }}</p>
     </div>
-    <div class="imgContainer">
-      <img class="image" :src="image" />
-    </div>
   </div>
 </template>
 
@@ -34,9 +31,8 @@ $backgroundWithHover: #d2c6b2 !important;
 $textColor: #f4f4f4;
 
 .topicCard {
-  min-width: calculateRem(342px);
-  max-width: calculateRem(342px);
-  height: calculateRem(150px);
+  min-width: calculateRem(200px);
+  max-width: calculateRem(200px);
   border-radius: calculateRem(24px) calculateRem(4px);
   display: flex;
   align-items: flex-start;
@@ -44,23 +40,15 @@ $textColor: #f4f4f4;
   padding: calculateRem(15px);
   box-shadow: $boxShadowTopic;
   color: $textColor;
+  margin-bottom: calculateRem(15px);
+  text-align: left;
   &:hover {
     cursor: pointer;
     background: $backgroundWithHover;
     color: $dark;
     transition: background .5s;
   }
-  .imgContainer {
-    width: 35%;
-    height: 100%;
-    .image {
-      width: 100%;
-      height: 100%;
-      border-radius: 0 0 calculateRem(24px) 0;
-    }
-  }
   .infoTopic {
-    max-width: calculateRem(180px);
     .title {
       padding-bottom: calculateRem(10px);
       font-size: $fs-h4;

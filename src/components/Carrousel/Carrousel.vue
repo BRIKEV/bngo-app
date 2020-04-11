@@ -20,7 +20,8 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   overflow-x: auto;
   background: none;
   > div + div {
-    margin: 0 calculateRem(10px);
+    margin-left: calculateRem(10px);
+    margin-right: calculateRem(10px);
   }
 }
 </style>

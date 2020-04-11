@@ -8,13 +8,11 @@
       />
       <AccessGameForm
         v-if="access"
-        class="createGameSection"
         @onAccessClick="handleAccessClick"
         @onIconClicked="handleIconClick"
       />
       <CreateGameForm
         v-if="create"
-        class="createGameSection"
         @onCreateClick="handleCreateClick"
         @onIconClicked="handleIconClick"
       />

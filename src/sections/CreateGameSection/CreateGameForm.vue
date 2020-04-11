@@ -23,7 +23,7 @@
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
     />
-    <Carrousel>
+    <Carrousel class="carrousel">
       <template #items>
         <TopicCard
           v-for="(topic, index) in topics"
@@ -80,9 +80,11 @@ export default {
 <style lang="scss" scoped>
 .createGameForm {
   width: 60%;
-  height: 50%;
   &::v-deep .description {
     overflow: hidden;
+  }
+  .carrousel {
+    margin-bottom: 20px;
   }
 }
 </style>
