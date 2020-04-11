@@ -1,3 +1,5 @@
+import { getGameTypes } from '@/api';
+
 export default {
   userBoard({ commit }, { board }) {
     commit('SET_USER_BOARD', board);
@@ -22,5 +24,9 @@ export default {
   },
   usersList({ commit }, { users }) {
     commit('SET_USERS', users);
+  },
+  async gameTypes({ commit }) {
+    const data = await getGameTypes();
+    await commit('SET_GAME_TYPES', data);
   },
 };

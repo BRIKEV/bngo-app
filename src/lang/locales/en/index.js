@@ -24,6 +24,12 @@ export default {
       passwordLabel: 'Room password',
     },
     createGameSection: {
+      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
+      types: {
+        standard: 'Traditional bingo with numbers',
+        default: 'Bingo de los shavales',
+        cars: 'Bingo of cars',
+      },
       btnCreate: 'Create game',
       usernamelabel: 'Username',
     },

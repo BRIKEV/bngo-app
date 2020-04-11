@@ -2,7 +2,7 @@
   <form
     autocomplete="off"
     class="BkForm"
-    v-on:submit.prevent
+    @submit.prevent
   >
     <div
       class="header"
@@ -16,7 +16,7 @@
     </div>
     <div class="content">
       <h1 class="title">{{ title }}</h1>
-      <div class="btns">
+      <div class="description">
          <slot />
       </div>
     </div>
@@ -52,7 +52,6 @@ export default {
   justify-content: center;
   text-align: center;
   margin: 0 auto;
-  width: 30%;
   padding: 20px;
   background: $lightGray;
   border-radius: calculateRem(30px);

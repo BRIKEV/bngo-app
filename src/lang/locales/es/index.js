@@ -24,6 +24,12 @@ export default {
       passwordLabel: 'Contraseña de la sala',
     },
     createGameSection: {
+      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
+      types: {
+        standard: 'Bingo tradicional con números',
+        default: 'Bingo de los shavales',
+        cars: 'Tablero con fotos de coches',
+      },
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
     },
