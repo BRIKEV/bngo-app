@@ -22,7 +22,7 @@
 
 <script>
 import { JoinGameSection, AccessGameForm, CreateGameForm } from '@/sections';
-import { createGame, joinAgame } from '@/api';
+import { createGame, joinGame } from '@/api';
 import { setAccess } from '@/persistence/access';
 import { NOTIFICATION_CREATE, NOTIFICATION_ACCESS } from '@/store/notification/notificationTypes';
 import { mapActions } from 'vuex';
@@ -71,7 +71,7 @@ export default {
         eventLabel: 'Click on access game button',
       });
       const accessInfo = { gameKey, username, gameName: roomName };
-      return joinAgame(accessInfo)
+      return joinGame(accessInfo)
         .then(({ data }) => {
           setAccess(data.accessKey);
           this.$router.push({ name: 'Dashboard' });
