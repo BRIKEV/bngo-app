@@ -40,6 +40,18 @@ describe('API endpoint', () => {
       .send({})
       .expect(400));
 
+    it('Should return BAD_REQUEST when required params are not sent', () => request
+      .post('/api/v1/game')
+      .send({
+        gameName,
+        gameKey,
+        types: ['invalid type'],
+      })
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.message).to.eql('Your sending invalid type');
+      }));
+
     it('Should return OK when we send the right params', () => request
       .post('/api/v1/game')
       .send({
