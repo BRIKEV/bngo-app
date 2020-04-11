@@ -14,6 +14,9 @@ describe('initController tests', () => {
   beforeEach(async () => {
     storeSystem = await initRedisStore().start({
       config: config.store.redis,
+      logger: {
+        info: () => 0,
+      },
     });
     await storeSystem.removeGames();
     api = await start({
