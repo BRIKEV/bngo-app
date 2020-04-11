@@ -23,6 +23,9 @@
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
     />
+    <h2 class="typesTitle">
+      {{ $t('joinGame.createGameSection.typesTitle') }}
+    </h2>
     <Carrousel class="carrousel">
       <template #items>
         <TopicCard
@@ -66,7 +69,7 @@ export default {
   },
   computed: {
     invalid() {
-      return !this.gameKey || !this.roomName;
+      return !this.gameKey || !this.roomName || this.checkedNames.length === 0;
     },
   },
   methods: {
@@ -88,6 +91,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/theme/index.scss";
+
 .createGameForm {
   width: 60%;
   &::v-deep .description {
@@ -95,6 +100,12 @@ export default {
   }
   .carrousel {
     margin-bottom: 20px;
+  }
+  .typesTitle {
+    text-align: left;
+    padding: calculateRem(10px) 0 calculateRem(5px) 0;
+    font-size: $fs-large;
+    line-height: $base-line-height;
   }
 }
 </style>

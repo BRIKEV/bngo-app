@@ -24,6 +24,7 @@ export default {
       passwordLabel: 'Room password',
     },
     createGameSection: {
+      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
       btnCreate: 'Create game',
       usernamelabel: 'Username',
     },

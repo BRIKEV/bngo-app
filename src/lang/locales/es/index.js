@@ -24,6 +24,7 @@ export default {
       passwordLabel: 'Contraseña de la sala',
     },
     createGameSection: {
+      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
     },
