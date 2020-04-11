@@ -98,7 +98,4 @@ export default {
   background: rgb(2,0,36);
   background: $gradientColor;
 }
-.btn {
-  width: 100%;
-}
 </style>

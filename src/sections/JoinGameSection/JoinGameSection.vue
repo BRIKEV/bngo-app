@@ -36,6 +36,14 @@ export default {
 @import "@/theme/index.scss";
 .joinGameForm {
   margin: calculateRem(40px) 0;
+  height: 20%;
+    &::v-deep .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    margin-top: 0;
+  }
 
   .accessBtn {
     margin-right: calculateRem(15px);
