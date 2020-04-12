@@ -15,71 +15,39 @@
       class="dashboard"
     >
       <div class="content">
-        <div class="outputImagesContainer">
-          <Board
-            class="outputImages"
-            :numOfColumns="7"
-            :numOfRows="7"
-            :images="board"
-            />
+        <BoardSection />
+        <div class="Info">
+          <GameActionsSection class="wheelContainer" />
+          <UserBoardSection
+            class="UserBoard"
+            :userImages="userImages"
+          />
         </div>
-          <div class="Info">
-            <div class="wheelContainer">
-              <Wheel
-                :selected="selected"
-                :animate="animate"
-                class="Wheel"
-                :images="board"
-              />
-              <BkButton
-                v-if="!user.ready"
-                key=1
-                class="createBtn"
-                @btn-clicked="handleStart"
-              >
-                START
-              </BkButton>
-              <transition name="slide">
-                <BkButton
-                  v-if="user.ready"
-                  key=2
-                  class="createBtn"
-                  @btn-clicked="handleBingo"
-                >
-                  BINGO
-                </BkButton>
-              </transition>
-            </div>
-            <UserBoardSection
-              class="UserBoard"
-              :userImages="userImages"
-            />
-          </div>
       </div>
     </div>
-        <WinnerModal
-        :opened="showModal"
-        :winner="winner"
-        @playAgain="handlePlayAgainClick"
-      />
+    <WinnerModal
+      :opened="showModal"
+      :winner="winner"
+      @playAgain="handlePlayAgainClick"
+    />
   </div>
 </template>
 
 <script>
-import { Board, Wheel, WinnerModal } from '@/components';
+import { WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection } from '@/sections';
-import io, { emit } from '@/io';
+import { UserBoardSection, GameActionsSection, BoardSection } from '@/sections';
+import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 
 export default {
   name: 'Dashboard',
   components: {
-    Board,
-    Wheel,
     UserBoardSection,
     WinnerModal,
+    GameActionsSection,
+    BoardSection,
   },
   data() {
     return {
@@ -89,11 +57,11 @@ export default {
   },
   mounted() {
     io({
-      newUser: this.userInfo,
-      yourBoard: this.userBoard,
-      userReady: this.userInfo,
+      newUser: this.setUserInfo,
+      yourBoard: this.setUserBoard,
+      userReady: this.setUserInfo,
       gameReady: this.activateAnimate,
-      board: this.totalBoard,
+      board: this.setGameBoard,
       optionSelected: this.optionSelected,
       callbackAfterSelected: this.activateAnimate,
       errorAccess: this.exit,
@@ -102,6 +70,7 @@ export default {
         text: NOTIFICATION_BINGO.error.text,
       }),
       usernameHasBingo: this.handleUserHasBingo,
+      usersList: this.setUsers,
     },
     {
       ...getInfo(),
@@ -112,8 +81,6 @@ export default {
     ...mapState({
       board: (state) => state.bgno.board,
       userImages: (state) => state.bgno.userBoard,
-      selected: (state) => state.bgno.currentResult.selected,
-      animate: (state) => state.bgno.currentResult.animate,
       user: (state) => state.bgno.user,
     }),
     hasData() {
@@ -121,21 +88,38 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['userBoard', 'totalBoard', 'optionSelected', 'userInfo', 'activateAnimate', 'sendError', 'clean']),
-    handleStart() {
-      emit('readyToStart');
-    },
+    ...mapActions({
+      setUserBoard: 'userBoard',
+      setGameBoard: 'totalBoard',
+      optionSelected: 'optionSelected',
+      setUserInfo: 'userInfo',
+      setUsers: 'usersList',
+      activateAnimate: 'activateAnimate',
+      sendError: 'sendError',
+      clean: 'clean',
+    }),
     exit() {
+      this.$ga.event({
+        eventCategory: 'exit',
+        eventAction: 'logout',
+      });
       logout();
     },
-    handleBingo() {
-      emit('bingo');
-    },
     handleUserHasBingo({ username }) {
+      this.$ga.event({
+        eventCategory: 'modal',
+        eventAction: 'userHashBingo',
+        eventLabel: 'Winner modal',
+      });
       this.showModal = true;
       this.winner = username;
     },
     handlePlayAgainClick() {
+      this.$ga.event({
+        eventCategory: 'play',
+        eventAction: 'playAgainClick',
+        eventLabel: 'Click play again',
+      });
       this.showModal = false;
       this.exit();
     },
@@ -144,6 +128,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
+
 .dashboard {
   background: lighten($lightGray, 15%);
   display: flex;
@@ -152,6 +137,9 @@ export default {
   height: 100vh;
   width: 100%;
   margin: 0 auto;
+  @include mobile {
+    height: auto;
+  }
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
@@ -162,7 +150,7 @@ export default {
   align-items: center;
   color: $white;
   font-size: $fs-large;
-  font-family: $base-font-title;
+  font-family: $base-font-family;
   span {
     margin-left: 10px;
     cursor: pointer;
@@ -176,41 +164,38 @@ export default {
     max-width: 1240px;
     min-width: 1240px;
   }
+  @include mobile {
+    max-width: initial;
+    min-width: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   height: 100%;
   margin-top: calculateRem(75px);
   margin-bottom: calculateRem(25px);
-  .outputImagesContainer {
-    width: 60%;
-    .outputImages {
-      width: 100%;
-    }
-  }
   .Info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
+    @include mobile {
+      width: 100%;
+      .UserBoard {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
     .wheelContainer {
       width: 100%;
       align-self: center;
-      height: calculateRem(200px);
-      width: calculateRem(200px);
+      height: auto;
+      width: calculateRem(220px);
       @include largeDesktop {
-        width: calculateRem(250px);
-        height: calculateRem(200px);
-      }
-      .Wheel {
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-      }
-      .createBtn {
-        width: 100%;
-        border-radius: calculateRem(10px);
-        margin-top: calculateRem(15px);
+        width: calculateRem(280px);
       }
     }
   }

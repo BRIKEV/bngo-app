@@ -1,4 +1,7 @@
+import { getGameTypes } from '@/api';
 import bgnoActions from './bgnoActions';
+
+jest.mock('@/api');
 
 describe('Bgno actions', () => {
   const commit = jest.fn();
@@ -38,5 +41,22 @@ describe('Bgno actions', () => {
   it('clean action', () => {
     bgnoActions.clean({ commit });
     expect(commit).toHaveBeenCalledWith('CLEAN');
+  });
+
+  it('usersList action', () => {
+    const users = [
+      { name: 'Test1', ready: false },
+      { name: 'Test2', ready: true },
+    ];
+    const mockUsers = { users };
+    bgnoActions.usersList({ commit }, mockUsers);
+    expect(commit).toHaveBeenCalledWith('SET_USERS', users);
+  });
+
+  it('gameTypes action', async () => {
+    const res = { data: ['standard'] };
+    await getGameTypes.mockResolvedValueOnce(res);
+    await bgnoActions.gameTypes({ commit });
+    expect(commit).toHaveBeenCalledWith('SET_GAME_TYPES', ['standard']);
   });
 });

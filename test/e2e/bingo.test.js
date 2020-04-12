@@ -16,9 +16,9 @@ describe('Bingo e2e tests', () => {
 
   let storeSystem;
   before(async () => {
-    const { server: { app }, store } = await sys.start();
+    const { server: { app }, store, config } = await sys.start();
     request = supertest(app);
-    storeSystem = store;
+    storeSystem = store[config.controller.storeMode];
   });
 
   beforeEach(async () => {
@@ -153,6 +153,41 @@ describe('Bingo e2e tests', () => {
         expect(msg.username).to.eql(username);
         expect(msg.ready).to.eql(true);
         cb();
+      });
+    });
+
+    it('create a game and join one user and receive userLists with user not ready', cb => {
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.on('usersList', msg => {
+        expect(msg.users[0].ready).to.eql(false);
+        expect(msg.users).to.have.length(1);
+        cb();
+      });
+    });
+
+    it(`create a game and join one user and emit one event readyToStart to receive 
+      in the client usersList with all the users in the game and their status
+    `, cb => {
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.emit('readyToStart');
+      socket.on('usersList', msg => {
+        if (msg.users[0].ready) {
+          expect(msg.users[0].ready).to.eql(true);
+          expect(msg.users).to.have.length(1);
+          cb();
+        }
       });
     });
 

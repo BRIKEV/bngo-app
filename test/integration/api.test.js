@@ -15,11 +15,13 @@ describe('API endpoint', () => {
 
   let storeSystem;
   let tokenMethods;
+  let configInfo;
   before(async () => {
     const { server: { app }, store, config } = await sys.start();
     tokenMethods = jwt(config.routes.api.tokenSecret);
     request = supertest(app);
-    storeSystem = store;
+    storeSystem = store[config.controller.storeMode];
+    configInfo = config;
   });
 
   beforeEach(async () => {
@@ -40,16 +42,29 @@ describe('API endpoint', () => {
       .send({})
       .expect(400));
 
+    it('Should return BAD_REQUEST when required params are not sent', () => request
+      .post('/api/v1/game')
+      .send({
+        gameName,
+        gameKey,
+        types: ['invalid type'],
+      })
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.message).to.eql('Your sending invalid type');
+      }));
+
     it('Should return OK when we send the right params', () => request
       .post('/api/v1/game')
       .send({
         gameName,
         gameKey,
+        types: ['cars', 'default'],
       })
       .expect(200)
-      .then(({ body }) => {
+      .then(async ({ body }) => {
         expect(body).to.eql({ success: true });
-        const games = storeSystem.getGames();
+        const games = await storeSystem.getGames();
         expect(games).to.have.length(1);
       }));
 
@@ -117,7 +132,7 @@ describe('API endpoint', () => {
           expect(info.username).to.eql(username);
           expect(info.gameName).to.eql(gameName);
           expect(info.gameKey).to.eql(gameKey);
-          const games = storeSystem.getGames();
+          const games = await storeSystem.getGames();
           expect(games).to.have.length(1);
           expect(games[0].users).to.have.length(1);
         })
@@ -152,5 +167,13 @@ describe('API endpoint', () => {
             .expect(400)
         ))
     ));
+  });
+  describe('Game types endpoint', () => {
+    it('Should return the game types', () => request
+      .get('/api/v1/game-types')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).to.eql(configInfo.routes.api.validTopics);
+      }));
   });
 });

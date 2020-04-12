@@ -3,37 +3,42 @@
     class="board"
     :style="boardStyles(numOfRows, numOfColumns)"
     >
-    <div v-for="(item, index) in images" :key="index" class="boardCard">
-      <div v-show="!item.selected && !allSelected" class="hiddenCard">?</div>
+    <div
+      class="boardCard"
+      v-for="item in images"
+      :key="item.id"
+    >
       <div
-        :style="itemStyles(item)"
-        :class="{ disabled: !item.selected && !allSelected }"
-        class="item" />
+        class="hiddenCard"
+        v-show="!item.selected && !allSelected"
+      >
+        ?
+      </div>
+      <BoardItem :allSelected="allSelected" v-bind="item" />
     </div>
   </div>
 </template>
 
 <script>
 import VueTypes from 'vue-types';
+import BoardItem from '@/components/BoardItem/BoardItem.vue';
 
 export default {
   name: 'Board',
+  components: {
+    BoardItem,
+  },
   props: {
     numOfColumns: VueTypes.number.isRequired,
     numOfRows: VueTypes.number.isRequired,
     allSelected: VueTypes.bool.def(false),
     images: VueTypes.arrayOf(VueTypes.shape({
       id: VueTypes.number,
-      image: VueTypes.string.isRequired,
+      image: VueTypes.string,
       selected: VueTypes.bool.def(false),
     })).loose,
   },
   methods: {
-    itemStyles(item) {
-      return {
-        'background-image': `url(${item.image})`,
-      };
-    },
     boardStyles(rows, columns) {
       return {
         'grid-template-rows': `repeat(${rows}, auto)`,
@@ -58,7 +63,7 @@ $cardRadious: 20px;
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(28, 28, 28, 0.96);
+      background: $black;
       border-radius: $cardRadious;
       text-align: center;
       color: $white;
@@ -67,28 +72,6 @@ $cardRadious: 20px;
       justify-content: center;
       font-size: $fs-h1;
     }
-    .item {
-      cursor: pointer;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: $cardRadious;
-      box-shadow: $boxShadow;
-      transition: transform .3s;
-      height: 100%;
-      width: 100%;
-      &:hover {
-        position: relative;
-        transform: scale(2.5);
-        background-position: center;
-        z-index: 3;
-      }
-    }
   }
-}
-.disabled {
-  pointer-events: none;
-  position: none;
-  cursor: not-allowed;
-  transition: opacity .5s;
 }
 </style>

@@ -8,6 +8,8 @@ export const initialState = {
       name: null,
     },
   },
+  gameTypes: [],
+  users: [],
   board: [],
   userBoard: [],
   user: {},
@@ -40,6 +42,12 @@ export const mutations = {
       ...state.currentResult,
       animate: payload,
     };
+  },
+  SET_USERS(state, payload = []) {
+    state.users = [...payload];
+  },
+  SET_GAME_TYPES(state, payload = []) {
+    state.gameTypes = [...payload];
   },
 };
 

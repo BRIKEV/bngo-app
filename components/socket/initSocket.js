@@ -37,10 +37,11 @@ module.exports = () => {
           return controller.getUserInfo({ key: gameKey, gameName, username });
         }).then(userInfo => {
           logger.info(`User: ${username} join to game ${gameName} in the DB`);
-          const { board, ready, mainBoard } = userInfo;
+          const { board, ready, mainBoard, users } = userInfo;
           socket.join(gameName, () => {
             logger.info(`User: ${username} join to game ${gameName} to the room`);
             io.to(gameName).emit('board', { board: mainBoard });
+            io.to(gameName).emit('usersList', { users });
             // user events
             io.to(socket.id).emit('newUser', { username, ready });
             io.to(socket.id).emit('yourBoard', { username, board });
@@ -57,9 +58,10 @@ module.exports = () => {
       // readyToStart
       socket.on('readyToStart', () => {
         controller.readyToStart({ key: gameKey, username })
-          .then(({ gameReady, board }) => {
+          .then(({ gameReady, board, users }) => {
             logger.info(`User: ${username} ready to play`);
             io.to(socket.id).emit('userReady', { username, ready: true });
+            io.to(gameName).emit('usersList', { users });
             if (gameReady) {
               logger.info('Game is ready to start');
               io.to(gameName).emit('gameReady', { board });

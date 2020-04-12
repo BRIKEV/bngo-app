@@ -8,13 +8,15 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "lint:backend": "./node_modules/.bin/eslint --ignore-path .eslintignore_backend --config './.eslintrc.json' ./components ./lib ./references ./*.js ./test",
     "local": "SERVICE_ENV=local node index.js",
     "manifest": "node_modules/make-manifest/bin/make-manifest",
-    "precommit": "npm run lint",
-    "prepush": "npm run test",
     "heroku-postbuild": "npm run build",
     "qa": "npm run lint && npm run test",
+    "docker": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose.yml up -d --force-recreate'",
+    "docker:destroy": "bash -c '(docker network inspect local 2>&1 > /dev/null || docker network create local) && docker-compose --file docker/docker-compose.yml down'",
     "start": "cross-env NODE_ENV=production SERVICE_ENV=production node index.js",
+    "start:local": "cross-env node index.js",
     "test": "cross-env SERVICE_ENV=test mocha --reporter spec './test/**/*.test.js'",
     "test-ci": "cross-env SERVICE_ENV=test mocha --reporter mocha-junit-reporter"
   },
@@ -37,6 +39,7 @@
     "express-swagger-generator": "^1.1.15",
     "helmet": "^3.22.0",
     "hogan.js": "^3.0.2",
+    "ioredis": "^4.16.1",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "make-manifest": "^1.0.1",
@@ -45,16 +48,19 @@
     "optional": "^0.1.4",
     "prepper": "^1.2.0",
     "ramda": "^0.26.1",
+    "require-all": "^3.0.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "swagger-endpoint-validator": "^1.1.5",
     "systemic": "^3.3.0",
     "systemic-domain-runner": "^1.1.0",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
     "vue-i18n": "^8.16.0",
     "vue-notification": "^1.3.20",
     "vue-router": "^3.1.5",
     "vue-types": "^1.7.0",
+    "vuelidate": "^0.7.5",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
@@ -88,8 +94,8 @@
   "_id": "bngo-app@0.0.1",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test:unit",
-      "pre-push": "npm run test"
+      "pre-commit": "npm run lint && npm run lint:backend",
+      "pre-push": "npm run test && npm run test:unit"
     }
   },
   "readme": "ERROR: No README data found!"

@@ -13,13 +13,20 @@ module.exports = {
   controller: {
     boardLength: 49,
     userOptionsLength: 16,
+    storeMode: process.env.STORE_MODE || 'redis',
+  },
+  imageController: {
+    imgURL: process.env.IMG_URL || '',
   },
   routes: {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
       ...tokenOptions,
+      validTopics: ['springfield', 'default', 'cars'],
     },
     admin: {
+      cloudImages: process.env.NODE_ENV === 'production',
+      ...tokenOptions,
       frontPath: join(__dirname, '..', 'dist'),
       swaggerOptions: {
         swaggerDefinition: {
@@ -53,6 +60,12 @@ module.exports = {
   io: {
     interval: 10000,
     ...tokenOptions,
+  },
+  store: {
+    redis: {
+      URL: process.env.REDIS_URL || '127.0.0.1:6379',
+      expire: 18000,
+    },
   },
   logger: {
     transport: 'console',

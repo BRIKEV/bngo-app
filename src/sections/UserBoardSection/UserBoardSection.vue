@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="infoContainer">
+    <div class="infoContainer hideMobile">
       <p class="info">
         {{ $t('userBoardSection.info') }}
         <span class="icon material-icons">brush</span>
@@ -11,6 +11,9 @@
         >
           clear
         </span>
+    </div>
+    <div class="infoContainer hideDesktop">
+      <p class="info">{{ $t('userBoardSection.mobileInfo') }}</p>
     </div>
     <div
       ref="boardContainer"
@@ -57,12 +60,19 @@ export default {
     };
   },
   mounted() {
-    this.widthCanvas = this.$refs.boardContainer.offsetWidth;
-    this.heightCanvas = this.$refs.boardContainer.offsetHeight;
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     clear() {
       this.$refs.canvas.clearArea();
+    },
+    handleResize() {
+      this.widthCanvas = this.$refs.boardContainer.offsetWidth;
+      this.heightCanvas = this.$refs.boardContainer.offsetHeight;
     },
   },
 };
@@ -85,7 +95,6 @@ export default {
     user-select: none;
     .icon {
       margin-left: calculateRem(5px);
-
     }
   }
   .clearIcon {
@@ -100,10 +109,27 @@ export default {
     @include largeDesktop {
       grid-template-rows: repeat(4, minmax(65px, calc(100vh - 90vh))) !important;
     }
+    @include smallHeight {
+      grid-template-rows: repeat(4, minmax(55px, calc(100vh - 90vh))) !important;
+    }
+    @include mobile {
+      grid-template-rows: repeat(4, 90px) !important;
+    }
   }
   .canvas {
+    // cursor: url('../../assets/brush-white-18dp.svg') -90 -90, auto;
     position: absolute;
     z-index: 30;
+  }
+}
+@include mobile {
+  .hideMobile {
+    display: none;
+  }
+}
+@include tablet {
+  .hideDesktop {
+    display: none;
   }
 }
 </style>

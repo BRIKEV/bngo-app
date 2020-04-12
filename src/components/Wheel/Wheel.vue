@@ -3,14 +3,14 @@
     <div class="wheel wheel1">
       <div
         class="selectedImage"
-        v-if="selected.name && !animate"
+        v-show="selected.name && !animate"
       >
         <img class="image" :src="selected.image" />
         <h3 class="name">{{ selected.name }}</h3>
       </div>
       <div
         class="wheel-inner"
-        v-if="animate"
+        v-show="animate"
         :class="{ animate }"
       >
         <ImageCard
@@ -53,10 +53,6 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 .wheel {
   width: 100%;
   height: 100%;
-  box-shadow: $boxShadow;
-  overflow: hidden;
-  background: $white;
-  border-radius: calculateRem(20px);
   .animate {
     animation: rot 3s infinite linear;
   }
@@ -69,7 +65,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     .name {
       position: absolute;
       bottom: 0;
-      color: white;
+      color: $white;
       font-size: calculateRem(35px);
       left: 0;
       right: 0;

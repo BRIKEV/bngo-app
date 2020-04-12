@@ -1,12 +1,25 @@
 export default {
   dashboard: {
-    title: 'ENTOURAGE BINGO APP',
+    title: 'BINGO',
   },
   userBoardSection: {
     info: 'Dibuja sobre tu tablero',
+    mobileInfo: 'Haz click en tu tablero',
+  },
+  boardSection: {
+    title: 'Últimos resultados',
+  },
+  gameActionsSection: {
+    title: 'USUARIOS',
+    start: 'JUGAR',
+    bingo: 'BINGO',
+    userList: {
+      readyMsg: 'LISTO',
+      notReadyMsg: 'PENDIENTE',
+    },
   },
   joinGame: {
-    title: 'ENTOURAGE BINGO',
+    title: 'BNGO',
     btnAccess: 'Acceder',
     btnCreate: 'Crear',
     accessGameSection: {
@@ -15,13 +28,16 @@ export default {
       passwordLabel: 'Contraseña de la sala',
     },
     createGameSection: {
+      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
+      types: {
+        standard: 'Bingo tradicional con números',
+        default: 'Bingo de los shavales',
+        cars: 'Tablero con fotos de coches',
+        springfield: 'Juega al bingo con las imágenes de tus vecinos favoritos',
+      },
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
     },
-  },
-  disableView: {
-    title: 'Proximamente',
-    description: 'Estamos trabajando para una mejor experiencia con BNGO en tu móvil',
   },
   notification: {
     titleSuccess: 'SUCCESS',
@@ -33,5 +49,8 @@ export default {
   modal: {
     message: 'El ganador es',
     btn: 'Jugar otra vez',
+  },
+  validations: {
+    usernameLength: 'El usuario no puede tener más de 10 caracteres',
   },
 };

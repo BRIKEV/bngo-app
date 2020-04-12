@@ -1,5 +1,10 @@
 <template>
-  <div class="createGameForm">
+  <BkForm
+    class="createGameForm"
+    hasHeader
+    :title="$t('joinGame.title')"
+    @onIconClicked="$emit('onIconClicked')"
+  >
     <BkInput
       v-model="roomName"
       id="roomName"
@@ -18,34 +23,94 @@
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
     />
+    <h2 class="typesTitle">
+      {{ $t('joinGame.createGameSection.typesTitle') }}
+    </h2>
+    <Carrousel class="carrousel">
+      <template #items>
+        <TopicCard
+          v-for="(topic, index) in topics"
+          :key="index"
+          :title="topic"
+          :description="$t(`joinGame.createGameSection.types.${topic}`)"
+          :image="topic.image"
+          :bgColor="topic.bgColor"
+          @input="onChange"
+        />
+      </template>
+    </Carrousel>
     <BkButton
       class="btn"
-      slot="optional"
-      :disabled="!roomName || !gameKey"
+      :disabled="invalid"
       @btn-clicked="handleCreateClick"
     >
       {{ $t('joinGame.createGameSection.btnCreate') }}
     </BkButton>
-  </div>
+  </BkForm>
 </template>
 
 <script>
+import { Carrousel, TopicCard } from '@/components';
+import { mapState } from 'vuex';
 
 export default {
   name: 'CreateGameForm',
+  components: {
+    Carrousel,
+    TopicCard,
+  },
   data() {
     return {
       roomName: undefined,
       gameKey: undefined,
+      checkedNames: [],
     };
   },
+  computed: {
+    ...mapState({
+      topics: (state) => state.bgno.gameTypes,
+    }),
+    invalid() {
+      return !this.gameKey || !this.roomName || this.checkedNames.length === 0;
+    },
+  },
   methods: {
+    onChange(value, checked) {
+      if (checked) {
+        this.checkedNames = [...this.checkedNames, value];
+      } else {
+        this.checkedNames = this.checkedNames.filter((checkedName) => checkedName !== value);
+      }
+    },
     handleCreateClick() {
       this.$emit('onCreateClick', {
         roomName: this.roomName,
         gameKey: this.gameKey,
+        types: this.checkedNames,
       });
     },
   },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/theme/index.scss";
+
+.createGameForm {
+  width: 80%;
+  @include tablet {
+    width: 40%;
+  }
+  &::v-deep .description {
+    overflow: hidden;
+  }
+  .carrousel {
+    margin-bottom: 20px;
+  }
+  .typesTitle {
+    text-align: left;
+    padding: calculateRem(10px) 0 calculateRem(5px) 0;
+    font-size: $fs-large;
+    line-height: $base-line-height;
+  }
+}
+</style>

@@ -2,8 +2,9 @@ const {
   errorFactory,
   CustomErrorTypes,
 } = require('error-handler-module');
+const R = require('ramda');
 
-const DEFAULT_BOARD = require('../../mock/index.json');
+const getBoard = require('../../references');
 const getRandomItem = require('../../lib/getRandomItem');
 const shuffleBoard = require('../../lib/shuffleBoard');
 
@@ -14,8 +15,9 @@ const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 
 module.exports = () => {
-  const start = async ({ logger, store, config }) => {
-    const createGame = async ({ gameName, gameKey }) => {
+  const start = async ({ logger, store: storeSystem, config }) => {
+    const store = storeSystem[config.storeMode];
+    const createGame = async ({ gameName, gameKey, types }) => {
       const gameExists = await store.getGameByKey(gameKey);
       if (gameExists) {
         throw alreadyCreated('This game was already created');
@@ -26,7 +28,7 @@ module.exports = () => {
         name: gameName,
         ready: false,
         users: [],
-        board: DEFAULT_BOARD,
+        board: getBoard(types, config.boardLength),
       };
       await store.addGame(game);
       return Promise.resolve('Game created');
@@ -57,7 +59,7 @@ module.exports = () => {
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
       }
-      const board = shuffleBoard(DEFAULT_BOARD, config.userOptionsLength);
+      const board = shuffleBoard(game.board, config.userOptionsLength);
       const newUser = { username, board, ready: false };
       const updateGame = {
         ...game,
@@ -79,6 +81,8 @@ module.exports = () => {
       })
     );
 
+    const filteredUsers = users => users.map(R.omit(['board']));
+
     const readyToStart = async ({ key, username }) => {
       const game = await getGameByKey(key);
       const newUsers = game.users.map(user => {
@@ -97,7 +101,12 @@ module.exports = () => {
       };
       const { board: userBoard } = game.users.find(user => user.username === username);
       await store.updateGameByKey(updateGame);
-      return Promise.resolve({ username, gameReady, board: userBoard });
+      return Promise.resolve({
+        username,
+        gameReady,
+        board: userBoard,
+        users: filteredUsers(newUsers),
+      });
     };
 
     const isGameOver = board => (
@@ -142,7 +151,12 @@ module.exports = () => {
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
-      return Promise.resolve({ ...gameUser, mainBoard: game.board, gameReady: game.ready });
+      return Promise.resolve({
+        ...gameUser,
+        mainBoard: game.board,
+        users: filteredUsers(game.users),
+        gameReady: game.ready,
+      });
     };
 
     const hasBingo = async ({ key, gameName, username }) => {

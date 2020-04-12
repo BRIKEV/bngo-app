@@ -34,4 +34,21 @@ describe('Tickets store', () => {
     mutations.CLEAN(state);
     expect(state).toEqual(initialState);
   });
+
+  it('set users correctly', () => {
+    const mockUsers = [
+      { name: 'Test1', ready: false },
+      { name: 'Test2', ready: true },
+    ];
+    expect(state.users).toEqual(initialState.users);
+    mutations.SET_USERS(state, mockUsers);
+    expect(state.users).toEqual(mockUsers);
+  });
+
+  it('set gameTypes correctly', () => {
+    const mockGameTypes = ['standard'];
+    expect(state.gameTypes).toEqual(initialState.gameTypes);
+    mutations.SET_GAME_TYPES(state, mockGameTypes);
+    expect(state.gameTypes).toEqual(mockGameTypes);
+  });
 });

@@ -1,8 +1,6 @@
 <template>
   <div>
-  <DisableViewSection />
     <div
-      v-if="!isMobile"
       id="app"
     >
       <Notification group="notify" position="bottom left" width="400px" />
@@ -15,8 +13,6 @@
 
 <script>
 import { Notification } from '@/components';
-import { DisableViewSection } from '@/sections';
-import isMobile from './utils/isMobile';
 
 export default {
   name: 'app',
@@ -32,10 +28,6 @@ export default {
 
   components: {
     Notification,
-    DisableViewSection,
-  },
-  mounted() {
-    this.isMobile = isMobile();
   },
 };
 </script>

@@ -1,2 +1,5 @@
-client/*
-frontend/*
+components/*
+node_modules
+lib/*
+test/*
+references/*
