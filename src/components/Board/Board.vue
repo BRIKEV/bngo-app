@@ -34,7 +34,7 @@ export default {
     allSelected: VueTypes.bool.def(false),
     images: VueTypes.arrayOf(VueTypes.shape({
       id: VueTypes.number,
-      image: VueTypes.string.isRequired,
+      image: VueTypes.string,
       selected: VueTypes.bool.def(false),
     })).loose,
   },

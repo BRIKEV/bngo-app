@@ -16,7 +16,7 @@ export default {
   name: 'Board',
   props: {
     id: VueTypes.number,
-    image: VueTypes.string.isRequired,
+    image: VueTypes.string,
     selected: VueTypes.bool.def(false),
     allSelected: VueTypes.bool.def(false),
   },

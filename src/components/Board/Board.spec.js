@@ -14,19 +14,6 @@ describe('Board component', () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('Should render a disabled class if image is not selected', () => {
-    const wrapper = shallowMount(Board, {
-      propsData: {
-        ...defaultConfig.propsData,
-        images: [{
-          image: 'url',
-          selected: false,
-        }],
-      },
-    });
-    expect(wrapper.find('.disabled').exists()).toBe(true);
-  });
-
   it('Should not render a disabled class if allSelected is true', () => {
     const wrapper = shallowMount(Board, {
       propsData: {
