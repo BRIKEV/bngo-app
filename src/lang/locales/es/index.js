@@ -1,9 +1,13 @@
 export default {
   dashboard: {
-    title: 'ENTOURAGE BINGO APP',
+    title: 'BINGO',
   },
   userBoardSection: {
     info: 'Dibuja sobre tu tablero',
+    mobileInfo: 'Haz click en tu tablero',
+  },
+  boardSection: {
+    title: 'Últimos resultados',
   },
   gameActionsSection: {
     title: 'USUARIOS',
@@ -15,7 +19,7 @@ export default {
     },
   },
   joinGame: {
-    title: 'ENTOURAGE BINGO',
+    title: 'BNGO',
     btnAccess: 'Acceder',
     btnCreate: 'Crear',
     accessGameSection: {
@@ -33,10 +37,6 @@ export default {
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
     },
-  },
-  disableView: {
-    title: 'Proximamente',
-    description: 'Estamos trabajando para una mejor experiencia con BNGO en tu móvil',
   },
   notification: {
     titleSuccess: 'SUCCESS',

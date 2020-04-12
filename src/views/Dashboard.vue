@@ -15,21 +15,14 @@
       class="dashboard"
     >
       <div class="content">
-        <div class="outputImagesContainer">
-          <Board
-            class="outputImages"
-            :numOfColumns="7"
-            :numOfRows="7"
-            :images="board"
-            />
+        <BoardSection />
+        <div class="Info">
+          <GameActionsSection class="wheelContainer" />
+          <UserBoardSection
+            class="UserBoard"
+            :userImages="userImages"
+          />
         </div>
-          <div class="Info">
-            <GameActionsSection class="wheelContainer" />
-            <UserBoardSection
-              class="UserBoard"
-              :userImages="userImages"
-            />
-          </div>
       </div>
     </div>
     <WinnerModal
@@ -41,9 +34,9 @@
 </template>
 
 <script>
-import { Board, WinnerModal } from '@/components';
+import { WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection, GameActionsSection } from '@/sections';
+import { UserBoardSection, GameActionsSection, BoardSection } from '@/sections';
 import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
@@ -51,10 +44,10 @@ import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 export default {
   name: 'Dashboard',
   components: {
-    Board,
     UserBoardSection,
     WinnerModal,
     GameActionsSection,
+    BoardSection,
   },
   data() {
     return {
@@ -144,6 +137,9 @@ export default {
   height: 100vh;
   width: 100%;
   margin: 0 auto;
+  @include mobile {
+    height: auto;
+  }
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
@@ -168,34 +164,38 @@ export default {
     max-width: 1240px;
     min-width: 1240px;
   }
+  @include mobile {
+    max-width: initial;
+    min-width: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   height: 100%;
   margin-top: calculateRem(75px);
   margin-bottom: calculateRem(25px);
-  .outputImagesContainer {
-    width: 60%;
-    .outputImages {
-      width: 100%;
-    }
-  }
   .Info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
+    @include mobile {
+      width: 100%;
+      .UserBoard {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
     .wheelContainer {
       width: 100%;
       align-self: center;
-      height: calculateRem(220px);
+      height: auto;
       width: calculateRem(220px);
       @include largeDesktop {
         width: calculateRem(280px);
-        height: calculateRem(280px);
-      }
-      @include smallHeight {
-        height: calculateRem(150px);
       }
     }
   }

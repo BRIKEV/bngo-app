@@ -108,6 +108,13 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   box-shadow: $boxShadow;
   border-radius: calculateRem(20px);
   background: $white;
+  height: calculateRem(220px);
+  @include largeDesktop {
+    height: calculateRem(280px);
+  }
+  @include smallHeight {
+    height: calculateRem(150px);
+  }
   .info {
     position: absolute;
     width: 100%;

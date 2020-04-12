@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="infoContainer">
+    <div class="infoContainer hideMobile">
       <p class="info">
         {{ $t('userBoardSection.info') }}
         <span class="icon material-icons">brush</span>
@@ -11,6 +11,9 @@
         >
           clear
         </span>
+    </div>
+    <div class="infoContainer hideDesktop">
+      <p class="info">{{ $t('userBoardSection.mobileInfo') }}</p>
     </div>
     <div
       ref="boardContainer"
@@ -92,7 +95,6 @@ export default {
     user-select: none;
     .icon {
       margin-left: calculateRem(5px);
-
     }
   }
   .clearIcon {
@@ -110,11 +112,24 @@ export default {
     @include smallHeight {
       grid-template-rows: repeat(4, minmax(55px, calc(100vh - 90vh))) !important;
     }
+    @include mobile {
+      grid-template-rows: repeat(4, 90px) !important;
+    }
   }
   .canvas {
     // cursor: url('../../assets/brush-white-18dp.svg') -90 -90, auto;
     position: absolute;
     z-index: 30;
+  }
+}
+@include mobile {
+  .hideMobile {
+    display: none;
+  }
+}
+@include tablet {
+  .hideDesktop {
+    display: none;
   }
 }
 </style>

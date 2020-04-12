@@ -1,9 +1,13 @@
 export default {
   dashboard: {
-    title: 'ENTOURAGE BNGO APP',
+    title: 'BNGO',
   },
   userBoardSection: {
     info: 'Draw on your board',
+    mobileInfo: 'Click in your board',
+  },
+  boardSection: {
+    title: 'Last results',
   },
   gameActionsSection: {
     title: 'USERS',
@@ -15,7 +19,7 @@ export default {
     },
   },
   joinGame: {
-    title: 'ENTOURAGE BNGO',
+    title: 'BNGO',
     btnAccess: 'Access',
     btnCreate: 'Create',
     accessGameSection: {
@@ -33,10 +37,6 @@ export default {
       btnCreate: 'Create game',
       usernamelabel: 'Username',
     },
-  },
-  disableView: {
-    title: 'Commin soon',
-    description: 'we are working on improving your BNGO experience on mobile devices',
   },
   notification: {
     titleSuccess: 'SUCCESS',

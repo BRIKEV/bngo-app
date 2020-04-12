@@ -70,7 +70,11 @@ export default {
   },
 };
 </script>
-
-<style>
-
+<style lang="scss" scoped>
+  @import "@/theme/index.scss";
+  @include mobile {
+    canvas {
+      display: none;
+    }
+  }
 </style>
