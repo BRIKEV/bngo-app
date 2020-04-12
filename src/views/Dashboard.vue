@@ -188,11 +188,11 @@ export default {
     .wheelContainer {
       width: 100%;
       align-self: center;
-      height: calculateRem(200px);
+      height: calculateRem(220px);
       width: calculateRem(220px);
       @include largeDesktop {
         width: calculateRem(280px);
-        height: calculateRem(200px);
+        height: calculateRem(280px);
       }
       @include smallHeight {
         height: calculateRem(150px);
