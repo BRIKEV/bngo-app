@@ -88,7 +88,10 @@ export default {
 @import "@/theme/index.scss";
 
 .accessGameForm {
-  width: 30%;
+  width: 80%;
+  @include tablet {
+    width: 30%;
+  }
 }
 .error {
   display: flex;

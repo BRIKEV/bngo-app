@@ -96,7 +96,10 @@ export default {
 @import "@/theme/index.scss";
 
 .createGameForm {
-  width: 40%;
+  width: 80%;
+  @include tablet {
+    width: 40%;
+  }
   &::v-deep .description {
     overflow: hidden;
   }
