@@ -19,6 +19,19 @@
       >
         {{ $t('modal.btn') }}
       </BkButton>
+      <div class="share">
+        <a
+          href="https://twitter.com/intent/tweet"
+          class="twitter-share-button"
+          data-size="large"
+          :data-text="$t('modal.mediaMsg', { winner })"
+          data-hashtags="bngo,game,bingo"
+          data-show-count="false"
+          data-related="twitterapi, twitter"
+        >
+          Tweet
+        </a>
+      </div>
     </template>
   </BkModal>
 </template>
@@ -71,6 +84,13 @@ export default {
     background: #348659;
     border: 3px solid white;
     border-radius: 40px;
+    @include mobile {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+    }
   }
   .modalImage {
     width: 100%;
@@ -84,6 +104,10 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+  }
+  .share {
+    text-align: center;
+    margin-top: 20px;
   }
   &::v-deep .modalFooter {
     padding-top: calculateRem(30px);

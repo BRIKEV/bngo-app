@@ -49,6 +49,7 @@ export default {
   },
   modal: {
     message: 'The winner is',
+    mediaMsg: '{winner} has won a bngo game',
     btn: 'Play again',
   },
   validations: {
