@@ -8,6 +8,7 @@ export default {
   },
   boardSection: {
     title: 'Últimos resultados',
+    subtitle: 'Quedan {total}',
   },
   gameActionsSection: {
     title: 'USUARIOS',

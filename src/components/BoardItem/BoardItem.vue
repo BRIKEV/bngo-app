@@ -15,7 +15,7 @@ import VueTypes from 'vue-types';
 export default {
   name: 'Board',
   props: {
-    id: VueTypes.number,
+    id: VueTypes.string,
     image: VueTypes.string,
     selected: VueTypes.bool.def(false),
     allSelected: VueTypes.bool.def(false),

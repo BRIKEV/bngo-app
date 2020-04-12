@@ -1,294 +1,294 @@
 [
   {
-    "id": 1,
+    "id": "default-1",
     "name": "CJ",
     "image": "/images/default/CJ.png",
     "selected": false
   },
   {
-    "id": 2,
+    "id": "default-2",
     "name": "blacksalami",
     "image": "/images/default/blacksalami.jpeg",
     "selected": false
   },
   {
-    "id": 3,
+    "id": "default-3",
     "name": "duckgame",
     "image": "/images/default/duckgame.jpg",
     "selected": false
   },
   {
-    "id": 4,
+    "id": "default-4",
     "name": "halloween2",
     "image": "/images/default/halloween2.jpeg",
     "selected": false
   },
   {
-    "id": 5,
+    "id": "default-5",
     "name": "loco",
     "image": "/images/default/loco.png",
     "selected": false
   },
   {
-    "id": 6,
+    "id": "default-6",
     "name": "minifoguet",
     "image": "/images/default/minifoguet.jpg",
     "selected": false
   },
   {
-    "id": 7,
+    "id": "default-7",
     "name": "orgullo",
     "image": "/images/default/orgullo.jpeg",
     "selected": false
   },
   {
-    "id": 8,
+    "id": "default-8",
     "name": "reycalle",
     "image": "/images/default/reycalle.jpg",
     "selected": false
   },
   {
-    "id": 9,
+    "id": "default-9",
     "name": "wakanda",
     "image": "/images/default/wakanda.jpg",
     "selected": false
   },
   {
-    "id": 10,
+    "id": "default-10",
     "name": "Daft-Punk",
     "image": "/images/default/Daft-Punk.jpg",
     "selected": false
   },
   {
-    "id": 11,
+    "id": "default-11",
     "name": "bonjovi",
     "image": "/images/default/bonjovi.jpg",
     "selected": false
   },
   {
-    "id": 12,
+    "id": "default-12",
     "name": "eee",
     "image": "/images/default/eee.jpg",
     "selected": false
   },
   {
-    "id": 13,
+    "id": "default-13",
     "name": "halloween3",
     "image": "/images/default/halloween3.jpeg",
     "selected": false
   },
   {
-    "id": 14,
+    "id": "default-14",
     "name": "marianini",
     "image": "/images/default/marianini.jpg",
     "selected": false
   },
   {
-    "id": 15,
+    "id": "default-15",
     "name": "minikaratekas",
     "image": "/images/default/minikaratekas.jpeg",
     "selected": false
   },
   {
-    "id": 16,
+    "id": "default-16",
     "name": "papalogo",
     "image": "/images/default/papalogo.png",
     "selected": false
   },
   {
-    "id": 17,
+    "id": "default-17",
     "name": "rock",
     "image": "/images/default/rock.jpg",
     "selected": false
   },
   {
-    "id": 18,
+    "id": "default-18",
     "name": "ataud-meme",
     "image": "/images/default/ataud-meme.jpg",
     "selected": false
   },
   {
-    "id": 19,
+    "id": "default-19",
     "name": "borderlands",
     "image": "/images/default/borderlands.jpg",
     "selected": false
   },
   {
-    "id": 20,
+    "id": "default-20",
     "name": "flanders",
     "image": "/images/default/flanders.jpeg",
     "selected": false
   },
   {
-    "id": 21,
+    "id": "default-21",
     "name": "hobbit",
     "image": "/images/default/hobbit.jpeg",
     "selected": false
   },
   {
-    "id": 22,
+    "id": "default-22",
     "name": "marran",
     "image": "/images/default/marran.jpeg",
     "selected": false
   },
   {
-    "id": 23,
+    "id": "default-23",
     "name": "narco",
     "image": "/images/default/narco.jpeg",
     "selected": false
   },
   {
-    "id": 24,
+    "id": "default-24",
     "name": "policeman",
     "image": "/images/default/policeman.jpeg",
     "selected": false
   },
   {
-    "id": 25,
+    "id": "default-25",
     "name": "setas",
     "image": "/images/default/setas.jpg",
     "selected": false
   },
   {
-    "id": 26,
+    "id": "default-26",
     "name": "babyyoda",
     "image": "/images/default/babyyoda.jpg",
     "selected": false
   },
   {
-    "id": 27,
+    "id": "default-27",
     "name": "cowboy",
     "image": "/images/default/cowboy.jpeg",
     "selected": false
   },
   {
-    "id": 28,
+    "id": "default-28",
     "name": "foguetgangsta",
     "image": "/images/default/foguetgangsta.jpg",
     "selected": false
   },
   {
-    "id": 29,
+    "id": "default-29",
     "name": "huevon",
     "image": "/images/default/huevon.jpeg",
     "selected": false
   },
   {
-    "id": 30,
+    "id": "default-30",
     "name": "marran",
     "image": "/images/default/marran.jpg",
     "selected": false
   },
   {
-    "id": 31,
+    "id": "default-31",
     "name": "nicolas",
     "image": "/images/default/nicolas.jpg",
     "selected": false
   },
   {
-    "id": 32,
+    "id": "default-32",
     "name": "pueblodiz",
     "image": "/images/default/pueblodiz.jpg",
     "selected": false
   },
   {
-    "id": 33,
+    "id": "default-33",
     "name": "snopdog",
     "image": "/images/default/snopdog.jpg",
     "selected": false
   },
   {
-    "id": 34,
+    "id": "default-34",
     "name": "badboy",
     "image": "/images/default/badboy.jpeg",
     "selected": false
   },
   {
-    "id": 35,
+    "id": "default-35",
     "name": "darksouls",
     "image": "/images/default/darksouls.jpg",
     "selected": false
   },
   {
-    "id": 36,
+    "id": "default-36",
     "name": "fuckmaiguel",
     "image": "/images/default/fuckmaiguel.jpg",
     "selected": false
   },
   {
-    "id": 37,
+    "id": "default-37",
     "name": "jarjar",
     "image": "/images/default/jarjar.jpg",
     "selected": false
   },
   {
-    "id": 38,
+    "id": "default-38",
     "name": "mazaX",
     "image": "/images/default/mazaX.jpg",
     "selected": false
   },
   {
-    "id": 39,
+    "id": "default-39",
     "name": "nuclear",
     "image": "/images/default/nuclear.jpg",
     "selected": false
   },
   {
-    "id": 40,
+    "id": "default-40",
     "name": "puto",
     "image": "/images/default/puto.jpeg",
     "selected": false
   },
   {
-    "id": 41,
+    "id": "default-41",
     "name": "stroh",
     "image": "/images/default/stroh.jpg",
     "selected": false
   },
   {
-    "id": 42,
+    "id": "default-42",
     "name": "batmanyrobin",
     "image": "/images/default/batmanyrobin.jpeg",
     "selected": false
   },
   {
-    "id": 43,
+    "id": "default-43",
     "name": "drake",
     "image": "/images/default/drake.jpg",
     "selected": false
   },
   {
-    "id": 44,
+    "id": "default-44",
     "name": "halamadrid",
     "image": "/images/default/halamadrid.jpg",
     "selected": false
   },
   {
-    "id": 45,
+    "id": "default-45",
     "name": "jordan",
     "image": "/images/default/jordan.jpg",
     "selected": false
   },
   {
-    "id": 46,
+    "id": "default-46",
     "name": "minialdo",
     "image": "/images/default/minialdo.jpg",
     "selected": false
   },
   {
-    "id": 47,
+    "id": "default-47",
     "name": "omg",
     "image": "/images/default/omg.jpeg",
     "selected": false
   },
   {
-    "id": 48,
+    "id": "default-48",
     "name": "random",
     "image": "/images/default/random.jpeg",
     "selected": false
   },
   {
-    "id": 49,
+    "id": "default-49",
     "name": "tetrix",
     "image": "/images/default/tetrix.jpg",
     "selected": false

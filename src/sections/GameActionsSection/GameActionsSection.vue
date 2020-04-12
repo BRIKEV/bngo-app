@@ -113,7 +113,7 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     height: calculateRem(280px);
   }
   @include smallHeight {
-    height: calculateRem(150px);
+    height: calculateRem(200px);
   }
   .info {
     position: absolute;

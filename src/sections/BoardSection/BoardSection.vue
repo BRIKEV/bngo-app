@@ -7,13 +7,18 @@
       :images="board"
       />
     <div class="horizontalContainer">
-      <h2 class="title">{{ $t('boardSection.title') }}</h2>
-      <Board
-        class="outputImagesMobile"
-        :numOfColumns="49"
-        :numOfRows="1"
-        :images="orderedBoard"
-        />
+      <div class="titleContainer">
+        <h2 class="title">{{ $t('boardSection.title') }}</h2>
+        <span>{{ $t('boardSection.subtitle', { total }) }}</span>
+      </div>
+      <div class="boardContainer">
+        <Board
+          class="outputImagesMobile"
+          :numOfColumns="49"
+          :numOfRows="1"
+          :images="orderedBoard"
+          />
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +39,9 @@ export default {
     orderedBoard() {
       return [...this.board].sort((a, b) => b.selected - a.selected);
     },
+    total() {
+      return this.board.filter(({ selected }) => !selected).length;
+    },
   },
 };
 </script>
@@ -44,22 +52,27 @@ export default {
   @include mobile {
     width: 90%;
     margin: 0 auto calculateRem(30px) auto;
-    overflow-x: auto;
   }
   .horizontalContainer {
     display: none;
     @include mobile {
       display: block;
       padding-bottom: calculateRem(5px);
-      .title {
+      .titleContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         font-size: $fs-base;
         color: $brand;
-        margin-bottom: calculateRem(15px);
+        margin-bottom: calculateRem(20px);
       }
       .outputImagesMobile {
         width: 100%;
         grid-template-rows: repeat(1, 80px) !important;
         grid-template-columns: repeat(49, 80px) !important;
+      }
+      .boardContainer {
+        overflow-x: auto;
       }
     }
   }
