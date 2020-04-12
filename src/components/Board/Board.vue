@@ -83,7 +83,7 @@ $cardRadious: 20px;
       background-repeat: no-repeat;
       border-radius: $cardRadious;
       box-shadow: $boxShadow;
-      background: $white;
+      background-color: $white;
       transition: transform .3s;
       height: 100%;
       width: 100%;
