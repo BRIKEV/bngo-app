@@ -1,8 +1,12 @@
-const dataReferences = require('./dataReferences.json');
+const { data } = require('require-all')({
+  dirname: __dirname,
+  filter: fileName => (fileName === 'index.js' ? undefined : fileName.replace('.json', '')),
+});
+
 const shuffleBoard = require('../lib/shuffleBoard');
 
 const getBoard = (types = ['default'], boardLength) => {
-  const allCards = types.map(type => dataReferences[type]).filter(Boolean);
+  const allCards = types.map(type => data[type]).filter(Boolean);
   const flatArray = [].concat(...allCards);
   return shuffleBoard(flatArray, boardLength);
 };
