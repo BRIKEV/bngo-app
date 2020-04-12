@@ -1,0 +1,596 @@
+[
+  {
+    "id": 1,
+    "name": "alien",
+    "image": "/images/springfield/alien.png",
+    "selected": false
+  },
+  {
+    "id": 2,
+    "name": "Allison Taylor",
+    "image": "/images/springfield/Allison_Taylor.png",
+    "selected": false
+  },
+  {
+    "id": 3,
+    "name": "Amber Simpson",
+    "image": "/images/springfield/Amber_Simpson.png",
+    "selected": false
+  },
+  {
+    "id": 4,
+    "name": "Apu",
+    "image": "/images/springfield/Apu.jpg",
+    "selected": false
+  },
+  {
+    "id": 5,
+    "name": "Artie Ziff",
+    "image": "/images/springfield/Artie_Ziff.png",
+    "selected": false
+  },
+  {
+    "id": 6,
+    "name": "barney",
+    "image": "/images/springfield/barney.png",
+    "selected": false
+  },
+  {
+    "id": 7,
+    "name": "bart batman",
+    "image": "/images/springfield/bart-batman.jpg",
+    "selected": false
+  },
+  {
+    "id": 8,
+    "name": "bart",
+    "image": "/images/springfield/bart.jpg",
+    "selected": false
+  },
+  {
+    "id": 9,
+    "name": "Blue Haired Lawyer",
+    "image": "/images/springfield/Blue-Haired_Lawyer.png",
+    "selected": false
+  },
+  {
+    "id": 10,
+    "name": "Bob actor",
+    "image": "/images/springfield/Bob-actor.jpg",
+    "selected": false
+  },
+  {
+    "id": 11,
+    "name": "bumblebee man",
+    "image": "/images/springfield/bumblebee-man.jpg",
+    "selected": false
+  },
+  {
+    "id": 12,
+    "name": "Burns",
+    "image": "/images/springfield/Burns.png",
+    "selected": false
+  },
+  {
+    "id": 13,
+    "name": "captain",
+    "image": "/images/springfield/captain.png",
+    "selected": false
+  },
+  {
+    "id": 14,
+    "name": "Carl",
+    "image": "/images/springfield/Carl.jpg",
+    "selected": false
+  },
+  {
+    "id": 15,
+    "name": "chalmers",
+    "image": "/images/springfield/chalmers.png",
+    "selected": false
+  },
+  {
+    "id": 16,
+    "name": "Chester J. Lampwick",
+    "image": "/images/springfield/Chester_J._Lampwick.png",
+    "selected": false
+  },
+  {
+    "id": 17,
+    "name": "city goofball",
+    "image": "/images/springfield/city-goofball.png",
+    "selected": false
+  },
+  {
+    "id": 18,
+    "name": "cletus sister",
+    "image": "/images/springfield/cletus-sister.jpg",
+    "selected": false
+  },
+  {
+    "id": 19,
+    "name": "Cletus",
+    "image": "/images/springfield/Cletus.jpg",
+    "selected": false
+  },
+  {
+    "id": 20,
+    "name": "Coach krupt",
+    "image": "/images/springfield/Coach_krupt.png",
+    "selected": false
+  },
+  {
+    "id": 21,
+    "name": "Constance Harm",
+    "image": "/images/springfield/Constance_Harm.png",
+    "selected": false
+  },
+  {
+    "id": 22,
+    "name": "Disco stu",
+    "image": "/images/springfield/Disco-stu.jpg",
+    "selected": false
+  },
+  {
+    "id": 23,
+    "name": "disco stu",
+    "image": "/images/springfield/disco-stu.png",
+    "selected": false
+  },
+  {
+    "id": 24,
+    "name": "dolph",
+    "image": "/images/springfield/dolph.jpg",
+    "selected": false
+  },
+  {
+    "id": 25,
+    "name": "Doris Freedman",
+    "image": "/images/springfield/Doris-Freedman.png",
+    "selected": false
+  },
+  {
+    "id": 26,
+    "name": "doris",
+    "image": "/images/springfield/doris.jpg",
+    "selected": false
+  },
+  {
+    "id": 27,
+    "name": "dr nick",
+    "image": "/images/springfield/dr-nick.jpg",
+    "selected": false
+  },
+  {
+    "id": 28,
+    "name": "duffman",
+    "image": "/images/springfield/duffman.jpg",
+    "selected": false
+  },
+  {
+    "id": 29,
+    "name": "Edna Krabappel",
+    "image": "/images/springfield/Edna-Krabappel.jpg",
+    "selected": false
+  },
+  {
+    "id": 30,
+    "name": "Fat toni",
+    "image": "/images/springfield/Fat_toni.jpg",
+    "selected": false
+  },
+  {
+    "id": 31,
+    "name": "flanders",
+    "image": "/images/springfield/flanders.jpg",
+    "selected": false
+  },
+  {
+    "id": 32,
+    "name": "Frank Grimes",
+    "image": "/images/springfield/Frank_Grimes.png",
+    "selected": false
+  },
+  {
+    "id": 33,
+    "name": "Frankie the Squealer",
+    "image": "/images/springfield/Frankie_the_Squealer.png",
+    "selected": false
+  },
+  {
+    "id": 34,
+    "name": "Gina Vendetti",
+    "image": "/images/springfield/Gina-Vendetti.png",
+    "selected": false
+  },
+  {
+    "id": 35,
+    "name": "Ginger Flanders",
+    "image": "/images/springfield/Ginger_Flanders.png",
+    "selected": false
+  },
+  {
+    "id": 36,
+    "name": "grampa simpson",
+    "image": "/images/springfield/grampa-simpson.jpg",
+    "selected": false
+  },
+  {
+    "id": 37,
+    "name": "hank scorpio",
+    "image": "/images/springfield/hank-scorpio.png",
+    "selected": false
+  },
+  {
+    "id": 38,
+    "name": "hans topo",
+    "image": "/images/springfield/hans-topo.jpg",
+    "selected": false
+  },
+  {
+    "id": 39,
+    "name": "Helen Lovejoy",
+    "image": "/images/springfield/Helen_Lovejoy.png",
+    "selected": false
+  },
+  {
+    "id": 40,
+    "name": "HerbPowell",
+    "image": "/images/springfield/HerbPowell.png",
+    "selected": false
+  },
+  {
+    "id": 41,
+    "name": "Herman Hermann",
+    "image": "/images/springfield/Herman-Hermann.png",
+    "selected": false
+  },
+  {
+    "id": 42,
+    "name": "Homer Simpson rosquilla",
+    "image": "/images/springfield/Homer_Simpson-rosquilla.png",
+    "selected": false
+  },
+  {
+    "id": 43,
+    "name": "Homer",
+    "image": "/images/springfield/Homer.png",
+    "selected": false
+  },
+  {
+    "id": 44,
+    "name": "Hyman Krustofski",
+    "image": "/images/springfield/Hyman_Krustofski.png",
+    "selected": false
+  },
+  {
+    "id": 45,
+    "name": "itchy",
+    "image": "/images/springfield/itchy.jpg",
+    "selected": false
+  },
+  {
+    "id": 46,
+    "name": "Jasper Beardley",
+    "image": "/images/springfield/Jasper-Beardley.png",
+    "selected": false
+  },
+  {
+    "id": 47,
+    "name": "Jeff Albertson",
+    "image": "/images/springfield/Jeff_Albertson.png",
+    "selected": false
+  },
+  {
+    "id": 48,
+    "name": "jimbo jones",
+    "image": "/images/springfield/jimbo-jones.jpg",
+    "selected": false
+  },
+  {
+    "id": 49,
+    "name": "Johnny Tightlips",
+    "image": "/images/springfield/Johnny_Tightlips.png",
+    "selected": false
+  },
+  {
+    "id": 50,
+    "name": "Juliet hobbes",
+    "image": "/images/springfield/Juliet-hobbes.png",
+    "selected": false
+  },
+  {
+    "id": 51,
+    "name": "kearney Zzyzwicz",
+    "image": "/images/springfield/kearney-Zzyzwicz.jpg",
+    "selected": false
+  },
+  {
+    "id": 52,
+    "name": "krusty",
+    "image": "/images/springfield/krusty.jpg",
+    "selected": false
+  },
+  {
+    "id": 53,
+    "name": "LarryBurns",
+    "image": "/images/springfield/LarryBurns.png",
+    "selected": false
+  },
+  {
+    "id": 54,
+    "name": "Lenny",
+    "image": "/images/springfield/Lenny.jpg",
+    "selected": false
+  },
+  {
+    "id": 55,
+    "name": "Leprechaun",
+    "image": "/images/springfield/Leprechaun.png",
+    "selected": false
+  },
+  {
+    "id": 56,
+    "name": "ling bouvier",
+    "image": "/images/springfield/ling-bouvier.jpg",
+    "selected": false
+  },
+  {
+    "id": 57,
+    "name": "lionel hutz",
+    "image": "/images/springfield/lionel-hutz.jpg",
+    "selected": false
+  },
+  {
+    "id": 58,
+    "name": "loca gatos",
+    "image": "/images/springfield/loca-gatos.png",
+    "selected": false
+  },
+  {
+    "id": 59,
+    "name": "Louie",
+    "image": "/images/springfield/Louie.png",
+    "selected": false
+  },
+  {
+    "id": 60,
+    "name": "Luigi risotto",
+    "image": "/images/springfield/Luigi-risotto.png",
+    "selected": false
+  },
+  {
+    "id": 61,
+    "name": "Manjula Nahasapeemapetilon",
+    "image": "/images/springfield/Manjula_Nahasapeemapetilon.png",
+    "selected": false
+  },
+  {
+    "id": 62,
+    "name": "Marge",
+    "image": "/images/springfield/Marge.png",
+    "selected": false
+  },
+  {
+    "id": 63,
+    "name": "martin",
+    "image": "/images/springfield/martin.jpg",
+    "selected": false
+  },
+  {
+    "id": 64,
+    "name": "Marvin Monroe",
+    "image": "/images/springfield/Marvin_Monroe.png",
+    "selected": false
+  },
+  {
+    "id": 65,
+    "name": "maude flanders",
+    "image": "/images/springfield/maude-flanders.jpg",
+    "selected": false
+  },
+  {
+    "id": 66,
+    "name": "Meathook",
+    "image": "/images/springfield/Meathook.png",
+    "selected": false
+  },
+  {
+    "id": 67,
+    "name": "Michael damico",
+    "image": "/images/springfield/Michael-damico.png",
+    "selected": false
+  },
+  {
+    "id": 68,
+    "name": "milhouse",
+    "image": "/images/springfield/milhouse.jpg",
+    "selected": false
+  },
+  {
+    "id": 69,
+    "name": "Milo",
+    "image": "/images/springfield/Milo.png",
+    "selected": false
+  },
+  {
+    "id": 70,
+    "name": "Moe",
+    "image": "/images/springfield/Moe.png",
+    "selected": false
+  },
+  {
+    "id": 71,
+    "name": "mona simpson",
+    "image": "/images/springfield/mona-simpson.jpg",
+    "selected": false
+  },
+  {
+    "id": 72,
+    "name": "Mr. Teeny",
+    "image": "/images/springfield/Mr._Teeny.png",
+    "selected": false
+  },
+  {
+    "id": 73,
+    "name": "music teacher",
+    "image": "/images/springfield/music-teacher.jpg",
+    "selected": false
+  },
+  {
+    "id": 74,
+    "name": "Nel",
+    "image": "/images/springfield/Nel.jpg",
+    "selected": false
+  },
+  {
+    "id": 75,
+    "name": "Nelson",
+    "image": "/images/springfield/Nelson.png",
+    "selected": false
+  },
+  {
+    "id": 76,
+    "name": "Nikki McKenna",
+    "image": "/images/springfield/Nikki_McKenna.png",
+    "selected": false
+  },
+  {
+    "id": 77,
+    "name": "Otto",
+    "image": "/images/springfield/Otto.jpg",
+    "selected": false
+  },
+  {
+    "id": 78,
+    "name": "patty",
+    "image": "/images/springfield/patty.jpg",
+    "selected": false
+  },
+  {
+    "id": 79,
+    "name": "poochie",
+    "image": "/images/springfield/poochie.jpg",
+    "selected": false
+  },
+  {
+    "id": 80,
+    "name": "quimby",
+    "image": "/images/springfield/quimby.png",
+    "selected": false
+  },
+  {
+    "id": 81,
+    "name": "Ramrod Unlock",
+    "image": "/images/springfield/Ramrod_Unlock.png",
+    "selected": false
+  },
+  {
+    "id": 82,
+    "name": "reverend lovejoy",
+    "image": "/images/springfield/reverend-lovejoy.jpg",
+    "selected": false
+  },
+  {
+    "id": 83,
+    "name": "rodney flanders",
+    "image": "/images/springfield/rodney-flanders.png",
+    "selected": false
+  },
+  {
+    "id": 84,
+    "name": "Roy Snyder",
+    "image": "/images/springfield/Roy_Snyder.png",
+    "selected": false
+  },
+  {
+    "id": 85,
+    "name": "Ruth Powers",
+    "image": "/images/springfield/Ruth_Powers.png",
+    "selected": false
+  },
+  {
+    "id": 86,
+    "name": "santa",
+    "image": "/images/springfield/santa.png",
+    "selected": false
+  },
+  {
+    "id": 87,
+    "name": "scratch",
+    "image": "/images/springfield/scratch.jpg",
+    "selected": false
+  },
+  {
+    "id": 88,
+    "name": "sherri and terri",
+    "image": "/images/springfield/sherri-and-terri.png",
+    "selected": false
+  },
+  {
+    "id": 89,
+    "name": "Skinner",
+    "image": "/images/springfield/Skinner.jpg",
+    "selected": false
+  },
+  {
+    "id": 90,
+    "name": "Smithers",
+    "image": "/images/springfield/Smithers.png",
+    "selected": false
+  },
+  {
+    "id": 91,
+    "name": "Snake",
+    "image": "/images/springfield/Snake.jpg",
+    "selected": false
+  },
+  {
+    "id": 92,
+    "name": "spider pig",
+    "image": "/images/springfield/spider-pig.jpg",
+    "selected": false
+  },
+  {
+    "id": 93,
+    "name": "supernerd",
+    "image": "/images/springfield/supernerd.png",
+    "selected": false
+  },
+  {
+    "id": 94,
+    "name": "Todd",
+    "image": "/images/springfield/Todd.png",
+    "selected": false
+  },
+  {
+    "id": 95,
+    "name": "troy mcclure",
+    "image": "/images/springfield/troy-mcclure.jpg",
+    "selected": false
+  },
+  {
+    "id": 96,
+    "name": "Uter",
+    "image": "/images/springfield/Uter.png",
+    "selected": false
+  },
+  {
+    "id": 97,
+    "name": "wiggum partner",
+    "image": "/images/springfield/wiggum-partner.jpg",
+    "selected": false
+  },
+  {
+    "id": 98,
+    "name": "Wiggum",
+    "image": "/images/springfield/Wiggum.jpg",
+    "selected": false
+  },
+  {
+    "id": 99,
+    "name": "Willie",
+    "image": "/images/springfield/Willie.jpg",
+    "selected": false
+  }
+]
