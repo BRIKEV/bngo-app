@@ -56,7 +56,7 @@ export default {
       this.$ga.event({
         eventCategory: 'create',
         eventAction: 'createClick',
-        eventLabel: 'Click on create game button',
+        eventLabel: `Create game with roomname ${roomName} and tpye: ${types.join(', ')}`,
       });
       return createGame({ gameKey, gameName: roomName, types })
         .then(() => {
