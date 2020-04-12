@@ -83,6 +83,7 @@ $cardRadious: 20px;
       background-repeat: no-repeat;
       border-radius: $cardRadious;
       box-shadow: $boxShadow;
+      background: $white;
       transition: transform .3s;
       height: 100%;
       width: 100%;
@@ -90,7 +91,7 @@ $cardRadious: 20px;
         position: relative;
         transform: scale(2.5);
         background-position: center;
-        z-index: 3;
+        z-index: 300;
       }
     }
   }
