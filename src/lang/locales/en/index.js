@@ -33,6 +33,7 @@ export default {
         standard: 'Traditional bingo with numbers',
         default: 'Bingo de los shavales',
         cars: 'Bingo of cars',
+        springfield: 'Play bingo with pictures of your favorite neighbors',
       },
       btnCreate: 'Create game',
       usernamelabel: 'Username',
