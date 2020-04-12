@@ -66,12 +66,15 @@ $boxShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
       position: absolute;
       bottom: 0;
       color: $white;
-      font-size: calculateRem(35px);
+      font-size: $fs-small;
       left: 0;
       right: 0;
       text-align: center;
       padding: calculateRem(5px) 0;
       background: $dark;
+      @include desktop {
+        font-size: $fs-medium;
+      }
     }
   }
   .wheel-inner {
