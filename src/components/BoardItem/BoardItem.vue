@@ -62,6 +62,7 @@ $crossSize: calculateRem(80px);
       position: relative;
       transform: scale(2.5);
       background-position: center;
+      background-color: $white;
       z-index: 3;
     }
   }
