@@ -10,15 +10,15 @@ describe('getBoard methods tests', () => {
     expect(result).to.have.length(0);
   });
 
-  it('should return 2 values from default type', () => {
-    const types = ['default'];
+  it('should return 2 values from cars type', () => {
+    const types = ['cars'];
     const length = 2;
     const result = getBoard(types, length);
     expect(result).to.have.length(2);
   });
 
-  it('should return 49 default type values and one of not found missing type', () => {
-    const types = ['default', 'not_found'];
+  it('should return 49 cars type values and one of not found missing type', () => {
+    const types = ['cars', 'not_found'];
     const length = 50;
     const result = getBoard(types, length);
     expect(result).to.have.length(49);
