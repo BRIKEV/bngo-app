@@ -1,0 +1,296 @@
+[
+    {
+      "id": "standard-1",
+      "name": "Number 0",
+      "image": "/images/standard/0.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-2",
+      "name": "Number 00",
+      "image": "/images/standard/00.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-3",
+      "name": "Number 1",
+      "image": "/images/standard/1.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-4",
+      "name": "Number 2",
+      "image": "/images/standard/2.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-5",
+      "name": "Number 3",
+      "image": "/images/standard/3.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-6",
+      "name": "Number 4",
+      "image": "/images/standard/4.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-7",
+      "name": "Number 5",
+      "image": "/images/standard/5.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-8",
+      "name": "Number 6",
+      "image": "/images/standard/6.jpeg",
+      "selected": false
+    },
+    {
+      "id": "standard-9",
+      "name": "Number 7",
+      "image": "/images/standard/7.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-10",
+      "name": "Number 8",
+      "image": "/images/standard/8.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-11",
+      "name": "Number 9",
+      "image": "/images/standard/9.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-12",
+      "name": "Number 10",
+      "image": "/images/standard/10.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-13",
+      "name": "Number 11",
+      "image": "/images/standard/11.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-14",
+      "name": "Number 12",
+      "image": "/images/standard/12.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-15",
+      "name": "Number 13",
+      "image": "/images/standard/13.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-16",
+      "name": "Number 14",
+      "image": "/images/standard/14.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-17",
+      "name": "Number 15",
+      "image": "/images/standard/15.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-18",
+      "name": "Number 16",
+      "image": "/images/standard/16.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-19",
+      "name": "Number 19",
+      "image": "/images/standard/19.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-20",
+      "name": "Number 20",
+      "image": "/images/standard/20.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-21",
+      "name": "Number 21",
+      "image": "/images/standard/21.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-22",
+      "name": "Number 23",
+      "image": "/images/standard/23.png",
+      "selected": false
+    },
+    {
+      "id": "standard-23",
+      "name": "Number 24",
+      "image": "/images/standard/24.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-24",
+      "name": "Number 25",
+      "image": "/images/standard/25.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-25",
+      "name": "Number 26",
+      "image": "/images/standard/26.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-26",
+      "name": "Number 27",
+      "image": "/images/standard/27.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-27",
+      "name": "Number 30",
+      "image": "/images/standard/30.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-28",
+      "name": "Number 32",
+      "image": "/images/standard/32.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-29",
+      "name": "Number 33",
+      "image": "/images/standard/33.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-30",
+      "name": "Number 34",
+      "image": "/images/standard/34.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-31",
+      "name": "Number 35",
+      "image": "/images/standard/35.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-32",
+      "name": "Number 41",
+      "image": "/images/standard/41.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-33",
+      "name": "Number 42",
+      "image": "/images/standard/42.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-34",
+      "name": "Number 43",
+      "image": "/images/standard/43.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-35",
+      "name": "Number 44",
+      "image": "/images/standard/44.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-36",
+      "name": "Number 45",
+      "image": "/images/standard/45.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-37",
+      "name": "Number 46",
+      "image": "/images/standard/46.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-38",
+      "name": "Number 53",
+      "image": "/images/standard/53.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-39",
+      "name": "Number 60",
+      "image": "/images/standard/60.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-40",
+      "name": "Number 66",
+      "image": "/images/standard/66.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-41",
+      "name": "Number 69",
+      "image": "/images/standard/69.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-42",
+      "name": "Number 73",
+      "image": "/images/standard/73.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-43",
+      "name": "Number 75",
+      "image": "/images/standard/75.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-44",
+      "name": "Number 77",
+      "image": "/images/standard/77.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-45",
+      "name": "Number 80",
+      "image": "/images/standard/80.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-46",
+      "name": "Number 90",
+      "image": "/images/standard/90.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-47",
+      "name": "Number 91",
+      "image": "/images/standard/91.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-48",
+      "name": "Number 93",
+      "image": "/images/standard/93.jpg",
+      "selected": false
+    },
+    {
+      "id": "standard-49",
+      "name": "Number 99",
+      "image": "/images/standard/99.jpg",
+      "selected": false
+    }
+  ]
