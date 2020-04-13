@@ -34,7 +34,7 @@
       v-model="gameKey"
       id="password"
       name="gameKey"
-      type="password"
+      type="text"
       required
       color="secundary"
       :label="$t('joinGame.accessGameSection.passwordLabel')"
