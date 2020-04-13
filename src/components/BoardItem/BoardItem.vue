@@ -1,11 +1,16 @@
 <template>
   <div
     :style="itemStyles(image)"
-    :class="{ disabled: !selected }"
+    :class="{ disabled: !selected && !enableClick }"
     class="item"
     @click="isClicked = !isClicked"
   >
-    <div class="clicked" v-if="isClicked && enableClick">X</div>
+    <div
+      class="clicked"
+      v-if="isClicked && enableClick"
+    >
+      X
+    </div>
   </div>
 </template>
 
@@ -15,8 +20,7 @@ import VueTypes from 'vue-types';
 export default {
   name: 'Board',
   props: {
-    id: VueTypes.string,
-    image: VueTypes.string,
+    image: VueTypes.string.isRequired,
     selected: VueTypes.bool.def(false),
     enableClick: VueTypes.bool.def(false),
   },
