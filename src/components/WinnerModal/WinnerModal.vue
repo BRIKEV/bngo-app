@@ -85,11 +85,16 @@ export default {
     border: 3px solid white;
     border-radius: 40px;
     @include mobile {
+      position: fixed;
       height: 100%;
       width: 100%;
       padding: 0;
       border: none;
+      right: 0;
+      top: 0;
       border-radius: 0;
+      left: 0;
+      bottom: 0;
     }
   }
   .modalImage {
