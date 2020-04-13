@@ -5,7 +5,7 @@ const { data } = require('require-all')({
 
 const shuffleBoard = require('../lib/shuffleBoard');
 
-const getBoard = (types = ['default'], boardLength) => {
+const getBoard = (types = ['cars'], boardLength) => {
   const allCards = types.map(type => data[type]).filter(Boolean);
   const flatArray = [].concat(...allCards);
   return shuffleBoard(flatArray, boardLength);

@@ -61,7 +61,7 @@ export default {
 
 .mainModal {
   .mainModalTitle {
-    font-size: $fs-h1;
+    font-size: $fs-h4;
     font-family: $base-secondary-font;
     color: $white;
     font-weight: 300;

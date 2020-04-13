@@ -39,10 +39,10 @@ export default {
     })).loose,
     animate: VueTypes.bool.def(false),
     name: VueTypes.string,
-    selected: VueTypes.arrayOf(VueTypes.shape({
+    selected: VueTypes.shape({
       image: VueTypes.string.isRequired,
       name: VueTypes.string.isRequired,
-    })).loose,
+    }).loose,
   },
 };
 </script>

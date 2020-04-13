@@ -14,16 +14,49 @@ describe('Board component', () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('Should not render a disabled class if allSelected is true', () => {
+  it('Should render a hiddenCard class if image is not selected', () => {
+    const wrapper = shallowMount(Board, {
+      propsData: {
+        ...defaultConfig.propsData,
+        allSelected: false,
+        images: [{
+          id: '1',
+          selected: false,
+          image: 'url',
+        }],
+      },
+    });
+    expect(wrapper.find('.hiddenCard').exists()).toBe(true);
+    expect(wrapper.text()).toMatch('?');
+  });
+
+  it('Should not render a hiddenCard class if allSelected is true', () => {
     const wrapper = shallowMount(Board, {
       propsData: {
         ...defaultConfig.propsData,
         allSelected: true,
-        images: {
+        images: [{
+          id: '1',
           selected: false,
-        },
+          image: 'url',
+        }],
       },
     });
-    expect(wrapper.find('.disabled').exists()).toBe(false);
+    expect(wrapper.find('.hiddenCard').exists()).toBe(true);
+  });
+
+  it('Should not render a hiddenCard class if allSelected is false and image is not selected', () => {
+    const wrapper = shallowMount(Board, {
+      propsData: {
+        ...defaultConfig.propsData,
+        allSelected: false,
+        images: [{
+          id: '1',
+          selected: false,
+          image: 'url',
+        }],
+      },
+    });
+    expect(wrapper.find('.hiddenCard').exists()).toBe(true);
   });
 });

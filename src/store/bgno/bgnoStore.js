@@ -4,8 +4,8 @@ export const initialState = {
   currentResult: {
     animate: null,
     selected: {
-      image: null,
-      name: null,
+      image: '',
+      name: '',
     },
   },
   gameTypes: [],

@@ -14,7 +14,11 @@
       >
         ?
       </div>
-      <BoardItem :allSelected="allSelected" v-bind="item" />
+      <BoardItem
+        class="boardItem"
+        :enableClick="allSelected"
+        v-bind="item"
+      />
     </div>
   </div>
 </template>
