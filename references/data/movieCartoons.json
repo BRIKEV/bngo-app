@@ -38,7 +38,7 @@
     {
       "id": "movieCartoons-7",
       "name": "Buzz Lightyear",
-      "image": "/images/movieCartoons/Buzz Lightyear.png",
+      "image": "/images/movieCartoons/BuzzLightyear.png",
       "selected": false
     },
     {
@@ -128,7 +128,7 @@
     {
       "id": "movieCartoons-22",
       "name": "Libro selva",
-      "image": "/images/movieCartoons/Libro selva.png",
+      "image": "/images/movieCartoons/Libro-selva.png",
       "selected": false
     },
     {

@@ -1,14 +1,14 @@
 <template>
   <div>
     <input
-      :id="title"
-      :name="title"
-      :value="title"
+      :id="value"
+      :name="value"
+      :value="value"
       type="checkbox"
       @input="$emit('input', $event.target.value, $event.target.checked)"
     />
     <label
-      :for="title"
+      :for="value"
       class="topicCard"
     >
       <div class="infoTopic">
@@ -25,6 +25,7 @@ import VueTypes from 'vue-types';
 export default {
   name: 'TopicCard',
   props: {
+    value: VueTypes.string,
     title: VueTypes.string.isRequired,
     description: VueTypes.string,
   },
