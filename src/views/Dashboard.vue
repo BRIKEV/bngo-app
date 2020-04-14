@@ -109,7 +109,7 @@ export default {
       this.$ga.event({
         eventCategory: 'modal',
         eventAction: 'userHashBingo',
-        eventLabel: 'Winner modal',
+        eventLabel: `The winner is ${username}`,
       });
       this.showModal = true;
       this.winner = username;

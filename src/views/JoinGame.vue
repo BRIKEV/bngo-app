@@ -71,7 +71,7 @@ export default {
       this.$ga.event({
         eventCategory: 'access',
         eventAction: 'accessClick',
-        eventLabel: 'Click on access game button',
+        eventLabel: `The username ${username} accessed the ${roomName} room`,
       });
       const accessInfo = { gameKey, username, gameName: roomName };
       return joinGame(accessInfo)
