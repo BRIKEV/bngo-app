@@ -31,9 +31,22 @@ export default {
     createGameSection: {
       typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
       types: {
-        standard: 'Traditional bingo with numbers',
-        cars: 'Bingo of cars',
-        springfield: 'Play bingo with pictures of your favorite neighbors',
+        standard: {
+          title: 'STANDARD',
+          description: 'Traditional bingo with numbers',
+        },
+        cars: {
+          title: 'CARS',
+          description: 'Bingo of cars',
+        },
+        springfield: {
+          title: 'SPRINGFIELD',
+          description: 'Bingo with pictures of your favorite neighbors',
+        },
+        movieCartoons: {
+          title: 'MOVIE CARTOONS',
+          description: 'Bingo with movie cartoons pictures',
+        },
       },
       btnCreate: 'Create game',
       usernamelabel: 'Username',

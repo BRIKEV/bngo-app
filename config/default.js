@@ -22,7 +22,7 @@ module.exports = {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
       ...tokenOptions,
-      validTopics: ['springfield', 'cars', 'standard'],
+      validTopics: ['springfield', 'movieCartoons', 'cars', 'standard'],
     },
     admin: {
       cloudImages: process.env.NODE_ENV === 'production',
