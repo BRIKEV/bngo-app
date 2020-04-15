@@ -1,6 +1,17 @@
 <template>
   <nav class="navbar">
-    <h1 class="title">{{ title }}</h1>
+    <h1
+      v-if="title"
+      class="title"
+    >
+      {{ title }}
+    </h1>
+    <div
+      v-if="logo"
+      class="logoContainer"
+    >
+      <img src="@/assets/BnGO_logo.svg" alt="brand">
+    </div>
     <slot></slot>
   </nav>
 </template>
@@ -13,6 +24,7 @@ export default {
 
   props: {
     title: VueTypes.string.def(''),
+    logo: VueTypes.bool.def(false),
   },
 };
 </script>
@@ -31,6 +43,12 @@ export default {
     background: $brand;
     padding: 0 20px;
     z-index: 100;
+    .logoContainer {
+      height: calculateRem(35px);
+      img {
+        height: 100%;
+      }
+    }
     .title {
       color: $white;
       font-size: $fs-h3;

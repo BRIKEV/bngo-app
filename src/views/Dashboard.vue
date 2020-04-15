@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BkHeader :title="$t('dashboard.title')">
+    <BkHeader logo>
       <div class="navbarOptions">
         {{ user.username }}
         <span
