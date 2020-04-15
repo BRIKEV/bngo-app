@@ -1,7 +1,7 @@
 <template>
   <BkModal
     class="mainModal"
-    v-if="opened"
+    v-show="opened"
     @close="close"
   >
     <template #body>
