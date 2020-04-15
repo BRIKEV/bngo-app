@@ -4,11 +4,9 @@ exports[`BkHeader component Should be render correctly 1`] = `
 <nav
   class="navbar"
 >
-  <h1
-    class="title"
-  >
-    
-  </h1>
+  <!---->
+   
+  <!---->
    
 </nav>
 `;

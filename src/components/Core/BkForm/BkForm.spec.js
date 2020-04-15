@@ -3,12 +3,6 @@ import BkForm from '@/components/Core/BkForm/BkForm.vue';
 
 describe('BkForm component', () => {
   const title = 'New title';
-  it('renders props.title when passed', () => {
-    const wrapper = shallowMount(BkForm, {
-      propsData: { title },
-    });
-    expect(wrapper.text()).toMatch(title);
-  });
   it('Should show a header when passed props.hasHeader', () => {
     const wrapper = shallowMount(BkForm, {
       propsData: {
