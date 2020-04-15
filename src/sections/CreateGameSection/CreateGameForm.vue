@@ -97,8 +97,13 @@ export default {
 @import "@/theme/index.scss";
 
 .createGameForm {
-  width: 80%;
+  width: 100%;
+  height: 100%;
   @include tablet {
+    width: 60%;
+    height: auto;
+  }
+  @include desktop {
     width: 40%;
   }
   &::v-deep .description {

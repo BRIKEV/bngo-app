@@ -3,18 +3,20 @@
     class="joinGameForm"
     :title="$t('joinGame.title')"
   >
-    <BkButton
-      class="accessBtn"
-      @btn-clicked="handleAccessClick"
-    >
-      {{ $t('joinGame.btnAccess') }}
-    </BkButton>
-    <BkButton
-      class="createBtn"
-      @btn-clicked="handleCreateClick"
-    >
-      {{ $t('joinGame.btnCreate') }}
-    </BkButton>
+    <div class="buttonContainer">
+      <BkButton
+        class="accessBtn"
+        @btn-clicked="handleAccessClick"
+      >
+        {{ $t('joinGame.btnAccess') }}
+      </BkButton>
+      <BkButton
+        class="createBtn"
+        @btn-clicked="handleCreateClick"
+      >
+        {{ $t('joinGame.btnCreate') }}
+      </BkButton>
+    </div>
   </BkForm>
 </template>
 
@@ -36,23 +38,28 @@ export default {
 @import "@/theme/index.scss";
 .joinGameForm {
   margin: calculateRem(40px) 0;
-  height: 20%;
-    &::v-deep .content {
+  height: auto;
+  border-radius: calculateRem(30px);
+  &::v-deep .content {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
     margin-top: 0;
   }
-
-  .accessBtn {
-    margin-right: calculateRem(15px);
-    font-size: $fs-h3;
-    font-weight: $regular;
-  }
-  .createBtn {
-    font-size: $fs-h3;
-    font-weight: $regular;
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: calculateRem(30px) 0 calculateRem(10px);
+    .accessBtn {
+      margin-right: calculateRem(15px);
+      font-size: $fs-h3;
+      font-weight: $regular;
+    }
+    .createBtn {
+      font-size: $fs-h3;
+      font-weight: $regular;
+    }
   }
 }
 

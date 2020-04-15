@@ -2,6 +2,8 @@ $brand: #348659;
 $secundary: #6cad7d;
 $selected: #2b580c;
 
+$logo: #1a8641;
+
 $lightGray: #cbcfcc;
 
 $disabled: #616161;
@@ -16,4 +18,4 @@ $error: #D8000C;
 
 $warning: #ff5722;
 
-$gradientColor: linear-gradient(90deg, $secundary 0%, $brand 35%, $secundary 100%);
+$gradientColor: linear-gradient(90deg, $logo 0%, $brand 35%, $logo 100%);

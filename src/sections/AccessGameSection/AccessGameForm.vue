@@ -88,9 +88,9 @@ export default {
 @import "@/theme/index.scss";
 
 .accessGameForm {
-  width: 80%;
+  width: 100%;
   @include tablet {
-    width: 30%;
+    width: 40%;
   }
 }
 .error {

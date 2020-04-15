@@ -1,26 +1,39 @@
 <template>
-  <form
-    autocomplete="off"
-    class="BkForm"
-    @submit.prevent
-  >
-    <div
-      class="header"
-      v-if="hasHeader"
-      @click="handleIconClick"
+  <div class="BkForm">
+    <form
+      autocomplete="off"
+      class="form"
+      @submit.prevent
     >
-      <span class="icon material-icons">
-        {{ headerIcon }}
-      </span>
-      <p class="iconText">{{ iconText }}</p>
-    </div>
-    <div class="content">
-      <h1 class="title">{{ title }}</h1>
-      <div class="description">
-         <slot />
+      <div
+        class="header"
+        v-if="hasHeader"
+        @click="handleIconClick"
+      >
+        <span class="icon material-icons">
+          {{ headerIcon }}
+        </span>
+        <p class="iconText">{{ iconText }}</p>
       </div>
-    </div>
-  </form>
+      <div class="content">
+        <div class="logo">
+          <img
+            sizes="(max-width: 1400px) 100vw, 1400px"
+            srcset="
+              @/assets/branding/BnGO_v1_c_c_scale_w_200.png 200w,
+              @/assets/branding/BnGO_v1_c_c_scale_w_495.png 495w,
+              @/assets/branding/BnGO_v1_c_c_scale_w_908.png 908w,
+              @/assets/branding/BnGO_v1_c_c_scale_w_1400.png 1400w"
+            src="@/assets/branding/BnGO_v1_c_c_scale_w_1400.png"
+            alt="BnGO"
+          />
+        </div>
+        <div class="description">
+           <slot />
+        </div>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -29,7 +42,6 @@ import VueTypes from 'vue-types';
 export default {
   name: 'BkForm',
   props: {
-    title: VueTypes.string.isRequired,
     headerIcon: VueTypes.string.def('keyboard_arrow_left'),
     iconText: VueTypes.string.def('BACK'),
     hasHeader: VueTypes.bool.def(false),
@@ -52,9 +64,19 @@ export default {
   justify-content: center;
   text-align: center;
   margin: 0 auto;
-  padding: 20px;
   background: $lightGray;
-  border-radius: calculateRem(30px);
+  height: 100%;
+  border-radius: 0;
+  @include tablet {
+    height: auto;
+    border-radius: calculateRem(30px);
+  }
+  .form {
+    padding: calculateRem(15px);
+    @include tablet {
+      padding: calculateRem(20px);
+    }
+  }
   .header {
     position: absolute;
     top: calculateRem(10px);
@@ -71,11 +93,24 @@ export default {
   }
 }
 .content {
-  margin-top: 30px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .logo {
+    max-width: 150px;
+    img {
+      width: 100%;
+    }
+  }
   .title {
     top: calculateRem(70px);
     font-size: $fs-h1;
     font-family: $base-font-title;
+  }
+  .description {
+    width: 100%;
   }
 }
 </style>
