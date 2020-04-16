@@ -61,8 +61,12 @@ export default {
   },
   modal: {
     message: 'El ganador es',
-    mediaMsg: '{winner} ganó una partida en bngo',
     btn: 'Jugar otra vez',
+    social: {
+      title: 'BNGO Game',
+      message: '{winner} ganó una partida en bngo',
+      url: 'https://www.mybngo.com',
+    },
   },
   validations: {
     usernameLength: 'El usuario no puede tener más de 10 caracteres',

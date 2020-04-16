@@ -1,7 +1,7 @@
 <template>
   <BkModal
     class="mainModal"
-    v-show="opened"
+    v-if="opened"
     @close="close"
   >
     <template #body>
@@ -20,17 +20,21 @@
         {{ $t('modal.btn') }}
       </BkButton>
       <div class="share">
-        <a
-          href="https://twitter.com/intent/tweet"
-          class="twitter-share-button"
-          data-size="large"
-          :data-text="$t('modal.mediaMsg', { winner })"
-          data-hashtags="bngo,game,bingo"
-          data-show-count="false"
-          data-related="twitterapi, twitter"
+        <social-sharing
+          :url="$t('modal.social.url')"
+          :title="$t('modal.social.message', { winner })"
+          hashtags="bngo,game,bingo"
+          inline-template
         >
-          Tweet
-        </a>
+          <div class="iconContainer">
+            <network network="twitter">
+              <i class="fab fa-twitter-square"></i>
+            </network>
+            <network network="whatsapp">
+              <i class="fab fa-whatsapp-square"></i>
+            </network>
+          </div>
+        </social-sharing>
       </div>
     </template>
   </BkModal>
@@ -113,6 +117,18 @@ export default {
   .share {
     text-align: center;
     margin-top: 20px;
+    .iconContainer {
+      display: flex;
+      justify-content: center;
+      &::v-deep .fab {
+        font-size: 2.3rem;
+        margin: 0 10px;
+        color: $lightGray;
+        @include desktop {
+          cursor: pointer;
+        }
+      }
+    }
   }
   &::v-deep .modalFooter {
     padding-top: calculateRem(30px);

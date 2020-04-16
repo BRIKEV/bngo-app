@@ -2,6 +2,7 @@ import Vue from 'vue';
 import i18n from '@/lang/i18n';
 import { VueSpinners } from '@saeris/vue-spinners';
 import VueNotification from 'vue-notification';
+import VueSocialSharing from 'vue-social-sharing';
 import Vuelidate from 'vuelidate';
 import VueAnalytics from 'vue-analytics';
 import App from './App.vue';
@@ -14,6 +15,7 @@ import '@/theme/index.scss';
 Vue.config.productionTip = false;
 
 Vue.use(VueSpinners);
+Vue.use(VueSocialSharing);
 Vue.use(VueNotification, {
   componentName: 'VueNotification',
 });
