@@ -61,7 +61,7 @@ export default {
   },
   modal: {
     message: 'El ganador es',
-    btn: 'Jugar otra vez',
+    btn: 'Crear una nueva partida',
     social: {
       title: 'BNGO Game',
       message: '{winner} ganó una partida en bngo',

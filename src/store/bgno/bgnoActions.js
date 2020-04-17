@@ -12,6 +12,7 @@ export default {
     commit('SET_SELECTED_RESULT', { image, name });
     commit('SET_BOARD', updatedBoard);
     commit('SET_ANIMATE', false);
+    commit('SET_RESULTS', optionSelected);
   },
   userInfo({ commit }, { username, ready }) {
     commit('SET_USER_INFO', { username, ready });
