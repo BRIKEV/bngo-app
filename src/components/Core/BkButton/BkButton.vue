@@ -48,6 +48,7 @@ export default {
   transition: all .15s linear;
   padding: 5px 15px;
   cursor: pointer;
+  border: 1px solid $brand;
   &:hover {
     background: lighten($brand, 20%);
     transition: background .3s ease-in;

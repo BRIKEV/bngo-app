@@ -5,12 +5,13 @@
     :title="$t('joinGame.title')"
     @onIconClicked="$emit('onIconClicked')"
   >
-    <div class="shareContainer" v-if="true">
-      <div class="urlText">https://www.mybngo.com/room/test</div>
+    <div class="shareContainer" v-if="url">
+      <p class="shareMessage">{{ $t('joinGame.createGameSection.shareMessage') }}</p>
+      <div class="urlText">{{ url }}</div>
       <input
         ref="url"
         type="hidden"
-        value="https://www.mybngo.com/room/test"
+        :value="url"
       />
       <BkButton
         class="btn shareButton"
@@ -25,7 +26,7 @@
         {{ $t('joinGame.createGameSection.shareButtonDesktop') }}
       </BkButton>
     </div>
-    <div v-if="false">
+    <div v-if="!url">
       <BkInput
         v-model="roomName"
         id="roomName"
@@ -73,15 +74,19 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import VueTypes from 'vue-types';
 import { Carrousel, TopicCard } from '@/components';
 import { NOTIFICATION_COPY_LINK } from '@/store/notification/notificationTypes';
-import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CreateGameForm',
   components: {
     Carrousel,
     TopicCard,
+  },
+  props: {
+    url: VueTypes.string.def(''),
   },
   data() {
     return {
@@ -99,9 +104,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      sendInfo: 'sendInfo',
-    }),
+    ...mapActions(['sendInfo']),
     onChange(value, checked) {
       if (checked) {
         this.checkedNames = [...this.checkedNames, value];
@@ -169,6 +172,13 @@ export default {
       overflow-x: hidden;
       box-shadow: none;
       border: none;
+    }
+    .shareMessage {
+      margin-bottom: 20px;
+      line-height: $base-line-height;
+      font-size: $fs-large;
+      width: calc(80% + 40px);
+      text-align: left;
     }
     .shareButton {
       display: block;

@@ -30,6 +30,7 @@ export default {
     },
     createGameSection: {
       typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
+      shareMessage: 'Tu partida ha sido creada. Compártela con tus amigos.',
       types: {
         standard: {
           title: 'STANDARD',
