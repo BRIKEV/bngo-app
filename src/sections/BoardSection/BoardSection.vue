@@ -6,21 +6,26 @@
       :numOfRows="7"
       :images="board"
       />
-    <div class="horizontalContainer">
-      <div class="titleContainer">
-        <h2 class="title">{{ $t('boardSection.title') }}</h2>
-        <span>{{ $t('boardSection.subtitle', { total }) }}</span>
+    <transition name="fade" mode="out-in">
+      <div
+        class="horizontalContainer"
+        v-if="results.length !== 0"
+      >
+        <div class="titleContainer">
+          <h2 class="title">{{ $t('boardSection.title') }}</h2>
+          <span>{{ $t('boardSection.subtitle', { total }) }}</span>
+        </div>
+        <div class="boardContainer">
+          <Board
+            class="outputImagesMobile"
+            :numOfColumns="49"
+            :numOfRows="1"
+            allSelected
+            :images="results"
+            />
+        </div>
       </div>
-      <div class="boardContainer">
-        <Board
-          class="outputImagesMobile"
-          :numOfColumns="49"
-          :numOfRows="1"
-          allSelected
-          :images="results"
-          />
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -47,14 +52,15 @@ export default {
 .outputImagesContainer {
   width: 60%;
   @include mobile {
-    width: 90%;
-    margin: 0 auto calculateRem(30px) auto;
+    width: 100%;
   }
   .horizontalContainer {
     display: none;
     @include mobile {
       display: block;
       padding-bottom: calculateRem(5px);
+      margin: 0 auto calculateRem(20px) auto;
+      width: 90%;
       .titleContainer {
         display: flex;
         justify-content: space-between;
