@@ -127,7 +127,7 @@ export default {
     display: none;
   }
 }
-@include tablet {
+@include desktop {
   .hideDesktop {
     display: none;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="game">
     <BkHeader logo>
       <div class="navbarOptions">
         {{ user.username }}
@@ -129,7 +129,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/theme/index.scss";
 
+.game {
+  height: 100%;
+}
 .dashboard {
+  height: 100%;
   background: lighten($lightGray, 15%);
   display: flex;
   flex-direction: column;
@@ -137,9 +141,6 @@ export default {
   height: 100vh;
   width: 100%;
   margin: 0 auto;
-  @include mobile {
-    height: auto;
-  }
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
@@ -160,6 +161,9 @@ export default {
   margin-left: auto;
   max-width: 892px;
   min-width: 892px;
+  @include desktop {
+    justify-content: space-between;
+  }
   @include largeDesktop {
     max-width: 1240px;
     min-width: 1240px;
@@ -173,7 +177,6 @@ export default {
   }
   margin-right: auto;
   display: flex;
-  justify-content: space-between;
   height: 100%;
   margin-top: calculateRem(75px);
   margin-bottom: calculateRem(25px);
@@ -186,6 +189,7 @@ export default {
       width: 100%;
       .UserBoard {
         width: 90%;
+        max-width: calculateRem(500px);
         margin: 0 auto;
       }
     }

@@ -72,9 +72,11 @@ export default {
 </script>
 <style lang="scss" scoped>
   @import "@/theme/index.scss";
-  @include mobile {
-    canvas {
-      display: none;
+
+  canvas {
+    display: none;
+    @include desktop {
+      display: block;
     }
   }
 </style>
