@@ -61,6 +61,7 @@ export default {
     createGameError: 'There\'s already a game with that name',
     accessGameError: 'there is no room with that name',
     errorBingo: 'You don\'t have bingo, keep playing :)',
+    linkCopied: 'Copy to clipboard',
   },
   modal: {
     message: 'The winner is',

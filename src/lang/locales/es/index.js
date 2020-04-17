@@ -61,6 +61,7 @@ export default {
     createGameError: 'Ya existe una partida con ese nombre',
     accessGameError: 'No existe una sala con ese nombre',
     errorBingo: 'No tienes bingo, sigue jugando :)',
+    linkCopied: 'Copiada en portapapeles',
   },
   modal: {
     message: 'El ganador es',

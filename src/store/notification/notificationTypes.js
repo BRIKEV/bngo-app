@@ -20,3 +20,9 @@ export const NOTIFICATION_BINGO = {
     text: i18n.t('notification.errorBingo'),
   },
 };
+
+export const NOTIFICATION_COPY_LINK = {
+  success: {
+    title: i18n.t('notification.linkCopied'),
+  },
+};

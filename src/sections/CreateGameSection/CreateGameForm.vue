@@ -74,7 +74,8 @@
 
 <script>
 import { Carrousel, TopicCard } from '@/components';
-import { mapState } from 'vuex';
+import { NOTIFICATION_COPY_LINK } from '@/store/notification/notificationTypes';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'CreateGameForm',
@@ -98,6 +99,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      sendInfo: 'sendInfo',
+    }),
     onChange(value, checked) {
       if (checked) {
         this.checkedNames = [...this.checkedNames, value];
@@ -119,6 +123,7 @@ export default {
       // unselect the range
       this.$refs.url.setAttribute('type', 'hidden');
       window.getSelection().removeAllRanges();
+      this.sendInfo(NOTIFICATION_COPY_LINK.success);
     },
     shareClick() {
       if (!navigator.share) {
