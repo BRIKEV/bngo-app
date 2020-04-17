@@ -16,7 +16,8 @@
           class="outputImagesMobile"
           :numOfColumns="49"
           :numOfRows="1"
-          :images="orderedBoard"
+          allSelected
+          :images="results"
           />
       </div>
     </div>
@@ -25,7 +26,7 @@
 
 <script>
 import { Board } from '@/components';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'BoardSection',
@@ -35,13 +36,9 @@ export default {
   computed: {
     ...mapState({
       board: (state) => state.bgno.board,
+      results: (state) => state.bgno.results,
     }),
-    orderedBoard() {
-      return [...this.board].sort((a, b) => b.selected - a.selected);
-    },
-    total() {
-      return this.board.filter(({ selected }) => !selected).length;
-    },
+    ...mapGetters(['total']),
   },
 };
 </script>
