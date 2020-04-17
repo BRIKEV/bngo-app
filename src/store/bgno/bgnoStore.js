@@ -1,9 +1,9 @@
 import persistence from '@/persistence';
+import { SESSION_RESULTS_KEY } from '@/constants';
 import actions from './bgnoActions';
 
 const sessionStorage = persistence('sStorage');
-
-const persistenceResults = sessionStorage.getItem('results');
+const persistenceResults = sessionStorage.getItem(SESSION_RESULTS_KEY);
 
 export const initialState = {
   currentResult: {
@@ -60,7 +60,7 @@ export const mutations = {
       lastResult,
       ...state.results,
     ];
-    sessionStorage.setItem('results', JSON.stringify(state.results));
+    sessionStorage.setItem(SESSION_RESULTS_KEY, JSON.stringify(state.results));
   },
 };
 
