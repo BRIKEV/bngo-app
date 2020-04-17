@@ -19,6 +19,16 @@ const lStorage = {
   removeItem: (key) => localStorage.removeItem(key),
 };
 
+const sStorage = {
+  setItem: (key, value) => {
+    validStorageValue(value, () => {
+      sessionStorage.setItem(key, value);
+    });
+  },
+  getItem: (key) => sessionStorage.getItem(key) || '',
+  removeItem: (key) => sessionStorage.removeItem(key),
+};
+
 const options = cookieOptions();
 
 const cookieStorage = {
@@ -35,6 +45,7 @@ const storage = (type = 'lStorage') => {
   const types = {
     lStorage,
     cookieStorage,
+    sStorage,
   };
   if (typeof (Storage) !== 'undefined') {
     return types[type];
