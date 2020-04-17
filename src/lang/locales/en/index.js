@@ -61,7 +61,7 @@ export default {
   },
   modal: {
     message: 'The winner is',
-    btn: 'Play again',
+    btn: 'Create a new game',
     social: {
       title: 'BNGO Game',
       message: '{winner} has won a bngo game',
