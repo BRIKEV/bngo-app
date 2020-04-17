@@ -1,13 +1,15 @@
 
 $tablet-width-portrait: 600px;
 $tablet-width: 769px;
-$desktop-width: 992px;
+$desktop-width: 920px;
 $large-desktop-width: 1441px;
+
+$mobile-max-width: 920px;
 
 $smallHeight: 670px;
 
 @mixin mobile {
-  @media (max-width: #{$tablet-width}) {
+  @media (max-width: #{$mobile-max-width}) {
     @content;
   }
 }
@@ -42,8 +44,8 @@ $smallHeight: 670px;
   }
 }
 
-@mixin landscapeKeyboard {
-  @media only screen and (max-height: 392px) and (orientation: landscape) {
+@mixin keyboard {
+  @media only screen and (max-height: 392px) {
     @content;
   }
 }

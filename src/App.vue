@@ -32,7 +32,12 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "@/theme/index.scss";
+
 #app {
   height: 100vh;
+  @include keyboard {
+    height: 100%;
+  }
 }
 </style>
