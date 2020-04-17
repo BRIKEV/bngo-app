@@ -5,48 +5,70 @@
     :title="$t('joinGame.title')"
     @onIconClicked="$emit('onIconClicked')"
   >
-    <BkInput
-      v-model="roomName"
-      id="roomName"
-      name="roomName"
-      type="text"
-      required
-      color="secundary"
-      :label="$t('joinGame.accessGameSection.nameLabel')"
-    />
-    <BkInput
-      v-model="gameKey"
-      id="password"
-      name="gameKey"
-      type="text"
-      required
-      color="secundary"
-      :label="$t('joinGame.accessGameSection.passwordLabel')"
-    />
-    <h2 class="typesTitle">
-      {{ $t('joinGame.createGameSection.typesTitle') }}
-    </h2>
-    <Carrousel class="carrousel">
-      <template #items>
-        <TopicCard
-          v-for="(topic, index) in topics"
-          :key="index"
-          :value="topic"
-          :title="$t(`joinGame.createGameSection.types.${topic}.title`)"
-          :description="$t(`joinGame.createGameSection.types.${topic}.description`)"
-          :image="topic.image"
-          :bgColor="topic.bgColor"
-          @input="onChange"
-        />
-      </template>
-    </Carrousel>
-    <BkButton
-      class="btn"
-      :disabled="invalid"
-      @btn-clicked="handleCreateClick"
-    >
-      {{ $t('joinGame.createGameSection.btnCreate') }}
-    </BkButton>
+    <div class="shareContainer" v-if="true">
+      <div class="urlText">https://www.mybngo.com/room/test</div>
+      <input
+        ref="url"
+        type="hidden"
+        value="https://www.mybngo.com/room/test"
+      />
+      <BkButton
+        class="btn shareButton"
+        @btn-clicked="shareClick"
+      >
+        {{ $t('joinGame.createGameSection.shareButtonMobile') }}
+      </BkButton>
+      <BkButton
+        class="btn copyButton"
+        @btn-clicked="shareCopyClick"
+      >
+        {{ $t('joinGame.createGameSection.shareButtonDesktop') }}
+      </BkButton>
+    </div>
+    <div v-if="false">
+      <BkInput
+        v-model="roomName"
+        id="roomName"
+        name="roomName"
+        type="text"
+        required
+        color="secundary"
+        :label="$t('joinGame.accessGameSection.nameLabel')"
+      />
+      <BkInput
+        v-model="gameKey"
+        id="password"
+        name="gameKey"
+        type="text"
+        required
+        color="secundary"
+        :label="$t('joinGame.accessGameSection.passwordLabel')"
+      />
+      <h2 class="typesTitle">
+        {{ $t('joinGame.createGameSection.typesTitle') }}
+      </h2>
+      <Carrousel class="carrousel">
+        <template #items>
+          <TopicCard
+            v-for="(topic, index) in topics"
+            :key="index"
+            :value="topic"
+            :title="$t(`joinGame.createGameSection.types.${topic}.title`)"
+            :description="$t(`joinGame.createGameSection.types.${topic}.description`)"
+            :image="topic.image"
+            :bgColor="topic.bgColor"
+            @input="onChange"
+          />
+        </template>
+      </Carrousel>
+      <BkButton
+        class="btn"
+        :disabled="invalid"
+        @btn-clicked="handleCreateClick"
+      >
+        {{ $t('joinGame.createGameSection.btnCreate') }}
+      </BkButton>
+    </div>
   </BkForm>
 </template>
 
@@ -90,6 +112,23 @@ export default {
         types: this.checkedNames,
       });
     },
+    shareCopyClick() {
+      this.$refs.url.setAttribute('type', 'text');
+      this.$refs.url.select();
+      document.execCommand('copy');
+      // unselect the range
+      this.$refs.url.setAttribute('type', 'hidden');
+      window.getSelection().removeAllRanges();
+    },
+    shareClick() {
+      if (!navigator.share) {
+        return this.shareCopyClick();
+      }
+      return navigator.share({
+        title: this.$t('joinGame.createGameSection.shareTitle'),
+        url: 'https://codepen.io/ayoisaiah/pen/YbNazJ',
+      });
+    },
   },
 };
 </script>
@@ -108,6 +147,36 @@ export default {
   }
   &::v-deep .description {
     overflow: hidden;
+  }
+  .shareContainer {
+    min-height: calc(100vh - 50vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .urlText {
+      margin-bottom: calculateRem(40px);
+      padding: 20px;
+      width: 80%;
+      background-color: $share;
+      border-radius: 16px;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+      box-shadow: none;
+      border: none;
+    }
+    .shareButton {
+      display: block;
+      @include tablet {
+        display: none;
+      }
+    }
+    .copyButton {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+    }
   }
   .carrousel {
     margin-bottom: 20px;

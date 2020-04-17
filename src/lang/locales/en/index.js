@@ -50,6 +50,9 @@ export default {
       },
       btnCreate: 'Create game',
       usernamelabel: 'Username',
+      shareTitle: 'Share your BNGO game',
+      shareButtonMobile: 'Share your game',
+      shareButtonDesktop: 'Copy your URL',
     },
   },
   notification: {

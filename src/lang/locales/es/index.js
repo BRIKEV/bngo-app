@@ -50,6 +50,9 @@ export default {
       },
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
+      shareTitle: 'Comparte tu partida de BNGO',
+      shareButtonMobile: 'Comparte tu partida',
+      shareButtonDesktop: 'Copia tu URL',
     },
   },
   notification: {
