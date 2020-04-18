@@ -4,6 +4,7 @@ const NOTIFICATION_TYPES = {
   success: 'success',
   error: 'error',
   info: 'info',
+  message: 'message',
 };
 
 export default {
@@ -32,6 +33,15 @@ export default {
       text,
       duration: 3000,
       type: NOTIFICATION_TYPES.info,
+    });
+  },
+  async sendMessage(context, { title = '', text = '' }) {
+    Vue.notify({
+      group: 'notify',
+      title,
+      text,
+      duration: 3000,
+      type: NOTIFICATION_TYPES.message,
     });
   },
 };

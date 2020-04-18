@@ -8,11 +8,15 @@ jest.mock('vue', () => ({
 const NOTIFICATION_TYPES = {
   success: 'success',
   error: 'error',
+  info: 'info',
+  message: 'message',
 };
 
 const NOTIFICATION_ACTIONS = {
   success: 'sendSuccess',
   error: 'sendError',
+  info: 'sendInfo',
+  message: 'sendMessage',
 };
 
 describe('Notifications actions', () => {
