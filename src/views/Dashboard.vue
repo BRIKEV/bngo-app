@@ -22,6 +22,9 @@
             class="UserBoard"
             :userImages="userImages"
           />
+          <div class="chat">
+            <ChatSection />
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +39,9 @@
 <script>
 import { WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection, GameActionsSection, BoardSection } from '@/sections';
+import {
+  UserBoardSection, GameActionsSection, BoardSection, ChatSection,
+} from '@/sections';
 import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
@@ -44,6 +49,7 @@ import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 export default {
   name: 'Dashboard',
   components: {
+    ChatSection,
     UserBoardSection,
     WinnerModal,
     GameActionsSection,
@@ -68,6 +74,10 @@ export default {
       incorrectBingo: () => this.sendError({
         title: NOTIFICATION_BINGO.error.title,
         text: NOTIFICATION_BINGO.error.text,
+      }),
+      userMessage: ({ title, message }) => this.sendInfo({
+        title,
+        text: message,
       }),
       usernameHasBingo: this.handleUserHasBingo,
       usersList: this.setUsers,
@@ -96,6 +106,7 @@ export default {
       setUsers: 'usersList',
       activateAnimate: 'activateAnimate',
       sendError: 'sendError',
+      sendInfo: 'sendInfo',
       clean: 'clean',
     }),
     exit() {
@@ -200,6 +211,14 @@ export default {
       width: calculateRem(220px);
       @include largeDesktop {
         width: calculateRem(280px);
+      }
+    }
+    .chat {
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+      @include tablet {
+        display: none;
       }
     }
   }

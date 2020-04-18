@@ -167,7 +167,7 @@ export default {
       padding: 20px;
       width: 80%;
       background-color: $share;
-      border-radius: 16px;
+      border-radius: calculateRem(16px);
       text-overflow: ellipsis;
       overflow-x: hidden;
       box-shadow: none;
