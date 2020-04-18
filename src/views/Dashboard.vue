@@ -2,9 +2,16 @@
   <div class="game">
     <BkHeader logo>
       <div class="navbarOptions">
-        {{ user.username }}
+        <div class="usernameContainer">
+          <span class="material-icons">
+            account_circle
+          </span>
+          <span class="username">
+            {{ user.username }}
+          </span>
+        </div>
         <span
-          class="icon material-icons"
+          class="exit icon material-icons"
           @click="exit">
             exit_to_app
         </span>
@@ -155,8 +162,15 @@ export default {
   color: $white;
   font-size: $fs-large;
   font-family: $base-font-family;
-  span {
-    margin-left: 10px;
+  .usernameContainer {
+    display: flex;
+    align-items: center;
+    .username {
+      padding-left: calculateRem(3px);
+    }
+  }
+  .exit {
+    margin-left: calculateRem(10px);
     cursor: pointer;
   }
 }
