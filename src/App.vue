@@ -3,7 +3,7 @@
     <div
       id="app"
     >
-      <Notification group="notify" position="bottom left" width="400px" />
+      <Notification group="notify" position="bottom left"/>
       <transition name="fade" mode="out-in">
         <router-view/>
       </transition>
