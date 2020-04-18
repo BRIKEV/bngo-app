@@ -44,7 +44,7 @@ export default {
       background: $secundary;
       border-left: none;
       margin: calculateRem(5px) 0;
-      width: min-content;
+      width: auto;
       padding: calculateRem(10px) calculateRem(20px) calculateRem(10px) calculateRem(5px);
       .notification-title {
         display: flex;
