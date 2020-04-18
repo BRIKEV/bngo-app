@@ -55,8 +55,7 @@ export default {
 
 .chatContainer {
   width: 100%;
-  margin: calculateRem(40px) 0;
-  margin-bottom: calculateRem(10px);
+  margin: calculateRem(16px) 0;
   .form {
     display: flex;
     justify-content: space-between;
