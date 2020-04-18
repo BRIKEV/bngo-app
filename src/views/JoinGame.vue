@@ -95,11 +95,14 @@ export default {
 
 .about {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgb(2,0,36);
   background: $gradientColor;
+  @include keyboard {
+    height: 100%;
+  }
 }
 </style>

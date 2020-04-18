@@ -138,12 +138,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
+  }
+  @include tablet {
+    height: 100vh;
   }
 }
 .navbarOptions {
@@ -178,7 +181,7 @@ export default {
   margin-right: auto;
   display: flex;
   height: 100%;
-  margin-top: calculateRem(50px);
+  margin-top: calculateRem(20px);
   margin-bottom: calculateRem(25px);
   .Info {
     display: flex;
