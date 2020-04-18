@@ -10,6 +10,9 @@ export default {
     title: 'Últimos resultados',
     subtitle: 'Quedan {total}',
   },
+  chatSection: {
+    placeholder: 'Escribe un mensaje... (Max {maxLengthMessage})',
+  },
   gameActionsSection: {
     title: 'USUARIOS',
     start: 'JUGAR',

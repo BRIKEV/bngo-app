@@ -29,6 +29,9 @@
             class="UserBoard"
             :userImages="userImages"
           />
+          <div class="chat">
+            <ChatSection />
+          </div>
         </div>
       </div>
     </div>
@@ -43,7 +46,9 @@
 <script>
 import { WinnerModal } from '@/components';
 import { getInfo, logout } from '@/persistence/access';
-import { UserBoardSection, GameActionsSection, BoardSection } from '@/sections';
+import {
+  UserBoardSection, GameActionsSection, BoardSection, ChatSection,
+} from '@/sections';
 import io from '@/io';
 import { mapActions, mapState } from 'vuex';
 import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
@@ -51,6 +56,7 @@ import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
 export default {
   name: 'Dashboard',
   components: {
+    ChatSection,
     UserBoardSection,
     WinnerModal,
     GameActionsSection,
@@ -75,6 +81,10 @@ export default {
       incorrectBingo: () => this.sendError({
         title: NOTIFICATION_BINGO.error.title,
         text: NOTIFICATION_BINGO.error.text,
+      }),
+      userMessage: ({ title, message }) => this.sendInfo({
+        title,
+        text: message,
       }),
       usernameHasBingo: this.handleUserHasBingo,
       usersList: this.setUsers,
@@ -103,6 +113,7 @@ export default {
       setUsers: 'usersList',
       activateAnimate: 'activateAnimate',
       sendError: 'sendError',
+      sendInfo: 'sendInfo',
       clean: 'clean',
     }),
     exit() {
@@ -196,7 +207,10 @@ export default {
   display: flex;
   height: 100%;
   margin-top: calculateRem(20px);
-  margin-bottom: calculateRem(25px);
+  margin-bottom: 0;
+  @include tablet {
+    margin-bottom: calculateRem(20px);
+  }
   .Info {
     display: flex;
     flex-direction: column;
@@ -217,6 +231,15 @@ export default {
       width: calculateRem(220px);
       @include largeDesktop {
         width: calculateRem(280px);
+      }
+    }
+    .chat {
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+      max-width: calculateRem(500px);
+      @include tablet {
+        display: none;
       }
     }
   }

@@ -119,6 +119,11 @@ export default {
         types: this.checkedNames,
       });
     },
+    requirectAccess() {
+      if (this.roomName) {
+        this.$router.push({ name: 'ShareGame', params: { gameName: this.roomName } });
+      }
+    },
     shareCopyClick() {
       this.$refs.url.setAttribute('type', 'text');
       this.$refs.url.select();
@@ -127,6 +132,7 @@ export default {
       this.$refs.url.setAttribute('type', 'hidden');
       window.getSelection().removeAllRanges();
       this.sendInfo(NOTIFICATION_COPY_LINK.success);
+      this.requirectAccess();
     },
     shareClick() {
       if (!navigator.share) {
@@ -135,6 +141,8 @@ export default {
       return navigator.share({
         title: this.$t('joinGame.createGameSection.shareTitle'),
         url: this.url,
+      }).then(() => {
+        this.requirectAccess();
       });
     },
   },
@@ -167,7 +175,7 @@ export default {
       padding: 20px;
       width: 80%;
       background-color: $share;
-      border-radius: 16px;
+      border-radius: calculateRem(16px);
       text-overflow: ellipsis;
       overflow-x: hidden;
       box-shadow: none;
