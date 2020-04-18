@@ -44,8 +44,8 @@ export default {
   methods: {
     onSubmit() {
       if (this.trimMessage !== '') {
-        this.message = '';
         emit('message', { message: this.trimMessage });
+        this.message = '';
       }
     },
   },
