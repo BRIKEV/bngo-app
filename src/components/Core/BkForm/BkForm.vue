@@ -72,6 +72,7 @@ export default {
     border-radius: calculateRem(30px);
   }
   .form {
+    height: 100%;
     padding: calculateRem(15px);
     @include tablet {
       padding: calculateRem(20px);

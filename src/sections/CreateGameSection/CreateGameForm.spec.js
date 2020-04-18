@@ -53,4 +53,17 @@ describe('CreateGameForm section', () => {
     wrapper.find('.btn').trigger('click');
     expect(wrapper.emitted('onCreateClick')).toBeTruthy();
   });
+
+  it('Should fire onCreateClick event when click btn and data is valid', () => {
+    const url = 'http://test.com';
+    const wrapper = mount(CreateGameForm, {
+      ...defaultConfig,
+      propsData: {
+        url,
+      },
+    });
+    expect(wrapper.find('.btn.shareButton').exists()).toBeTruthy();
+    expect(wrapper.find('.btn.copyButton').exists()).toBeTruthy();
+    expect(wrapper.find('.urlText').text()).toEqual(url);
+  });
 });

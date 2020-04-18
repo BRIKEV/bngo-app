@@ -2,15 +2,25 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import JoinGame from '@/views/JoinGame.vue';
 import Dashboard from '@/views/Dashboard.vue';
+import ShareGame from '@/views/ShareGame.vue';
 import { hasAccess } from '@/persistence/access';
 
 Vue.use(VueRouter);
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'JoinGame',
     component: JoinGame,
+    meta: {
+      public: true,
+      onlyWhenLoggedOut: true,
+    },
+  },
+  {
+    path: '/room/:gameName',
+    name: 'ShareGame',
+    component: ShareGame,
     meta: {
       public: true,
       onlyWhenLoggedOut: true,

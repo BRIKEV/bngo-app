@@ -13,6 +13,7 @@
       />
       <CreateGameForm
         v-if="create"
+        :url="url"
         @onCreateClick="handleCreateClick"
         @onIconClicked="handleIconClick"
       />
@@ -38,6 +39,7 @@ export default {
     return {
       access: false,
       create: false,
+      url: '',
     };
   },
   mounted() {
@@ -51,6 +53,7 @@ export default {
     handleIconClick() {
       this.create = false;
       this.access = false;
+      this.url = '';
     },
     handleCreateClick({ roomName, gameKey, types }) {
       this.$ga.event({
@@ -60,7 +63,7 @@ export default {
       });
       return createGame({ gameKey, gameName: roomName, types })
         .then(() => {
-          this.create = false;
+          this.url = `https://www.mybngo.com/room/${roomName}`;
         })
         .catch(() => this.sendError({
           title: NOTIFICATION_CREATE.error.title,

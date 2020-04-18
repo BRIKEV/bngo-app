@@ -30,6 +30,7 @@ export default {
     },
     createGameSection: {
       typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
+      shareMessage: 'Your game has been created. Share it with your friends.',
       types: {
         standard: {
           title: 'TRADICIONAL',
@@ -50,6 +51,9 @@ export default {
       },
       btnCreate: 'Crear partida',
       usernamelabel: 'Usuario',
+      shareTitle: 'Comparte tu partida de BNGO',
+      shareButtonMobile: 'Comparte tu partida',
+      shareButtonDesktop: 'Copia tu URL',
     },
   },
   notification: {
@@ -58,6 +62,7 @@ export default {
     createGameError: 'Ya existe una partida con ese nombre',
     accessGameError: 'No existe una sala con ese nombre',
     errorBingo: 'No tienes bingo, sigue jugando :)',
+    linkCopied: 'Copiada en portapapeles',
   },
   modal: {
     message: 'El ganador es',
