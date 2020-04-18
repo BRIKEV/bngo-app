@@ -9,10 +9,8 @@
         v-model="message"
         :placeholder="$t('chatSection.placeholder', { maxLengthMessage })"
         :maxlength="maxLength"
-      ></textarea>
-      <BkButton
-        class="btn"
-      >
+      />
+      <BkButton class="btn">
         <span class="material-icons">
           send
         </span>
