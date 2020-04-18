@@ -178,7 +178,7 @@ export default {
   margin-right: auto;
   display: flex;
   height: 100%;
-  margin-top: calculateRem(75px);
+  margin-top: calculateRem(25px);
   margin-bottom: calculateRem(25px);
   .Info {
     display: flex;

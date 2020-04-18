@@ -32,17 +32,12 @@ export default {
 <style lang="scss" scoped>
   @import "@/theme/index.scss";
   .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     min-height: calculateRem(48px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: $brand;
     padding: 0 20px;
-    z-index: 100;
     .logoContainer {
       height: calculateRem(35px);
       img {
