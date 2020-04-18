@@ -57,5 +57,8 @@ export default {
   align-items: center;
   background: rgb(2,0,36);
   background: $gradientColor;
+  @include keyboard {
+    height: 100%;
+  }
 }
 </style>
