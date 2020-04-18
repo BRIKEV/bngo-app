@@ -125,6 +125,11 @@ export default {
       }
     },
     shareCopyClick() {
+      this.$ga.event({
+        eventCategory: 'share',
+        eventAction: 'clickCopyBtn',
+        eventLabel: `The ${this.roomName} room was coppied`,
+      });
       this.$refs.url.setAttribute('type', 'text');
       this.$refs.url.select();
       document.execCommand('copy');
@@ -138,6 +143,11 @@ export default {
       if (!navigator.share) {
         return this.shareCopyClick();
       }
+      this.$ga.event({
+        eventCategory: 'share',
+        eventAction: 'clickShareBtn',
+        eventLabel: `The ${this.roomName} room was shared`,
+      });
       return navigator.share({
         title: this.$t('joinGame.createGameSection.shareTitle'),
         url: this.url,
