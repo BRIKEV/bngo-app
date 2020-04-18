@@ -7,7 +7,7 @@ import { hasAccess } from '@/persistence/access';
 
 Vue.use(VueRouter);
 
-const routes = [
+export const routes = [
   {
     path: '/',
     name: 'JoinGame',
