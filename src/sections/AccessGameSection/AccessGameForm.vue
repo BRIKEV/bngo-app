@@ -22,6 +22,7 @@
       <p class="errorText">{{ $t('validations.usernameLength') }}</p>
     </div>
     <BkInput
+      v-if="!sharedGameName"
       v-model="roomName"
       id="roomName"
       name="roomName"
@@ -71,6 +72,18 @@ export default {
   computed: {
     invalid() {
       return !this.gameKey || !this.roomName || !this.username || this.$v.$invalid;
+    },
+    sharedGameName() {
+      const isSharedGame = this.$route.matched.some(({ name }) => name === 'ShareGame');
+      return isSharedGame ? this.$route.params.gameName : '';
+    },
+  },
+  watch: {
+    sharedGameName: {
+      handler(sharedRoomName) {
+        this.roomName = sharedRoomName;
+      },
+      immediate: true,
     },
   },
   methods: {
