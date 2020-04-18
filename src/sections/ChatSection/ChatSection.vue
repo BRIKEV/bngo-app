@@ -44,6 +44,7 @@ export default {
   methods: {
     onSubmit() {
       if (this.trimMessage !== '') {
+        this.message = '';
         emit('message', { message: this.trimMessage });
       }
     },
@@ -64,7 +65,7 @@ export default {
       resize: none;
       width: 100%;
       padding: calculateRem(10px);
-      font-size: $fs-medium;
+      font-size: $fs-small;
       line-height: $base-line-height;
       height: 23px;
       border: 1px solid $lightGray;
