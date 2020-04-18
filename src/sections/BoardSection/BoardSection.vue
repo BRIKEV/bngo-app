@@ -59,7 +59,7 @@ export default {
     @include mobile {
       display: block;
       padding-bottom: calculateRem(5px);
-      margin: 0 auto calculateRem(20px) auto;
+      margin: calculateRem(35px) auto calculateRem(20px) auto;
       width: 90%;
       .titleContainer {
         display: flex;
