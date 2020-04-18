@@ -134,7 +134,7 @@ export default {
       }
       return navigator.share({
         title: this.$t('joinGame.createGameSection.shareTitle'),
-        url: 'https://codepen.io/ayoisaiah/pen/YbNazJ',
+        url: this.url,
       });
     },
   },
