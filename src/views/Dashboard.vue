@@ -207,7 +207,10 @@ export default {
   display: flex;
   height: 100%;
   margin-top: calculateRem(20px);
-  margin-bottom: calculateRem(25px);
+  margin-bottom: 0;
+  @include tablet {
+    margin-bottom: calculateRem(20px);
+  }
   .Info {
     display: flex;
     flex-direction: column;
@@ -234,6 +237,7 @@ export default {
       width: 90%;
       margin: 0 auto;
       display: block;
+      max-width: calculateRem(500px);
       @include tablet {
         display: none;
       }

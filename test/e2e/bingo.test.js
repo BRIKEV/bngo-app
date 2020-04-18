@@ -291,7 +291,7 @@ describe('Bingo e2e tests', () => {
       });
     });
 
-    it.only(`create a game and join one user and emit one event message to receive 
+    it(`create a game and join one user and emit one event message to receive 
       in the client message with the message
     `, cb => {
       const message = 'This is a message';

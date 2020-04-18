@@ -1,30 +1,55 @@
 <template>
   <div class="chatContainer">
-    <div class="title">Envia un mensaje</div>
     <form
       autocomplete="off"
       class="form"
-      @submit.prevent
+      @submit.prevent="onSubmit"
     >
       <textarea
         v-model="message"
-        placeholder="add multiple lines"
+        :placeholder="$t('chatSection.placeholder', { maxLengthMessage })"
+        :maxlength="maxLength"
       ></textarea>
       <BkButton
         class="btn"
       >
-        {{ $t('joinGame.accessGameSection.btnAccess') }}
+        <span class="material-icons">
+          send
+        </span>
       </BkButton>
     </form>
   </div>
 </template>
 
 <script>
-// import { emit } from '@/io';
+import VueTypes from 'vue-types';
+import { emit } from '@/io';
 
 export default {
   name: 'ChatSection',
-
+  props: {
+    maxLength: VueTypes.number.def(150),
+  },
+  data() {
+    return {
+      message: '',
+    };
+  },
+  computed: {
+    trimMessage() {
+      return this.message.trim();
+    },
+    maxLengthMessage() {
+      return this.maxLength - this.trimMessage.length;
+    },
+  },
+  methods: {
+    onSubmit() {
+      if (this.trimMessage !== '') {
+        emit('message', { message: this.trimMessage });
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -34,26 +59,30 @@ export default {
   width: 100%;
   margin: calculateRem(40px) 0;
   margin-bottom: calculateRem(10px);
-  .title {
-    color: $brand;
-    margin: calculateRem(10px) 0;
-  }
   .form {
     display: flex;
     justify-content: space-between;
     align-items: center;
     textarea {
+      resize: none;
       width: 100%;
-      padding: 5px;
-      height: 33px;
+      padding: calculateRem(10px);
+      font-size: $fs-medium;
+      line-height: $base-line-height;
+      height: 23px;
       border: 1px solid $lightGray;
       border-radius: calculateRem(5px);
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
     }
     .btn {
+      display: flex;
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
+      &::v-deep .content {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 }
