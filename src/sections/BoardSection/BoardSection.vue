@@ -71,6 +71,7 @@ export default {
       }
       .outputImagesMobile {
         width: 100%;
+        pointer-events: none;
         grid-template-rows: repeat(1, 80px) !important;
         grid-template-columns: repeat(49, 80px) !important;
       }
