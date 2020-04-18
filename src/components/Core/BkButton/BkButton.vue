@@ -46,7 +46,7 @@ export default {
   font-weight: bold;
   font-size: $fs-base;
   transition: all .15s linear;
-  padding: 5px 15px;
+  padding: calculateRem(5px) calculateRem(15px);
   cursor: pointer;
   border: none;
   &:hover {
@@ -64,13 +64,13 @@ export default {
   }
 
   &.outline {
-    background: $white;
-    color: $brand;
-    border-color: $brand;
+    background: transparent;
+    color: $white;
+    border: calculateRem(1px) solid $white;
     &:hover {
       background: lighten($brand, 20%);
-      color: $white;
       border-color: inherit;
+      color: $white;
       transition: background .3s ease-in;
     }
   }

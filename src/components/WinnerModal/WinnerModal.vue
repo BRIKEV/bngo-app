@@ -15,6 +15,7 @@
     <template #footer>
       <BkButton
         class="deleteBtn"
+        outline
         @btn-clicked="handlePlayClick"
       >
         {{ $t('modal.btn') }}
@@ -85,9 +86,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #348659;
-    border: 3px solid white;
-    border-radius: 40px;
+    background: $brand;
+    border: calculateRem(3px) solid $white;
+    border-radius: calculateRem(40px);
     @include mobile {
       position: fixed;
       height: 100%;
@@ -123,7 +124,7 @@ export default {
       &::v-deep .fab {
         font-size: 2.3rem;
         margin: 0 10px;
-        color: $lightGray;
+        color: $white;
         @include desktop {
           cursor: pointer;
         }
