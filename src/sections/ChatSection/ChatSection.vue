@@ -72,6 +72,7 @@ export default {
       border-radius: calculateRem(5px);
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
+      border-right: none;
     }
     .btn {
       display: flex;
