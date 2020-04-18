@@ -82,8 +82,8 @@ export default {
         title: NOTIFICATION_BINGO.error.title,
         text: NOTIFICATION_BINGO.error.text,
       }),
-      userMessage: ({ title, message }) => this.sendInfo({
-        title,
+      userMessage: ({ title, message }) => this.sendMessage({
+        title: `<span class="icon material-icons">account_circle</span>${title}`,
         text: message,
       }),
       usernameHasBingo: this.handleUserHasBingo,
@@ -113,7 +113,7 @@ export default {
       setUsers: 'usersList',
       activateAnimate: 'activateAnimate',
       sendError: 'sendError',
-      sendInfo: 'sendInfo',
+      sendMessage: 'sendMessage',
       clean: 'clean',
     }),
     exit() {
