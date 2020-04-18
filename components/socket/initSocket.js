@@ -88,6 +88,13 @@ module.exports = () => {
         }
       });
 
+      socket.on('message', msg => {
+        io.to(gameName).emit('message', {
+          message: msg.message,
+          title: username,
+        });
+      });
+
       socket.on('bingo', () => {
         controller.hasBingo({ key: gameKey, username, gameName })
           .then(async hasBingo => {

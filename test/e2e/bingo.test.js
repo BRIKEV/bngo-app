@@ -290,5 +290,27 @@ describe('Bingo e2e tests', () => {
         cb();
       });
     });
+
+    it.only(`create a game and join one user and emit one event message to receive 
+      in the client message with the message
+    `, cb => {
+      const message = 'This is a message';
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.emit('message', {
+        message,
+      });
+
+      socket.on('message', msg => {
+        expect(msg.title).to.eql(username);
+        expect(msg.message).to.eql(message);
+        cb();
+      });
+    });
   });
 });
