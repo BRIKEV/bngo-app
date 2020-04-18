@@ -2,9 +2,16 @@
   <div class="game">
     <BkHeader logo>
       <div class="navbarOptions">
-        {{ user.username }}
+        <div class="usernameContainer">
+          <span class="material-icons">
+            account_circle
+          </span>
+          <span class="username">
+            {{ user.username }}
+          </span>
+        </div>
         <span
-          class="icon material-icons"
+          class="exit icon material-icons"
           @click="exit">
             exit_to_app
         </span>
@@ -149,12 +156,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   .gameTitle {
     font-family: $base-font-title;
     font-size: $fs-h1;
+  }
+  @include tablet {
+    height: 100vh;
   }
 }
 .navbarOptions {
@@ -163,8 +173,15 @@ export default {
   color: $white;
   font-size: $fs-large;
   font-family: $base-font-family;
-  span {
-    margin-left: 10px;
+  .usernameContainer {
+    display: flex;
+    align-items: center;
+    .username {
+      padding-left: calculateRem(3px);
+    }
+  }
+  .exit {
+    margin-left: calculateRem(10px);
     cursor: pointer;
   }
 }
@@ -189,7 +206,7 @@ export default {
   margin-right: auto;
   display: flex;
   height: 100%;
-  margin-top: calculateRem(25px);
+  margin-top: calculateRem(20px);
   margin-bottom: calculateRem(25px);
   .Info {
     display: flex;

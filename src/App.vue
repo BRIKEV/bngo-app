@@ -35,7 +35,10 @@ export default {
 @import "@/theme/index.scss";
 
 #app {
-  height: 100vh;
+  height: 100%;
+  @include tablet {
+    height: 100vh;
+  }
   @include keyboard {
     height: 100%;
   }
