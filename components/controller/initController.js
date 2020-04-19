@@ -131,6 +131,7 @@ module.exports = () => {
         board: newBoard,
       };
       const gameFinished = isGameOver(newBoard);
+      const noUsers = updateGame.users.length === 0;
       await store.updateGameByKey(updateGame);
       return Promise.resolve({
         optionSelected,
@@ -138,7 +139,7 @@ module.exports = () => {
           ...updateGame,
           board: newBoard,
         },
-        gameFinished,
+        gameFinished: gameFinished || noUsers,
       });
     };
 
@@ -177,6 +178,28 @@ module.exports = () => {
       return store.updateGameByKey(updateGame);
     };
 
+    const leaveGame = async ({ key, gameName, username }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const newUsers = game.users.filter(user => !(user.username === username));
+      const gameReady = (
+        newUsers.filter(({ ready }) => ready).length === game.users.length - 1
+      );
+      const updateGame = {
+        ...game,
+        ready: gameReady,
+        users: newUsers,
+      };
+      await store.updateGameByKey(updateGame);
+      return Promise.resolve({
+        username,
+        initGame: !game.ready && gameReady && newUsers.length !== 0,
+        users: filteredUsers(newUsers),
+      });
+    };
+
     return {
       createGame,
       joinGame,
@@ -185,6 +208,7 @@ module.exports = () => {
       getUserInfo,
       hasBingo,
       finishGame,
+      leaveGame,
     };
   };
 

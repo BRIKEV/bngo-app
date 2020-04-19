@@ -66,6 +66,7 @@ export default {
     accessGameError: 'there is no room with that name',
     errorBingo: 'You don\'t have bingo, keep playing :)',
     linkCopied: 'Copy to clipboard',
+    userLeaves: 'User {username} leaves the game',
   },
   modal: {
     message: 'The winner is',

@@ -135,6 +135,106 @@ describe('initController tests', () => {
     expect(games[0].ready).to.eql(true);
   });
 
+  describe('leaveGame method', () => {
+    it('should return not found when gamename does not match', async () => {
+      try {
+        const secondUsername = 'secondUsername';
+        await api.createGame({ gameName, gameKey });
+        await api.joinGame({ username, key: gameKey, gameName });
+        await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+        await api.readyToStart({ username, key: gameKey });
+        await api.readyToStart({ username: secondUsername, key: gameKey });
+        await api.leaveGame({ username: secondUsername, key: gameKey, gameName: 'fake gamename' });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Gamename not found');
+      }
+    });
+
+    it('leaveGame with two users method as game already started', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.readyToStart({ username: secondUsername, key: gameKey });
+      const leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
+      expect(leaveGameResponse.users).to.have.length(1);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(secondUsername);
+    });
+
+    it('leaveGame with two users and second one was not ready leaves. Game should be ready', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      const leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(1);
+      expect(leaveGameResponse.initGame).to.eql(true);
+      expect(leaveGameResponse.username).to.eql(secondUsername);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
+    });
+
+    it('leaveGame with two users and first one who is ready leaves. Game should be not ready', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      const leaveGameResponse = await api.leaveGame({ username, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(1);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(username);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(false);
+    });
+
+    it('leaveGame two users that were ready and initGame should be false', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.readyToStart({ username: secondUsername, key: gameKey });
+      let leaveGameResponse = await api.leaveGame({ username, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(1);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(username);
+      leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(0);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(secondUsername);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
+      expect(games[0].users).to.have.length(0);
+    });
+
+    it('leaveGame two users and play turn should return game finished', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.readyToStart({ username: secondUsername, key: gameKey });
+      let result = await api.playTurn({ key: gameKey });
+      expect(result.gameFinished).to.eql(false);
+      await api.leaveGame({ username, key: gameKey, gameName });
+      await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      result = await api.playTurn({ key: gameKey });
+      expect(result.gameFinished).to.eql(true);
+    });
+  });
+
   it('should return error as game is not ready', async () => {
     await api.createGame({ gameName, gameKey });
     await api.joinGame({ username, key: gameKey, gameName });

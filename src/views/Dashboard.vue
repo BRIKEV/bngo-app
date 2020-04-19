@@ -49,9 +49,9 @@ import { getInfo, logout } from '@/persistence/access';
 import {
   UserBoardSection, GameActionsSection, BoardSection, ChatSection,
 } from '@/sections';
-import io from '@/io';
+import io, { emit } from '@/io';
 import { mapActions, mapState } from 'vuex';
-import { NOTIFICATION_BINGO } from '@/store/notification/notificationTypes';
+import { NOTIFICATION_BINGO, NOTIFICATION_USER_LEAVES } from '@/store/notification/notificationTypes';
 
 export default {
   name: 'Dashboard',
@@ -86,6 +86,7 @@ export default {
         title: `<span class="icon material-icons">account_circle</span>${title}`,
         text: message,
       }),
+      userLeaves: ({ username }) => this.sendInfo(NOTIFICATION_USER_LEAVES({ username })),
       usernameHasBingo: this.handleUserHasBingo,
       usersList: this.setUsers,
     },
@@ -114,13 +115,16 @@ export default {
       activateAnimate: 'activateAnimate',
       sendError: 'sendError',
       sendMessage: 'sendMessage',
+      sendInfo: 'sendInfo',
       clean: 'clean',
     }),
     exit() {
       this.$ga.event({
         eventCategory: 'exit',
         eventAction: 'logout',
+        eventLabel: `User ${this.user} leaves`,
       });
+      emit('leaveUser');
       logout();
     },
     handleUserHasBingo({ username }) {

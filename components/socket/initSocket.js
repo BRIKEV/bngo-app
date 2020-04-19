@@ -95,6 +95,26 @@ module.exports = () => {
         });
       });
 
+      socket.on('leaveUser', () => {
+        controller.leaveGame({ key: gameKey, gameName, username })
+          .then(leaveGameInfo => {
+            logger.info(`User: ${leaveGameInfo.username} leaves game`);
+            io.to(gameName).emit('userLeaves', { username: leaveGameInfo.username });
+            io.to(gameName).emit('usersList', { users: leaveGameInfo.users });
+            if (leaveGameInfo.initGame) {
+              logger.info('Game is ready to start because one user leaves while the rest was ready');
+              io.to(gameName).emit('gameReady');
+            }
+          })
+          .catch(error => {
+            logger.error(`Error in readyToStart event ${error}`);
+            io.to(socket.id).emit('errorLeavesUser', {
+              message: error.message,
+              type: error.type,
+            });
+          });
+      });
+
       socket.on('bingo', () => {
         controller.hasBingo({ key: gameKey, username, gameName })
           .then(async hasBingo => {

@@ -66,6 +66,7 @@ export default {
     accessGameError: 'No existe una sala con ese nombre',
     errorBingo: 'No tienes bingo, sigue jugando :)',
     linkCopied: 'Copiada en portapapeles',
+    userLeaves: 'El usuario {username} abandonó la partida',
   },
   modal: {
     message: 'El ganador es',
