@@ -26,3 +26,7 @@ export const NOTIFICATION_COPY_LINK = {
     title: i18n.t('notification.linkCopied'),
   },
 };
+
+export const NOTIFICATION_USER_LEAVES = ({ username } = {}) => ({
+  text: i18n.t('notification.userLeaves', { username }),
+});

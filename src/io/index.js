@@ -55,6 +55,10 @@ const IOeventEmitter = (methods, options) => {
     methods.usersList({ users });
   });
 
+  socket.on('userLeaves', ({ username }) => {
+    methods.userLeaves({ username });
+  });
+
   socket.on('message', ({ title, message }) => {
     methods.userMessage({ title, message });
   });
