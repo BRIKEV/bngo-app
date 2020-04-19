@@ -313,7 +313,7 @@ describe('Bingo e2e tests', () => {
       });
     });
 
-    describe('leaves user', () => {
+    describe('leaveUser events', () => {
       it(`create a game and join one user and emit one event leaveUser to one message
         userLeaves with username who leaves
       `, cb => {
