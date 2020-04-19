@@ -197,6 +197,27 @@ describe('initController tests', () => {
       expect(games).to.have.length(1);
       expect(games[0].ready).to.eql(false);
     });
+
+    it('leaveGame two users that were ready and initGame should be false', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.readyToStart({ username: secondUsername, key: gameKey });
+      let leaveGameResponse = await api.leaveGame({ username, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(1);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(username);
+      leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      expect(leaveGameResponse.users).to.have.length(0);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(secondUsername);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
+      expect(games[0].users).to.have.length(0);
+    });
   });
 
   it('should return error as game is not ready', async () => {

@@ -194,7 +194,7 @@ module.exports = () => {
       await store.updateGameByKey(updateGame);
       return Promise.resolve({
         username,
-        initGame: !game.ready && gameReady,
+        initGame: !game.ready && gameReady && newUsers.length !== 0,
         users: filteredUsers(newUsers),
       });
     };
