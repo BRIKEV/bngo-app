@@ -312,5 +312,45 @@ describe('Bingo e2e tests', () => {
         cb();
       });
     });
+
+    describe('leaves user', () => {
+      it(`create a game and join one user and emit one event leaveUser to one message
+        userLeaves with username who leaves
+      `, cb => {
+        // connect client
+        socket = io(CLIENT_CONNECTION, {
+          query: {
+            accessKey,
+          },
+        });
+
+        socket.emit('leaveUser');
+
+        socket.on('userLeaves', msg => {
+          expect(msg.username).to.eql(username);
+          cb();
+        });
+      });
+
+      it(`create a game and join one user and emit one event leaveUser to one message
+          usersList with users list updated
+        `, cb => {
+        // connect client
+        socket = io(CLIENT_CONNECTION, {
+          query: {
+            accessKey,
+          },
+        });
+
+        socket.emit('leaveUser');
+
+        socket.on('usersList', msg => {
+          // This should skip first message
+          if (msg.users.length !== 0) return;
+          expect(msg.users).to.eql([]);
+          cb();
+        });
+      });
+    });
   });
 });
