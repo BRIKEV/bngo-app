@@ -131,6 +131,7 @@ module.exports = () => {
         board: newBoard,
       };
       const gameFinished = isGameOver(newBoard);
+      const noUsers = updateGame.users.length === 0;
       await store.updateGameByKey(updateGame);
       return Promise.resolve({
         optionSelected,
@@ -138,7 +139,7 @@ module.exports = () => {
           ...updateGame,
           board: newBoard,
         },
-        gameFinished,
+        gameFinished: gameFinished || noUsers,
       });
     };
 
