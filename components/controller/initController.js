@@ -177,6 +177,22 @@ module.exports = () => {
       return store.updateGameByKey(updateGame);
     };
 
+    const leaveGame = async ({ key, gameName, username }) => {
+      const game = await getGameByKey(key);
+      if (game.name !== gameName) {
+        throw notFoundError('Gamename not found');
+      }
+      const newUsers = game.users.filter(user => !(user.username === username));
+      const gameReady = (
+        newUsers.filter(({ ready }) => ready).length === game.users.length - 1
+      );
+      return Promise.resolve({
+        username,
+        gameReady,
+        users: filteredUsers(newUsers),
+      });
+    };
+
     return {
       createGame,
       joinGame,
@@ -185,6 +201,7 @@ module.exports = () => {
       getUserInfo,
       hasBingo,
       finishGame,
+      leaveGame,
     };
   };
 
