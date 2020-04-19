@@ -186,9 +186,15 @@ module.exports = () => {
       const gameReady = (
         newUsers.filter(({ ready }) => ready).length === game.users.length - 1
       );
+      const updateGame = {
+        ...game,
+        ready: gameReady,
+        users: newUsers,
+      };
+      await store.updateGameByKey(updateGame);
       return Promise.resolve({
         username,
-        gameReady,
+        initGame: !game.ready && gameReady,
         users: filteredUsers(newUsers),
       });
     };

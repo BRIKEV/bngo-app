@@ -152,7 +152,7 @@ describe('initController tests', () => {
       }
     });
 
-    it('leaveGame with two users method', async () => {
+    it('leaveGame with two users method as game already started', async () => {
       const secondUsername = 'secondUsername';
       await api.createGame({ gameName, gameKey });
       await api.joinGame({ username, key: gameKey, gameName });
@@ -160,8 +160,11 @@ describe('initController tests', () => {
       await api.readyToStart({ username, key: gameKey });
       await api.readyToStart({ username: secondUsername, key: gameKey });
       const leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
       expect(leaveGameResponse.users).to.have.length(1);
-      expect(leaveGameResponse.gameReady).to.eql(true);
+      expect(leaveGameResponse.initGame).to.eql(false);
       expect(leaveGameResponse.username).to.eql(secondUsername);
     });
 
@@ -173,8 +176,11 @@ describe('initController tests', () => {
       await api.readyToStart({ username, key: gameKey });
       const leaveGameResponse = await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
       expect(leaveGameResponse.users).to.have.length(1);
-      expect(leaveGameResponse.gameReady).to.eql(true);
+      expect(leaveGameResponse.initGame).to.eql(true);
       expect(leaveGameResponse.username).to.eql(secondUsername);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
     });
 
     it('leaveGame with two users and first one who is ready leaves. Game should be not ready', async () => {
@@ -185,8 +191,11 @@ describe('initController tests', () => {
       await api.readyToStart({ username, key: gameKey });
       const leaveGameResponse = await api.leaveGame({ username, key: gameKey, gameName });
       expect(leaveGameResponse.users).to.have.length(1);
-      expect(leaveGameResponse.gameReady).to.eql(false);
-      expect(leaveGameResponse.username).to.eql(secondUsername);
+      expect(leaveGameResponse.initGame).to.eql(false);
+      expect(leaveGameResponse.username).to.eql(username);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(false);
     });
   });
 
