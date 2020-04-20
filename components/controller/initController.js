@@ -26,6 +26,7 @@ module.exports = () => {
       const game = {
         key: gameKey,
         name: gameName,
+        types,
         ready: false,
         users: [],
         board: getBoard(types, config.boardLength),
@@ -174,6 +175,8 @@ module.exports = () => {
       const updateGame = {
         ...game,
         ready: false,
+        board: getBoard(game.types, config.boardLength),
+        users: [],
       };
       return store.updateGameByKey(updateGame);
     };
@@ -183,9 +186,14 @@ module.exports = () => {
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
       }
+      const userInGame = game.users.find(user => user.username === username);
+      if (!userInGame) {
+        throw notFoundError('Username not found to leave the room');
+      }
       const newUsers = game.users.filter(user => !(user.username === username));
+      const usersReady = newUsers.filter(({ ready }) => ready).length;
       const gameReady = (
-        newUsers.filter(({ ready }) => ready).length === game.users.length - 1
+        usersReady === game.users.length - 1
       );
       const updateGame = {
         ...game,

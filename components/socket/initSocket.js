@@ -79,9 +79,12 @@ module.exports = () => {
       socket.on('startGame', () => {
         if (!intervals[intervalIdentifier]) {
           intervals[intervalIdentifier] = setInterval(
-            draw(io, gameName, gameKey, () => {
+            draw(io, gameName, gameKey, async () => { // finish draw cb
               logger.info('Game over all images were displayed');
+              // TODO: Separate in one function
               clearInterval(intervals[intervalIdentifier]);
+              intervals[intervalIdentifier] = null;
+              await controller.finishGame({ key: gameKey, gameName });
               io.to(gameName).emit('gameEnd');
             }), config.interval,
           );
@@ -107,8 +110,11 @@ module.exports = () => {
             }
           })
           .catch(error => {
+            if (error && error.type === 'not_found') {
+              return logger.info(`Username ${username} leaving room ${gameName}`);
+            }
             logger.error(`Error in readyToStart event ${error}`);
-            io.to(socket.id).emit('errorLeavesUser', {
+            return io.to(socket.id).emit('errorLeavesUser', {
               message: error.message,
               type: error.type,
             });
@@ -122,9 +128,12 @@ module.exports = () => {
               logger.info(`User has bingo ${username} in game ${gameName}`);
               await controller.finishGame({ key: gameKey, gameName });
               io.to(gameName).emit('usernameHasBingo', { username });
+              // TODO: Separate in one function
               clearInterval(intervals[intervalIdentifier]);
+              intervals[intervalIdentifier] = null;
+            } else {
+              io.to(socket.id).emit('incorrectBingo', { username });
             }
-            io.to(socket.id).emit('incorrectBingo', { username });
           })
           .catch(error => {
             logger.error(`Error in bingo event ${error}`);
