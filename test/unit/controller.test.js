@@ -34,14 +34,24 @@ describe('initController tests', () => {
     await storeSystem.removeGames();
   });
 
-  it('createGame method', async () => {
-    const result = await api.createGame({ gameName, gameKey });
-    const games = await storeSystem.getGames();
-    expect(games).to.have.length(1);
-    expect(games[0].board).to.have.length(49);
-    expect(games[0].users).to.have.length(0);
-    expect(games[0].ready).to.eql(false);
-    expect(result).to.eql('Game created');
+  describe('createGame method', () => {
+    it('should createGame', async () => {
+      const result = await api.createGame({ gameName, gameKey });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].board).to.have.length(49);
+      expect(games[0].users).to.have.length(0);
+      expect(games[0].ready).to.eql(false);
+      expect(result).to.eql('Game created');
+    });
+
+    it('should trim values', async () => {
+      await api.createGame({ gameName: '  name  ', gameKey: '  game key  ' });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].key).to.eql('game key');
+      expect(games[0].name).to.eql('name');
+    });
   });
 
   describe('joinGame method', () => {
@@ -86,6 +96,19 @@ describe('initController tests', () => {
       expect(result.ready).to.eql(false);
       const games = await storeSystem.getGames();
       expect(games).to.have.length(1);
+      expect(games[0].users).to.have.length(1);
+    });
+
+    it('should join one user and trim values', async () => {
+      await api.createGame({ gameName: ` ${gameName}  `, gameKey });
+      const result = await api.joinGame({ username: ` ${username}  `, key: gameKey, gameName });
+      expect(result.username).to.eql(username);
+      expect(result.board).to.have.length(16);
+      expect(result.ready).to.eql(false);
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].key).to.eql(gameKey);
+      expect(games[0].name).to.eql(gameName);
       expect(games[0].users).to.have.length(1);
     });
 

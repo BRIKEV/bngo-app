@@ -17,6 +17,12 @@ const badRequestError = errorFactory(CustomErrorTypes.BAD_REQUEST);
 module.exports = () => {
   const start = async ({ logger, store: storeSystem, config }) => {
     const store = storeSystem[config.storeMode];
+
+    const trimText = text => {
+      const trim = text ? text.trim() : text;
+      return trim;
+    };
+
     const createGame = async ({ gameName, gameKey, types }) => {
       const gameExists = await store.getGameByKey(gameKey);
       if (gameExists) {
@@ -24,8 +30,8 @@ module.exports = () => {
       }
       logger.info('Creating game');
       const game = {
-        key: gameKey,
-        name: gameName,
+        key: trimText(gameKey),
+        name: trimText(gameName),
         types,
         ready: false,
         users: [],
@@ -48,7 +54,10 @@ module.exports = () => {
       return game;
     };
 
-    const joinGame = async ({ key, username, gameName }) => {
+    const joinGame = async payload => {
+      const key = trimText(payload.key);
+      const username = trimText(payload.username);
+      const gameName = trimText(payload.gameName);
       const game = await getGameByKey(key);
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
