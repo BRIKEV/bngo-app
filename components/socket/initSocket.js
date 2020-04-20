@@ -98,6 +98,23 @@ module.exports = () => {
         }
       });
 
+      socket.on('playAgain', () => {
+        controller.joinGame({
+          key: gameKey,
+          username,
+          gameName,
+        }).then(() => {
+          io.to(socket.id).emit('readyToPlayAgain');
+        })
+          .catch(error => {
+            logger.error(`Error in bingo event ${error}`);
+            io.to(socket.id).emit('errorPlayAgain', {
+              message: error.message,
+              type: error.type,
+            });
+          });
+      });
+
       socket.on('message', msg => {
         io.to(gameName).emit('message', {
           message: msg.message,
