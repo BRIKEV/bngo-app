@@ -24,8 +24,8 @@ module.exports = () => {
       }
       logger.info('Creating game');
       const game = {
-        key: gameKey,
-        name: gameName,
+        key: gameKey.trim(),
+        name: gameName.trim(),
         types,
         ready: false,
         users: [],
@@ -48,7 +48,10 @@ module.exports = () => {
       return game;
     };
 
-    const joinGame = async ({ key, username, gameName }) => {
+    const joinGame = async payload => {
+      const key = payload.key.trim();
+      const username = payload.username.trim();
+      const gameName = payload.gameName.trim();
       const game = await getGameByKey(key);
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
