@@ -82,10 +82,7 @@ export default {
           setAccess(data.accessKey);
           this.$router.push({ name: 'Dashboard' });
         })
-        .catch(() => this.sendError({
-          title: NOTIFICATION_ACCESS.error.title,
-          text: NOTIFICATION_ACCESS.error.text,
-        }));
+        .catch((error) => this.sendError(NOTIFICATION_ACCESS(error.response.status)));
     },
   },
 };
