@@ -59,6 +59,7 @@ module.exports = {
   },
   io: {
     interval: 10000,
+    endGameTimeout: 12000,
     ...tokenOptions,
   },
   store: {

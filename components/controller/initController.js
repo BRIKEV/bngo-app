@@ -194,7 +194,7 @@ module.exports = () => {
       const usersReady = newUsers.filter(({ ready }) => ready).length;
       const gameReady = (
         usersReady === game.users.length - 1
-      );
+      ) && usersReady !== 0;
       const updateGame = {
         ...game,
         ready: gameReady,

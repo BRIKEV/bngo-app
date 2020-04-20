@@ -215,23 +215,8 @@ describe('initController tests', () => {
       expect(leaveGameResponse.username).to.eql(secondUsername);
       const games = await storeSystem.getGames();
       expect(games).to.have.length(1);
-      expect(games[0].ready).to.eql(true);
+      expect(games[0].ready).to.eql(false);
       expect(games[0].users).to.have.length(0);
-    });
-
-    it('leaveGame two users and play turn should return game finished', async () => {
-      const secondUsername = 'secondUsername';
-      await api.createGame({ gameName, gameKey });
-      await api.joinGame({ username, key: gameKey, gameName });
-      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
-      await api.readyToStart({ username, key: gameKey });
-      await api.readyToStart({ username: secondUsername, key: gameKey });
-      let result = await api.playTurn({ key: gameKey });
-      expect(result.gameFinished).to.eql(false);
-      await api.leaveGame({ username, key: gameKey, gameName });
-      await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
-      result = await api.playTurn({ key: gameKey });
-      expect(result.gameFinished).to.eql(true);
     });
 
     it(`leaveGame two users and play turn should finish game and
