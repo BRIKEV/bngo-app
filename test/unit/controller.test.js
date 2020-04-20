@@ -266,7 +266,6 @@ describe('initController tests', () => {
         // if leaveGame does not throw an exception test should fail
         expect(false).to.eql(true);
       } catch (err) {
-        console.log(err);
         expect(err.message).to.eql('Username not found to leave the room');
       }
     });
