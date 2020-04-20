@@ -38,6 +38,7 @@
     <WinnerModal
       :opened="showModal"
       :winner="winner"
+      @exit="handleExitClick"
       @playAgain="handlePlayAgainClick"
     />
   </div>
@@ -89,6 +90,7 @@ export default {
       userLeaves: ({ username }) => this.sendInfo(NOTIFICATION_USER_LEAVES({ username })),
       usernameHasBingo: this.handleUserHasBingo,
       usersList: this.setUsers,
+      readyToPlayAgain: () => window.location.reload(true),
     },
     {
       ...getInfo(),
@@ -136,7 +138,7 @@ export default {
       this.showModal = true;
       this.winner = username;
     },
-    handlePlayAgainClick() {
+    handleExitClick() {
       this.$ga.event({
         eventCategory: 'play',
         eventAction: 'playAgainClick',
@@ -144,6 +146,9 @@ export default {
       });
       this.showModal = false;
       this.exit();
+    },
+    handlePlayAgainClick() {
+      emit('playAgain');
     },
   },
 };
