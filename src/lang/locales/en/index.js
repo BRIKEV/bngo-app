@@ -32,8 +32,8 @@ export default {
       passwordLabel: 'Room password',
     },
     createGameSection: {
-      typesTitle: 'Seleccione al menos un tipo de tablero para jugar',
-      shareMessage: 'Tu partida ha sido creada. Compártela con tus amigos.',
+      typesTitle: 'Select at least one type of board to play',
+      shareMessage: 'Your game has been created. Share it with your friends.',
       types: {
         standard: {
           title: 'STANDARD',
