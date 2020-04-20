@@ -9,11 +9,16 @@ module.exports = () => {
     logger.info('create io instance');
 
     const draw = (socket, room, gameKey, endGame) => async () => {
-      const { optionSelected, updateGame, gameFinished } = await controller.playTurn({
-        key: gameKey,
-      });
-      socket.to(room).emit('optionSelected', { optionSelected, board: updateGame.board });
-      if (gameFinished) {
+      try {
+        const { optionSelected, updateGame, gameFinished } = await controller.playTurn({
+          key: gameKey,
+        });
+        socket.to(room).emit('optionSelected', { optionSelected, board: updateGame.board });
+        if (gameFinished) {
+          endGame();
+        }
+      } catch (err) {
+        logger.info('finish game as there is no more turns');
         endGame();
       }
     };
@@ -79,12 +84,14 @@ module.exports = () => {
       socket.on('startGame', () => {
         if (!intervals[intervalIdentifier]) {
           intervals[intervalIdentifier] = setInterval(
-            draw(io, gameName, gameKey, async () => { // finish draw cb
+            draw(io, gameName, gameKey, () => { // finish draw cb
               logger.info('Game over all images were displayed');
               // TODO: Separate in one function
               clearInterval(intervals[intervalIdentifier]);
               intervals[intervalIdentifier] = null;
-              await controller.finishGame({ key: gameKey, gameName });
+              setTimeout(async () => {
+                await controller.finishGame({ key: gameKey, gameName });
+              }, config.endGameTimeout);
               io.to(gameName).emit('gameEnd');
             }), config.interval,
           );
