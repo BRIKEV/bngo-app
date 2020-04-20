@@ -7,12 +7,10 @@ export const NOTIFICATION_CREATE = {
   },
 };
 
-export const NOTIFICATION_ACCESS = {
-  error: {
-    title: i18n.t('notification.titleError'),
-    text: i18n.t('notification.accessGameError'),
-  },
-};
+export const NOTIFICATION_ACCESS = (status) => ({
+  title: i18n.t('notification.titleError'),
+  text: i18n.t(`notification.accessGameError${status}`),
+});
 
 export const NOTIFICATION_BINGO = {
   error: {
