@@ -25,12 +25,14 @@
         <BoardSection />
         <div class="Info">
           <GameActionsSection class="wheelContainer" />
-          <UserBoardSection
-            class="UserBoard"
-            :userImages="userImages"
-          />
-          <div class="chat">
-            <ChatSection />
+          <div>
+            <UserBoardSection
+              class="UserBoard"
+              :userImages="userImages"
+            />
+            <div class="chat">
+              <ChatSection />
+            </div>
           </div>
         </div>
       </div>
@@ -242,8 +244,11 @@ export default {
       margin: 0 auto;
       display: block;
       max-width: calculateRem(500px);
-      @include tablet {
-        display: none;
+      @include desktop {
+        width: 100%;
+        .chatContainer {
+          margin: calculateRem(8px) 0 0 0;
+        }
       }
     }
   }
