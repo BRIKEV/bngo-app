@@ -8,9 +8,13 @@ const setAccess = (accessKey) => {
   cookieStorage.setItem(COOKIE_GAME_KEY, accessKey);
 };
 
+const removeSessionStorage = () => {
+  sessionStorage.removeItem(SESSION_RESULTS_KEY);
+};
+
 const logout = (route = '/') => {
   cookieStorage.removeItem(COOKIE_GAME_KEY);
-  sessionStorage.removeItem(SESSION_RESULTS_KEY);
+  removeSessionStorage();
   window.location.href = route;
 };
 
@@ -29,6 +33,7 @@ const hasAccess = () => {
 export {
   setAccess,
   logout,
+  removeSessionStorage,
   hasAccess,
   getInfo,
 };
