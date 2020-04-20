@@ -66,6 +66,7 @@ describe('API endpoint', () => {
         expect(body).to.eql({ success: true });
         const games = await storeSystem.getGames();
         expect(games).to.have.length(1);
+        expect(games[0].types).to.eql(['cars']);
       }));
 
     it('Should return CONFLICT when a game was created', () => request

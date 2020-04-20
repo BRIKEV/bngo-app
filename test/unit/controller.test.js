@@ -233,6 +233,43 @@ describe('initController tests', () => {
       result = await api.playTurn({ key: gameKey });
       expect(result.gameFinished).to.eql(true);
     });
+
+    it(`leaveGame two users and play turn should finish game and
+      it should be able to join a user again`, async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.readyToStart({ username: secondUsername, key: gameKey });
+      await api.playTurn({ key: gameKey });
+      await api.leaveGame({ username, key: gameKey, gameName });
+      await api.leaveGame({ username: secondUsername, key: gameKey, gameName });
+      await api.finishGame({ key: gameKey, gameName });
+      const result = await api.joinGame({ username, key: gameKey, gameName });
+      expect(result.username).to.eql(username);
+      expect(result.board).to.have.length(16);
+      expect(result.ready).to.eql(false);
+    });
+
+    it('leaveGame one users of two user\'s game after finish it', async () => {
+      try {
+        const secondUsername = 'secondUsername';
+        await api.createGame({ gameName, gameKey });
+        await api.joinGame({ username, key: gameKey, gameName });
+        await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+        await api.readyToStart({ username, key: gameKey });
+        await api.readyToStart({ username: secondUsername, key: gameKey });
+        await api.playTurn({ key: gameKey });
+        await api.finishGame({ key: gameKey, gameName });
+        await api.leaveGame({ username, key: gameKey, gameName });
+        // if leaveGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        console.log(err);
+        expect(err.message).to.eql('Username not found to leave the room');
+      }
+    });
   });
 
   it('should return error as game is not ready', async () => {
@@ -340,15 +377,29 @@ describe('initController tests', () => {
     });
   });
 
-  it('finishGame method', async () => {
-    try {
+  describe('finishGame method', () => {
+    it('should throw error when game is finished and try to play turn', async () => {
+      try {
+        await api.createGame({ gameName, gameKey });
+        await api.joinGame({ username, key: gameKey, gameName });
+        await api.readyToStart({ username, key: gameKey });
+        await api.finishGame({ key: gameKey, gameName });
+        await api.playTurn({ key: gameKey });
+      } catch (error) {
+        expect(error.message).to.eql('Error: game is not ready yet');
+      }
+    });
+
+    it('finishGame should set game ready to false and empty users', async () => {
       await api.createGame({ gameName, gameKey });
       await api.joinGame({ username, key: gameKey, gameName });
       await api.readyToStart({ username, key: gameKey });
       await api.finishGame({ key: gameKey, gameName });
-      await api.playTurn({ key: gameKey });
-    } catch (error) {
-      expect(error.message).to.eql('Error: game is not ready yet');
-    }
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(false);
+      expect(games[0].users).to.have.length(0);
+      expect(games[0].board.filter(({ selected }) => selected)).to.have.length(0);
+    });
   });
 });
