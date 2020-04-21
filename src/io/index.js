@@ -62,6 +62,10 @@ const IOeventEmitter = (methods, options) => {
   socket.on('message', ({ title, message }) => {
     methods.userMessage({ title, message });
   });
+
+  socket.on('readyToPlayAgain', () => {
+    methods.readyToPlayAgain();
+  });
 };
 
 export const emit = (...args) => socket.emit(...args);

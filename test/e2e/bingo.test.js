@@ -15,9 +15,11 @@ describe('Bingo e2e tests', () => {
   const sys = system();
 
   let storeSystem;
+  let controllerSystem;
   before(async () => {
-    const { server: { app }, store, config } = await sys.start();
+    const { server: { app }, store, config, controller } = await sys.start();
     request = supertest(app);
+    controllerSystem = controller;
     storeSystem = store[config.controller.storeMode];
   });
 
@@ -100,6 +102,44 @@ describe('Bingo e2e tests', () => {
         expect(ready).to.eql(false);
         cb();
       });
+    });
+
+    it(`create a game and join one user and receive playAgain event
+      then this should join a user to the game and emit event errorPlayAgain
+      as user already joined
+    `, cb => {
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      socket.emit('playAgain');
+
+      socket.on('errorPlayAgain', () => {
+        cb();
+      });
+    });
+
+    it(`create a game and join one user and receive playAgain event
+      then this should join a user to the game and emit event readyToPlayAgain
+      `, cb => {
+      // connect client
+      socket = io(CLIENT_CONNECTION, {
+        query: {
+          accessKey,
+        },
+      });
+
+      controllerSystem
+        .finishGame({ key: gameKey, gameName })
+        .then(() => {
+          socket.emit('playAgain');
+          socket.on('readyToPlayAgain', () => {
+            cb();
+          });
+        });
     });
 
     it(`create a game and join one user and receive for all the room board event

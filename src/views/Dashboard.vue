@@ -40,6 +40,7 @@
     <WinnerModal
       :opened="showModal"
       :winner="winner"
+      @exit="handleExitClick"
       @playAgain="handlePlayAgainClick"
     />
   </div>
@@ -47,7 +48,7 @@
 
 <script>
 import { WinnerModal } from '@/components';
-import { getInfo, logout } from '@/persistence/access';
+import { getInfo, logout, removeSessionStorage } from '@/persistence/access';
 import {
   UserBoardSection, GameActionsSection, BoardSection, ChatSection,
 } from '@/sections';
@@ -91,6 +92,10 @@ export default {
       userLeaves: ({ username }) => this.sendInfo(NOTIFICATION_USER_LEAVES({ username })),
       usernameHasBingo: this.handleUserHasBingo,
       usersList: this.setUsers,
+      readyToPlayAgain: () => {
+        removeSessionStorage();
+        window.location.reload(true);
+      },
     },
     {
       ...getInfo(),
@@ -124,7 +129,7 @@ export default {
       this.$ga.event({
         eventCategory: 'exit',
         eventAction: 'logout',
-        eventLabel: `User ${this.user} leaves`,
+        eventLabel: `User ${this.user.username} leaves`,
       });
       emit('leaveUser');
       logout();
@@ -138,14 +143,22 @@ export default {
       this.showModal = true;
       this.winner = username;
     },
+    handleExitClick() {
+      this.$ga.event({
+        eventCategory: 'exit',
+        eventAction: 'modalExitClick',
+        eventLabel: `Username ${this.user.username} click exit button`,
+      });
+      this.showModal = false;
+      this.exit();
+    },
     handlePlayAgainClick() {
       this.$ga.event({
         eventCategory: 'play',
         eventAction: 'playAgainClick',
-        eventLabel: 'Click play again',
+        eventLabel: `Username ${this.user.username} click play again`,
       });
-      this.showModal = false;
-      this.exit();
+      emit('playAgain');
     },
   },
 };

@@ -14,11 +14,16 @@
     </template>
     <template #footer>
       <BkButton
-        class="deleteBtn"
         outline
-        @btn-clicked="handlePlayClick"
+        @btn-clicked="handleExit"
       >
         {{ $t('modal.btn') }}
+      </BkButton>
+      <BkButton
+        class="playAgainBtn"
+        @btn-clicked="handlePlayAgainClick"
+      >
+        {{ $t('modal.playAgain') }}
       </BkButton>
       <div class="share">
         <social-sharing
@@ -54,9 +59,12 @@ export default {
     close() {
       this.$emit('onClose');
     },
-    handlePlayClick() {
-      this.$emit('playAgain');
+    handleExit() {
+      this.$emit('exit');
       this.close();
+    },
+    handlePlayAgainClick() {
+      this.$emit('playAgain');
     },
   },
 };
@@ -65,6 +73,19 @@ export default {
 @import "@/theme/index.scss";
 
 .mainModal {
+  .playAgainBtn {
+    margin-left: calculateRem(10px);
+    background-color: $white;
+    color: $brand;
+    transition: background .3s ease-in;
+    &:hover {
+      background: darken($white, 10%);
+    }
+
+    &:active {
+      background-color: darken($white, 10%);
+    }
+  }
   .mainModalTitle {
     font-size: $fs-h4;
     font-family: $base-secondary-font;
