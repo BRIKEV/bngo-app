@@ -65,6 +65,7 @@ export default {
     createGameError: 'There\'s already a game with that name',
     accessGameError404: 'There is no room with that name',
     accessGameError409: 'There\'s already someone playing this game',
+    accessGameError400: 'The user already exists',
     errorBingo: 'You don\'t have bingo, keep playing :)',
     linkCopied: 'Copy to clipboard',
     userLeaves: 'User {username} leaves the game',

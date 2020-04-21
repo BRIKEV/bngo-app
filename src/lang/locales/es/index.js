@@ -65,6 +65,7 @@ export default {
     createGameError: 'Ya existe una partida con ese nombre',
     accessGameError404: 'No existe una sala con ese nombre',
     accessGameError409: 'Ya hay alguien jugando a esta partida',
+    accessGameError400: 'El usuario ya existe',
     errorBingo: 'No tienes bingo, sigue jugando :)',
     linkCopied: 'Copiada en portapapeles',
     userLeaves: 'El usuario {username} abandonó la partida',
