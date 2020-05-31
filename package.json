@@ -33,7 +33,7 @@
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
-    "error-handler-module": "^1.0.1",
+    "error-handler-module": "^1.0.3",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.1",
     "express-swagger-generator": "^1.1.15",
