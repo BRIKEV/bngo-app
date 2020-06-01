@@ -62,7 +62,7 @@
     "vue-social-sharing": "^2.4.7",
     "vue-types": "^1.7.0",
     "vuelidate": "^0.7.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.3.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
