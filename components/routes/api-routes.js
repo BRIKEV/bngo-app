@@ -23,7 +23,10 @@ module.exports = () => {
     */
     app.post('/api/v1/game', createGameLimit, async (req, res, next) => {
       try {
-        const { types } = req.body;
+        const { types, gameName, gameKey } = req.body;
+        if (!gameName || !gameKey) {
+          throw wrongInput('Your sending invalid type');
+        }
         if (types) {
           types.forEach(type => {
             const validType = config.validTopics.includes(type);
@@ -75,7 +78,7 @@ module.exports = () => {
      * GET /api/v1/game-types
      * @summary This endpoint allows you to create one game
      * @tags Game - Everything about games
-     * @return {Array<string>} 200 - Successful operation
+     * @return {array<string>} 200 - Successful operation
      * @return {Error} default - Error message
     */
     app.get('/api/v1/game-types', (req, res) => res.json(config.validTopics));

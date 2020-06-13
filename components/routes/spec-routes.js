@@ -3,7 +3,7 @@
  * @typedef {object} RegisterGameRequest
  * @property {string} gameName.required
  * @property {string} gameKey.required
- * @property {Array<string>} types
+ * @property {array<string>} types
  */
 
 /**
