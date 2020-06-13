@@ -4,7 +4,6 @@ const {
   errorFactory,
   CustomErrorTypes,
 } = require('error-handler-module');
-const validator = require('swagger-endpoint-validator');
 
 const { createGameLimit, joinGameLimit } = require('../../lib/rate-limits');
 const jwt = require('../../lib/token');
@@ -15,16 +14,15 @@ module.exports = () => {
   const start = async ({ server: { app }, controller, logger, config }) => {
     const { signToken } = jwt(config.tokenSecret, config.tokenOptions);
     /**
-     * This endpoint allows you to create one game
-     * @route POST /api/v1/game
-     * @group Game - Everything about games
-     * @param {RegisterGameRequest.model} body.body.required
-     * @returns {SuccessGameRegistered.model} 200 - Successful operation
-     * @returns {Error.model} <any> - Error message
+     * POST /api/v1/game
+     * @summary This endpoint allows you to create one game
+     * @tags Game - Everything about games
+     * @param {RegisterGameRequest} request.body.required
+     * @return {SuccessGameRegistered} 200 - Successful operation
+     * @return {Error} default - Error message
     */
     app.post('/api/v1/game', createGameLimit, async (req, res, next) => {
       try {
-        validator.validateAPIInput(req.body, req);
         const { types } = req.body;
         if (types) {
           types.forEach(type => {
@@ -34,7 +32,6 @@ module.exports = () => {
         }
         await controller.createGame(req.body);
         const response = { success: true };
-        validator.validateAPIOutput(response, req);
         return res.json(response);
       } catch (error) {
         const newErrors = {
@@ -45,16 +42,15 @@ module.exports = () => {
     });
 
     /**
-     * This endpoint allows you to join one game
-     * @route POST /api/v1/game/join
-     * @group Game - Everything about games
-     * @param {JoinGameRequest.model} body.body.required
-     * @returns {SuccessJoinGame.model} 200 - Successful operation
-     * @returns {Error.model} <any> - Error message
+     * POST /api/v1/game/join
+     * @summary This endpoint allows you to join one game
+     * @tags Game - Everything about games
+     * @param {JoinGameRequest} request.body.required
+     * @return {SuccessJoinGame} 200 - Successful operation
+     * @return {Error} default - Error message
     */
     app.post('/api/v1/game/join', joinGameLimit, async (req, res, next) => {
       try {
-        validator.validateAPIInput(req.body, req);
         await controller.joinGame({
           key: req.body.gameKey,
           username: req.body.username,
@@ -67,7 +63,6 @@ module.exports = () => {
             gameKey: req.body.gameKey,
           }),
         };
-        validator.validateAPIOutput(response, req);
         return res.json(response);
       } catch (error) {
         const newErrors = {
@@ -77,11 +72,11 @@ module.exports = () => {
       }
     });
     /**
-     * This endpoint allows you to create one game
-     * @route GET /api/v1/game-types
-     * @group Game - Everything about games
-     * @returns {Array.<string>} 200 - Successful operation
-     * @returns {Error.model} <any> - Error message
+     * GET /api/v1/game-types
+     * @summary This endpoint allows you to create one game
+     * @tags Game - Everything about games
+     * @return {Array<string>} 200 - Successful operation
+     * @return {Error} default - Error message
     */
     app.get('/api/v1/game-types', (req, res) => res.json(config.validTopics));
 
