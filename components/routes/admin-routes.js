@@ -1,9 +1,9 @@
 const {
   tagError,
 } = require('error-handler-module');
-const validator = require('swagger-endpoint-validator');
 const bodyParser = require('body-parser');
 const express = require('express');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
 const helmet = require('helmet');
 const compression = require('compression');
 
@@ -31,13 +31,12 @@ module.exports = () => {
       });
     }
     app.use(express.static(config.frontPath));
-
-    validator.init(app, swaggerOptions);
+    expressJSDocSwagger(app)(swaggerOptions);
     /**
-     * This endpoint serves the manifest
-     * @route GET /__/manifest
-     * @group Admin - Everything about admin routes
-     * @returns 200 - Sucessful response
+     * GET /__/manifest
+     * @summary This endpoint serves the manifest
+     * @tags Admin - Everything about admin routes
+     * @return {object} 200 - Sucessful response
     */
     app.get('/__/manifest', (req, res) => res.json(manifest));
 

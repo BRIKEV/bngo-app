@@ -29,31 +29,13 @@ module.exports = {
       ...tokenOptions,
       frontPath: join(__dirname, '..', 'dist'),
       swaggerOptions: {
-        swaggerDefinition: {
-          info: {
-            description: 'Documentation for taxi-tpv-tickets-api',
-            title: 'taxi-tpv-tickets-api',
-            version: '1.0.0',
-          },
-          host: process.env.DOCS_HOST || 'localhost:4000',
-          basePath: '/',
-          produces: ['application/json'],
-          schemes: ['https', 'http'],
-          securityDefinitions: {
-            JWT: {
-              type: 'apiKey',
-              in: 'header',
-              name: 'Authorization',
-              description: '',
-            },
-          },
+        info: {
+          description: 'Documentation for taxi-tpv-tickets-api',
+          title: 'taxi-tpv-tickets-api',
+          version: '1.0.0',
         },
-        basedir: process.cwd(), // app absolute path
-        files: ['./**/**-routes.js'], // path to the API handle folder, related to basedir
-        route: {
-          url: '/api-docs',
-          docs: '/api-docs.json',
-        },
+        baseDir: process.cwd(), // app absolute path
+        filesPattern: './**/**-routes.js', // path to the API handle folder, related to basedir
       },
     },
   },
