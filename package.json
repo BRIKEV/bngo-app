@@ -26,7 +26,7 @@
     "axios": "^0.19.1",
     "body-parser": "^1.19.0",
     "boom": "^7.3.0",
-    "bunyan": "^1.8.12",
+    "bunyan": "^1.8.13",
     "chalk": "^3.0.0",
     "compression": "^1.7.4",
     "confabulous": "^1.7.0",
