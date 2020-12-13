@@ -174,7 +174,8 @@ describe('API endpoint', () => {
       .get('/api/v1/game-types')
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.eql(configInfo.routes.api.validTopics);
+        const gammeTypes = configInfo.routes.api.validTopics.filter(topic => !configInfo.routes.api.topicsExceptions.includes(topic));
+        expect(body).to.eql(gammeTypes);
       }));
   });
 });

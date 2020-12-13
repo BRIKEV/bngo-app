@@ -81,7 +81,10 @@ module.exports = () => {
      * @return {array<string>} 200 - Successful operation
      * @return {Error} default - Error message
     */
-    app.get('/api/v1/game-types', (req, res) => res.json(config.validTopics));
+    app.get('/api/v1/game-types', (req, res) => {
+      const gammeTypes = config.validTopics.filter(topic => !config.topicsExceptions.includes(topic));
+      return res.json(gammeTypes);
+    });
 
     app.get('/*', (req, res) => {
       res.sendFile(config.frontMainFile);
