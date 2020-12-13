@@ -1,11 +1,5 @@
 [
   {
-    "id": "Christmas_dinner",
-    "name": "Christmas dinner",
-    "image": "/images/gs/Christmas_dinner.jpg",
-    "selected": false
-  },
-  {
     "id": "Daniel_25_17",
     "name": "Daniel 25:17",
     "image": "/images/gs/Daniel_25_17.png",
@@ -30,12 +24,6 @@
     "selected": false
   },
   {
-    "id": "GS_breakfast",
-    "name": "Wework Breakfast",
-    "image": "/images/gs/GS_breakfast.jpg",
-    "selected": false
-  },
-  {
     "id": "GS_company_race",
     "name": "GS Company Race",
     "image": "/images/gs/GS_company_race.jpg",
@@ -51,12 +39,6 @@
     "id": "GS_party",
     "name": "GS party",
     "image": "/images/gs/GS_party.jpg",
-    "selected": false
-  },
-  {
-    "id": "GS_stickers",
-    "name": "GS stickers",
-    "image": "/images/gs/GS_stickers.jpg",
     "selected": false
   },
   {
@@ -127,13 +109,13 @@
   },
   {
     "id": "como_un_pepino",
-    "name": "como un pepino",
+    "name": "Como un pepino",
     "image": "/images/gs/como_un_pepino.jpg",
     "selected": false
   },
   {
     "id": "coronabeers",
-    "name": "coronabeers",
+    "name": "Coronabeers",
     "image": "/images/gs/coronabeers.png",
     "selected": false
   },
@@ -151,127 +133,115 @@
   },
   {
     "id": "deicola_remote",
-    "name": "deicola_remote",
+    "name": "Deicola remote",
     "image": "/images/gs/deicola_remote.jpeg",
     "selected": false
   },
   {
     "id": "dictator",
-    "name": "dictator",
+    "name": "Mando yo, Camarada",
     "image": "/images/gs/dictator.png",
     "selected": false
   },
   {
     "id": "esa_escapada",
-    "name": "esa_escapada",
+    "name": "Escapada!",
     "image": "/images/gs/esa_escapada.jpg",
     "selected": false
   },
   {
     "id": "farivar",
-    "name": "farivar",
+    "name": "Farivar",
     "image": "/images/gs/farivar.jpg",
     "selected": false
   },
   {
     "id": "felipe_remote",
-    "name": "felipe_remote",
+    "name": "Felipe remote",
     "image": "/images/gs/felipe_remote.jpg",
     "selected": false
   },
   {
     "id": "futbolin_wework",
-    "name": "futbolin_wework",
+    "name": "Futbolin wework",
     "image": "/images/gs/futbolin_wework.jpg",
     "selected": false
   },
   {
     "id": "golden_remote",
-    "name": "golden_remote",
+    "name": "Golden remote",
     "image": "/images/gs/golden_remote.jpg",
     "selected": false
   },
   {
     "id": "good_morning_in_the_morning",
-    "name": "good_morning_in_the_morning",
+    "name": "GM in the morning",
     "image": "/images/gs/good_morning_in_the_morning.jpg",
     "selected": false
   },
   {
     "id": "gratitude",
-    "name": "gratitude",
+    "name": "Gratitude",
     "image": "/images/gs/gratitude.png",
     "selected": false
   },
   {
     "id": "gs_family_2",
-    "name": "gs_family_2",
+    "name": "Guidesmiths 💚",
     "image": "/images/gs/gs_family_2.jpg",
     "selected": false
   },
   {
     "id": "gs_masks",
-    "name": "gs_masks",
+    "name": "GS masks",
     "image": "/images/gs/gs_masks.jpg",
     "selected": false
   },
   {
-    "id": "gs_toaster",
-    "name": "gs_toaster",
-    "image": "/images/gs/gs_toaster.jpg",
-    "selected": false
-  },
-  {
     "id": "herrero_remote",
-    "name": "herrero_remote",
+    "name": "Herrero remote",
     "image": "/images/gs/herrero_remote.jpg",
     "selected": false
   },
   {
     "id": "hungary_lover",
-    "name": "hungary_lover",
+    "name": "Hungarian persistence",
     "image": "/images/gs/hungary_lover.jpg",
     "selected": false
   },
   {
     "id": "inigo_home",
-    "name": "inigo_home",
+    "name": "Iñigo home",
     "image": "/images/gs/inigo_home.png",
     "selected": false
   },
   {
     "id": "iria_knows",
-    "name": "iria_knows",
+    "name": "Sinergias cruzadas",
     "image": "/images/gs/iria_knows.jpg",
     "selected": false
   },
   {
     "id": "iria_remote",
-    "name": "iria_remote",
+    "name": "Iria remote",
     "image": "/images/gs/iria_remote.jpg",
     "selected": false
   },
   {
     "id": "its_over",
-    "name": "its_over",
+    "name": "its over",
     "image": "/images/gs/its_over.png",
     "selected": false
   },
   {
-    "id": "javi_remote",
-    "name": "javi_remote",
-    "image": "/images/gs/javi_remote.jpg",
-    "selected": false
-  },
-  {
-    "id": "josito_remote",
-    "name": "josito_remote",
-    "image": "/images/gs/josito_remote.jpg",
+    "id": "javi_sleep",
+    "name": "Javi 💤",
+    "image": "/images/gs/javi_sleep.jpg",
     "selected": false
   },
   {
     "id": "laura_remote",
-    "name": "laura_remote",
+    "name": "Laura remote",
     "image": "/images/gs/laura_remote.jpg",
     "selected": false
   },
@@ -282,38 +252,26 @@
     "selected": false
   },
   {
-    "id": "mario_remote",
-    "name": "mario_remote",
-    "image": "/images/gs/mario_remote.jpg",
-    "selected": false
-  },
-  {
     "id": "matteo_affinity",
-    "name": "matteo_affinity",
+    "name": "Matteo affinity",
     "image": "/images/gs/matteo_affinity.png",
     "selected": false
   },
   {
     "id": "mood_tool",
-    "name": "mood_tool",
+    "name": "Mood tool",
     "image": "/images/gs/mood_tool.png",
     "selected": false
   },
   {
-    "id": "muy_alto",
-    "name": "muy_alto",
-    "image": "/images/gs/muy_alto.jpg",
-    "selected": false
-  },
-  {
     "id": "pablo_remote",
-    "name": "pablo_remote",
+    "name": "Pablo remote",
     "image": "/images/gs/pablo_remote.jpg",
     "selected": false
   },
   {
     "id": "paolo",
-    "name": "paolo",
+    "name": "Paolo",
     "image": "/images/gs/paolo.png",
     "selected": false
   },
@@ -337,19 +295,19 @@
   },
   {
     "id": "robert_remote",
-    "name": "robert_remote",
+    "name": "Robert remote",
     "image": "/images/gs/robert_remote.jpg",
     "selected": false
   },
   {
     "id": "show_me_your_cypress_code",
-    "name": "show_me_your_cypress_code",
+    "name": "Give me cypress code",
     "image": "/images/gs/show_me_your_cypress_code.jpg",
     "selected": false
   },
   {
     "id": "snow_time",
-    "name": "snow_time",
+    "name": "Snowboarders",
     "image": "/images/gs/snow_time.jpg",
     "selected": false
   },
@@ -361,25 +319,25 @@
   },
   {
     "id": "teambuilding_3",
-    "name": "teambuilding_3",
+    "name": "teambuilding",
     "image": "/images/gs/teambuilding_3.jpg",
     "selected": false
   },
   {
     "id": "terelu_nemesis",
-    "name": "terelu_nemesis",
+    "name": "Terelu nemesis",
     "image": "/images/gs/terelu_nemesis.jpg",
     "selected": false
   },
   {
     "id": "thug_life",
-    "name": "thug_life",
+    "name": "PGP life",
     "image": "/images/gs/thug_life.png",
     "selected": false
   },
   {
     "id": "too_sexy",
-    "name": "too_sexy",
+    "name": "🔥🔥🔥🔥",
     "image": "/images/gs/too_sexy.jpg",
     "selected": false
   },
@@ -397,7 +355,7 @@
   },
   {
     "id": "wework_beers",
-    "name": "wework_beers",
+    "name": "wework beers",
     "image": "/images/gs/wework_beers.jpg",
     "selected": false
   },
