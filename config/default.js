@@ -22,7 +22,7 @@ module.exports = {
     api: {
       frontMainFile: join(__dirname, '..', 'dist', 'index.html'),
       ...tokenOptions,
-      validTopics: ['springfield', 'movieCartoons', 'cars', 'standard'],
+      validTopics: ['springfield', 'movieCartoons', 'cars', 'standard', 'gs'],
     },
     admin: {
       cloudImages: process.env.NODE_ENV === 'production',
@@ -40,8 +40,8 @@ module.exports = {
     },
   },
   io: {
-    interval: 10000,
-    endGameTimeout: 12000,
+    interval: 14000,
+    endGameTimeout: 16000,
     ...tokenOptions,
   },
   store: {

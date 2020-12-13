@@ -99,7 +99,7 @@ export default {
     },
     {
       ...getInfo(),
-      delay: 2500,
+      delay: 6000,
     });
   },
   computed: {
