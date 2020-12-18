@@ -156,21 +156,15 @@
     "selected": false
   },
   {
-    "id": "felipe_remote",
-    "name": "Felipe remote",
-    "image": "/images/gs/felipe_remote.jpg",
-    "selected": false
-  },
-  {
     "id": "futbolin_wework",
     "name": "Futbolin wework",
     "image": "/images/gs/futbolin_wework.jpg",
     "selected": false
   },
   {
-    "id": "golden_remote",
-    "name": "Golden remote",
-    "image": "/images/gs/golden_remote.jpg",
+    "id": "bourne_team",
+    "name": "Bourne team",
+    "image": "/images/gs/bourne_team.png",
     "selected": false
   },
   {
@@ -198,9 +192,9 @@
     "selected": false
   },
   {
-    "id": "herrero_remote",
-    "name": "Herrero remote",
-    "image": "/images/gs/herrero_remote.jpg",
+    "id": "make_america_great",
+    "name": "Make USA great again",
+    "image": "/images/gs/make_america_great.png",
     "selected": false
   },
   {
@@ -240,9 +234,9 @@
     "selected": false
   },
   {
-    "id": "laura_remote",
-    "name": "Laura remote",
-    "image": "/images/gs/laura_remote.jpg",
+    "id": "del_rio",
+    "name": "Los del rio",
+    "image": "/images/gs/del_rio.png",
     "selected": false
   },
   {
@@ -291,12 +285,6 @@
     "id": "ramen",
     "name": "ramen",
     "image": "/images/gs/ramen.jpg",
-    "selected": false
-  },
-  {
-    "id": "robert_remote",
-    "name": "Robert remote",
-    "image": "/images/gs/robert_remote.jpg",
     "selected": false
   },
   {
