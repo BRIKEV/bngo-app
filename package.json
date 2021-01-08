@@ -49,7 +49,7 @@
     "prepper": "^1.2.0",
     "ramda": "^0.27.0",
     "require-all": "^3.0.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "socket.io-client": "^2.3.0",
     "systemic": "^3.3.7",
     "systemic-domain-runner": "^1.1.0",
