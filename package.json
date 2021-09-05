@@ -23,7 +23,7 @@
   "main": "index.js",
   "dependencies": {
     "@saeris/vue-spinners": "^1.0.8",
-    "axios": "^0.21.1",
+    "axios": "^0.21.3",
     "body-parser": "^1.19.0",
     "boom": "^7.3.0",
     "bunyan": "^1.8.13",
