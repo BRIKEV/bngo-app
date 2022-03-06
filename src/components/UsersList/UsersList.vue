@@ -16,8 +16,9 @@
       <span
         class="material-icons removeIcon"
         v-if="host && !user.ready && !user.host"
+        @click="handleIconClick(user.username)"
       >
-        highlight_off
+        delete_forever
       </span>
     </li>
   </ol>
@@ -37,6 +38,11 @@ export default {
     userReadyMsg: VueTypes.string.isRequired,
     userNotReadyMsg: VueTypes.string.isRequired,
     host: VueTypes.bool,
+  },
+  methods: {
+    handleIconClick(username) {
+      this.$emit('onRemoveClick', username);
+    },
   },
 };
 </script>
@@ -72,6 +78,7 @@ export default {
   }
   .removeIcon {
     color: $disabled;
+    cursor: pointer;
   }
   .infoMsg {
     font-family: $base-secondary-font;

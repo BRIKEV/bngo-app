@@ -25,6 +25,7 @@
           :users="users"
           :userReadyMsg="$t('gameActionsSection.userList.readyMsg')"
           :userNotReadyMsg="$t('gameActionsSection.userList.notReadyMsg')"
+          @onRemoveClick="handleRemoveUser"
         />
       </div>
     </div>
@@ -73,6 +74,9 @@ export default {
     },
   },
   methods: {
+    handleRemoveUser(username) {
+      emit('removeUser', { userToRemove: username });
+    },
     handleStart() {
       this.$ga.event({
         eventCategory: 'bingo',
