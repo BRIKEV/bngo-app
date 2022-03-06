@@ -24,7 +24,7 @@ module.exports = () => {
     };
 
     const filteredUsers = users => users.map(R.omit(['board']));
-    const removeUser = username => user => !(user.username === username);
+    const removeUser = username => user => user.username !== username;
     const findUser = username => user => user.username === username;
 
     const createGame = async ({ gameName, gameKey, types }) => {
@@ -102,8 +102,7 @@ module.exports = () => {
       const game = await getGameByKey(key);
       const hostUser = game.users.find(findUser(username));
       if (!hostUser.host) {
-        const error = new Error('Error: only host can do this');
-        throw error;
+        throw new Error('Error: only host can do this');
       }
       const newUsers = game.users.filter(removeUser(userToRemove));
       const gameReady = (
