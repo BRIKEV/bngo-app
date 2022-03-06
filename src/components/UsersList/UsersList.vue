@@ -13,6 +13,12 @@
         <p class="userName">{{ user.username }}</p>
       </div>
       <p class="infoMsg">{{ user.ready ? userReadyMsg : userNotReadyMsg }}</p>
+      <span
+        class="material-icons removeIcon"
+        v-if="host && !user.ready && !user.host"
+      >
+        highlight_off
+      </span>
     </li>
   </ol>
 </template>
@@ -26,9 +32,11 @@ export default {
     users: VueTypes.arrayOf(VueTypes.shape({
       username: VueTypes.string.isRequired,
       ready: VueTypes.bool.def(false),
+      host: VueTypes.bool.def(false),
     })),
     userReadyMsg: VueTypes.string.isRequired,
     userNotReadyMsg: VueTypes.string.isRequired,
+    host: VueTypes.bool,
   },
 };
 </script>
@@ -61,6 +69,9 @@ export default {
       font-size: $fs-medium;
       font-weight: $regular;
     }
+  }
+  .removeIcon {
+    color: $disabled;
   }
   .infoMsg {
     font-family: $base-secondary-font;

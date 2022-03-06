@@ -21,6 +21,7 @@
         </h2>
         <UsersList
           class="usersList"
+          :host="user.host"
           :users="users"
           :userReadyMsg="$t('gameActionsSection.userList.readyMsg')"
           :userNotReadyMsg="$t('gameActionsSection.userList.notReadyMsg')"
