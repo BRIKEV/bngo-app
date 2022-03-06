@@ -51,8 +51,8 @@ module.exports = () => {
             const userInGame = users.find(gameUser => gameUser.username === username);
             if (!userInGame) throw new Error(`User ${username} is not in game ${gameName}`);
             // user events
-            io.to(socket.id).emit('newUser', { username, ready });
-            io.to(socket.id).emit('yourBoard', { username, board, host: userInGame.host });
+            io.to(socket.id).emit('newUser', { username, ready, host: userInGame.host });
+            io.to(socket.id).emit('yourBoard', { username, board });
           });
         })
         .catch(error => {
