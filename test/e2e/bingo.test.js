@@ -398,6 +398,28 @@ describe('Bingo e2e tests', () => {
           cb();
         });
       });
+
+      it(`create a game and join one user and emit one event removeUser to remove one
+        user in the game list
+        `, cb => {
+        // connect client
+        socket = io(CLIENT_CONNECTION, {
+          query: {
+            accessKey,
+          },
+        });
+
+        socket.emit('removeUser', {
+          userToRemove: username,
+        });
+
+        socket.on('usersList', msg => {
+          // This means all users were removed and removeUser event works
+          if (msg.users.length === 0) {
+            cb();
+          }
+        });
+      });
     });
   });
 });

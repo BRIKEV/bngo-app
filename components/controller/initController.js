@@ -23,6 +23,10 @@ module.exports = () => {
       return trim;
     };
 
+    const filteredUsers = users => users.map(R.omit(['board']));
+    const removeUser = username => user => !(user.username === username);
+    const findUser = username => user => user.username === username;
+
     const createGame = async ({ gameName, gameKey, types }) => {
       const gameExists = await store.getGameByKey(gameKey);
       if (gameExists) {
@@ -65,7 +69,7 @@ module.exports = () => {
       if (game.ready) {
         throw alreadyStarted('Game has already started');
       }
-      const isAlreadyAdded = game.users.some(user => user.username === username);
+      const isAlreadyAdded = game.users.some(findUser(username));
       if (isAlreadyAdded) {
         throw badRequestError('User already joined');
       }
@@ -94,7 +98,29 @@ module.exports = () => {
       })
     );
 
-    const filteredUsers = users => users.map(R.omit(['board']));
+    const removeUserFromGame = async ({ key, username, userToRemove }) => {
+      const game = await getGameByKey(key);
+      const hostUser = game.users.find(findUser(username));
+      if (!hostUser.host) {
+        const error = new Error('Error: only host can do this');
+        throw error;
+      }
+      const newUsers = game.users.filter(removeUser(userToRemove));
+      const gameReady = (
+        newUsers.filter(({ ready }) => ready).length === newUsers.length
+      );
+      const updateGame = {
+        ...game,
+        ready: gameReady,
+        users: newUsers,
+      };
+      await store.updateGameByKey(updateGame);
+      return Promise.resolve({
+        username,
+        gameReady,
+        users: filteredUsers(newUsers),
+      });
+    };
 
     const readyToStart = async ({ key, username }) => {
       const game = await getGameByKey(key);
@@ -112,7 +138,7 @@ module.exports = () => {
         ready: gameReady,
         users: newUsers,
       };
-      const { board: userBoard } = game.users.find(user => user.username === username);
+      const { board: userBoard } = game.users.find(findUser(username));
       await store.updateGameByKey(updateGame);
       return Promise.resolve({
         username,
@@ -161,7 +187,7 @@ module.exports = () => {
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
       }
-      const gameUser = game.users.find(user => user.username === username);
+      const gameUser = game.users.find(findUser(username));
       if (!gameUser) {
         throw notFoundError('User not found in this game');
       }
@@ -198,7 +224,7 @@ module.exports = () => {
       if (game.name !== gameName) {
         throw notFoundError('Gamename not found');
       }
-      const userInGame = game.users.find(user => user.username === username);
+      const userInGame = game.users.find(findUser(username));
       if (!userInGame) {
         throw notFoundError('Username not found to leave the room');
       }
@@ -225,6 +251,7 @@ module.exports = () => {
       joinGame,
       playTurn,
       readyToStart,
+      removeUserFromGame,
       getUserInfo,
       hasBingo,
       finishGame,

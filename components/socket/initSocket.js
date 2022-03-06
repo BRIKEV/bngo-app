@@ -84,6 +84,25 @@ module.exports = () => {
           });
       });
 
+      // removeUser
+      socket.on('removeUser', msg => {
+        controller.removeUserFromGame({ key: gameKey, username, userToRemove: msg.userToRemove })
+          .then(({ gameReady, board, users }) => {
+            io.to(gameName).emit('usersList', { users });
+            if (gameReady) {
+              logger.info('Game is ready to start');
+              io.to(gameName).emit('gameReady', { board });
+            }
+          })
+          .catch(error => {
+            logger.error(`Error in removeUser event ${error}`);
+            io.to(socket.id).emit('errorRemoveUser', {
+              message: error.message,
+              type: error.type,
+            });
+          });
+      });
+
       socket.on('startGame', () => {
         if (!intervals[intervalIdentifier]) {
           intervals[intervalIdentifier] = setInterval(
