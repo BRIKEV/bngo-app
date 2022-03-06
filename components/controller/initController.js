@@ -70,7 +70,10 @@ module.exports = () => {
         throw badRequestError('User already joined');
       }
       const board = shuffleBoard(game.board, config.userOptionsLength);
-      const newUser = { username, board, ready: false };
+      let newUser = { username, board, ready: false, host: false };
+      if (game.users.length === 0) {
+        newUser = { ...newUser, host: true };
+      }
       const updateGame = {
         ...game,
         users: [

@@ -100,6 +100,10 @@ describe('Bingo e2e tests', () => {
         const { username: usernameMsg, ready } = msg;
         expect(usernameMsg).to.eql(username);
         expect(ready).to.eql(false);
+        expect(msg).to.eql({
+          username,
+          ready: false,
+        });
         cb();
       });
     });
@@ -170,9 +174,11 @@ describe('Bingo e2e tests', () => {
       });
 
       socket.on('yourBoard', msg => {
-        const { username: usernameMsg, board } = msg;
+        const { username: usernameMsg, board, host } = msg;
         expect(usernameMsg).to.eql(username);
         expect(board).to.have.length(16);
+        // first user must be the host of the game
+        expect(host).to.eql(true);
         cb();
       });
     });
