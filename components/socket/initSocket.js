@@ -47,8 +47,11 @@ module.exports = () => {
             logger.info(`User: ${username} join to game ${gameName} to the room`);
             io.to(gameName).emit('board', { board: mainBoard });
             io.to(gameName).emit('usersList', { users });
+            // info to get the user in the game with the role
+            const userInGame = users.find(gameUser => gameUser.username === username);
+            if (!userInGame) throw new Error(`User ${username} is not in game ${gameName}`);
             // user events
-            io.to(socket.id).emit('newUser', { username, ready });
+            io.to(socket.id).emit('newUser', { username, ready, host: userInGame.host });
             io.to(socket.id).emit('yourBoard', { username, board });
           });
         })
@@ -75,6 +78,25 @@ module.exports = () => {
           .catch(error => {
             logger.error(`Error in readyToStart event ${error}`);
             io.to(socket.id).emit('errorStart', {
+              message: error.message,
+              type: error.type,
+            });
+          });
+      });
+
+      // removeUser
+      socket.on('removeUser', msg => {
+        controller.removeUserFromGame({ key: gameKey, username, userToRemove: msg.userToRemove })
+          .then(({ gameReady, board, users }) => {
+            io.to(gameName).emit('usersList', { users });
+            if (gameReady) {
+              logger.info('Game is ready to start');
+              io.to(gameName).emit('gameReady', { board });
+            }
+          })
+          .catch(error => {
+            logger.error(`Error in removeUser event ${error}`);
+            io.to(socket.id).emit('errorRemoveUser', {
               message: error.message,
               type: error.type,
             });

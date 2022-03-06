@@ -97,9 +97,16 @@ describe('Bingo e2e tests', () => {
       });
 
       socket.on('newUser', msg => {
-        const { username: usernameMsg, ready } = msg;
+        const { username: usernameMsg, ready, host } = msg;
         expect(usernameMsg).to.eql(username);
         expect(ready).to.eql(false);
+        expect(msg).to.eql({
+          username,
+          ready: false,
+          host: true,
+        });
+        // first user must be the host of the game
+        expect(host).to.eql(true);
         cb();
       });
     });
@@ -389,6 +396,28 @@ describe('Bingo e2e tests', () => {
           if (msg.users.length !== 0) return;
           expect(msg.users).to.eql([]);
           cb();
+        });
+      });
+
+      it(`create a game and join one user and emit one event removeUser to remove one
+        user in the game list
+        `, cb => {
+        // connect client
+        socket = io(CLIENT_CONNECTION, {
+          query: {
+            accessKey,
+          },
+        });
+
+        socket.emit('removeUser', {
+          userToRemove: username,
+        });
+
+        socket.on('usersList', msg => {
+          // This means all users were removed and removeUser event works
+          if (msg.users.length === 0) {
+            cb();
+          }
         });
       });
     });

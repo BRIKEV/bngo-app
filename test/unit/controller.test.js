@@ -384,6 +384,63 @@ describe('initController tests', () => {
     });
   });
 
+  describe('removeUserFromGame', () => {
+    it('should return an error if the key does not exists', async () => {
+      try {
+        const secondUsername = 'secondUsername';
+        await api.createGame({ gameName, gameKey });
+        await api.joinGame({ username, key: gameKey, gameName });
+        await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+        await api.removeUserFromGame({ key: 'not found', username, userToRemove: secondUsername });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Game key does not exists');
+      }
+    });
+
+    it('should return an error if the user that wants to delete a user is not the host', async () => {
+      try {
+        const secondUsername = 'secondUsername';
+        await api.createGame({ gameName, gameKey });
+        await api.joinGame({ username, key: gameKey, gameName });
+        await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+        await api.removeUserFromGame({ key: gameKey, username: secondUsername, userToRemove: username });
+        // if createGame does not throw an exception test should fail
+        expect(false).to.eql(true);
+      } catch (err) {
+        expect(err.message).to.eql('Error: only host can do this');
+      }
+    });
+
+    it('should remove the user and return the board not ready because host did not start', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.removeUserFromGame({ key: gameKey, username, userToRemove: secondUsername });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(false);
+      expect(games[0].users).to.have.length(1);
+      expect(games[0].board.filter(({ selected }) => selected)).to.have.length(0);
+    });
+
+    it('should remove the user and return the board ready because host clicked start', async () => {
+      const secondUsername = 'secondUsername';
+      await api.createGame({ gameName, gameKey });
+      await api.joinGame({ username, key: gameKey, gameName });
+      await api.joinGame({ username: secondUsername, key: gameKey, gameName });
+      await api.readyToStart({ username, key: gameKey });
+      await api.removeUserFromGame({ key: gameKey, username, userToRemove: secondUsername });
+      const games = await storeSystem.getGames();
+      expect(games).to.have.length(1);
+      expect(games[0].ready).to.eql(true);
+      expect(games[0].users).to.have.length(1);
+      expect(games[0].board.filter(({ selected }) => selected)).to.have.length(0);
+    });
+  });
+
   describe('finishGame method', () => {
     it('should throw error when game is finished and try to play turn', async () => {
       try {
