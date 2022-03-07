@@ -15,8 +15,8 @@ const IOeventEmitter = (methods, options) => {
     methods.errorAccess({ message, type });
   });
 
-  socket.on('newUser', ({ username, ready }) => {
-    methods.userReady({ username, ready });
+  socket.on('newUser', ({ username, ready, host }) => {
+    methods.userReady({ username, ready, host });
   });
 
   socket.on('yourBoard', ({ username, board }) => {

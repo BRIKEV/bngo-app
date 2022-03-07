@@ -14,8 +14,8 @@ export default {
     commit('SET_ANIMATE', false);
     commit('SET_RESULTS', optionSelected);
   },
-  userInfo({ commit }, { username, ready }) {
-    commit('SET_USER_INFO', { username, ready });
+  userInfo({ commit }, { username, ready, host }) {
+    commit('SET_USER_INFO', { username, ready, host });
   },
   activateAnimate({ commit }) {
     commit('SET_ANIMATE', true);
