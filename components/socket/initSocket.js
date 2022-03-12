@@ -40,20 +40,19 @@ module.exports = () => {
           logger.info(`New socket connection of user: ${username} game ${gameName} with ${gameKey}`);
           intervalIdentifier = `${gameName}-${gameKey}`;
           return controller.getUserInfo({ key: gameKey, gameName, username });
-        }).then(userInfo => {
+        }).then(async userInfo => {
           logger.info(`User: ${username} join to game ${gameName} in the DB`);
           const { board, ready, mainBoard, users } = userInfo;
-          socket.join(gameName, () => {
-            logger.info(`User: ${username} join to game ${gameName} to the room`);
-            io.to(gameName).emit('board', { board: mainBoard });
-            io.to(gameName).emit('usersList', { users });
-            // info to get the user in the game with the role
-            const userInGame = users.find(gameUser => gameUser.username === username);
-            if (!userInGame) throw new Error(`User ${username} is not in game ${gameName}`);
-            // user events
-            io.to(socket.id).emit('newUser', { username, ready, host: userInGame.host });
-            io.to(socket.id).emit('yourBoard', { username, board });
-          });
+          await socket.join(gameName);
+          logger.info(`User: ${username} join to game ${gameName} to the room`);
+          io.to(gameName).emit('board', { board: mainBoard });
+          io.to(gameName).emit('usersList', { users });
+          // info to get the user in the game with the role
+          const userInGame = users.find(gameUser => gameUser.username === username);
+          if (!userInGame) throw new Error(`User ${username} is not in game ${gameName}`);
+          // user events
+          io.to(socket.id).emit('newUser', { username, ready, host: userInGame.host });
+          io.to(socket.id).emit('yourBoard', { username, board });
         })
         .catch(error => {
           logger.error(`Error in getUserInfo ${error}`);
