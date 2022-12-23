@@ -40,7 +40,7 @@
     "hogan.js": "^3.0.2",
     "ioredis": "^4.16.3",
     "js-cookie": "^2.2.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "on-headers": "^1.0.2",
     "optional": "^0.1.4",
     "prepper": "^1.2.1",
