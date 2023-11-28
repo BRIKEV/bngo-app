@@ -48,7 +48,7 @@
     "require-all": "^3.0.0",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
-    "systemic": "^3.3.7",
+    "systemic": "^3.3.9",
     "systemic-domain-runner": "^1.1.0",
     "vue": "^2.6.11",
     "vue-analytics": "^5.22.1",
