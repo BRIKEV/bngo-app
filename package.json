@@ -31,7 +31,7 @@
     "confabulous": "^2.1.0",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "debug": "^4.1.1",
+    "debug": "^4.3.1",
     "error-handler-module": "^1.0.3",
     "express": "^4.17.1",
     "express-jsdoc-swagger": "^1.6.7",
